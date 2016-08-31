@@ -1,0 +1,39 @@
+<template name="myDashboard">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">TopAdvisors</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="#">Agents</a></li>
+                <li><a href="#">Companies</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i> <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a id="profile" href="#">Profile</a></li>
+                    <li id="logout"><a href="#">Logout</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+
+    {{> Template.dynamic template=tab}}
+
+    </div>
+  </div>
+</template>

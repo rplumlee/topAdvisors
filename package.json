@@ -1,0 +1,22 @@
+{
+  "name": "top-advisors",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "lint": "eslint ./client ./server --ext .js",
+    "test": "npm run lint"
+  },
+  "engines": {
+    "npm": "3.10.6",
+    "node": "4.5.0"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "moment": "^2.13.0",
+    "winston": "^2.2.0",
+    "winston-papertrail": "^1.0.2"
+  },
+  "devDependencies": {
+    "eslint": "1.10.x"
+  }
+}
