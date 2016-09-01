@@ -1,445 +1,129 @@
 <template name="myHome">
-  <nav class="navbar navbar-default navbar-transparent navbar-fixed-top" color-on-scroll="200">
-    <!-- if you want to keep the navbar hidden you can add this class to the navbar "navbar-burger"-->
-    <div class="container">
+  <nav class="navbar navbar-default navbar-transparent navbar-absolute">
+    <div class="container-fluid" style="padding: 0 30px;">
+      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button id="menu-toggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
           <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar bar1"></span>
-          <span class="icon-bar bar2"></span>
-          <span class="icon-bar bar3"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
         </button>
-        <a href="/" class="navbar-brand">
-          <img src="assets/img/logo.png" class="logo"><span class="allerLt">smart</span><span class="allerBold">advisors</span>
-        </a>
+        <a class="navbar-brand" href="#"><b>TopAdvisors</b></a>
       </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right navbar-uppercase">
-          <li>
-            <a href="howItWorks">how it works</a>
-          </li>
-          <li>
-            <a href="#">For Professionals</a>
-          </li>
-          <li>
-            <a href="#">articles</a>
-          </li>
+
+      <div class="collapse navbar-collapse" id="navigation-example">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">For Professionals</a></li>
+
+          <li><a href="#">Articles</a></li>
+
           <li class="dropdown">
-            <a href="#gaia" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-search"></i> Find
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="material-icons">search</i> Find
+              <b class="caret"></b>
             </a>
-            <ul class="dropdown-menu dropdown-danger">
+            <ul class="dropdown-menu dropdown-with-icons">
               <li>
-                <a href="#"><i class="fa fa-area-chart"></i> Financial Planners</a>
+                <a href="#">
+                  <i class="material-icons">pie_chart</i> Financial Planners
+                </a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-umbrella"></i> Insurance Brokers</a>
+                <a href="#">
+                  <i class="material-icons">filter_drama</i> Insurance Agents
+                </a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-home"></i> Lenders</a>
+                <a href="#">
+                  <i class="material-icons">home</i> Lenders
+                </a>
               </li>
             </ul>
           </li>
         </ul>
       </div>
-      <!-- /.navbar-collapse -->
     </div>
   </nav>
 
-
-  <div class="section section-header">
-    <div class="parallax filter filter-color-red homeParallax">
-      <div class="image"
-        style="background-image: url('assets/img/home-bg2.jpg')">
-      </div>
-
-      <div class="container">
-        <div class="content homeTop">
-          <div id="filter-home">
-            <div class="title-area">
-              <h1 style="font-weight:600;font-size:3em;"><BR><BR>Find the perfect <span class="typer">financial planner</span>for you</h1>
-              <h4>Click one of the three options below to get started</h4>
-            </div>
-            <div class="row">
-              <div class="">
-                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                  <a href="#" class="hi-icon" onclick="return false" id="Finance"><span><i class="fa fa-area-chart fa-fw"></i><br>Finance</span></a>
-                  <a href="#" class="hi-icon" onclick="return false" id="Insurance"><span><i class="fa fa-umbrella fa-fw"></i><br>Insurance</span></a>
-                  <a href="#" class="hi-icon" onclick="return false" id="Loans"><span><i class="fa fa-home fa-fw"></i><br>Loans</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="location" style="display:none;opacity:0;">
-            <div class="title-area">
-              <h3>What is your zip code?</h3>
-            </div>
-            <div class="row">
-              <input class="location" type="text">
-            </div>
-          </div>
-
-          <div id="loans-1" style="display:none;opacity:0;">
-            <div class="title-area">
-              <h3>What type of loan do you need?</h3>
-            </div>
-            <div class="row">
-              <div class="">
-                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                  <a href="#" class="hi-icon2 loans1" onclick="return false" id="Loan-home"><span>Home</span></a>
-                  <a href="#" class="hi-icon2 loans1" onclick="return false" id="Loan-auto"><span>Auto</span></a>
-                  <a href="#" class="hi-icon2 loans1" onclick="return false" id="Loan-personal"><span>Personal</span></a>
-                  <a href="#" class="hi-icon2 loans1" onclick="return false" id="Loan-business"><span>Business</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="loans-2" style="display:none;opacity:0;">
-            <div class="title-area">
-              <h3>How much are you looking to borrow?</h3>
-            </div>
-            <div class="row">
-              <div class="">
-                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                  <a href="#" class="hi-icon2 loans2" onclick="return false" id="Loan-0-20"><span>$0 - $20,000</span></a>
-                  <a href="#" class="hi-icon2 loans2" onclick="return false" id="Loan-20-50"><span>$20,001 - $50,000</span></a>
-                  <a href="#" class="hi-icon2 loans2" onclick="return false" id="Loan-50-100"><span>$50,001 - $100,000</span></a>
-                  <a href="#" class="hi-icon2 loans2" onclick="return false" id="Loan-100-500"><span>$100,001 - $500,000</span></a>
-                  <a href="#" class="hi-icon2 loans2" onclick="return false" id="Loan-500+"><span>$500,000+</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="loans-3" style="display:none;opacity:0;">
-            <div class="title-area">
-              <h3>It is most important that my broker..</h3>
-            </div>
-            <div class="row">
-              <div class="">
-                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                  <a href="#" class="hi-icon2 loans3" onclick="return false" id="Loan-Quality-1"><span>Gets me the best rate</span></a>
-                  <a href="#" class="hi-icon2 loans3" onclick="return false" id="Loan-Quality-2"><span>Gets me a loan ASAP</span></a>
-                  <a href="#" class="hi-icon2 loans3" onclick="return false" id="Loan-Quality-3"><span>Takes time to educate me</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="finance-1" style="display:none;opacity:0;">
-            <div class="title-area">
-              <h3>Which of these best fits your needs?</h3>
-            </div>
-            <div class="row">
-              <div class="">
-                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                  <a href="#" class="hi-icon2 finance1" onclick="return false" id="Finance_financial_advising"><span>Financial Advising</span></a>
-                  <a href="#" class="hi-icon2 finance1" onclick="return false" id="Finance_wealth_management"><span>Wealth Management</span></a>
-                  <a href="#" class="hi-icon2 finance1" onclick="return false" id="Finance_education_funding"><span>Education Funding</span></a>
-                  <a href="#" class="hi-icon2 finance1" onclick="return false" id="Finance_estate_planning"><span>Estate Planning</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="finance-2" style="display:none;opacity:0;">
-            <div class="title-area">
-              <h3>How much are you looking to invest?</h3>
-            </div>
-            <div class="row">
-              <div class="">
-                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                  <a href="#" class="hi-icon2 finance2" onclick="return false" id="Finance-invest-0-20"><span>$0 - $20,000</span></a>
-                  <a href="#" class="hi-icon2 finance2" onclick="return false" id="Finance-invest-20-50"><span>$20,001 - $50,000</span></a>
-                  <a href="#" class="hi-icon2 finance2" onclick="return false" id="Finance-invest-50-100"><span>$50,001 - $100,000</span></a>
-                  <a href="#" class="hi-icon2 finance2" onclick="return false" id="Finance-invest-100-500"><span>$100,001 - $500,000</span></a>
-                  <a href="#" class="hi-icon2 finance2" onclick="return false" id="Finance-invest-500+"><span>$500,000+</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="finance-3" style="display:none;opacity:0;">
-            <div class="title-area">
-              <h3>What is the estate's approximate net worth??</h3>
-            </div>
-            <div class="row">
-              <div class="">
-                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                  <a href="#" class="hi-icon2 finance3" onclick="return false" id="Finance-estate-0-20"><span>$0 - $20,000</span></a>
-                  <a href="#" class="hi-icon2 finance3" onclick="return false" id="Finance-estate-20-50"><span>$20,001 - $50,000</span></a>
-                  <a href="#" class="hi-icon2 finance3" onclick="return false" id="Finance-estate-50-100"><span>$50,001 - $100,000</span></a>
-                  <a href="#" class="hi-icon2 finance3" onclick="return false" id="Finance-estate-100-500"><span>$100,001 - $500,000</span></a>
-                  <a href="#" class="hi-icon2 finance3" onclick="return false" id="Finance-estate-500+"><span>$500,000+</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="finance-4" style="display:none;opacity:0;">
-            <div class="title-area">
-              <h3>What type of loan do you need?</h3>
-            </div>
-            <div class="row">
-              <div class="">
-                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                  <a href="#" class="hi-icon2 finance4" onclick="return false" id="Finance-education-0-3"><span>0 - 3 years</span></a>
-                  <a href="#" class="hi-icon2 finance4" onclick="return false" id="Finance-education-3-5"><span>3 - 5 years</span></a>
-                  <a href="#" class="hi-icon2 finance4" onclick="return false" id="Finance-education-5-1="><span>5 - 10 yearas</span></a>
-                  <a href="#" class="hi-icon2 finance4" onclick="return false" id="Finance-education-10+"><span>10 years+</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="finance-5" style="display:none;opacity:0;">
-            <div class="title-area">
-              <h3>It is most important that my advisor..</h3>
-            </div>
-            <div class="row">
-              <div class="">
-                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b">
-                  <a href="#" class="hi-icon2 finance5" onclick="return false" id="Finance-Quality-1"><span>Gets me the best rate</span></a>
-                  <a href="#" class="hi-icon2 finance5" onclick="return false" id="Finance-Quality-2"><span>Gets me a loan ASAP</span></a>
-                  <a href="#" class="hi-icon2 finance5" onclick="return false" id="Finance-Quality-3"><span>Takes time to educate me</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="section">
+  <div class="page-header header-filter" data-parallax="active" style="background-image: url('assets/img/examples/office2.jpg');" id="top">
     <div class="container">
       <div class="row">
-        <div class="title-area">
-          <h2 class="text-dark"><img src="assets/img/logo.png" class="logo"><span class="allerLt">smart</span><span class="allerBold">advisors</span> <span class="allerLt">is</span><br><br></h2>
-        </div>
-      </div>
-      <div class="row">
-        <br>
-        <div class="col-md-4">
-          <div class="info-icon">
-            <div class="icon text-danger">
-              <i class="pe-7s-map-marker"></i>
-            </div>
-            <h3>Top Local Agents</h3>
-            <p class="description">The data we have collected allows us to only connect you with the top performers in your area.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="info-icon">
-            <div class="icon text-danger">
-              <i class="pe-7s-piggy"></i>
-            </div>
-            <h3>Free & Unbiased</h3>
-            <p class="description">Our service is 100% free. No catch. Professionals don’t pay us to be listed - they have to make the cut.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="info-icon">
-            <div class="icon text-danger">
-              <i class="pe-7s-unlock"></i>
-            </div>
-            <h3>Fast, East and Secure</h3>
-            <p class="description">You will only be contacted by our professionals when you specifically ask to be. Your privacy is important to us.</p>
-          </div>
+        <div class="col-md-12  text-center">
+          <h1 class="title"> Find the perfect <span class="typer"></span></h1>
+          <h3>Click one of the three options below to get started<br></h3>
         </div>
       </div>
     </div>
   </div>
 
-
-  <div class="section section-our-team-freebie">
-    <div class="parallax filter filter-color-green">
-      <div class="image" style="background-image:url('assets/img/home-bg.png')">
-      </div>
-      <div class="container">
-        <div class="content">
-          <div class="row">
-            <div class="title-area">
-              <h2>Research With Confidence</h2><br>
-              <div class="separator separator-danger"></div><br><br>
-              <p class="description">We receive data on advisor and broker performance straight from their agencies. Data you can’t find anywhere else. Professionals in our directory must also submit to a background check, and we monitor regulatory filing data for any red flags.</p>
-              <br><br>
-            </div>
-          </div>
-
-          <div class="team">
-            <div class="row">
-              <div class="col-md-10 col-md-offset-1">
-                <div class="row">
-                  <div class="col-md-4">
-                    <a href="#">
-                      <div class="card card-member">
-                        <div class="content">
-                          <div class="avatar">
-                            <img alt="..." class="img-circle" src="assets/img/faces/face_1.jpg"/>
-                          </div>
-                          <div class="description">
-                            <h3 class="title">Financial Planners</h3>
-                            <p class="small-text">Advisors, Wealth Managers</p>
-                            <p class="description"><br>Whether you just entered the workforce or are nearing retirement, work with someone you trust and get the job done right.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a href="#">
-                      <div class="card card-member">
-                        <div class="content">
-                          <div class="avatar">
-                            <img alt="..." class="img-circle" src="assets/img/faces/face_3.jpg"/>
-                          </div>
-                          <div class="description">
-                            <h3 class="title">Insurance Agents</h3>
-                            <p class="small-text">Health, Auto, Life, P&C</p>
-                            <p class="description"><br>Working with the right insurance broker can remove the headache from the process. Get the coverage you need when you need it.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a href="#">
-                      <div class="card card-member">
-                        <div class="content">
-                          <div class="avatar">
-                            <img alt="..." class="img-circle" src="assets/img/faces/face_2.jpg"/>
-                          </div>
-                          <div class="description">
-                            <h3 class="title">Lenders</h3>
-                            <p class="small-text">Home, Business, Personal</p>
-                            <p class="description"><br>Get the right type of loan and the best rates from our premium loan officers. Start your life as a homeowner the right way.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
+  <div class="main">
+    <div class="features-5">
+      <div class="container-fluid">
+        <div class="row">
+          <a href="#" class="homeCard">
+            <div class="col-sm-4">
+              <div class="info">
+                <div class="icon homeIcon">
+                  <i class="material-icons">pie_chart</i>
                 </div>
+                <h4 class="info-title">Financial Planning</h4>
+                <p>Match with the right financial planner to fit you or your company's needs.<br><br>
+                <span class="btn btn-success"><i class="material-icons">search</i> Search Now</span>
+                </p>
               </div>
             </div>
-          </div>
+          </a>
+          <a href="#" class="homeCard">
+            <div class="col-sm-4">
+              <div class="info">
+                <div class="icon homeIcon">
+                  <i class="material-icons">filter_drama</i>
+                </div>
+                <h4 class="info-title">Insurance</h4>
+                <p>Match with an insurance broker ready to help set you up with the right policies to protect your home or business.<br>
+                  <span class="btn btn-success"><i class="material-icons">search</i> Search Now</span>
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="homeCard">
+            <div class="col-sm-4">
+              <div class="info">
+                <div class="icon homeIcon">
+                  <i class="material-icons">home</i>
+                </div>
+                <h4 class="info-title">Loans</h4>
+                <p>Match with a loan professional ready to help you secure a home or get your business off the ground.<br>
+                  <span class="btn btn-success"><i class="material-icons">search</i> Search Now</span>
+                </p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
-  </div>
-
-
-  <div class="section section-small section-get-started">
-    <div class="container">
-      <div class="title-area">
-        <h2 class=""><i class="material-icons text-danger" style="font-size:200%;">group_add</i><br>Do you want to work with us?</h2>
-
-        <div class="separator line-separator"></div>
-        <br>
-        <p class="description"><br> If you are a top advisor, broker, or lender, we want to hear from you!</p>
-      </div>
-
-      <div class="button-get-started">
-        <a href="#" class="btn btn-danger btn-fill btn-lg">Contact Us</a>
-      </div>
+    <div class="row" style="height:60px;background-color:#607D8B;margin:0;">
     </div>
   </div>
 
-
-  <footer class="footer footer-big footer-color-black" data-color="black">
+  <footer class="footer">
     <div class="container">
-      <div class="row">
-        <div class="col-md-2 col-sm-3">
-          <div class="info">
-            <h5 class="title">Company</h5>
-            <nav>
-              <ul>
-                <li>
-                  <a href="#">Home</a>
-                </li>
-                <li>
-                  <a href="#">For Professionals</a>
-                </li>
-                <li>
-                  <a href="#">Articles</a>
-                </li>
-                <li>
-                  <a href="#">About Us</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="col-md-3 col-md-offset-1 col-sm-3">
-          <div class="info">
-            <h5 class="title"> Help and Support</h5>
-             <nav>
-              <ul>
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-                <li>
-                  <a href="#">How it Works</a>
-                </li>
-                <li>
-                  <a href="#">Terms &amp; Conditions</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-3">
-          <div class="info">
-            <h5 class="title">Latest Articles</h5>
-            <nav>
-              <ul>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-rss"></i> <b>Insuring Athletes</b> A look inside the world of insuring athletes' body parts.
-                    <hr class="hr-small">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-rss"></i> <b>Movie Finance</b> The hot take on the finances that make blockbusters successful.
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="col-md-2 col-md-offset-1 col-sm-3">
-          <div class="info">
-            <h5 class="title">Follow us on</h5>
-            <nav>
-              <ul>
-                <li>
-                  <a href="#" class="btn btn-social btn-facebook btn-simple">
-                    <i class="fa fa-facebook-square"></i> Facebook
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="btn btn-social btn-twitter btn-simple">
-                    <i class="fa fa-twitter-square"></i> Twitter
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="btn btn-social btn-reddit btn-simple">
-                    <i class="fa fa-linkedin-square"></i> LinkedIn
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="copyright">
-         © {{ copyrightDate }} smartadvisors LLC
+      <nav class="pull-left">
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Professionals</a>
+          </li>
+          <li>
+            <a href="#">articles</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright pull-right">
+        &copy; {{ copyrightDate }}, TopAdvisors, LLC
       </div>
     </div>
   </footer>
