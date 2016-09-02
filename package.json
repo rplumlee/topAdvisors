@@ -2,7 +2,7 @@
   "name": "top-advisors",
   "private": true,
   "scripts": {
-    "start": "meteor run",
+    "start": "meteor run --production",
     "lint": "eslint ./client ./server --ext .js",
     "test": "npm run lint"
   },
