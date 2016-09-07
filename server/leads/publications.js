@@ -2,7 +2,7 @@
  * Define the exported methods for the leads module
  * @param {object} context - server application context
  */
-export default function ({ Meteor, Collections, Accounts, Roles, check }) {
+export default function ({ Meteor, Collections }) {
 
   Meteor.publish('leads.list', function () {
 
@@ -15,4 +15,4 @@ export default function ({ Meteor, Collections, Accounts, Roles, check }) {
 
     return Collections.Leads.find();
   });
-};
+}

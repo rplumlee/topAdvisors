@@ -1,12 +1,12 @@
 import { Fake } from 'meteor/anti:fake';
 
-export default function ({ Meteor, Collections, Logger }) {
+export default function ({ Collections, Logger }) {
   //
   // On startup, create sample leads
   //
   if (Collections.Leads.find().count() < 5) {
     for (var i = 0; i < 5; i++) {
-      var profile = Fake.user({ fields: [ 'name', 'surname' ] })
+      var profile = Fake.user({ fields: [ 'name', 'surname' ] });
       Collections.Leads.insert({
         profile: {
           firstName: profile.name,
