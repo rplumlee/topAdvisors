@@ -191,42 +191,22 @@
                           </tr>
                           </thead>
                           <tbody>
+                            {{#if Template.subscriptionsReady}}
+                            {{#each leads}}
                             <tr>
                               <td class="td-name">
-                                <a href="#jacket" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
-                                <br /><small>Mortgage</small>
+                                <a href="#jacket" data-toggle="modal" data-target="#lead1">{{ profile.firstName }} {{ profile.lastName }}</a>
+                                <br /><small>{{ purpose }}</small>
                               </td>
                               <td>
-                                7/12/16
+                                {{ parseDate date }}
                               </td>
                               <td>
-                                <div class="label label-info">Open</div>
+                                <div class="label {{#if statusLabel status}}label-info{{else}}label-danger{{/if}}">{{ status }}</div>
                               </td>
                             </tr>
-                            <tr>
-                              <td class="td-name">
-                                <a href="#pants" data-toggle="modal" data-target="#lead2">Jack Reacher</a>
-                                <br /><small>Business Loan</small>
-                              </td>
-                              <td>
-                                7/7/16
-                              </td>
-                              <td>
-                                <div class="label label-success">Closed</div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="td-name">
-                                <a href="#nothing" data-toggle="modal" data-target="#lead3">Bob Huggins</a>
-                                <br /><small>Business Loan</small>
-                              </td>
-                              <td>
-                                7/1/16
-                              </td>
-                              <td>
-                                <div class="label label-danger">Closed</div>
-                              </td>
-                            </tr>
+                            {{/each}}
+                            {{/if}}
                           </tbody>
                         </table>
                       </div>

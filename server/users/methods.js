@@ -1,5 +1,3 @@
-// import lib from '/server/lib';
-
 /**
  * Define the exported methods for the accounts module
  * @param {object} context - server application context
