@@ -17,6 +17,7 @@ export default function ({ Accounts }) {
   //
   Accounts.onCreateUser((options, user) => {
 
+    user.profile = options.profile;
     user.settings = options.settings;
     return user;
   });
