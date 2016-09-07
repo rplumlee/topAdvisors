@@ -1,5 +1,6 @@
 import configs from './configs';
 import methods from './methods';
+import startup from './startup';
 
 /**
  * Initializes the accounts module
@@ -17,4 +18,5 @@ export default function (context) {
   //
   configs(context);
   methods(context);
+  startup(context);
 }
