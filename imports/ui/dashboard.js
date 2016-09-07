@@ -39,4 +39,14 @@ Template.myDashboard.onRendered(function bodyOnRendered() {
   document.title = 'Leads Dashboard';
   Meteor.subscribe('leads.list');
   Meteor.subscribe('activities.list');
+
+  //
+  // paper-dashboard.js
+  //
+  window_width = $(window).width();
+
+  // Init navigation toggle for small screens
+  if (window_width <= 991) {
+    lbd.initRightMenu();
+  }
 });
