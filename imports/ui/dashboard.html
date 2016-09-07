@@ -47,8 +47,8 @@
 
         <div class="user">
           <img src="assets/img/faces/marc.jpg" class="img-circle img-responsive">
-          <h5>John Smith, CPA</h5>
-          <h6>Mortgage Lender at Portland Mortgage, LLC</h6>
+          <h5>{{ user.profile.firstName }} {{ user.profile.lastName }}, CPA</h5>
+          <h6>{{ user.profile.about }}</h6>
         </div>
 
         <ul class="nav">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-xs-7">
                       <div class="numbers">
-                        <p>New Leads</p> 6
+                        <p>New Leads</p> {{ leads.count }}
                       </div>
                     </div>
                   </div>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="col-xs-7">
                       <div class="numbers">
-                        <p>Profile Views</p> 65
+                        <p>Profile Views</p> {{ views.count }}
                       </div>
                     </div>
                   </div>
@@ -176,7 +176,7 @@
               <div class="card">
                 <div class="header">
                   <h3>Latest Leads</h3>
-                  <p class="category">Hi John, here are your latest leads. Click a name on the list for details on the lead. Please always adhere to our client reach-out policies when contacting leads.</p>
+                  <p class="category">Hi {{ user.profile.firstName }}, here are your latest leads. Click a name on the list for details on the lead. Please always adhere to our client reach-out policies when contacting leads.</p>
                 </div>
                 <div class="content">
                   <div class="row" style="margin:0 -10px;">
@@ -195,7 +195,7 @@
                             {{#each leads}}
                             <tr>
                               <td class="td-name">
-                                <a href="#jacket" data-toggle="modal" data-target="#lead1">{{ profile.firstName }} {{ profile.lastName }}</a>
+                                <a href="#jacket" data-toggle="modal">{{ profile.firstName }} {{ profile.lastName }}</a>
                                 <br /><small>{{ purpose }}</small>
                               </td>
                               <td>
@@ -232,97 +232,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="lead1" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-            <i class="material-icons">clear</i>
-          </button>
-          <h4 class="modal-title">Nancy Plumlee</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-xs-6">
-              <h6>Request Concerning</h6>
-              <p>Mortgages</p>
-            </div>
-            <div class="col-xs-6">
-              <h6>Reach-out Date</h6>
-              <p>7/7/2016</p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-xs-12">
-              <h6>Message</h6>
-              <p>Hi, I am a 59 year old mother of three who is looking to retire and I want to know how to save enough money to pay for 8 kids in college while living the lifestyle I want.</p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-xs-12">
-              <h6>Phone Number</h6>
-              <p>503.292.9602</p>
-            </div>
-          </div>
-          <div class="modal-footer" style="text-align:center;">
-            <br><br>
-            <a class="btn btn-warning" data-dismiss="modal">Attempted Contact</a><br class="visible-xs"><br class="visible-xs">
-            <a class="btn btn-info" data-dismiss="modal">Made Contact</a><br class="visible-xs"><br class="visible-xs">
-            <a class="btn btn-danger" data-dismiss="modal">Dead Lead</a><br class="visible-xs"><br class="visible-xs">
-            <a class="btn btn-success" data-dismiss="modal">Closed Client</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="lead2" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-            <i class="material-icons">clear</i>
-          </button>
-          <h4 class="modal-title">Nancy Plumlee</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-xs-6">
-              <h6>Request Concerning</h6>
-              <p>Mortgages</p>
-            </div>
-            <div class="col-xs-6">
-              <h6>Reach-out Date</h6>
-              <p>7/7/2016</p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-xs-12">
-              <h6>Message</h6>
-              <p>Hi, I am a 59 year old mother of three who is looking to retire and I want to know how to save enough money to pay for 8 kids in college while living the lifestyle I want.</p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-xs-12">
-              <h6>Phone Number</h6>
-              <p>503.292.9602</p>
-            </div>
-          </div>
-          <div class="modal-footer" style="text-align:center;">
-            <br><br>
-            <a class="btn btn-warning" data-dismiss="modal">Attempted Contact</a><br class="visible-xs"><br class="visible-xs">
-            <a class="btn btn-info" data-dismiss="modal">Made Contact</a><br class="visible-xs"><br class="visible-xs">
-            <a class="btn btn-danger" data-dismiss="modal">Dead Lead</a><br class="visible-xs"><br class="visible-xs">
-            <a class="btn btn-success" data-dismiss="modal">Closed Client</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="lead3" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">

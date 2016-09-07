@@ -8,7 +8,8 @@ export default function ({ Meteor, Logger }) {
     var profile = Fake.user({ fields: [ 'name', 'surname' ] });
     Accounts.createUser({
       profile: {
-        name: profile.name + ' ' + profile.surname,
+        firstName: profile.name,
+        lastName: profile.surname,
         about: Fake.sentence(5),
         industry: [],
         specialty: []

@@ -9,11 +9,17 @@ Template.myDashboard.helpers({
   leads: function () {
     return Collections.Leads.find();
   },
+  views: function () {
+    return Collections.Activities.find({ type: 'viewProfile' });
+  },
   parseDate: function (date) {
     return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
   },
   statusLabel: function (status) {
     return (status == 'open');
+  },
+  user: function () {
+    return Meteor.user()
   }
 });
 
@@ -31,4 +37,5 @@ Template.myDashboard.onRendered(function bodyOnRendered() {
   }
 
   Meteor.subscribe('leads.list');
+  Meteor.subscribe('activities.list');
 });

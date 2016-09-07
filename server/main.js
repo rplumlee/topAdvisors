@@ -5,6 +5,7 @@ import Collections from '/lib/collections';
 import logger from './logger';
 import users from './users';
 import leads from './leads';
+import activities from './activities';
 
 var context = {
   Meteor,
@@ -17,4 +18,5 @@ Meteor.startup(() => {
   logger(context);
   users(context);
   leads(context);
+  activities(context);
 });
