@@ -1,5 +1,4 @@
 import '../imports/ui/home.js';
-import '../imports/ui/howItWorks.js';
 import '../imports/ui/login.js';
 import '../imports/ui/dashboard.js';
 
@@ -10,16 +9,6 @@ Router.route('/', {
   },
   action: function () {
     this.render('myHome');
-  }
-});
-
-Router.route('/howItWorks', {
-  onRun: function () {
-    window.scrollTo(0, 0);
-    this.next();
-  },
-  action: function () {
-    this.render('howItWorks');
   }
 });
 

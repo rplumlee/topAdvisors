@@ -23,3 +23,5 @@ accounts-ui@1.1.9
 accounts-password@1.3.0
 alanning:roles
 shell-server
+
+anti:fake
