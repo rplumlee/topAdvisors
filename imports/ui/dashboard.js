@@ -36,6 +36,7 @@ Template.myDashboard.onRendered(function bodyOnRendered() {
     Router.go('login');
   }
 
+  document.title = 'Leads Dashboard';
   Meteor.subscribe('leads.list');
   Meteor.subscribe('activities.list');
 });
