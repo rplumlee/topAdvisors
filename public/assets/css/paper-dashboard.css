@@ -1,15 +1,19 @@
 /*      light colors - used for select dropdown         */
 .ct-blue {
-  stroke: #2196F3 !important; }
+  stroke: #2196F3 !important;
+}
 
 .ct-azure {
-  stroke: #68B3C8 !important; }
+  stroke: #68B3C8 !important;
+}
 
 .ct-green {
-  stroke: #82B1FF !important; }
+  stroke: #82B1FF !important;
+}
 
 .ct-orange {
-  stroke: #FFC107 !important; }
+  stroke: #FFC107 !important;
+}
 
 .ct-red {
   stroke: #EB5E28 !important; }

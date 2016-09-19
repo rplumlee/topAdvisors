@@ -1,4 +1,93 @@
 <template name="myHome">
+  <style>
+    body, h1, h2, h3{
+      font-family: 'Open Sans', "Helvetica", Arial, sans-serif !important;
+    }
+    h4, h5, h6{
+      font-family: 'Open Sans' !important;
+    }
+    .centered{
+      text-align:center !important;
+    }
+    .homeTitle{
+      color:#fff!important;
+      font-weight:300;
+    }
+    .navbar-nav > li > a {
+      font-size: 1em !important;
+    }
+    .navbar-brand {
+      font-size: 1.8em !important;
+    }
+    .homeCard {
+    }
+    .icon-blue > i {
+      color: #2196F3;
+    }
+    .phone-container{
+      max-width: 300px !important;
+    }
+    .homeIcon{
+      transition: 0s;
+    }
+    .homeCard > .col-sm-4 {
+      padding: 0;
+    }
+    .homeCard > .col-sm-4:hover {
+      background-color:white;
+    }
+    .homeCard > .col-sm-4:before {
+      content: '';
+      display: block;
+      height: 4px;
+      width: 0;
+      background: transparent;
+      transition: width 1.5s ease;
+    }
+    .homeCard > .col-sm-4:hover:before {
+      width: 100%;
+      background: #2196F3;
+      transition: width 1.5s ease;
+    }
+    .homeCard:hover .homeIcon {
+      transition: 1.5s;
+      transform: rotateY(360deg);
+      color: #2196F3;
+    }
+    .homeIcon {
+      display:inline-block;
+    }
+    .page-header {
+      max-height:none;
+      min-height: 550px;
+    }
+    .page-header > .container {
+      padding-top:auto;
+    }
+    .navbar-default {
+      font-family: 'Roboto'!important;
+    }
+    .white{
+      color:white !important;
+    }
+    .home-card > .col-sm-4 {
+      position:relative;
+    }
+    .home-card > .info:after {
+
+    }
+    .homeCard:hover > .info:after {
+      width: 100%;
+      background: #2196F3;
+    }
+    .features-5 .btn {
+      border-bottom: 4px solid #1976D2;
+      transition: .5s border ease;
+    }
+    .features-5 .btn:hover {
+      border-bottom: 4px solid #1E88E5;
+    }
+  </style>
   <nav class="navbar navbar-default navbar-transparent navbar-absolute">
     <div class="container-fluid" style="padding: 0 30px;">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,9 +103,13 @@
 
       <div class="collapse navbar-collapse" id="navigation-example">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">For Professionals</a></li>
+          <li>
+            <a href="#">For Professionals</a>
+          </li>
 
-          <li><a href="#">Articles</a></li>
+          <li>
+            <a href="#">Articles</a>
+          </li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -69,11 +162,12 @@
                 </div>
                 <h4 class="info-title">Financial Planning</h4>
                 <p>Match with the right financial planner to fit you or your company's needs.<br><br>
-                <span class="btn btn-success"><i class="material-icons">search</i> Search Now</span>
+                <span class="btn btn-info"><i class="material-icons">search</i> Search Now</span>
                 </p>
               </div>
             </div>
           </a>
+
           <a href="#" class="homeCard">
             <div class="col-sm-4">
               <div class="info">
@@ -82,11 +176,12 @@
                 </div>
                 <h4 class="info-title">Insurance</h4>
                 <p>Match with an insurance broker ready to help set you up with the right policies to protect your home or business.<br>
-                  <span class="btn btn-success"><i class="material-icons">search</i> Search Now</span>
+                  <span class="btn btn-info"><i class="material-icons">search</i> Search Now</span>
                 </p>
               </div>
             </div>
           </a>
+
           <a href="#" class="homeCard">
             <div class="col-sm-4">
               <div class="info">
@@ -94,8 +189,9 @@
                   <i class="material-icons">home</i>
                 </div>
                 <h4 class="info-title">Loans</h4>
-                <p>Match with a loan professional ready to help you secure a home or get your business off the ground.<br>
-                  <span class="btn btn-success"><i class="material-icons">search</i> Search Now</span>
+                <p>
+                  Match with a loan professional ready to help you secure a home or get your business off the ground.<br>
+                  <span class="btn btn-info"><i class="material-icons">search</i> Search Now</span>
                 </p>
               </div>
             </div>
@@ -103,7 +199,9 @@
         </div>
       </div>
     </div>
+
     <div class="row" style="height:60px;background-color:#607D8B;margin:0;">
+
     </div>
   </div>
 
@@ -112,13 +210,19 @@
       <nav class="pull-left">
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="#">
+              Home
+            </a>
           </li>
           <li>
-            <a href="#">Professionals</a>
+            <a href="#">
+              Professionals
+            </a>
           </li>
           <li>
-            <a href="#">articles</a>
+            <a href="#">
+              articles
+            </a>
           </li>
         </ul>
       </nav>
