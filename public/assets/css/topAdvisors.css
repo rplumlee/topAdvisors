@@ -1,0 +1,17 @@
+.navbar-brand{
+	font-family: 'NTR', sans-serif;
+}
+.specialty{
+	position:	relative;
+}
+.specialty > a {
+	position:absolute;
+	right:0;
+	top:10%;
+}
+.admin-add{
+	margin-top:35px;
+}
+.table-shopping{
+	text-align:left;
+}

@@ -61,13 +61,13 @@
     &[filter-color="blue"],
     &[filter-color="info"]{
         &:after{
-            @include linear-gradient(rgba($cyan-100,.56), rgba($cyan-300,.95));
+            @include linear-gradient(rgba($blue-100,.56), rgba($blue-300,.95));
         }
     }
     &[filter-color="green"],
     &[filter-color="success"]{
         &:after{
-            @include linear-gradient(rgba($green-200,.56), rgba($green-400,.95));
+            @include linear-gradient(rgba($light-green-200,.56), rgba($light-green-400,.95));
         }
     }
     &[filter-color="orange"],
