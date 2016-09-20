@@ -47,7 +47,7 @@ Router.route('/admin/:path', {
     this.next();
   },
   action: function () {
-    this.render('adminSidebar', { data: { path: this.params.path  } });
+    this.render('adminSidebar', { data: { path: this.params.path } });
   }
 });
 
@@ -57,6 +57,6 @@ Router.route('/admin/pros/:action', {
     this.next();
   },
   action: function () {
-    this.render('adminSidebar', { data: { action: this.params.action  } });
+    this.render('adminSidebar', { data: { action: this.params.action } });
   }
 });

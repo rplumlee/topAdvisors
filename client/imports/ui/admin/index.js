@@ -14,11 +14,8 @@ var prosTemplates = {
 };
 
 Template.adminSidebar.helpers({
-  someValue: () => {
-    return this.someValue;
-  },
   user: () => {
-    return Meteor.user()
+    return Meteor.user();
   },
   loadTemplate: () => {
     return Template[Template.instance().state.get('template')];
@@ -26,7 +23,7 @@ Template.adminSidebar.helpers({
 });
 
 Template.adminSidebar.events({
-  'click #logout'(event) {
+  'click #logout'() {
     Meteor.logout(() => {
       Router.go('login');
     });
