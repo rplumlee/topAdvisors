@@ -1,8 +1,10 @@
 import { Template } from 'meteor/templating';
 import Collections from '/lib/collections';
-import './manage_leads.html';
+import './manage_pros.html';
+import './add_pro.html';
+import './edit_pro.html';
 
-Template.adminLeads.helpers({
+Template.adminPros.helpers({
   copyrightDate: function () {
     return new Date().getFullYear();
   },
@@ -23,7 +25,7 @@ Template.adminLeads.helpers({
   }
 });
 
-Template.adminLeads.events({
+Template.adminPros.events({
   'click #logout'(event) {
     Meteor.logout(() => {
       Router.go('login');
@@ -31,12 +33,12 @@ Template.adminLeads.events({
   }
 });
 
-Template.myDashboard.onRendered(function bodyOnRendered() {
+Template.adminPros.onRendered(function bodyOnRendered() {
   if (!Meteor.userId()) {
     Router.go('login');
   }
 
-  document.title = 'Leads Dashboard';
+  document.title = 'Admin Dashboard';
   Meteor.subscribe('leads.list');
   Meteor.subscribe('activities.list');
 
