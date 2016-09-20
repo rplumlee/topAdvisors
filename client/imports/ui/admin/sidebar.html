@@ -1,0 +1,77 @@
+<template name="adminSidebar">
+  <link href="/assets/css/lbd.css" rel="stylesheet"/>
+  <link href="/assets/css/topAdvisors.css" rel="stylesheet"/>
+
+  <style>
+    .icons{display:none;}
+
+    .user{
+      padding:30px;
+      text-align:center;
+    }
+    .user> img{
+      padding:0 30px;
+    }
+    .big-icon{
+      font-size:1.7em;
+      color:#8BC34A;
+    }
+    .material-icons{
+      font-size:1.7em;
+      vertical-align:middle
+    }
+    .navbar-default{
+      padding:0;
+      box-shadow:none;
+    }
+    .modal-footer > a{
+      margin: 0;
+    }
+    .header-info{
+      padding:15px!important;
+    }
+    .modal-lg{
+      z-index:5050!important;
+    }
+  </style>
+  <div class="wrapper">
+    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-4.jpg">
+
+      <!--
+        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+      -->
+
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <a href="index.html" class="simple-text">
+            <img src="/assets/img/logo.png" style="height:22px; padding-bottom:5px;margin-right:10px;">TopAdvisors
+          </a>
+        </div>
+
+        <ul class="nav">
+          <li class="active">
+            <a id="leads" href="#">
+              <i class="material-icons">view_compact</i>
+              <p>Leads</p>
+            </a>
+          </li>
+          <li>
+            <a id="pros" href="#">
+              <i class="material-icons">people</i>
+              <p>Manage Pros</p>
+            </a>
+          </li>
+          <li>
+            <a>
+              <i class="material-icons">store</i>
+              <p>Manage Companies</p>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    {{> loadTemplate }}
+  </div>
+</template>

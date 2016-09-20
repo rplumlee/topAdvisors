@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "lint": "eslint ./client ./server --ext .js",
+    "lint": "eslint ./client/*.js ./server --ext .js",
     "test": "npm run lint"
   },
   "engines": {

@@ -1,6 +1,7 @@
 import './imports/ui/home';
 import './imports/ui/login';
 import './imports/ui/dashboard';
+import './imports/ui/admin';
 import './imports/ui/admin/leads';
 import './imports/ui/admin/pros';
 
@@ -34,52 +35,28 @@ Router.route('/dashboard', {
   }
 });
 
-Router.route('/admin/leads', {
-  onRun: function () {
-    window.scrollTo(0, 0);
-    this.next();
-  },
+Router.route('/admin', {
   action: function () {
-    this.render('adminLeads');
+    Router.go('/admin/leads');
   }
 });
 
-Router.route('/admin/pros', {
+Router.route('/admin/:path', {
   onRun: function () {
     window.scrollTo(0, 0);
     this.next();
   },
   action: function () {
-    this.render('adminPros');
+    this.render('adminSidebar', { data: { path: this.params.path } });
   }
 });
 
-Router.route('/admin/pros/add', {
+Router.route('/admin/pros/:action', {
   onRun: function () {
     window.scrollTo(0, 0);
     this.next();
   },
   action: function () {
-    this.render('adminProsAdd');
-  }
-});
-
-Router.route('/admin/pros/edit', {
-  onRun: function () {
-    window.scrollTo(0, 0);
-    this.next();
-  },
-  action: function () {
-    this.render('adminProsEdit');
-  }
-});
-
-Router.route('/admin/companies', {
-  onRun: function () {
-    window.scrollTo(0, 0);
-    this.next();
-  },
-  action: function () {
-    this.render('adminLeads');
+    this.render('adminSidebar', { data: { action: this.params.action } });
   }
 });

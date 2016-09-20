@@ -14,7 +14,7 @@ Template.myLogin.onRendered(function bodyOnRendered() {
 });
 
 Template.myLogin.events({
-  'click .btn'(event) {
+  'click .btn'() {
     // Prevent default browser form submit
     var email = $('[type=email]').val();
     var password = $('[type=password]').val();
@@ -24,7 +24,7 @@ Template.myLogin.events({
       } else {
         // Transition to the app
         Router.go('/dashboard');
-      };
+      }
     });
   }
 });
