@@ -9,7 +9,7 @@ Template.myLogin.helpers({
 
 Template.myLogin.onRendered(function bodyOnRendered() {
   if (Meteor.userId()) {
-    Router.go('dashboard');
+    Router.go('/admin/leads');
   }
 });
 
@@ -23,7 +23,7 @@ Template.myLogin.events({
         alert(err.reason);
       } else {
         // Transition to the app
-        Router.go('/dashboard');
+        Router.go('/admin/leads');
       }
     });
   }
