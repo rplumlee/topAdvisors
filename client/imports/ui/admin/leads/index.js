@@ -6,8 +6,8 @@ Template.adminLeads.helpers({
   copyrightDate: function () {
     return new Date().getFullYear();
   },
-  leads: function () {
-    return Collections.Leads.find();
+  leads: function (selector) {
+    return Collections.Leads.find({ status: selector.hash.status });
   },
   views: function () {
     return Collections.Activities.find({ type: 'viewProfile' });

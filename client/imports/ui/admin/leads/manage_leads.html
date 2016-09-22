@@ -160,51 +160,25 @@
                               </tr>
                             </thead>
                             <tbody>
+                              {{#if Template.subscriptionsReady}}
+                              {{#each leads status='fresh'}}
                               <tr>
                                 <td class="td-name">
-                                  <a href="#jacket" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
-                                  <br /><small>Mortgage</small>
+                                  <a href="#jacket" data-toggle="modal" data-target="#lead1">Agent Name</a>
+                                  <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
-                                  RJ Liggins
+                                  {{ profile.firstName }} {{ profile.lastName }}
                                 </td>
                                 <td>
-                                  7/12/16
+                                  {{ parseDate date }}
                                 </td>
                                 <td>
                                   <div class="label label-success">fresh</div>
                                 </td>
                               </tr>
-                              <tr>
-                                <td class="td-name">
-                                  <a href="#pants" data-toggle="modal" data-target="#lead2">Jack Reacher</a>
-                                  <br /><small>Business Loan</small>
-                                </td>
-                                <td>
-                                  Terry Porter
-                                </td>
-                                <td>
-                                  7/7/16
-                                </td>
-                                <td>
-                                  <div class="label label-success">fresh</div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="td-name">
-                                  <a href="#nothing" data-toggle="modal" data-target="#lead3">Bob Huggins</a>
-                                  <br /><small>Business Loan</small>
-                                </td>
-                                <td>
-                                  Allen Crabbe
-                                </td>
-                                <td>
-                                  7/1/16
-                                </td>
-                                <td>
-                                  <div class="label label-success">fresh</div>
-                                </td>
-                              </tr>
+                              {{/each}}
+                              {{/if}}
                             </tbody>
                           </table>
                         </div>
@@ -228,51 +202,25 @@
                               </tr>
                             </thead>
                             <tbody>
+                              {{#if Template.subscriptionsReady}}
+                              {{#each leads status='open'}}
                               <tr>
                                 <td class="td-name">
                                   <a href="#jacket" data-toggle="modal" data-target="#lead1">Bobby Fischer</a>
-                                  <br /><small>Mortgage</small>
+                                  <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
-                                  Samuel L Jackson
+                                  {{ profile.firstName }} {{ profile.lastName }}
                                 </td>
                                 <td>
-                                  7/12/16
-                                </td>
-                                <td>
-                                  <div class="label label-info">Open</div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="td-name">
-                                  <a href="#pants" data-toggle="modal" data-target="#lead2">The Hulk</a>
-                                  <br /><small>Business Loan</small>
-                                </td>
-                                <td>
-                                  Damian Lillard
-                                </td>
-                                <td>
-                                  7/7/16
+                                  {{ parseDate date }}
                                 </td>
                                 <td>
                                   <div class="label label-info">Open</div>
                                 </td>
                               </tr>
-                              <tr>
-                                <td class="td-name">
-                                  <a href="#nothing" data-toggle="modal" data-target="#lead3">Brad Pitt</a>
-                                  <br /><small>Business Loan</small>
-                                </td>
-                                <td>
-                                  George Clooney
-                                </td>
-                                <td>
-                                  7/1/16
-                                </td>
-                                <td>
-                                  <div class="label label-info">Open</div>
-                                </td>
-                              </tr>
+                              {{/each}}
+                              {{/if}}
                             </tbody>
                           </table>
                         </div>
@@ -296,51 +244,25 @@
                               </tr>
                             </thead>
                             <tbody>
+                              {{#if Template.subscriptionsReady}}
+                              {{#each leads status='dead'}}
                               <tr>
                                 <td class="td-name">
                                   <a href="#jacket" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
-                                  <br /><small>Mortgage</small>
+                                  <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
-                                  RJ Liggins
+                                  {{ profile.firstName }} {{ profile.lastName }}
                                 </td>
                                 <td>
-                                  7/12/16
-                                </td>
-                                <td>
-                                  <div class="label label-danger">Dead</div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="td-name">
-                                  <a href="#pants" data-toggle="modal" data-target="#lead2">Jack Reacher</a>
-                                  <br /><small>Business Loan</small>
-                                </td>
-                                <td>
-                                  Terry Porter
-                                </td>
-                                <td>
-                                  7/7/16
+                                  {{ parseDate date }}
                                 </td>
                                 <td>
                                   <div class="label label-danger">Dead</div>
                                 </td>
                               </tr>
-                              <tr>
-                                <td class="td-name">
-                                  <a href="#nothing" data-toggle="modal" data-target="#lead3">Bob Huggins</a>
-                                  <br /><small>Business Loan</small>
-                                </td>
-                                <td>
-                                  Allen Crabbe
-                                </td>
-                                <td>
-                                  7/1/16
-                                </td>
-                                <td>
-                                  <div class="label label-danger">Dead</div>
-                                </td>
-                              </tr>
+                              {{/each}}
+                              {{/if}}
                             </tbody>
                           </table>
                         </div>
@@ -365,38 +287,18 @@
                               </tr>
                             </thead>
                             <tbody>
+                              {{#if Template.subscriptionsReady}}
+                              {{#each leads status='closed'}}
                               <tr>
                                 <td class="td-name">
                                   <a href="#jacket" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
-                                  <br /><small>Mortgage</small>
+                                  <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
-                                  RJ Liggins
+                                  {{ profile.firstName }} {{ profile.lastName }}
                                 </td>
                                 <td>
-                                  7/12/16
-                                </td>
-                                <td>
-                                  <div class="label label-warning">Closed</div>
-                                </td>
-                                <td>
-                                  <div class="checkbox" style="display:block;vertical-align:middle;">
-                                    <label>
-                                      <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
-                                    </label>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="td-name">
-                                  <a href="#pants" data-toggle="modal" data-target="#lead2">Jack Reacher</a>
-                                  <br /><small>Business Loan</small>
-                                </td>
-                                <td>
-                                  Terry Porter
-                                </td>
-                                <td>
-                                  7/7/16
+                                  {{ parseDate date }}
                                 </td>
                                 <td>
                                   <div class="label label-warning">Closed</div>
@@ -409,28 +311,8 @@
                                   </div>
                                 </td>
                               </tr>
-                              <tr>
-                                <td class="td-name">
-                                  <a href="#nothing" data-toggle="modal" data-target="#lead3">Bob Huggins</a>
-                                  <br /><small>Business Loan</small>
-                                </td>
-                                <td>
-                                  Allen Crabbe
-                                </td>
-                                <td>
-                                  7/1/16
-                                </td>
-                                <td>
-                                  <div class="label label-warning">Closed</div>
-                                </td>
-                                <td>
-                                  <div class="checkbox" style="display:block;vertical-align:middle;">
-                                    <label>
-                                      <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
-                                    </label>
-                                  </div>
-                                </td>
-                              </tr>
+                              {{/each}}
+                              {{/if}}
                             </tbody>
                           </table>
                         </div>
