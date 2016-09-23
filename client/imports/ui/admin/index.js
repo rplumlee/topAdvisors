@@ -5,7 +5,9 @@ import './sidebar.html';
 
 var adminTemplates = {
   leads: 'adminLeads',
-  pros: 'adminPros'
+  pros: 'adminPros',
+  companies: 'adminCompanies',
+  consumers: 'adminConsumers'
 };
 
 var prosTemplates = {
@@ -35,6 +37,14 @@ Template.adminSidebar.events({
   'click #pros'(event, instance) {
     instance.state.set('template', 'adminPros');
     history.pushState({}, "Admin Dashboard", "/admin/pros");
+  },
+  'click #companies'(event, instance) {
+    instance.state.set('template', 'adminCompanies');
+    history.pushState({}, "Admin Dashboard", "/admin/companies");
+  },
+  'click #consumers'(event, instance) {
+    instance.state.set('template', 'adminConsumers');
+    history.pushState({}, "Admin Dashboard", "/admin/consumers");
   }
 });
 

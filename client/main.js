@@ -4,6 +4,8 @@ import './imports/ui/dashboard';
 import './imports/ui/admin';
 import './imports/ui/admin/leads';
 import './imports/ui/admin/pros';
+import './imports/ui/admin/companies';
+import './imports/ui/admin/consumers';
 
 Router.route('/', {
   onRun: function () {
