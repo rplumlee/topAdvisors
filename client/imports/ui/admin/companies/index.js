@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
 import Collections from '/lib/collections';
 import './manage_companies.html';
+import './add_company.html';
+import './edit_company.html';
 
 Template.adminCompanies.helpers({
   copyrightDate: function () {

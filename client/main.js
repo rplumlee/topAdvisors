@@ -59,6 +59,16 @@ Router.route('/admin/pros/:action', {
     this.next();
   },
   action: function () {
-    this.render('adminSidebar', { data: { action: this.params.action } });
+    this.render('adminSidebar', { data: { base: 'pros', action: this.params.action } });
+  }
+});
+
+Router.route('/admin/companies/:action', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('adminSidebar', { data: { base: 'companies', action: this.params.action } });
   }
 });

@@ -10,9 +10,15 @@ var adminTemplates = {
   consumers: 'adminConsumers'
 };
 
-var prosTemplates = {
-  add: 'adminProsAdd',
-  edit: 'adminProsEdit'
+var subTemplates = {
+  pros: {
+    add: 'adminProAdd',
+    edit: 'adminProEdit'
+  },
+  companies: {
+    add: 'adminCompanyAdd',
+    edit: 'adminCompanyEdit'
+  }
 };
 
 Template.adminSidebar.helpers({
@@ -38,9 +44,17 @@ Template.adminSidebar.events({
     instance.state.set('template', 'adminPros');
     history.pushState({}, "Admin Dashboard", "/admin/pros");
   },
+  'click #addPro'(event, instance) {
+    instance.state.set('template', 'adminProAdd');
+    history.pushState({}, "Admin Dashboard", "/admin/pros/add");
+  },
   'click #companies'(event, instance) {
     instance.state.set('template', 'adminCompanies');
     history.pushState({}, "Admin Dashboard", "/admin/companies");
+  },
+  'click #addCompany'(event, instance) {
+    instance.state.set('template', 'adminCompanyAdd');
+    history.pushState({}, "Admin Dashboard", "/admin/companies/add");
   },
   'click #consumers'(event, instance) {
     instance.state.set('template', 'adminConsumers');
@@ -56,7 +70,7 @@ Template.adminSidebar.onCreated(function () {
     });
   } else {
     this.state.setDefault({
-      template: prosTemplates[this.data.action]
+      template: subTemplates[this.data.base][this.data.action]
     });
   }
 });
