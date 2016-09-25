@@ -1,6 +1,6 @@
 import { Fake } from 'meteor/anti:fake';
 
-export default function ({ Meteor, Logger }) {
+export default function ({ Meteor, Logger, Collections }) {
   //
   // On startup, create admin user
   //
@@ -19,5 +19,23 @@ export default function ({ Meteor, Logger }) {
       settings: {}
     });
     Logger.info('Create Admin User');
+  }
+
+  //
+  // On startup, create sample companies
+  //
+  if (Collections.Companies.find().count() < 5) {
+    for (var i = 0; i < 5; i++) {
+      var companies = Fake.user({ fields: [ 'surname' ] });
+      Collections.Companies.insert({
+        name: companies.surname,
+        address: {
+          street1: Fake.sentence(4),
+          fullAddress: Fake.sentence(8)
+        },
+        bio: Fake.paragraph(4)
+      });
+    }
+    Logger.info('Create Companies');
   }
 }
