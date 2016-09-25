@@ -12,7 +12,7 @@ export default function ({ Collections, Logger }) {
           firstName: profile.name,
           lastName: profile.surname
         },
-        status: Fake.fromArray([ 'open', 'closed' ]),
+        status: Fake.fromArray([ 'fresh', 'open', 'dead', 'closed' ]),
         purpose: Fake.fromArray([ 'Mortgage', 'Business Loan' ]),
         date: new Date()
       });
