@@ -31,6 +31,7 @@ export default function ({ Meteor, Logger, Collections }) {
         name: companies.surname,
         address: {
           street1: Fake.sentence(4),
+          city: Fake.fromArray([ 'Portland', 'New York', 'Los Angeles', 'Washington', 'Seattle' ]),
           fullAddress: Fake.sentence(8)
         },
         bio: Fake.paragraph(4)

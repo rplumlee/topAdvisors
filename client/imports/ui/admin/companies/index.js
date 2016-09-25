@@ -8,17 +8,11 @@ Template.adminCompanies.helpers({
   copyrightDate: function () {
     return new Date().getFullYear();
   },
-  leads: function (selector) {
-    return Collections.Leads.find({ status: selector.hash.status });
-  },
-  views: function () {
-    return Collections.Activities.find({ type: 'viewProfile' });
+  companies: function (selector) {
+    return Collections.Companies.find({ });
   },
   parseDate: function (date) {
     return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
-  },
-  statusLabel: function (status) {
-    return (status == 'open');
   },
   user: function () {
     return Meteor.user()
@@ -39,8 +33,7 @@ Template.adminCompanies.onRendered(function bodyOnRendered() {
   }
 
   document.title = 'Admin Dashboard';
-  Meteor.subscribe('leads.list');
-  Meteor.subscribe('activities.list');
+  Meteor.subscribe('companies.list');
 
   //
   // paper-dashboard.js

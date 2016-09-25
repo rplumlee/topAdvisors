@@ -66,13 +66,17 @@
                               </tr>
                             </thead>
                             <tbody>
+                              {{#if Template.subscriptionsReady}}
+                              {{#each companies}}
                               <tr>
                                 <td class="td-name">
-                                  <a href="admin_edit_company.html">EastLake Mortgage, LLC</a>
+                                  <a href="admin_edit_company.html">{{ name }}</a>
                                 </td>
-                                <td>Portland</td>
-                                <td>1</td>
+                                <td>{{ address.city }}</td>
+                                <td>{{ agents.count }}</td>
                               </tr>
+                              {{/each}}
+                              {{/if}}
                             </tbody>
                           </table>
                         </div>
