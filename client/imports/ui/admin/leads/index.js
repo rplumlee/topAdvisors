@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { ReactiveDict } from 'meteor/reactive-dict';
 import Collections from '/lib/collections';
 import './manage_leads.html';
 
@@ -13,13 +14,22 @@ Template.adminLeads.helpers({
     return Collections.Activities.find({ type: 'viewProfile' });
   },
   parseDate: function (date) {
-    return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+    if (date) {
+      return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+    }
   },
   statusLabel: function (status) {
     return (status == 'open');
   },
   user: function () {
     return Meteor.user()
+  },
+  currentLead: function () {
+    if (Template.instance().state.get('leadId')) {
+      return Collections.Leads.findOne({ _id: Template.instance().state.get('leadId') });
+    } else {
+      return Collections.Leads.find().fetch()[0];
+    }
   }
 });
 
@@ -28,10 +38,20 @@ Template.adminLeads.events({
     Meteor.logout(() => {
       Router.go('login');
     });
+  },
+  'click .leadModal'(event, instance) {
+    instance.state.set('leadId', event.currentTarget.dataset.id);
   }
 });
 
-Template.adminLeads.onRendered(function bodyOnRendered() {
+Template.adminLeads.onCreated(function () {
+  this.state = new ReactiveDict();
+  this.state.setDefault({
+    leadId: null
+  });
+});
+
+Template.adminLeads.onRendered(function () {
   if (!Meteor.userId()) {
     Router.go('login');
   }

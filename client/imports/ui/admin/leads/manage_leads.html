@@ -164,7 +164,7 @@
                               {{#each leads status='fresh'}}
                               <tr>
                                 <td class="td-name">
-                                  <a href="#jacket" data-toggle="modal" data-target="#lead1">Agent Name</a>
+                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">Agent Name</a>
                                   <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
@@ -206,7 +206,7 @@
                               {{#each leads status='open'}}
                               <tr>
                                 <td class="td-name">
-                                  <a href="#jacket" data-toggle="modal" data-target="#lead1">Bobby Fischer</a>
+                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">Bobby Fischer</a>
                                   <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
@@ -248,7 +248,7 @@
                               {{#each leads status='dead'}}
                               <tr>
                                 <td class="td-name">
-                                  <a href="#jacket" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
+                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
                                   <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
@@ -291,7 +291,7 @@
                               {{#each leads status='closed'}}
                               <tr>
                                 <td class="td-name">
-                                  <a href="#jacket" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
+                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
                                   <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
@@ -330,7 +330,6 @@
     </div>
   </div>
 
-
   <div class="modal fade" id="lead1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -344,11 +343,11 @@
           <div class="row">
             <div class="col-xs-6">
               <h6>Request Concerning</h6>
-              <p>Mortgages</p>
+              <p>{{ currentLead.purpose }}</p>
             </div>
             <div class="col-xs-6">
               <h6>Reach-out Date</h6>
-              <p>7/7/2016</p>
+              <p>{{ parseDate currentLead.createdOn }}</p>
             </div>
           </div>
 
