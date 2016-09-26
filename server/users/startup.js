@@ -16,7 +16,7 @@ export default function ({ Meteor, Logger, Collections }) {
       },
       email: 'admin@topadvisors.co',
       password: 'password',
-      settings: {}
+      trophies: {}
     });
     Logger.info('Create Admin User');
   }

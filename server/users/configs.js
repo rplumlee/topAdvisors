@@ -18,7 +18,7 @@ export default function ({ Accounts }) {
   Accounts.onCreateUser((options, user) => {
 
     user.profile = options.profile;
-    user.settings = options.settings;
+    user.trophies = options.trophies;
     return user;
   });
 

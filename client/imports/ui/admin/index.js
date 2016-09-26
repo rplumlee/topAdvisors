@@ -103,7 +103,7 @@ Template.adminSidebar.onCreated(function () {
   }
 });
 
-Template.adminSidebar.onRendered(function bodyOnRendered() {
+Template.adminSidebar.onRendered(function () {
   if (!Meteor.userId()) {
     Router.go('login');
   }
@@ -118,5 +118,20 @@ Template.adminSidebar.onRendered(function bodyOnRendered() {
   // Init navigation toggle for small screens
   if (window_width <= 991) {
     lbd.initRightMenu();
+  }
+});
+
+Template.adminPros.onRendered(function () {
+  if (!Meteor.userId()) {
+    Router.go('login');
+  }
+});
+
+Template.adminPros.helpers({
+  user: () => {
+    return Meteor.user()
+  },
+  pros: () => {
+    return Collections.Users.find({ type: 'pro' })
   }
 });
