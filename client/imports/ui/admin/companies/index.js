@@ -45,3 +45,27 @@ Template.adminCompanies.onRendered(function bodyOnRendered() {
     lbd.initRightMenu();
   }
 });
+
+Template.adminCompanyAdd.onRendered(function bodyOnRendered() {
+  if (!Meteor.userId()) {
+    Router.go('login');
+  }
+
+  document.title = 'Admin Dashboard';
+  var input = document.getElementById('company_address');
+  var options = {
+    types: [],
+    componentRestrictions: {country: 'us'}
+  };
+
+  autocomplete = new google.maps.places.Autocomplete(input, options);
+  //
+  // paper-dashboard.js
+  //
+  window_width = $(window).width();
+
+  // Init navigation toggle for small screens
+  if (window_width <= 991) {
+    lbd.initRightMenu();
+  }
+});

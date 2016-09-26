@@ -21,6 +21,18 @@ var subTemplates = {
   }
 };
 
+var _parseAddress = function (addressParams, place) {
+  var base = {};
+  place.address_components.forEach(function (each) {
+    base[each.types[0]] = each.long_name;
+  });
+  addressParams.street1 = base.street_number + ', ' + base.route;
+  addressParams.street2 = base.neighborhood;
+  addressParams.city = base.locality;
+  addressParams.state = base.administrative_area_level_1;
+  addressParams.zip = base.postal_code;
+};
+
 Template.adminSidebar.helpers({
   user: () => {
     return Meteor.user();
@@ -59,6 +71,22 @@ Template.adminSidebar.events({
   'click #consumers'(event, instance) {
     instance.state.set('template', 'adminConsumers');
     history.pushState({}, "Admin Dashboard", "/admin/consumers");
+  },
+  'click #create_company'(event, instance) {
+    var params = {
+      name: $('#company_name')[0].value,
+      address: {
+        fullAddress: $('#company_address')[0].value
+      },
+      bio: $('#company_bio')[0].value
+    }
+    _parseAddress(params.address, autocomplete.getPlace());
+    Meteor.call('companies.create', params, function (error, result) {
+      if (result.company) {
+        instance.state.set('template', 'adminCompanies');
+        history.pushState({}, "Admin Dashboard", "/admin/companies");
+      }
+    });
   }
 });
 

@@ -49,30 +49,11 @@
             </div>
             <div class="content">
               <div class="tab-content">
-                <div class="row text-center" style="margin-bottom:60px;">
-                  <br><br>
-                  <div class="col-xs-3">
-                    <h2>15</h2>
-                    <h5>Total Leads</h5>
-                  </div>
-                  <div class="col-xs-3">
-                    <h2>3</h2>
-                    <h5>Closed Leads</h5>
-                  </div>
-                  <div class="col-xs-3">
-                    <h2>467</h2>
-                    <h5>Total Page Views</h5>
-                  </div>
-                  <div class="col-xs-3">
-                    <h2>July 7,2016</h2>
-                    <h5>Signed Up</h5>
-                  </div>
-                </div>
                 <div class="row ">
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Company Name</label>
-                      <input type="email" class="form-control">
+                      <input id="company_name" type="text" class="form-control">
                     </div>
                   </div>
                 </div>
@@ -80,7 +61,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">room</i>&nbsp;&nbsp;&nbsp;Street Address</label>
-                      <input type="email" class="form-control">
+                      <input id="company_address" type="text" class="form-control">
                     </div>
                   </div>
                 </div>
@@ -88,7 +69,7 @@
                   <div class="col-sm-6">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">create</i> Company Bio</label>
-                      <textarea class="form-control" rows="10"></textarea>
+                      <textarea id="company_bio" class="form-control" rows="10"></textarea>
                     </div>
                   </div>
                 </div>
@@ -121,7 +102,7 @@
                       <h2>Add Picture</h2>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail img-raised">
-                          <img src="assets/img/image_placeholder.jpg" alt="...">
+                          <img src="/assets/img/image_placeholder.jpg" alt="...">
                         </div>
                         <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                         <div>
@@ -143,7 +124,7 @@
         </div>
         <!-- nav tabs -->
         <div class="text-center">
-          <a class="btn btn-lg btn-info">
+          <a id="create_company" class="btn btn-lg btn-info">
             <i class="material-icons">save</i>&nbsp;&nbsp;&nbsp;Save
           </a>
         </div>
