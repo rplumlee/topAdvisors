@@ -120,18 +120,3 @@ Template.adminSidebar.onRendered(function () {
     lbd.initRightMenu();
   }
 });
-
-Template.adminPros.onRendered(function () {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
-});
-
-Template.adminPros.helpers({
-  user: () => {
-    return Meteor.user()
-  },
-  pros: () => {
-    return Collections.Users.find({ type: 'pro' })
-  }
-});

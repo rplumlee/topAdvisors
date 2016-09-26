@@ -4,24 +4,16 @@ import './manage_pros.html';
 import './add_pro.html';
 import './edit_pro.html';
 
+
 Template.adminPros.helpers({
-  copyrightDate: function () {
-    return new Date().getFullYear();
+  user: () => {
+    return Meteor.user()
   },
-  leads: function () {
-    return Collections.Leads.find();
-  },
-  views: function () {
-    return Collections.Activities.find({ type: 'viewProfile' });
+  pros: () => {
+    return Collections.Users.find({ type: 'pro' })
   },
   parseDate: function (date) {
     return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
-  },
-  statusLabel: function (status) {
-    return (status == 'open');
-  },
-  user: function () {
-    return Meteor.user()
   }
 });
 
@@ -39,8 +31,7 @@ Template.adminPros.onRendered(function bodyOnRendered() {
   }
 
   document.title = 'Admin Dashboard';
-  Meteor.subscribe('leads.list');
-  Meteor.subscribe('activities.list');
+  Meteor.subscribe('pros.list');
 
   //
   // paper-dashboard.js
