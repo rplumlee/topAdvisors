@@ -3,7 +3,7 @@
 @import '_colors';
 
 // Typography elements
-$mdb-font-family: 'Montserrat', "Helvetica", Arial, sans-serif !default;
+$mdb-font-family: 'Roboto', "Helvetica", Arial, sans-serif !default;
 $mdb-text-color-light:  $white !default;
 $mdb-text-color-light-hex: $white !default; // for contrast function in inverse
 $mdb-text-color-primary: unquote("rgba(#{$rgb-black}, 0.87)") !default;
@@ -25,11 +25,11 @@ $white-transparent: rgba($white-color, .8);
 
 $gray-color:  #999999 !default;
 
-$brand-primary: $blue-grey !default;
+$brand-primary: $blue !default;
 $brand-success: $light-green !default;
 $brand-danger: $red !default;
-$brand-warning: $orange !default;
-$brand-info: $blue !default;
+$brand-warning: $amber !default;
+$brand-info: $cyan !default;
 $brand-rose: $pink !default;
 
 $border-radius-base: 3px !default;
@@ -79,8 +79,8 @@ $contrast-factor: 40% !default;
 
 // --------------------
 // inputs
-$mdb-input-placeholder-color: #AAAAAA !default;
-$mdb-input-underline-color: #D2D2D2 !default;
+$mdb-input-placeholder-color: #999999 !default;
+$mdb-input-underline-color: #AAAAAA !default;
 $mdb-label-static-size-ratio: 75 / 100 !default;
 $mdb-help-block-size-ratio: 75 / 100 !default;
 
