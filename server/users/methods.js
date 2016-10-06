@@ -25,9 +25,6 @@ export default function ({ Meteor, Accounts, Roles, Collections, check }) {
 
       // Accounts.sendEnrollmentEmail(id);
 
-      // Add role to the user
-      Roles.addUsersToRoles(id, [ 'admin' ]);
-
       return { success: true, user: id };
     },
 

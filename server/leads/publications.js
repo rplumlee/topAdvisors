@@ -15,4 +15,16 @@ export default function ({ Meteor, Collections }) {
 
     return Collections.Leads.find();
   });
+
+  Meteor.publish('leads.listCustomers', function () {
+
+    //
+    // If user is not logged in, stop the publication
+    //
+    if (!this.userId) {
+      return this.stop();
+    }
+
+    return Collections.Leads.find();
+  });
 }
