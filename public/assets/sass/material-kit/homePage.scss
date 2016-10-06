@@ -1,0 +1,101 @@
+.navbar{
+    margin-bottom:0;
+    border-radius:0;
+    padding: 0;
+    box-shadow: none!important;
+    border-bottom:1px solid #ddd;
+}
+.navbar-nav{
+    margin:0 -15px 0 0;
+    padding: 10px;
+}
+.logo{
+    font-family: 'Lalezar', cursive!important;
+}
+.navbar-brand{
+    font-size:30px;
+    font-family: 'Lalezar', cursive!important;
+    border-right:1px solid #ddd;
+    height:70px!important;
+    line-height:75px!important;
+    padding: 0 15px!important;
+    vertical-align:middle;
+}
+.navbar-nav > li > a {
+    text-transform:none!important;
+    margin:0;
+    font-size: 1em!important;
+    font-weight:600!important;
+    font-family: 'Open Sans', sans-serif;
+}
+/*.leftLink{
+    margin:10px 15px!important;
+    height:45px!important;
+    line-height:45px!important;
+    border:0 solid #ddd!important;
+}*/
+
+.centered{
+    text-align:center!important;
+}
+
+.homeIcon{
+    display:inline-block;
+}
+.page-header{
+    height:100vh;
+}
+.white{
+    color:white!important;
+}
+.home-card > .col-sm-4 {
+    position:relative;
+}
+.home-card > .info:after{
+    width:0;
+}
+.searchBar{
+
+    top: 55%;
+    position:absolute;
+    width:100%;
+    left:0;
+    border-radius:0;
+    font-size: 20px;
+    font-weight:400;
+
+}
+.mainSearch{
+    background: rgba(0,0,0,.7);
+    padding: 30px!important;
+    border-radius: 5px;
+}
+.searchBar > .container{
+    padding-top:0;
+}
+div[class^="col-sm"]{
+    padding:0;
+}
+.home-input{
+    background-color:#fff!important;
+    height:57px!important;
+}
+.subTitle{
+    text-transform: none;
+    font-weight:400;
+}
+.info{
+    padding-top:30px;
+}
+
+.home-card > .col-sm-4 {
+    position:relative;
+}
+.home-card > .info:after{
+    width:0;
+}
+.homeCard{
+    height:300px!important;
+    overflow:hidden!important;
+    margin:15px 0;
+}

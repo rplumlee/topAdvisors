@@ -1,153 +1,50 @@
 <template name="myHome">
-  <style>
-    .navbar{
-      margin-bottom:0;
-      border-radius:0;
-    }
-
-    .navbar-nav{
-      margin:0 -15px 0 0;
-      padding-right:0;
-    }
-
-    .navbar-nav > li > a {
-      text-transform:none!important;
-      margin:0;
-      font-size: 1em!important;
-      font-weight:600!important;
-      font-family: 'Open Sans', sans-serif;
-    }
-
-    .navbar-brand{
-      font-weight:500;
-      padding:0 15px!important;
-      margin: 0!important;
-    }
-
-    .centered{
-      text-align:center!important;
-    }
-
-    .homeIcon{
-      display:inline-block;
-    }
-
-    .page-header{
-      min-height:700px;
-    }
-    .white{
-    color:white!important;
-    }
-    .home-card > .col-sm-4 {
-    position:relative;
-    }
-    .home-card > .info:after{
-      width:0;
-    }
-
-    .searchBar{
-      height:100px;
-      padding: 27px 0;
-      bottom:0;
-      position:absolute;
-      width:100%;
-      left:0;
-      background-color: rgba(0,0,0,.6);
-      border-radius:0;
-      font-size: 20px;
-      font-weight:400;
-    }
-
-    .searchBar > .container{
-      padding-top:0;
-    }
-
-    div[class^="col-sm"]{
-      padding:0;
-    }
-
-    .homeCard{
-      height:300px!important;
-      overflow:hidden!important;
-      margin:15px 0;
-    }
-
-    .navbar{
-      box-shadow:none;
-    }
-
-    .homeInput > input{
-      background-color:#fff!important;
-      margin-top:20px;
-      padding:0!important;
-    }
-
-    .bg-primary{
-      padding:60px 0;
-      background-color:#3085a3;
-    }
-
-    .bg-primary img{
-      height:250px!important;
-      width:auto;
-    }
-
-    .subTitle{
-      position:absolute;
-      top:53%;
-      color:white;
-      left:50%;
-      transform:translateX(-50%);
-      font-weight:400;
-    }
-
-    .info{
-      padding-top:30px;
-    }
-  </style>
-
-  <nav class="navbar navbar-absolute navbar-transparent">
+  <nav class="navbar navbar-fixed-top">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-      <a class="navbar-brand" href="index.html"><img src="/assets/img/logoLong.png" style="height:100%;vertical-align:middle;"></a>
-        </div>
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">TopAdvisors</a>
+      </div>
 
-        <div class="collapse navbar-collapse" id="navigation-example">
-          <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#" class="btn btn-primary">
-            Become a TopAdvisors professional
-          </a>
-        </li>
+      <div class="collapse navbar-collapse" id="navigation-example">
+        <ul class="nav navbar-nav navbar-left">
+          <li>
+            <a href="#"><i class="material-icons">search</i>Find Professionals</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#" class="btn btn-info" style="border:1px;">
+              Become a TopAdvisors professional
+            </a>
+          </li>
 
-        <li>
-          <a href="#">
-            What we do
-          </a>
-        </li>
+          <li>
+            <a href="#">
+              What we do
+            </a>
+          </li>
 
-        <li>
-          <a href="#">
-            <i class="material-icons">account_circle</i> Sign In
-          </a>
-        </li>
-
-
-
-          </ul>
-        </div>
+          <li>
+            <a href="#">
+              <i class="material-icons">account_circle</i> Sign In
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
   <div class="page-header" id="page" style="position:relative;">
-    <ul class="cb-slideshow header-filter">
+
+
+    <ul class="cb-slideshow">
       <li><span>Image 01</span><div><h3>Start planning your retirement.</h3></div></li>
       <li><span>Image 02</span><div><h3>Finance your dream home.</h3></div></li>
       <li><span>Image 03</span><div><h3>Set up benefits for your employees.</h3></div></li>
@@ -156,25 +53,26 @@
       <li><span>Image 06</span><div><h3>Take another look at your portfolio.</h3></div></li>
     </ul>
 
-    <h4 class="subTitle visible-lg">
-      TopAdvisors matches you with top performing financial professionals in your area
-    </h4>
+
 
     <div class="searchBar">
       <div class="container">
         <div class="row">
-          <div class="col-sm-10 col-sm-offset-1">
+          <div class="col-sm-8 col-sm-offset-2 mainSearch">
+            <h6 class="subTitle visible-lg centered">
+              <span class="logo" style="font-size:1.2em;">TopAdvisors</span> matches you with top performing financial professionals in your area<br><br>
+            </h6>
             <div class="row">
               <div class="col-sm-8" style="padding:0 0 0 15px;">
-                <div class="input-group homeInput">
-                  <span class="input-group-addon" style="background-color:#fff;border-radius:0;">
+                <div class="input-group homeInput input-group-lg">
+                  <span class="input-group-addon input-lg" style="background-color:#fff;border-radius:0;">
                     <i class="material-icons">place</i>
                   </span>
-                  <input type="text" class="form-control input-lg" placeholder="Start with your city or zip code" style="border-radius:0;">
+                  <input type="text" class="form-control home-input input-lg" placeholder="Start with your city or zip code" style="border-radius:0;">
                 </div>
               </div>
               <div class="col-sm-4" style="padding:0 15px 0 0;">
-                <button class="btn btn-primary btn-block" id="start" style="margin:0;height:46px;border-radius:0;text-transform:none!important;font-weight:bold;font-size:16px;">
+                <button class="btn btn-primary btn-block btn-lg" id="start" style="margin:0;border-radius:0;text-transform:none!important;font-weight:bold;font-size:16px;">
                   Find a professional
                 </button>
               </div>
