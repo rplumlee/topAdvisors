@@ -1,15 +1,14 @@
-.modal-lg{
+.filter-modal{
     min-width:90%;
     text-align:center;
 }
 
-.modal-content{
+.filter-modal > .modal-content{
     padding:0;
-    background: #eee!important;
     height:80vh!important;
 }
 
-.modal-body > .container > .filter-question  >  h2{
+.filter-modal > .modal-body > .container > .filter-question  >  h2{
     font-weight:300;
     position:relative;
 }
@@ -22,13 +21,13 @@
 
 }
 
-.modal-body{
+.filter-modal > .modal-body{
     height:90%!important;
     overflow-y: scroll;
     padding-bottom:200px!important;
 }
 
-.modal-body > .container{
+.filter-modal > .modal-body > .container{
     position:relative;
 }
 
@@ -70,14 +69,7 @@
 
 }
 
-.modal-footer{
-    background-color: $red-new;
-    height:10%;
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-}
+
 
 .filter-question{
     padding:100px 0 0 0;
