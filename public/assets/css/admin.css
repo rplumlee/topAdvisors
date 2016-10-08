@@ -1,6 +1,4 @@
-.navbar-brand{
-	font-family: 'NTR', sans-serif;
-}
+
 .specialty{
 	position:	relative;
 }
@@ -28,6 +26,9 @@
 	padding:15px!important;
 }
 .header-warning{
+	padding:15px!important;
+}
+.header-rose{
 	padding:15px!important;
 }
 
@@ -59,4 +60,17 @@
 .tab-content{
 	padding-left:30px;
 	padding-bottom:30px;
+}
+.main-panel{
+	padding-top:80px;
+}
+.main-panel a{
+	color:#7095AE!important;
+}
+*{
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.sidebar{
+	padding-top:100px;
 }

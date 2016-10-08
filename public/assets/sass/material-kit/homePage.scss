@@ -1,3 +1,10 @@
+::-moz-selection { /* Code for Firefox */
+    background: $red-new;
+}
+
+::selection {
+    background: $red-new;
+}
 .navbar{
     margin-bottom:0;
     border-radius:0;
@@ -73,12 +80,13 @@
 .searchBar > .container{
     padding-top:0;
 }
-div[class^="col-sm"]{
-    padding:0;
-}
+
 .home-input{
     background-color:#fff!important;
     height:57px!important;
+}
+.home-input:focus{
+    border:1px solid $red-new;
 }
 .subTitle{
     text-transform: none;
@@ -98,4 +106,30 @@ div[class^="col-sm"]{
     height:300px!important;
     overflow:hidden!important;
     margin:15px 0;
+}
+@media (max-width: 767px) {
+    .navbar{
+       position:absolute;
+        .navbar-collapse{
+            border-top:1px solid #ddd;
+        }
+        .navbar-left{
+            padding-bottom:0;
+        }
+        .navbar-right{
+            padding-top:0;
+        }
+    }
+    .searchBar{
+
+        top: 40%;
+
+    }
+}
+@media (max-width: 767px) and (min-width: 550px) {
+
+    .searchBar{
+       width: 80%;
+        left:10%;
+    }
 }
