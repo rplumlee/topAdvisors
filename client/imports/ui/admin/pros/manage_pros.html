@@ -43,36 +43,40 @@
                               </tr>
                             </thead>
                             <tbody>
+                              {{#if Template.subscriptionsReady}}
+                              {{#each pros}}
                               <tr>
                                 <td class="td-name">
-                                  <a href="admin_edit_pro.html">Jacob Palmer</a>
+                                  <a href="#">{{ profile.firstName }} {{ profile.lastName }}</a>
                                 </td>
                                 <td>
-                                 Loans
-                               </td>
-                               <td>
-                                503-555-5555
-                              </td>
-                              <td>
-                                4
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                                  Loans
+                                </td>
+                                <td>
+                                  503-555-5555
+                                </td>
+                                <td>
+                                  4
+                                </td>
+                              </tr>
+                              {{/each}}
+                              {{/if}}
+                            </tbody>
+                          </table>
+                        </div>
 
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- End Tabs with icons on Card -->
+          <!-- End Tabs with icons on Card -->
 
+        </div>
       </div>
     </div>
-  </div>
   </div>
   <script src="/assets/js/lbd.js" type="text/javascript"></script>
 </template>

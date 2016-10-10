@@ -30,6 +30,10 @@ Template.adminLeads.helpers({
     } else {
       return Collections.Leads.find().fetch()[0];
     }
+  },
+  agentUser: function (user) {
+    var profile = Collections.Users.findOne({ _id: user }).profile;
+    return `${profile.firstName} ${profile.lastName}`;
   }
 });
 
@@ -57,8 +61,8 @@ Template.adminLeads.onRendered(function () {
   }
 
   document.title = 'Admin Dashboard';
+  Meteor.subscribe('pros.list');
   Meteor.subscribe('leads.list');
-  Meteor.subscribe('activities.list');
 
   //
   // paper-dashboard.js

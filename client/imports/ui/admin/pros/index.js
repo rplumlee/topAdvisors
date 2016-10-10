@@ -11,9 +11,6 @@ Template.adminPros.helpers({
   },
   pros: () => {
     return Collections.Users.find({ type: 'pro' })
-  },
-  parseDate: function (date) {
-    return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
   }
 });
 

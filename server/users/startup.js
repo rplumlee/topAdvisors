@@ -10,15 +10,17 @@ export default function ({ Meteor, Logger, Collections }) {
       profile: {
         firstName: profile.name,
         lastName: profile.surname,
+        jobTitle: 'Business Analyst',
         about: Fake.sentence(5),
         industry: [],
         specialty: []
       },
+      type: 'admin',
       email: 'admin@topadvisors.co',
       password: 'password',
       trophies: {}
     });
-    Logger.info('Create Admin User');
+    Logger.info('Created Admin User');
   }
 
   //
@@ -27,7 +29,7 @@ export default function ({ Meteor, Logger, Collections }) {
   if (Collections.Companies.find().count() < 5) {
     for (var i = 0; i < 5; i++) {
       var companies = Fake.user({ fields: [ 'surname' ] });
-      Collections.Companies.insert({
+      var company = Collections.Companies.insert({
         name: companies.surname,
         address: {
           street1: Fake.sentence(4),
@@ -36,7 +38,23 @@ export default function ({ Meteor, Logger, Collections }) {
         },
         bio: Fake.paragraph(4)
       });
+
+      var profile = Fake.user({ fields: [ 'name', 'surname' ] });
+      Accounts.createUser({
+        profile: {
+          firstName: profile.name,
+          lastName: profile.surname,
+          jobTitle: 'Business Analyst',
+          about: Fake.sentence(5),
+          industry: [],
+          specialty: []
+        },
+        company: company,
+        email: profile.name + '@topadvisors.co',
+        password: 'password',
+        trophies: {}
+      });
     }
-    Logger.info('Create Companies');
+    Logger.info('Created Companies');
   }
 }

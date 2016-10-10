@@ -49,7 +49,7 @@ Router.route('/admin/:path', {
     this.next();
   },
   action: function () {
-    this.render('adminSidebar', { data: { path: this.params.path } });
+    this.render('adminMain', { data: { path: this.params.path } });
   }
 });
 
@@ -59,7 +59,7 @@ Router.route('/admin/pros/:action', {
     this.next();
   },
   action: function () {
-    this.render('adminSidebar', { data: { base: 'pros', action: this.params.action } });
+    this.render('adminMain', { data: { base: 'pros', action: this.params.action } });
   }
 });
 
@@ -69,6 +69,6 @@ Router.route('/admin/companies/:action', {
     this.next();
   },
   action: function () {
-    this.render('adminSidebar', { data: { base: 'companies', action: this.params.action } });
+    this.render('adminMain', { data: { base: 'companies', action: this.params.action } });
   }
 });

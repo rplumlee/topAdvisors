@@ -3,20 +3,11 @@ import Collections from '/lib/collections';
 import './manage_consumers.html';
 
 Template.adminConsumers.helpers({
-  copyrightDate: function () {
-    return new Date().getFullYear();
-  },
-  leads: function (selector) {
-    return Collections.Leads.find({ status: selector.hash.status });
-  },
-  views: function () {
-    return Collections.Activities.find({ type: 'viewProfile' });
+  consumers: function (selector) {
+    return Collections.Leads.find({});
   },
   parseDate: function (date) {
     return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
-  },
-  statusLabel: function (status) {
-    return (status == 'open');
   },
   user: function () {
     return Meteor.user()
@@ -37,8 +28,7 @@ Template.adminConsumers.onRendered(function bodyOnRendered() {
   }
 
   document.title = 'Admin Dashboard';
-  Meteor.subscribe('leads.list');
-  Meteor.subscribe('activities.list');
+  Meteor.subscribe('leads.listConsumers');
 
   //
   // paper-dashboard.js

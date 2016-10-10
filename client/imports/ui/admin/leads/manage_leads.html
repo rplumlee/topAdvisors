@@ -140,14 +140,14 @@
                               {{#each leads status='fresh'}}
                               <tr>
                                 <td class="td-name">
-                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">Agent Name</a>
+                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1"> {{ agentUser agent }} </a>
                                   <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
                                   {{ profile.firstName }} {{ profile.lastName }}
                                 </td>
                                 <td>
-                                  {{ parseDate date }}
+                                  {{ parseDate createdOn }}
                                 </td>
                                 <td>
                                   <div class="label label-success">fresh</div>
@@ -189,7 +189,7 @@
                                   {{ profile.firstName }} {{ profile.lastName }}
                                 </td>
                                 <td>
-                                  {{ parseDate date }}
+                                  {{ parseDate createdOn }}
                                 </td>
                                 <td>
                                   <div class="label label-info">Open</div>
@@ -231,7 +231,7 @@
                                   {{ profile.firstName }} {{ profile.lastName }}
                                 </td>
                                 <td>
-                                  {{ parseDate date }}
+                                  {{ parseDate createdOn }}
                                 </td>
                                 <td>
                                   <div class="label label-danger">Dead</div>
@@ -274,7 +274,7 @@
                                   {{ profile.firstName }} {{ profile.lastName }}
                                 </td>
                                 <td>
-                                  {{ parseDate date }}
+                                  {{ parseDate createdOn }}
                                 </td>
                                 <td>
                                   <div class="label label-warning">Closed</div>

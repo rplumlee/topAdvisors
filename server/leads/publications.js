@@ -16,7 +16,7 @@ export default function ({ Meteor, Collections }) {
     return Collections.Leads.find();
   });
 
-  Meteor.publish('leads.listCustomers', function () {
+  Meteor.publish('leads.listConsumers', function () {
 
     //
     // If user is not logged in, stop the publication

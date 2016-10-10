@@ -18,89 +18,50 @@
                           <table class="table table-shopping">
                             <thead>
                               <tr>
-                                <th>Pro name</th>
+                                <th>Consumer name</th>
                                 <th class="th-description">Email</th>
                                 <th class="th-description">Phone Number</th>
                                 <th class="th-description">Automated Email</th>
                               </tr>
                             </thead>
                             <tbody>
+                              {{#if Template.subscriptionsReady}}
+                              {{#each consumers}}
                               <tr>
                                 <td class="td-name">
-                                 Jacob Palmer
-                               </td>
-                               <td>
-                                jpalmer32@gmail.com
-                              </td>
-                              <td>
-                                503-555-5555
-                              </td>
-                              <td>
-                                <i class="material-icons text-success">check</i>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="td-name">
-                                Jacob Palmer
-                              </td>
-                              <td>
-                                jpalmer32@gmail.com
-                              </td>
-                              <td>
-                                503-555-5555
-                              </td>
-                              <td>
-                                <i class="material-icons text-success">check</i>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="td-name">
-                                Jacob Palmer
-                              </td>
-                              <td>
-                                jpalmer32@gmail.com
-                              </td>
-                              <td>
-                                503-555-5555
-                              </td>
-                              <td>
-                                <i class="material-icons text-success">check</i>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="td-name">
-                                Jacob Palmer
-                              </td>
-                              <td>
-                               jpalmer32@gmail.com
-                             </td>
-                             <td>
-                              503-555-5555
-                            </td>
-                            <td>
-                              <i class="material-icons text-success">check</i>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                                  {{ profile.firstName }} {{ profile.lastName }}
+                                </td>
+                                <td>
+                                  jpalmer32@gmail.com
+                                </td>
+                                <td>
+                                  503-555-5555
+                                </td>
+                                <td>
+                                  <i class="material-icons text-success">check</i>
+                                </td>
+                              </tr>
+                              {{/each}}
+                              {{/if}}
+                            </tbody>
+                          </table>
+                        </div>
 
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <!-- End Tabs with icons on Card -->
         </div>
       </div>
-      <!-- End Tabs with icons on Card -->
-
     </div>
-  </div>
-  </div>
   </div>
 
   <!--  Notifications Plugin    -->
-  <script src="assets/js/bootstrap-notify.js"></script>
-  <script src="assets/js/lbd.js" type="text/javascript"></script>
+  <script src="/assets/js/bootstrap-notify.js"></script>
+  <script src="/assets/js/lbd.js" type="text/javascript"></script>
 
 </template>

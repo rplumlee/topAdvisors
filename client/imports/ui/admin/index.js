@@ -1,7 +1,8 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import Collections from '/lib/collections';
-import './sidebar.html';
+import './navbar.html';
+import './main.html';
 
 var adminTemplates = {
   leads: 'adminLeads',
@@ -33,16 +34,22 @@ var _parseAddress = function (addressParams, place) {
   addressParams.zip = base.postal_code;
 };
 
-Template.adminSidebar.helpers({
+Template.adminMain.helpers({
   user: () => {
     return Meteor.user();
   },
   loadTemplate: () => {
     return Template[Template.instance().state.get('template')];
+  },
+  loadAdminNavbar: () => {
+    return Template.adminNavbar;
+  },
+  parseDate: function (date) {
+    return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
   }
 });
 
-Template.adminSidebar.events({
+Template.adminMain.events({
   'click #logout'() {
     Meteor.logout(() => {
       Router.go('login');
@@ -90,7 +97,7 @@ Template.adminSidebar.events({
   }
 });
 
-Template.adminSidebar.onCreated(function () {
+Template.adminMain.onCreated(function () {
   this.state = new ReactiveDict();
   if (this.data.path) {
     this.state.setDefault({
@@ -103,7 +110,7 @@ Template.adminSidebar.onCreated(function () {
   }
 });
 
-Template.adminSidebar.onRendered(function () {
+Template.adminMain.onRendered(function () {
   if (!Meteor.userId()) {
     Router.go('login');
   }
