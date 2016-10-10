@@ -182,7 +182,7 @@
                               {{#each leads status='open'}}
                               <tr>
                                 <td class="td-name">
-                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">Bobby Fischer</a>
+                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ agentUser agent }}</a>
                                   <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
@@ -224,7 +224,7 @@
                               {{#each leads status='dead'}}
                               <tr>
                                 <td class="td-name">
-                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
+                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ agentUser agent }}</a>
                                   <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
@@ -267,7 +267,7 @@
                               {{#each leads status='closed'}}
                               <tr>
                                 <td class="td-name">
-                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">Nancy Plumlee</a>
+                                  <a data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ agentUser agent }}</a>
                                   <br /><small>{{ purpose }}</small>
                                 </td>
                                 <td>
