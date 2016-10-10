@@ -49,7 +49,7 @@ export default function ({ Meteor, Logger, Collections }) {
           industry: [],
           specialty: []
         },
-        company: company,
+        company,
         email: profile.name + '@topadvisors.co',
         password: 'password',
         trophies: {}
