@@ -126,13 +126,29 @@ Template.adminProAdd.events({
   'change .businessSpeciality'(event, instance) {
     var data = instance.pros.get('pro');
     data.businessSpeciality = data.businessSpeciality || [];
-    data.businessSpeciality.push(event.currentTarget.value);
+    if (data.businessSpeciality.indexOf(event.currentTarget.value) === -1) {
+      data.businessSpeciality.push(event.currentTarget.value);
+    }
     instance.pros.set('pro', data);
   },
   'change .personalSpeciality'(event, instance) {
     var data = instance.pros.get('pro');
     data.personalSpeciality = data.personalSpeciality || [];
-    data.personalSpeciality.push(event.currentTarget.value);
+    if (data.personalSpeciality.indexOf(event.currentTarget.value) === -1) {
+      data.personalSpeciality.push(event.currentTarget.value);
+    }
+    instance.pros.set('pro', data);
+  },
+  'click .businessSpecialityRemove'(event, instance) {
+    var data = instance.pros.get('pro');
+    var pos = data.businessSpeciality.indexOf(event.currentTarget.id);
+    data.businessSpeciality.splice(pos, 1);
+    instance.pros.set('pro', data);
+  },
+  'click .personalSpecialityRemove'(event, instance) {
+    var data = instance.pros.get('pro');
+    var pos = data.personalSpeciality.indexOf(event.currentTarget.id);
+    data.personalSpeciality.splice(pos, 1);
     instance.pros.set('pro', data);
   }
 });

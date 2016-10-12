@@ -125,7 +125,7 @@
                       </select>
                       {{#each selectedPersonalSpeciality}}
                       <div class="specialty">
-                        {{this}}<a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        {{this}}<a  class="personalSpecialityRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
                       </div>
                       {{/each}}
                     </div>
@@ -138,7 +138,7 @@
                       </select>
                       {{#each selectedBusinessSpeciality}}
                       <div class="specialty">
-                        {{this}}<a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        {{this}}<a class="businessSpecialityRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
                       </div>
                       {{/each}}
                     </div>
