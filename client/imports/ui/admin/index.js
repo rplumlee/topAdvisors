@@ -94,6 +94,16 @@ Template.adminMain.events({
         history.pushState({}, "Admin Dashboard", "/admin/companies");
       }
     });
+  },
+  'click #create_pro'(event, instance) {
+    var params = {
+    }
+    Meteor.call('users.create', params, function (error, result) {
+      if (result.company) {
+        instance.state.set('template', 'adminPros');
+        history.pushState({}, "Admin Dashboard", "/admin/pros");
+      }
+    });
   }
 });
 

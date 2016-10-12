@@ -27,13 +27,13 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">person</i>&nbsp;&nbsp;&nbsp;First Name</label>
-                      <input type="email" class="form-control">
+                      <input id="pro_fistname" type="text" class="form-control proForm">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label">Last Name</label>
-                      <input type="email" class="form-control">
+                      <input id="pro_lastname" type="text" class="form-control proForm">
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">phone</i>&nbsp;&nbsp;&nbsp;Phone Number</label>
-                      <input type="email" class="form-control">
+                      <input id="pro_phone" type="text" class="form-control proForm">
                     </div>
                   </div>
                 </div>
@@ -51,7 +51,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">mail</i>&nbsp;&nbsp;&nbsp;Email Address</label>
-                      <input type="email" class="form-control">
+                      <input id="pro_email" type="email" class="form-control proForm">
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">lock</i>&nbsp;&nbsp;&nbsp;Password</label>
-                      <input type="email" class="form-control">
+                      <input id="pro_password" type="password" class="form-control proForm">
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@
                   <div class="col-md-6">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">create</i> About Me</label>
-                      <textarea class="form-control" rows="5"></textarea>
+                      <textarea id="pro_about" class="form-control proForm" rows="5"></textarea>
                     </div>
                   </div>
                 </div>
@@ -101,7 +101,7 @@
                     <div class="col-sm-3">
                       <div class="form-group label-floating">
                         <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Company</label>
-                        <input type="email" class="form-control">
+                        <input type="email" class="form-control proForm">
                       </div>
                     </div>
                   </div>
@@ -110,71 +110,37 @@
                     <div class="col-sm-3">
                       <div class="form-group label-floating">
                         <label class="control-label"><i class="material-icons">person_outline</i>&nbsp;&nbsp;&nbsp;Job Title</label>
-                        <input type="email" class="form-control">
+                        <input type="email" class="form-control proForm">
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-sm-3">
-                      <select class="select form-control" placeholder="Choose Specialties (can choose multiple)">
+                      <select class="select form-control personalSpeciality" placeholder="Choose Specialties (can choose multiple)">
                         <option disabled selected class="disabled"> Personal Specialties (can choose multiple)</option>
-                        <option value="1">Home Loans </option>
-                        <option value="1">Auto Loans</option>
-                        <option value="1">Personal Loans</option>
-                        <option value="1">Financial Advising</option>
-                        <option value="1">Wealth Management </option>
-                        <option value="1">Education Funding</option>
-                        <option value="1">Home Insurance </option>
-                        <option value="1">Auto Insurance</option>
-                        <option value="1">Life Insurance</option>
-                        <option value="1">Health Insurance</option>
-                        <option value="1">Long-Term Care Insurance </option>
-                        <option value="1">Disability Insurance</option>
-                        <option value="1">P&C Insurance </option>
+                        {{#each personalSpecialities}}
+                          <option value="{{this}}">{{this}}</option>
+                        {{/each}}
                       </select>
+                      {{#each selectedPersonalSpeciality}}
                       <div class="specialty">
-                        Financial Advising <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        {{this}}<a href="#" class="text-danger"><i class="material-icons">close</i></a>
                       </div>
-                      <div class="specialty">
-                        Life Insurance <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                      <div class="specialty">
-                        Health Insurance <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
+                      {{/each}}
                     </div>
                     <div class="col-sm-3">
-                      <select class="select form-control" placeholder="Choose Specialties (can choose multiple)">
+                      <select class="select form-control businessSpeciality" placeholder="Choose Specialties (can choose multiple)">
                         <option disabled selected class="disabled"> Business Specialties (can choose multiple)</option>
-                        <option value="1">Basic Commercial Loans </option>
-                        <option value="1">Term Commercial Loans</option>
-                        <option value="1">Unsecured Commercial Loans</option>
-                        <option value="1">Commercial Acquisition Loans </option>
-                        <option value="1">General Liability Insurance </option>
-                        <option value="1">Product Liability Insurance</option>
-                        <option value="1">Professional Liability Insurance </option>
-                        <option value="1">Commercial Property Insurance</option>
-                        <option value="1">Life & Health Insurance</option>
-                        <option value="1">Commerical Auto Insurance</option>
-                        <option value="1">Workers Compensation Insurance</option>
-                        <option value="1">Directors and Officers Insurance</option>
-                        <option value="1">Data Breach Insurance</option>
-                        <option value="1">Tax Planning </option>
-                        <option value="1">Employee Benefit Planning </option>
-                        <option value="1">Retirement Planning </option>
-                        <option value="1">Business Valuation </option>
-                        <option value="1">Business Succession Planning </option>
-                        <option value="1">Investment Planning </option>
+                        {{#each businessSpecialities}}
+                          <option value="{{this}}">{{this}}</option>
+                        {{/each}}
                       </select>
+                      {{#each selectedBusinessSpeciality}}
                       <div class="specialty">
-                        Financial Advising <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        {{this}}<a href="#" class="text-danger"><i class="material-icons">close</i></a>
                       </div>
-                      <div class="specialty">
-                        Life Insurance <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                      <div class="specialty">
-                        Health Insurance <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
+                      {{/each}}
                     </div>
                   </div>
                 </div>
@@ -312,19 +278,19 @@
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label"><i class="material-icons">person_add</i>&nbsp;&nbsp;&nbsp;Designation</label>
-                          <input type="email" class="form-control">
+                          <input type="email" class="form-control proForm">
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label">Designation Number</label>
-                          <input type="email" class="form-control">
+                          <input type="email" class="form-control proForm">
                         </div>
                       </div>
                       <div class="col-sm-2">
                         <div class="form-group label-floating">
                           <label class="control-label">Date Earned</label>
-                          <input type="email" class="form-control">
+                          <input type="email" class="form-control proForm">
                         </div>
                       </div>
                       <div class="col-xs-1">
