@@ -123,7 +123,7 @@
                           <option value="{{this}}">{{this}}</option>
                         {{/each}}
                       </select>
-                      {{#each selectedPersonalSpeciality}}
+                      {{#each pros.personalSpeciality}}
                       <div class="specialty">
                         {{this}}<a  class="personalSpecialityRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
                       </div>
@@ -136,7 +136,7 @@
                           <option value="{{this}}">{{this}}</option>
                         {{/each}}
                       </select>
-                      {{#each selectedBusinessSpeciality}}
+                      {{#each pros.businessSpeciality}}
                       <div class="specialty">
                         {{this}}<a class="businessSpecialityRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
                       </div>
@@ -171,198 +171,153 @@
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label"><i class="material-icons">account_balance</i>&nbsp;&nbsp;&nbsp;College Name</label>
-                          <input type="email" class="form-control">
+                          <input id="college_name" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label">Degree Earned</label>
-                          <input type="email" class="form-control">
+                          <input id="college_degree" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-2">
                         <div class="form-group label-floating">
                           <label class="control-label">Year Graduated</label>
-                          <input type="email" class="form-control">
+                          <input id="college_year" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-xs-1">
-                        <a class="btn btn-info btn-sm admin-add" href="#"><i class="material-icons">add</i></a>
+                        <a class="btn btn-info btn-sm admin-add addCollege" href="#"><i class="material-icons">add</i></a>
                       </div>
                     </div>
 
+                    {{#each pros.educations}}
                     <div class="row degree">
                       <div class="col-sm-3">
-                        Gonzaga University
+                        {{this.collegeName}}
                       </div>
                       <div class="col-sm-3">
-                        Bachelor's of Accounting and Finance
+                        {{this.degreeName}}
                       </div>
                       <div class="col-sm-2">
-                        2011
+                        {{this.yearGraduated}}
                       </div>
                       <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        <a id="{{this.id}}" href="#" class="text-danger removeCollege"><i class="material-icons">close</i></a>
                       </div>
                     </div>
-
-                    <div class="row degree">
-                      <div class="col-sm-3">
-                        Stanford University
-                      </div>
-                      <div class="col-sm-3">
-                        Masters of Business
-                      </div>
-                      <div class="col-sm-2">
-                        2013
-                      </div>
-                      <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                    </div>
+                    {{/each}}
 
                     <div class="row">
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label"><i class="material-icons">list</i>&nbsp;&nbsp;&nbsp;License</label>
-                          <input type="email" class="form-control">
+                          <input id="license_name" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label">License Number</label>
-                          <input type="email" class="form-control">
+                          <input id="license_number" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-2">
                         <div class="form-group label-floating">
                           <label class="control-label">Date Earned</label>
-                          <input type="email" class="form-control">
+                          <input id="license_date" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-xs-1">
-                        <a class="btn btn-info btn-sm admin-add" href="#"><i class="material-icons">add</i></a>
+                        <a class="btn btn-info btn-sm admin-add addLicense" href="#"><i class="material-icons">add</i></a>
                       </div>
                     </div>
+                    {{#each pros.licenses}}
                     <div class="row license">
                       <div class="col-sm-3">
-                        Series 66
+                        {{this.license}}
                       </div>
                       <div class="col-sm-3">
-                        5034546878
+                        {{this.licenseNumber}}
                       </div>
                       <div class="col-sm-2">
-                        2011
+                        {{this.dateEarned}}
                       </div>
                       <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        <a id="{{this.id}}" href="#" class="text-danger removeLicense"><i class="material-icons">close</i></a>
                       </div>
                     </div>
-                    <div class="row license">
-                      <div class="col-sm-3">
-                        Series 67
-                      </div>
-                      <div class="col-sm-3">
-                        465484684
-                      </div>
-                      <div class="col-sm-2">
-                        2012
-                      </div>
-                      <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                    </div>
-
+                    {{/each}}
 
                     <div class="row">
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label"><i class="material-icons">person_add</i>&nbsp;&nbsp;&nbsp;Designation</label>
-                          <input type="email" class="form-control proForm">
+                          <input id="designation_name" type="text" class="form-control proForm">
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label">Designation Number</label>
-                          <input type="email" class="form-control proForm">
+                          <input id="designation_number" type="text" class="form-control proForm">
                         </div>
                       </div>
                       <div class="col-sm-2">
                         <div class="form-group label-floating">
                           <label class="control-label">Date Earned</label>
-                          <input type="email" class="form-control proForm">
+                          <input id="designation_date" type="text" class="form-control proForm">
                         </div>
                       </div>
                       <div class="col-xs-1">
-                        <a class="btn btn-info btn-sm admin-add" href="#"><i class="material-icons">add</i></a>
+                        <a class="btn btn-info btn-sm admin-add addDesignation" href="#"><i class="material-icons">add</i></a>
                       </div>
                     </div>
+                    {{#each pros.designations}}
                     <div class="row designation">
                       <div class="col-sm-3">
-                        CPA
+                        {{this.designation}}
                       </div>
                       <div class="col-sm-3">
-                        5034546878
+                        {{this.designationNumber}}
                       </div>
                       <div class="col-sm-2">
-                        2011
+                        {{this.dateEarned}}
                       </div>
                       <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        <a id="{{this.id}}" href="#" class="text-danger removeDesignation"><i class="material-icons">close</i></a>
                       </div>
                     </div>
-
+                    {{/each}}
 
                     <div class="row">
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Previous Company</label>
-                          <input type="email" class="form-control">
+                          <input id="workHistory_company" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label">Dates Worked</label>
-                          <input type="email" class="form-control">
+                          <input id="workHistory_year" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-xs-1">
-                        <a class="btn btn-info btn-sm admin-add" href="#"><i class="material-icons">add</i></a>
+                        <a class="btn btn-info btn-sm admin-add addWorkHistory" href="#"><i class="material-icons">add</i></a>
                       </div>
                     </div>
+                    {{#each pros.workHistories}}
                     <div class="row workHistory">
                       <div class="col-sm-3">
-                        Morgan Stanley
+                        {{this.companyName}}
                       </div>
                       <div class="col-sm-3">
-                        2011-2014
+                        {{this.yearRange}}
                       </div>
                       <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        <a id="{{this.id}}" href="#" class="text-danger removeWorkHistory"><i class="material-icons">close</i></a>
                       </div>
                     </div>
-                    <div class="row workHistory">
-                      <div class="col-sm-3">
-                        Wells Fargo
-                      </div>
-                      <div class="col-sm-3">
-                        2009-2011
-                      </div>
-                      <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                    </div>
-                    <div class="row workHistory">
-                      <div class="col-sm-3">
-                        KillerBurger
-                      </div>
-                      <div class="col-sm-3">
-                        2001-2009
-                      </div>
-                      <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                    </div>
+                    {{/each}}
                   </div>
                 </div>
               </div>

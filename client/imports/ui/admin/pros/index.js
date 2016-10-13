@@ -1,10 +1,17 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import _ from 'underscore';
 import Collections from '/lib/collections';
 import './manage_pros.html';
 import './add_pro.html';
 import './edit_pro.html';
 
+var _handleRemoval = function (instance, dataSet, currentId) {
+  var data = instance.pros.get('pro');
+  var pos = _.findIndex(data[dataSet], (o) => { return o.id == currentId; });
+  data[dataSet].splice(pos, 1);
+  instance.pros.set('pro', data);
+}
 
 Template.adminPros.helpers({
   user: () => {
@@ -52,6 +59,7 @@ Template.adminProAdd.onCreated(function () {
 
 
 Template.adminProAdd.onRendered(function () {
+  console.log(_.findIndex);
   if (!Meteor.userId()) {
     Router.go('login');
   }
@@ -72,12 +80,6 @@ Template.adminProAdd.onRendered(function () {
 Template.adminProAdd.helpers({
   pros: () => {
     return Template.instance().pros.get('pro')
-  },
-  selectedPersonalSpeciality: () => {
-    return Template.instance().pros.get('pro').personalSpeciality
-  },
-  selectedBusinessSpeciality:  () => {
-    return Template.instance().pros.get('pro').businessSpeciality
   },
   personalSpecialities: [
     "Home Loans",
@@ -150,5 +152,60 @@ Template.adminProAdd.events({
     var pos = data.personalSpeciality.indexOf(event.currentTarget.id);
     data.personalSpeciality.splice(pos, 1);
     instance.pros.set('pro', data);
+  },
+  'click .addCollege'(event, instance) {
+    var data = instance.pros.get('pro');
+    data.educations = data.educations || [];
+    data.educations.push({
+      id: Date.now(),
+      collegeName: $('#college_name')[0].value,
+      degreeName: $('#college_degree')[0].value,
+      yearGraduated: $('#college_year')[0].value
+    });
+    instance.pros.set('pro', data);
+  },
+  'click .addLicense'(event, instance) {
+    var data = instance.pros.get('pro');
+    data.licenses = data.licenses || [];
+    data.licenses.push({
+      id: Date.now(),
+      license: $('#license_name')[0].value,
+      licenseNumber: $('#license_number')[0].value,
+      dateEarned: $('#license_date')[0].value
+    });
+    instance.pros.set('pro', data);
+  },
+  'click .addDesignation'(event, instance) {
+    var data = instance.pros.get('pro');
+    data.designations = data.designations || [];
+    data.designations.push({
+      id: Date.now(),
+      designation: $('#designation_name')[0].value,
+      designationNumber: $('#designation_number')[0].value,
+      dateEarned: $('#designation_date')[0].value
+    });
+    instance.pros.set('pro', data);
+  },
+  'click .addWorkHistory'(event, instance) {
+    var data = instance.pros.get('pro');
+    data.workHistories = data.workHistories || [];
+    data.workHistories.push({
+      id: Date.now(),
+      companyName: $('#workHistory_company')[0].value,
+      yearRange: $('#workHistory_year')[0].value
+    });
+    instance.pros.set('pro', data);
+  },
+  'click .removeCollege'(event, instance) {
+    _handleRemoval(instance, 'educations', event.currentTarget.id);
+  },
+  'click .removeLicense'(event, instance) {
+    _handleRemoval(instance, 'licenses', event.currentTarget.id);
+  },
+  'click .removeDesignation'(event, instance) {
+    _handleRemoval(instance, 'designations', event.currentTarget.id);
+  },
+  'click .removeWorkHistory'(event, instance) {
+    _handleRemoval(instance, 'workHistories', event.currentTarget.id);
   }
 });
