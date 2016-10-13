@@ -10,6 +10,9 @@ Template.adminLeads.helpers({
   leads: function (selector) {
     return Collections.Leads.find({ status: selector.hash.status });
   },
+  leadCount: function () {
+    return Collections.Leads.find({}).count();
+  },
   views: function () {
     return Collections.Activities.find({ type: 'viewProfile' });
   },
@@ -59,6 +62,19 @@ Template.adminLeads.onRendered(function () {
   if (!Meteor.userId()) {
     Router.go('login');
   }
+
+  this.autorun((c) => {
+    if (this.subscriptionsReady()) {
+      var user = Meteor.user();
+      if (user) {
+        if (user.profile.type === 'pro') {
+          Router.go('/dashboard');
+        } else {
+          Router.go('/admin/leads');
+        }
+      }
+    }
+  });
 
   document.title = 'Admin Dashboard';
   Meteor.subscribe('pros.list');

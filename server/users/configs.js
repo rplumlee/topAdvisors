@@ -19,7 +19,6 @@ export default function ({ Accounts }) {
 
     user.profile = options.profile;
     user.trophies = options.trophies;
-    user.type = options.type;
     user.company = options.company;
     return user;
   });

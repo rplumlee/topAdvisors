@@ -2,7 +2,7 @@ import { Fake } from 'meteor/anti:fake';
 
 export default function ({ Collections, Logger }) {
   //
-  var agents = Collections.Users.find({ type: 'pro' }).fetch();
+  var agents = Collections.Users.find({ 'profile.type': 'pro' }).fetch();
   //
   // On startup, create sample leads
   //

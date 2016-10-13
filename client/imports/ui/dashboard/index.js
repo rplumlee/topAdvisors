@@ -3,23 +3,28 @@ import Collections from '/lib/collections';
 import './dashboard.html';
 
 Template.myDashboard.helpers({
-  copyrightDate: function () {
-    return new Date().getFullYear();
+  leads: function (selector) {
+    return Collections.Leads.find({ status: selector.hash.status });
   },
-  leads: function () {
-    return Collections.Leads.find();
-  },
-  views: function () {
+  leadCount: function () {
+    return Collections.Leads.find({}).count();
+  },  views: function () {
     return Collections.Activities.find({ type: 'viewProfile' });
   },
   parseDate: function (date) {
-    return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+    if (date) {
+      return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+    }
   },
   statusLabel: function (status) {
     return (status == 'open');
   },
   user: function () {
     return Meteor.user()
+  },
+  agentUser: function (user) {
+    var profile = Collections.Users.findOne({ _id: user }).profile;
+    return `${profile.firstName} ${profile.lastName}`;
   }
 });
 

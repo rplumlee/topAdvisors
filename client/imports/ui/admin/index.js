@@ -125,6 +125,19 @@ Template.adminMain.onRendered(function () {
     Router.go('login');
   }
 
+  this.autorun((c) => {
+    if (this.subscriptionsReady()) {
+      var user = Meteor.user();
+      if (user) {
+        if (user.profile.type === 'pro') {
+          Router.go('/dashboard');
+        } else {
+          Router.go('/admin/leads');
+        }
+      }
+    }
+  });
+
   document.title = 'Admin Dashboard';
 
   //

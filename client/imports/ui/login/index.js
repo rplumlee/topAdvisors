@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { Tracker } from 'meteor/tracker'
 import './login.html';
 
 Template.myLogin.helpers({
@@ -7,9 +8,20 @@ Template.myLogin.helpers({
   }
 });
 
-Template.myLogin.onRendered(function bodyOnRendered() {
+Template.myLogin.onRendered(function () {
   if (Meteor.userId()) {
-    Router.go('/admin/leads');
+    this.autorun((c) => {
+      if (this.subscriptionsReady()) {
+        var user = Meteor.user();
+        if (user) {
+          if (user.profile.type === 'pro') {
+            Router.go('/dashboard');
+          } else {
+            Router.go('/admin/leads');
+          }
+        }
+      }
+    });
   }
 });
 

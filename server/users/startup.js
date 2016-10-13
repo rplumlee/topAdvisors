@@ -13,9 +13,9 @@ export default function ({ Meteor, Logger, Collections }) {
         jobTitle: 'Business Analyst',
         about: Fake.sentence(5),
         industry: [],
-        specialty: []
+        specialty: [],
+        type: 'admin'
       },
-      type: 'admin',
       email: 'admin@topadvisors.co',
       password: 'password',
       trophies: {}
