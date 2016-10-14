@@ -14,11 +14,13 @@ export default function ({ Meteor, Collections }) {
     }
     var user = Meteor.users.findOne({ _id: this.userId });
 
+    var leads;
     if (user.profile.type === 'pro') {
-      return Collections.Leads.find({ agent: this.userId });
+      leads = Collections.Leads.find({ agent: this.userId });
     } else {
-      return Collections.Leads.find();
+      leads = Collections.Leads.find();
     }
+    return leads;
   });
 
   Meteor.publish('leads.listConsumers', function () {

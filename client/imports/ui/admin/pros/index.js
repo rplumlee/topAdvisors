@@ -65,12 +65,12 @@ Template.adminProAdd.onCreated(function () {
 
 
 Template.adminProAdd.onRendered(function () {
-  console.log(_.findIndex);
   if (!Meteor.userId()) {
     Router.go('login');
   }
 
   document.title = 'Admin Dashboard';
+  Meteor.subscribe('companies.list');
 
   //
   // paper-dashboard.js
@@ -122,7 +122,10 @@ Template.adminProAdd.helpers({
     "Business Valuation",
     "Business Succession Planning",
     "Investment Planning"
-  ]
+  ],
+  companies: () => {
+    return Collections.Companies.find();
+  }
 });
 
 Template.adminProAdd.events({
