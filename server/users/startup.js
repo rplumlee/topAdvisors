@@ -47,7 +47,8 @@ export default function ({ Meteor, Logger, Collections }) {
           jobTitle: 'Business Analyst',
           about: Fake.sentence(5),
           industry: [],
-          specialty: []
+          specialty: [],
+          type: 'pro'
         },
         company,
         email: profile.name + '@topadvisors.co',
