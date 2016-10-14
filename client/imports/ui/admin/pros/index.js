@@ -24,7 +24,7 @@ Template.adminPros.helpers({
     return Meteor.user()
   },
   pros: () => {
-    return Collections.Users.find({ type: 'pro' })
+    return Collections.Users.find({ 'profile.type': 'pro' })
   }
 });
 

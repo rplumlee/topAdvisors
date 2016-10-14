@@ -12,7 +12,8 @@ export default function ({ Collections, Logger }) {
       Collections.Leads.insert({
         profile: {
           firstName: profile.name,
-          lastName: profile.surname
+          lastName: profile.surname,
+          email: profile.name + '_' + profile.surname + '@topuser.com'
         },
         agent: agents[Math.floor(Math.random() * agents.length)]._id,
         status: Fake.fromArray([ 'fresh', 'open', 'dead', 'closed' ]),
