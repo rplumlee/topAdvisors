@@ -11,7 +11,13 @@ var _handleRemoval = function (instance, dataSet, currentId) {
   var pos = _.findIndex(data[dataSet], (o) => { return o.id == currentId; });
   data[dataSet].splice(pos, 1);
   instance.pros.set('pro', data);
-}
+};
+
+var _resetFields = function (fieldsArray) {
+  fieldsArray.forEach(function (field) {
+    $(field)[0].value = '';
+  });
+};
 
 Template.adminPros.helpers({
   user: () => {
@@ -162,6 +168,7 @@ Template.adminProAdd.events({
       degreeName: $('#college_degree')[0].value,
       yearGraduated: $('#college_year')[0].value
     });
+    _resetFields(['#college_name', '#college_degree', '#college_year']);
     instance.pros.set('pro', data);
   },
   'click .addLicense'(event, instance) {
@@ -173,6 +180,7 @@ Template.adminProAdd.events({
       licenseNumber: $('#license_number')[0].value,
       dateEarned: $('#license_date')[0].value
     });
+    _resetFields(['#license_name', '#license_number', '#license_date']);
     instance.pros.set('pro', data);
   },
   'click .addDesignation'(event, instance) {
@@ -184,6 +192,7 @@ Template.adminProAdd.events({
       designationNumber: $('#designation_number')[0].value,
       dateEarned: $('#designation_date')[0].value
     });
+    _resetFields(['#designation_name', '#designation_number', '#designation_date']);
     instance.pros.set('pro', data);
   },
   'click .addWorkHistory'(event, instance) {
@@ -194,6 +203,7 @@ Template.adminProAdd.events({
       companyName: $('#workHistory_company')[0].value,
       yearRange: $('#workHistory_year')[0].value
     });
+    _resetFields(['#workHistory_company', '#workHistory_year']);
     instance.pros.set('pro', data);
   },
   'click .removeCollege'(event, instance) {

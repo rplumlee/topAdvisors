@@ -25,7 +25,7 @@ export default function ({ Meteor, Collections }) {
       return this.stop();
     }
 
-    return Collections.Users.find({ type: 'pro' });
+    return Collections.Users.find({ 'profile.type': 'pro' });
   });
 
 }
