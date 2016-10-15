@@ -24,6 +24,7 @@ caching-html-compiler@1.0.6
 callback-hook@1.0.9
 check@1.2.3
 chrisbutler:typed.js@1.1.1
+coffeescript@1.0.17
 ddp@1.2.5
 ddp-client@1.2.9
 ddp-common@1.2.6
@@ -31,6 +32,7 @@ ddp-rate-limiter@1.0.5
 ddp-server@1.2.10
 deps@1.0.12
 diff-sequence@1.0.6
+digilord:faker@1.0.7
 ecmascript@0.5.8_1
 ecmascript-runtime@0.3.14_1
 ejson@1.0.12

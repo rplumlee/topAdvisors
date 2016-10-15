@@ -1,19 +1,19 @@
-import { Fake } from 'meteor/anti:fake';
+import { faker } from 'meteor/digilord:faker';
 
 export default function ({ Meteor, Logger, Collections }) {
   //
   // On startup, create admin user
   //
   if (!Meteor.users.find().count()) {
-    var profile = Fake.user({ fields: [ 'name', 'surname' ] });
     Accounts.createUser({
       profile: {
-        firstName: profile.name,
-        lastName: profile.surname,
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
         jobTitle: 'Business Analyst',
-        about: Fake.sentence(5),
+        about: faker.lorem.sentence(),
         industry: [],
-        specialty: [],
+        personalSpecialty: [],
+        businessSpecialty: [],
         type: 'admin'
       },
       email: 'admin@topadvisors.co',
@@ -28,30 +28,30 @@ export default function ({ Meteor, Logger, Collections }) {
   //
   if (Collections.Companies.find().count() < 5) {
     for (var i = 0; i < 5; i++) {
-      var companies = Fake.user({ fields: [ 'surname' ] });
       var company = Collections.Companies.insert({
-        name: companies.surname,
+        name: faker.company.companyName(),
         address: {
-          street1: Fake.sentence(4),
+          street1: faker.address.streetAddress(),
           city: Fake.fromArray([ 'Portland', 'New York', 'Los Angeles', 'Washington', 'Seattle' ]),
-          fullAddress: Fake.sentence(8)
+          fullAddress: 'something'
         },
-        bio: Fake.paragraph(4)
+        bio: faker.lorem.paragraph()
       });
 
-      var profile = Fake.user({ fields: [ 'name', 'surname' ] });
       Accounts.createUser({
         profile: {
-          firstName: profile.name,
-          lastName: profile.surname,
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
+          phone: faker.phone.phoneNumberFormat(),
           jobTitle: 'Business Analyst',
-          about: Fake.sentence(5),
+          about: faker.lorem.sentence(),
           industry: [],
-          specialty: [],
+          personalSpecialty: [],
+          businessSpecialty: [],
           type: 'pro'
         },
         company,
-        email: profile.name + '@topadvisors.co',
+        email: faker.internet.email(),
         password: 'password',
         trophies: {}
       });

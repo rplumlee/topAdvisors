@@ -1,4 +1,5 @@
 import { Fake } from 'meteor/anti:fake';
+import { faker } from 'meteor/digilord:faker';
 
 export default function ({ Collections, Logger }) {
   //
@@ -13,7 +14,8 @@ export default function ({ Collections, Logger }) {
         profile: {
           firstName: profile.name,
           lastName: profile.surname,
-          email: profile.name + '_' + profile.surname + '@topuser.com'
+          email: faker.internet.email(),
+          phone: faker.phone.phoneNumberFormat()
         },
         agent: agents[Math.floor(Math.random() * agents.length)]._id,
         status: Fake.fromArray([ 'fresh', 'open', 'dead', 'closed' ]),
