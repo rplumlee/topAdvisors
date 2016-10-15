@@ -102,6 +102,10 @@ Template.adminMain.events({
   'click .editPro'(event, instance) {
     instance.state.set('template', 'adminProInner');
     history.pushState({}, "Admin Dashboard", "/admin/pros/" + event.currentTarget.id);
+  },
+  'click .editCompany'(event, instance) {
+    instance.state.set('template', 'adminCompanyInner');
+    history.pushState({}, "Admin Dashboard", "/admin/companies/" + event.currentTarget.id);
   }
 });
 

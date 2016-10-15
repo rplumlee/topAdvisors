@@ -27,7 +27,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Company Name</label>
-                      <input id="company_name" type="text" class="form-control">
+                      <input id="company_name" type="text" class="form-control" value="{{ company.name }}">
                     </div>
                   </div>
                 </div>
@@ -35,7 +35,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">room</i>&nbsp;&nbsp;&nbsp;Street Address</label>
-                      <input id="company_address" type="text" class="form-control">
+                      <input id="company_address" type="text" class="form-control" value="{{ company.address.fullAddress }}">
                     </div>
                   </div>
                 </div>
@@ -43,7 +43,7 @@
                   <div class="col-sm-6">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">create</i> Company Bio</label>
-                      <textarea id="company_bio" class="form-control" rows="10"></textarea>
+                      <textarea id="company_bio" class="form-control" rows="10">{{ company.bio }}</textarea>
                     </div>
                   </div>
                 </div>
