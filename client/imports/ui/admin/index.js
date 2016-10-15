@@ -12,14 +12,8 @@ var adminTemplates = {
 };
 
 var subTemplates = {
-  pros: {
-    add: 'adminProAdd',
-    edit: 'adminProEdit'
-  },
-  companies: {
-    add: 'adminCompanyAdd',
-    edit: 'adminCompanyEdit'
-  }
+  pros: 'adminProInner',
+  companies: 'adminCompanyInner'
 };
 
 var _parseAddress = function (addressParams, place) {
@@ -64,7 +58,7 @@ Template.adminMain.events({
     history.pushState({}, "Admin Dashboard", "/admin/pros");
   },
   'click #addPro'(event, instance) {
-    instance.state.set('template', 'adminProAdd');
+    instance.state.set('template', 'adminProInner');
     history.pushState({}, "Admin Dashboard", "/admin/pros/add");
   },
   'click #companies'(event, instance) {
@@ -72,7 +66,7 @@ Template.adminMain.events({
     history.pushState({}, "Admin Dashboard", "/admin/companies");
   },
   'click #addCompany'(event, instance) {
-    instance.state.set('template', 'adminCompanyAdd');
+    instance.state.set('template', 'adminCompanyInner');
     history.pushState({}, "Admin Dashboard", "/admin/companies/add");
   },
   'click #consumers'(event, instance) {
@@ -104,6 +98,10 @@ Template.adminMain.events({
         history.pushState({}, "Admin Dashboard", "/admin/pros");
       }
     });
+  },
+  'click .editPro'(event, instance) {
+    instance.state.set('template', 'adminProInner');
+    history.pushState({}, "Admin Dashboard", "/admin/pros/" + event.currentTarget.id);
   }
 });
 
@@ -115,7 +113,7 @@ Template.adminMain.onCreated(function () {
     });
   } else {
     this.state.setDefault({
-      template: subTemplates[this.data.base][this.data.action]
+      template: subTemplates[this.data.base]
     });
   }
 });

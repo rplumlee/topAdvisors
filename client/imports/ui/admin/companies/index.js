@@ -1,8 +1,7 @@
 import { Template } from 'meteor/templating';
 import Collections from '/lib/collections';
 import './manage_companies.html';
-import './add_company.html';
-import './edit_company.html';
+import './company_inner.html';
 
 Template.adminCompanies.helpers({
   copyrightDate: function () {
@@ -46,7 +45,7 @@ Template.adminCompanies.onRendered(function bodyOnRendered() {
   }
 });
 
-Template.adminCompanyAdd.onRendered(function bodyOnRendered() {
+Template.adminCompanyInner.onRendered(function bodyOnRendered() {
   if (!Meteor.userId()) {
     Router.go('login');
   }

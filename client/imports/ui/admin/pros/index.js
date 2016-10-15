@@ -3,8 +3,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import _ from 'underscore';
 import Collections from '/lib/collections';
 import './manage_pros.html';
-import './add_pro.html';
-import './edit_pro.html';
+import './pro_inner.html';
 
 var _handleRemoval = function (instance, dataSet, currentId) {
   var data = instance.pros.get('pro');
@@ -56,21 +55,27 @@ Template.adminPros.onRendered(function () {
 });
 
 
-Template.adminProAdd.onCreated(function () {
+Template.adminProInner.onCreated(function () {
   this.pros = new ReactiveDict();
   this.pros.setDefault({
     pro: {}
   });
+
+  Meteor.subscribe('companies.list');
+  Meteor.subscribe('pros.list');
 });
 
 
-Template.adminProAdd.onRendered(function () {
+Template.adminProInner.onRendered(function () {
   if (!Meteor.userId()) {
     Router.go('login');
   }
 
   document.title = 'Admin Dashboard';
-  Meteor.subscribe('companies.list');
+
+  if (Template.currentData().suburl !== 'add') {
+    this.pros.set('pro', Collections.Users.findOne({ _id: Template.currentData().suburl }));
+  }
 
   //
   // paper-dashboard.js
@@ -83,7 +88,7 @@ Template.adminProAdd.onRendered(function () {
   }
 });
 
-Template.adminProAdd.helpers({
+Template.adminProInner.helpers({
   pros: () => {
     return Template.instance().pros.get('pro')
   },
@@ -128,38 +133,40 @@ Template.adminProAdd.helpers({
   }
 });
 
-Template.adminProAdd.events({
+Template.adminProInner.events({
   'change .proForm'(event, instance) {
     var data = instance.pros.get('pro');
     data[event.currentTarget.id] = event.currentTarget.value;
     instance.pros.set('pro', data);
   },
-  'change .businessSpeciality'(event, instance) {
+  'change .businessSpecialty'(event, instance) {
     var data = instance.pros.get('pro');
-    data.businessSpeciality = data.businessSpeciality || [];
-    if (data.businessSpeciality.indexOf(event.currentTarget.value) === -1) {
-      data.businessSpeciality.push(event.currentTarget.value);
+    data.profile = data.profile || {};
+    data.profile.businessSpecialty = data.profile.businessSpecialty || [];
+    if (data.profile.businessSpecialty.indexOf(event.currentTarget.value) === -1) {
+      data.profile.businessSpecialty.push(event.currentTarget.value);
     }
     instance.pros.set('pro', data);
   },
-  'change .personalSpeciality'(event, instance) {
+  'change .personalSpecialty'(event, instance) {
     var data = instance.pros.get('pro');
-    data.personalSpeciality = data.personalSpeciality || [];
-    if (data.personalSpeciality.indexOf(event.currentTarget.value) === -1) {
-      data.personalSpeciality.push(event.currentTarget.value);
+    data.profile = data.profile || {};
+    data.profile.personalSpecialty = data.profile.personalSpecialty || [];
+    if (data.profile.personalSpecialty.indexOf(event.currentTarget.value) === -1) {
+      data.profile.personalSpecialty.push(event.currentTarget.value);
     }
     instance.pros.set('pro', data);
   },
-  'click .businessSpecialityRemove'(event, instance) {
+  'click .businessSpecialtyRemove'(event, instance) {
     var data = instance.pros.get('pro');
-    var pos = data.businessSpeciality.indexOf(event.currentTarget.id);
-    data.businessSpeciality.splice(pos, 1);
+    var pos = data.profile.businessSpecialty.indexOf(event.currentTarget.id);
+    data.profile.businessSpecialty.splice(pos, 1);
     instance.pros.set('pro', data);
   },
-  'click .personalSpecialityRemove'(event, instance) {
+  'click .personalSpecialtyRemove'(event, instance) {
     var data = instance.pros.get('pro');
-    var pos = data.personalSpeciality.indexOf(event.currentTarget.id);
-    data.personalSpeciality.splice(pos, 1);
+    var pos = data.profile.personalSpecialty.indexOf(event.currentTarget.id);
+    data.profile.personalSpecialty.splice(pos, 1);
     instance.pros.set('pro', data);
   },
   'click .addCollege'(event, instance) {

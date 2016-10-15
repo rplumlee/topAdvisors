@@ -53,22 +53,22 @@ Router.route('/admin/:path', {
   }
 });
 
-Router.route('/admin/pros/:action', {
+Router.route('/admin/pros/:suburl', {
   onRun: function () {
     window.scrollTo(0, 0);
     this.next();
   },
   action: function () {
-    this.render('adminMain', { data: { base: 'pros', action: this.params.action } });
+    this.render('adminMain', { data: { base: 'pros', suburl: this.params.suburl } });
   }
 });
 
-Router.route('/admin/companies/:action', {
+Router.route('/admin/companies/:suburl', {
   onRun: function () {
     window.scrollTo(0, 0);
     this.next();
   },
   action: function () {
-    this.render('adminMain', { data: { base: 'companies', action: this.params.action } });
+    this.render('adminMain', { data: { base: 'companies', suburl: this.params.suburl } });
   }
 });

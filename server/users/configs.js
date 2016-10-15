@@ -20,6 +20,10 @@ export default function ({ Accounts }) {
     user.profile = options.profile;
     user.trophies = options.trophies;
     user.company = options.company;
+    user.educations = options.educations;
+    user.licenses = options.licenses;
+    user.designations = options.designations;
+    user.workHistories = options.workHistories;
     return user;
   });
 

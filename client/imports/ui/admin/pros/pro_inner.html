@@ -1,8 +1,8 @@
-<template name="adminProEdit">
+<template name="adminProInner">
   <div class="main-panel">
     <div class="content">
       <div class="container-fluid">
-          <!--                nav tabs               -->
+        <!--                nav tabs               -->
         <div id="nav-tabs">
           <!-- Tabs with icons on Card -->
           <div class="card card-nav-tabs">
@@ -27,13 +27,13 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">person</i>&nbsp;&nbsp;&nbsp;First Name</label>
-                      <input type="email" class="form-control" value="Jacob">
+                      <input id="pro_fistname" type="text" class="form-control proForm" value="{{ pros.profile.firstName }}">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label">Last Name</label>
-                      <input type="email" class="form-control" value="Palmer">
+                      <input id="pro_lastname" type="text" class="form-control proForm" value="{{ pros.profile.lastName }}">
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">phone</i>&nbsp;&nbsp;&nbsp;Phone Number</label>
-                      <input type="email" class="form-control" value="451-353-3333">
+                      <input id="pro_phone" type="text" class="form-control proForm">
                     </div>
                   </div>
                 </div>
@@ -51,7 +51,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">mail</i>&nbsp;&nbsp;&nbsp;Email Address</label>
-                      <input type="email" class="form-control" value="jacobPalmer@gmail.com">
+                      <input id="pro_email" type="email" class="form-control proForm">
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">lock</i>&nbsp;&nbsp;&nbsp;Password</label>
-                      <input type="email" class="form-control" value="********">
+                      <input id="pro_password" type="password" class="form-control proForm">
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@
                   <div class="col-md-6">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">create</i> About Me</label>
-                      <textarea class="form-control" rows="5" >When John A. Frisch, CPA/PFS, CFP®, AIF®, PPC founded Alliant Wealth Advisors in 1995, his mission was to help families cut through the complexities of managing their personal wealth. While most esential financial principles are timeless common sense, it can be a challenge to apply them in a market tangled with hidden fees.  Don’t hesitate to reach out, consultationsare always free and I will serve you in accordance  with my fiduciary duty.</textarea>
+                      <textarea id="pro_about" class="form-control proForm" rows="5">{{ pros.profile.about }}</textarea>
                     </div>
                   </div>
                 </div>
@@ -101,7 +101,11 @@
                     <div class="col-sm-3">
                       <div class="form-group label-floating">
                         <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Company</label>
-                        <input type="email" class="form-control" value="EastLake Mortgage, LLC">
+                        <select class="select form-control">
+                        {{#each companies}}
+                          <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -110,71 +114,37 @@
                     <div class="col-sm-3">
                       <div class="form-group label-floating">
                         <label class="control-label"><i class="material-icons">person_outline</i>&nbsp;&nbsp;&nbsp;Job Title</label>
-                        <input type="email" class="form-control" value="Mortgage Specialist">
+                        <input type="text" class="form-control proForm" value="{{ pros.profile.jobTitle }}">
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-sm-3">
-                      <select class="select form-control" placeholder="Choose Specialties (can choose multiple)">
+                      <select class="select form-control personalSpecialty" placeholder="Choose Specialties (can choose multiple)">
                         <option disabled selected class="disabled"> Personal Specialties (can choose multiple)</option>
-                        <option value="1">Home Loans </option>
-                        <option value="1">Auto Loans</option>
-                        <option value="1">Personal Loans</option>
-                        <option value="1">Financial Advising</option>
-                        <option value="1">Wealth Management </option>
-                        <option value="1">Education Funding</option>
-                        <option value="1">Home Insurance </option>
-                        <option value="1">Auto Insurance</option>
-                        <option value="1">Life Insurance</option>
-                        <option value="1">Health Insurance</option>
-                        <option value="1">Long-Term Care Insurance </option>
-                        <option value="1">Disability Insurance</option>
-                        <option value="1">P&C Insurance </option>
+                        {{#each personalSpecialities}}
+                          <option value="{{this}}">{{this}}</option>
+                        {{/each}}
                       </select>
+                      {{#each pros.profile.personalSpecialty}}
                       <div class="specialty">
-                        Financial Advising <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        {{this}}<a  class="personalSpecialtyRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
                       </div>
-                      <div class="specialty">
-                        Life Insurance <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                      <div class="specialty">
-                        Health Insurance <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
+                      {{/each}}
                     </div>
                     <div class="col-sm-3">
-                      <select class="select form-control" placeholder="Choose Specialties (can choose multiple)">
+                      <select class="select form-control businessSpecialty" placeholder="Choose Specialties (can choose multiple)">
                         <option disabled selected class="disabled"> Business Specialties (can choose multiple)</option>
-                        <option value="1">Basic Commercial Loans </option>
-                        <option value="1">Term Commercial Loans</option>
-                        <option value="1">Unsecured Commercial Loans</option>
-                        <option value="1">Commercial Acquisition Loans </option>
-                        <option value="1">General Liability Insurance </option>
-                        <option value="1">Product Liability Insurance</option>
-                        <option value="1">Professional Liability Insurance </option>
-                        <option value="1">Commercial Property Insurance</option>
-                        <option value="1">Life & Health Insurance</option>
-                        <option value="1">Commerical Auto Insurance</option>
-                        <option value="1">Workers Compensation Insurance</option>
-                        <option value="1">Directors and Officers Insurance</option>
-                        <option value="1">Data Breach Insurance</option>
-                        <option value="1">Tax Planning </option>
-                        <option value="1">Employee Benefit Planning </option>
-                        <option value="1">Retirement Planning </option>
-                        <option value="1">Business Valuation </option>
-                        <option value="1">Business Succession Planning </option>
-                        <option value="1">Investment Planning </option>
+                        {{#each businessSpecialities}}
+                          <option value="{{this}}">{{this}}</option>
+                        {{/each}}
                       </select>
+                      {{#each pros.profile.businessSpecialty}}
                       <div class="specialty">
-                        Financial Advising <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        {{this}}<a class="businessSpecialtyRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
                       </div>
-                      <div class="specialty">
-                        Life Insurance <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                      <div class="specialty">
-                        Health Insurance <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
+                      {{/each}}
                     </div>
                   </div>
                 </div>
@@ -205,200 +175,153 @@
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label"><i class="material-icons">account_balance</i>&nbsp;&nbsp;&nbsp;College Name</label>
-                          <input type="email" class="form-control">
+                          <input id="college_name" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label">Degree Earned</label>
-                          <input type="email" class="form-control">
+                          <input id="college_degree" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-2">
                         <div class="form-group label-floating">
                           <label class="control-label">Year Graduated</label>
-                          <input type="email" class="form-control">
+                          <input id="college_year" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-xs-1">
-                        <a class="btn btn-info btn-sm admin-add" href="#"><i class="material-icons">add</i></a>
+                        <a class="btn btn-info btn-sm admin-add addCollege" href="#"><i class="material-icons">add</i></a>
                       </div>
                     </div>
 
+                    {{#each pros.educations}}
                     <div class="row degree">
                       <div class="col-sm-3">
-                        Gonzaga University
+                        {{this.collegeName}}
                       </div>
                       <div class="col-sm-3">
-                        Bachelor's of Accounting and Finance
+                        {{this.degreeName}}
                       </div>
                       <div class="col-sm-2">
-                        2011
+                        {{this.yearGraduated}}
                       </div>
                       <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        <a id="{{this.id}}" href="#" class="text-danger removeCollege"><i class="material-icons">close</i></a>
                       </div>
                     </div>
-
-                    <div class="row degree">
-                      <div class="col-sm-3">
-                        Stanford University
-                      </div>
-                      <div class="col-sm-3">
-                        Masters of Business
-                      </div>
-                      <div class="col-sm-2">
-                        2013
-                      </div>
-                      <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                    </div>
+                    {{/each}}
 
                     <div class="row">
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label"><i class="material-icons">list</i>&nbsp;&nbsp;&nbsp;License</label>
-                          <input type="email" class="form-control">
+                          <input id="license_name" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label">License Number</label>
-                          <input type="email" class="form-control">
+                          <input id="license_number" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-2">
                         <div class="form-group label-floating">
                           <label class="control-label">Date Earned</label>
-                          <input type="email" class="form-control">
+                          <input id="license_date" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-xs-1">
-                        <a class="btn btn-info btn-sm admin-add" href="#"><i class="material-icons">add</i></a>
+                        <a class="btn btn-info btn-sm admin-add addLicense" href="#"><i class="material-icons">add</i></a>
                       </div>
                     </div>
+                    {{#each pros.licenses}}
                     <div class="row license">
                       <div class="col-sm-3">
-                        Series 66
+                        {{this.license}}
                       </div>
                       <div class="col-sm-3">
-                        5034546878
+                        {{this.licenseNumber}}
                       </div>
                       <div class="col-sm-2">
-                        2011
+                        {{this.dateEarned}}
                       </div>
                       <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        <a id="{{this.id}}" href="#" class="text-danger removeLicense"><i class="material-icons">close</i></a>
                       </div>
                     </div>
-                    <div class="row license">
-                      <div class="col-sm-3">
-                        Series 67
-                      </div>
-                      <div class="col-sm-3">
-                        465484684
-                      </div>
-                      <div class="col-sm-2">
-                        2012
-                      </div>
-                      <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                    </div>
-
+                    {{/each}}
 
                     <div class="row">
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label"><i class="material-icons">person_add</i>&nbsp;&nbsp;&nbsp;Designation</label>
-                          <input type="email" class="form-control">
+                          <input id="designation_name" type="text" class="form-control proForm">
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label">Designation Number</label>
-                          <input type="email" class="form-control">
+                          <input id="designation_number" type="text" class="form-control proForm">
                         </div>
                       </div>
                       <div class="col-sm-2">
                         <div class="form-group label-floating">
                           <label class="control-label">Date Earned</label>
-                          <input type="email" class="form-control">
+                          <input id="designation_date" type="text" class="form-control proForm">
                         </div>
                       </div>
                       <div class="col-xs-1">
-                        <a class="btn btn-info btn-sm admin-add" href="#"><i class="material-icons">add</i></a>
+                        <a class="btn btn-info btn-sm admin-add addDesignation" href="#"><i class="material-icons">add</i></a>
                       </div>
                     </div>
+                    {{#each pros.designations}}
                     <div class="row designation">
                       <div class="col-sm-3">
-                        CPA
+                        {{this.designation}}
                       </div>
                       <div class="col-sm-3">
-                        5034546878
+                        {{this.designationNumber}}
                       </div>
                       <div class="col-sm-2">
-                        2011
+                        {{this.dateEarned}}
                       </div>
                       <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        <a id="{{this.id}}" href="#" class="text-danger removeDesignation"><i class="material-icons">close</i></a>
                       </div>
                     </div>
-
-
-
+                    {{/each}}
 
                     <div class="row">
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Previous Company</label>
-                          <input type="email" class="form-control">
+                          <input id="workHistory_company" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group label-floating">
                           <label class="control-label">Dates Worked</label>
-                          <input type="email" class="form-control">
+                          <input id="workHistory_year" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-xs-1">
-                        <a class="btn btn-info btn-sm admin-add" href="#"><i class="material-icons">add</i></a>
+                        <a class="btn btn-info btn-sm admin-add addWorkHistory" href="#"><i class="material-icons">add</i></a>
                       </div>
                     </div>
+                    {{#each pros.workHistories}}
                     <div class="row workHistory">
                       <div class="col-sm-3">
-                        Morgan Stanley
+                        {{this.companyName}}
                       </div>
                       <div class="col-sm-3">
-                        2011-2014
+                        {{this.yearRange}}
                       </div>
                       <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
+                        <a id="{{this.id}}" href="#" class="text-danger removeWorkHistory"><i class="material-icons">close</i></a>
                       </div>
                     </div>
-                    <div class="row workHistory">
-                      <div class="col-sm-3">
-                        Wells Fargo
-                      </div>
-                      <div class="col-sm-3">
-                        2009-2011
-                      </div>
-                      <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                    </div>
-                    <div class="row workHistory">
-                      <div class="col-sm-3">
-                        KillerBurger
-                      </div>
-                      <div class="col-sm-3">
-                        2001-2009
-                      </div>
-                      <div class="col-xs-1">
-                        <a href="#" class="text-danger"><i class="material-icons">close</i></a>
-                      </div>
-                    </div>
+                    {{/each}}
                   </div>
                 </div>
               </div>
@@ -427,12 +350,13 @@
                     <div class="tab-content">
                       <div class="row">
                         <div class="col-xs-3">
-                            Verified
+                          Verified
                         </div>
                         <div class="col-xs-3">
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
                               <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
                         </div>
@@ -446,6 +370,7 @@
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
                               <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
                         </div>
@@ -459,6 +384,7 @@
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
                               <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
                         </div>
@@ -472,6 +398,7 @@
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
                               <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
                         </div>
@@ -485,6 +412,7 @@
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
                               <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
                         </div>
