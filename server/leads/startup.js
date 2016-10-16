@@ -1,4 +1,3 @@
-import { Fake } from 'meteor/anti:fake';
 import { faker } from 'meteor/digilord:faker';
 
 export default function ({ Collections, Logger }) {
@@ -9,18 +8,17 @@ export default function ({ Collections, Logger }) {
   //
   if (Collections.Leads.find().count() < 5) {
     for (var i = 0; i < 10; i++) {
-      var profile = Fake.user({ fields: [ 'name', 'surname' ] });
       Collections.Leads.insert({
         profile: {
-          firstName: profile.name,
-          lastName: profile.surname,
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
           email: faker.internet.email(),
           phone: faker.phone.phoneNumberFormat()
         },
         agent: agents[Math.floor(Math.random() * agents.length)]._id,
-        status: Fake.fromArray([ 'fresh', 'open', 'dead', 'closed' ]),
-        message: Fake.sentence(5),
-        purpose: Fake.fromArray([ 'Mortgage', 'Business Loan' ]),
+        status: faker.random.arrayElement([ 'fresh', 'open', 'dead', 'closed' ]),
+        message: faker.lorem.sentence(),
+        purpose: faker.random.arrayElement([ 'Mortgage', 'Business Loan' ]),
         date: new Date()
       });
     }

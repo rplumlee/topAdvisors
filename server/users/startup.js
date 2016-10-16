@@ -28,12 +28,19 @@ export default function ({ Meteor, Logger, Collections }) {
   //
   if (Collections.Companies.find().count() < 5) {
     for (var i = 0; i < 5; i++) {
+      var address = {
+        street1: faker.address.streetAddress(),
+        city: faker.address.city(),
+        state: faker.address.state()
+      };
+
       var company = Collections.Companies.insert({
         name: faker.company.companyName(),
         address: {
-          street1: faker.address.streetAddress(),
-          city: Fake.fromArray([ 'Portland', 'New York', 'Los Angeles', 'Washington', 'Seattle' ]),
-          fullAddress: 'something'
+          street1: address.street1,
+          city: address.city,
+          state: address.state,
+          fullAddress: address.street1 + ', ' + address.city + ', ' + address.state
         },
         bio: faker.lorem.paragraph()
       });
