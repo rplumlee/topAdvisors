@@ -324,14 +324,6 @@ var loadMaterialKit = function () {
   //    Activate bootstrap-select
   $(".select").dropdown({ "dropdownClass": "dropdown-menu", "optionClass": "" });
 
-  // Activate Popovers
-  $('[data-toggle="popover"]').popover();
-
-  // Active Carousel
-  $('.carousel').carousel({
-    interval: 400000
-  });
-
   //Activate tags
   if($(".tagsinput").length != 0){
     $(".tagsinput").tagsInput();
