@@ -64,8 +64,11 @@
 .main-panel{
 	padding-top:80px;
 }
-.main-panel a{
-	color:#7095AE;
+.main-panel a:not(.btn){
+	color:#7095AE!important;
+}
+.main-panel .nav-tabs a{
+	color: #fff!important
 }
 *{
 	-webkit-transform: translate3d(0, 0, 0);

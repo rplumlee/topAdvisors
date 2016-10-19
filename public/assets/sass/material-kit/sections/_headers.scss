@@ -54,7 +54,7 @@
     &[filter-color="purple"],
     &[filter-color="primary"]{
         &:after{
-            @include linear-gradient(rgba($purple-100,.56), rgba($purple-300,.95));
+            @include linear-gradient(rgba($blue-500,.46), rgba($blue-300,.85));
 
         }
     }

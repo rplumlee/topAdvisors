@@ -1,3 +1,7 @@
+p{
+  font-size: 15px;
+}
+
 ::-moz-selection { /* Code for Firefox */
     background: $red-new;
 }
@@ -9,7 +13,7 @@
     margin-bottom:0;
     border-radius:0;
     padding: 0;
-    box-shadow: none!important;
+    box-shadow:0px 0px 0px!important;
     border-bottom:1px solid #ddd;
 }
 .navbar-nav{
@@ -20,11 +24,11 @@
     font-family: 'Lalezar', cursive!important;
 }
 .navbar-brand{
-    font-size:30px;
-    font-family: 'Lalezar', cursive!important;
+    font-size:24px;
+    font-weight:400;
     border-right:1px solid #ddd;
     height:70px!important;
-    line-height:75px!important;
+    line-height:70px!important;
     padding: 0 15px!important;
     vertical-align:middle;
 }
@@ -35,12 +39,6 @@
     font-weight:600!important;
     font-family: 'Open Sans', sans-serif;
 }
-/*.leftLink{
-    margin:10px 15px!important;
-    height:45px!important;
-    line-height:45px!important;
-    border:0 solid #ddd!important;
-}*/
 
 .centered{
     text-align:center!important;
@@ -50,7 +48,8 @@
     display:inline-block;
 }
 .page-header{
-    height:100vh;
+    height:60vh!important;
+    min-height:60vh!important;
 }
 .white{
     color:white!important;
@@ -61,34 +60,36 @@
 .home-card > .info:after{
     width:0;
 }
+.main-icons{
+  .col-md-4{
+    padding: 0 30px;
+  }
+}
 .searchBar{
-
-    top: 55%;
-    position:absolute;
+    position:relative;
     width:100%;
-    left:0;
     border-radius:0;
     font-size: 20px;
     font-weight:400;
-
 }
 .mainSearch{
-    background: rgba(0,0,0,.7);
-    padding: 30px!important;
-    border-radius: 5px;
+    @include radial-gradient2(#232323,#585858);
+    padding: 30px 0!important;
+    .container{
+      padding-top:0!important;
+    }
 }
-.searchBar > .container{
-    padding-top:0;
-}
+
 
 .home-input{
     background-color:#fff!important;
     height:57px!important;
 }
 .home-input:focus{
-    border:1px solid $red-new;
+    border:0 solid $red-new;
 }
 .subTitle{
+  color:#fff!important;
     text-transform: none;
     font-weight:400;
 }
@@ -107,9 +108,13 @@
     overflow:hidden!important;
     margin:15px 0;
 }
+.grid .card{
+  height:300px;
+  overflow:hidden;
+}
 @media (max-width: 767px) {
     .navbar{
-       position:absolute;
+
         .navbar-collapse{
             border-top:1px solid #ddd;
         }
@@ -119,17 +124,31 @@
         .navbar-right{
             padding-top:0;
         }
+        .navbar-brand{
+          border-right:none;
+          float:none;
+        }
+        .navbar-header{
+          text-align:center;
+        }
     }
-    .searchBar{
-
-        top: 40%;
-
+    .page-header{
+        height:35vh!important;
+        min-height:35vh!important;
     }
+    .navbar-toggle{
+      left: 15px!important;
+      position:absolute;
+      margin:19px 0;
+    }
+
+
 }
 @media (max-width: 767px) and (min-width: 550px) {
+  .page-header{
+      height:50vh!important;
+      min-height:50vh!important;
+  }
 
-    .searchBar{
-       width: 80%;
-        left:10%;
-    }
+
 }

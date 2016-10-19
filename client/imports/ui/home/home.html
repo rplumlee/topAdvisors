@@ -1,7 +1,8 @@
 <template name="myHome">
   <link href="https://fonts.googleapis.com/css?family=Lalezar" rel="stylesheet">
   <link href="/assets/css/material-kit-home.css" rel="stylesheet"/>
-  <nav class="navbar navbar-fixed-top">
+
+  <nav class="navbar">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -11,7 +12,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">TopAdvisors</a>
+        <a class="navbar-brand" href="index.html"><img src="/assets/img/logo2.png" style="height:16px;display:inline;margin-top:-5px;margin-right:5px;">TopAdvisors</a>
       </div>
 
       <div class="collapse navbar-collapse" id="navigation-example">
@@ -20,18 +21,19 @@
             <a href="#"><i class="material-icons">search</i> Find Professionals</a>
           </li>
         </ul>
-
         <ul class="nav navbar-nav navbar-right">
           <li class="hidden-xs hidden-sm">
             <a href="#" class="btn btn-info">
               Become a TopAdvisors professional
             </a>
           </li>
+
           <li>
             <a href="#">
               <i class="material-icons">lightbulb_outline</i> How it works
             </a>
           </li>
+
           <li>
             <a href="#">
               <i class="material-icons">account_circle</i> Sign In
@@ -43,26 +45,27 @@
   </nav>
 
   <div class="page-header" id="page" style="position:relative;">
-    <ul class="cb-slideshow">
-      <li class="hidden-xs"><span>Image 01</span><div><h3>Start planning your retirement.</h3></div></li>
+    <ul class="cb-slideshow" filter-color="primary">
+      <li class="hidden-xs"><span>Image 01</span><div><h3>Start planning for retirement.</h3></div></li>
       <li class="hidden-xs"><span>Image 02</span><div><h3>Finance your dream home.</h3></div></li>
-      <li class="hidden-xs"><span>Image 03</span><div><h3>Set up benefits for your employees.</h3></div></li>
+      <li class="hidden-xs"><span>Image 03</span><div><h3>Get a small business loan.</h3></div></li>
       <li class="hidden-xs"><span>Image 04</span><div><h3>Start saving for college.</h3></div></li>
-      <li class="hidden-xs"><span>Image 05</span><div><h3>Get a small business loan.</h3></div></li>
-      <li class="hidden-xs"><span>Image 06</span><div><h3>Take another look at your portfolio.</h3></div></li>
-    </ul>
 
-    <div class="searchBar">
+    </ul>
+  </div>
+
+  <div class="searchBar">
+    <div class="row mainSearch" style="margin:0;">
       <div class="container">
-        <div class="row">
-          <div class="col-sm-10 col-sm-offset-1 mainSearch">
+        <div class="row" style="margin:0;">
+          <div class="col-sm-10 col-sm-offset-1">
             <h6 class="subTitle centered">
               <span class="logo" style="font-size:1.2em;">TopAdvisors</span> matches you with top performing financial professionals in your area<br><br>
             </h6>
             <div class="row">
               <div class="col-sm-8" style="padding:0;">
                 <div class="input-group homeInput input-group-lg">
-                  <span class="input-group-addon input-lg" style="background-color:#fff;border-radius:0;">
+                  <span class="input-group-addon" style="background-color:#fff;border-radius:0;">
                     <i class="material-icons">place</i>
                   </span>
                   <input type="text" class="form-control home-input input-lg" placeholder="Start with your city or zip code" style="border-radius:0;">
@@ -84,88 +87,136 @@
     <div class="features-1">
       <div class="container">
         <div class="row centered">
-          <div class="col-md-4">
-            <div class="info">
-              <img src="/assets/img/home1.png" style="height:180px;">
-              <h4 class="info-title">The top professionals</h4>
-              <p>Professionals don't pay to be on our site - they have to make the cut and submit to a rigorous screening process.</p>
-            </div>
-          </div>
+          <div class="col-sm-12">
+            <div class="row main-icons">
+              <div class="col-md-4">
+                <div class="info">
+                  <img src="/assets/img/home1.png" style="height:180px;">
+                  <h4 class="info-title">The top professionals</h4>
+                  <p> Professionals don't pay to be on our site - they have to make the cut and submit to a rigorous screening process.</p>
+                </div>
+              </div>
 
-          <div class="col-md-4">
-            <div class="info">
-                <img src="/assets/img/home2.png" style="height:180px;">
-              <h4 class="info-title">Matched specifically to you</h4>
-              <p>Through our pre-screening questions we match you with professionals who are experts at what you need.</p>
-            </div>
-          </div>
+              <div class="col-md-4">
+                <div class="info">
+                  <img src="/assets/img/home2.png" style="height:180px;">
+                  <h4 class="info-title">Matched specifically to you</h4>
+                  <p>Through our pre-screening questions we match you with professionals who are experts at what you need.</p>
+                </div>
+              </div>
 
-          <div class="col-md-4">
-            <div class="info">
-              <img src="/assets/img/home4.png" style="height:180px;">
-              <h4 class="info-title">Ready to help</h4>
-              <p>Once you are matched with 10 professionals, you simply reach out to as many as you like. No signup required!</p>
+              <div class="col-md-4">
+                <div class="info">
+                  <img src="/assets/img/home4.png" style="height:180px;">
+                  <h4 class="info-title">Ready to help</h4>
+                  <p>Once you are matched with 10 professionals, you simply reach out to as many as you like. No signup required!</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row features-1" style="margin:0;background:#f5f5f5;">
+    <div class="row features-1"  style="background:#f5f5f5;margin:0;">
       <div class="container">
         <div class="row">
-          <div class="col-sm-10 col-sm-offset-1">
+          <div class="col-sm-12">
             <div class="row centered" style="margin:0;">
-              <h3 style="font-weight:500;">Get your business squared away</h3>
+              <h2 style="font-weight:500;">Get your business squared away</h2>
               <p>From insurance to benefits, we've got you covered. Here are some of our top business searches.</p>
               <br><br>
             </div>
             <div class="row grid" style="margin:0;">
-              <div class="col-md-8 col-sm-6">
-                <figure class="effect-goliath homeCard">
-                  <img src="/assets/img/specialties/12.jpeg" alt="img23"/>
-                  <figcaption>
-                    <h3><span>Employee</span> Benefits</h3>
-                    <p><i class="material-icons">search</i> Find Now</p>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-md-4 col-sm-6">
-                <figure class="effect-goliath homeCard">
-                  <img src="/assets/img/specialties/14.jpeg" alt="img23"/>
-                  <figcaption>
-                    <h3><span>General Liability</span> Insurance</h3>
-                    <p><i class="material-icons">search</i> Find Now</p>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-md-4 col-sm-6">
-                <figure class="effect-goliath homeCard">
-                  <img src="/assets/img/specialties/15.jpeg" alt="img23"/>
-                  <figcaption>
-                    <h3><span>Life&Health</span> Insurance</h3>
-                    <p><i class="material-icons">search</i> Find Now</p>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-md-4 col-sm-6">
-                <figure class="effect-goliath homeCard">
-                  <img src="/assets/img/specialties/14.jpg" alt="img23"/>
-                  <figcaption>
-                    <h3><span>Basic Commercial</span> Loans</h3>
-                    <p><i class="material-icons">search</i> Find Now</p>
-                  </figcaption>
-                </figure>
 
+              <div class="col-md-8 col-sm-6">
+                <div class="card card-background" style="background-image: url('/assets/img/specialties/12.jpeg')">
+                  <div class="content">
+                    <h6 class="category text-info"></h6>
+                    <a href="#pablo">
+                      <h3 class="card-title">Employee Benefit Planning</h3>
+                    </a>
+                    <p class="card-description">
+                      <br>
+                      Employee Healthcare, Retirement Plans, and everything else you need to provide a top-quality workplace.
+                    </p>
+                    <br>
+                    <a href="#pablo" class="btn btn-primary">
+                      <i class="material-icons">search</i> Find Now
+                    </a>
+                  </div>
+                </div>
               </div>
+
               <div class="col-md-4 col-sm-6">
-                <figure class="effect-goliath homeCard">
-                  <img src="/assets/img/specialties/7.jpeg" alt="img23"/>
-                  <figcaption>
-                    <h3>Life <span>Insurance</span></h3>
-                    <p><i class="material-icons">search</i> Find Now</p>
-                  </figcaption>
-                </figure>
+                <div class="card card-background" style="background-image: url('/assets/img/specialties/14.jpeg')">
+                  <div class="content">
+                    <h6 class="category text-info"></h6>
+                    <a href="#pablo">
+                      <h3 class="card-title">General Liability Insurance</h3>
+                    </a>
+                    <p class="card-description">
+                      Protect your business from liability claims.
+                    </p>
+                    <br>
+                    <a href="#pablo" class="btn btn-primary">
+                      <i class="material-icons">search</i> Find Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 col-sm-6">
+                <div class="card card-background" style="background-image: url('/assets/img/specialties/15.jpeg')">
+                  <div class="content">
+                    <h6 class="category text-info"></h6>
+                    <a href="#pablo">
+                      <h3 class="card-title">Life & Health Insurance</h3>
+                    </a>
+                    <p class="card-description">
+                      Set up life and health insurance for your employees or key officers.
+                    </p>
+                    <br>
+                    <a href="#pablo" class="btn btn-primary">
+                      <i class="material-icons">search</i> Find Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 col-sm-6">
+                <div class="card card-background" style="background-image: url('/assets/img/specialties/14.jpg')">
+                  <div class="content">
+                    <h6 class="category text-info"></h6>
+                    <a href="#pablo">
+                      <h3 class="card-title">Basic Commercial Loans</h3>
+                    </a>
+                    <p class="card-description">
+                      Finance your next business/construction project.
+                    </p>
+                    <br>
+                    <a href="#pablo" class="btn btn-primary">
+                      <i class="material-icons">search</i> Find Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 hidden-sm">
+                <div class="card card-background" style="background-image: url('/assets/img/specialties/1.jpeg')">
+                  <div class="content">
+                    <h6 class="category text-info"></h6>
+                    <a href="#pablo">
+                      <h3 class="card-title">Data Breach Insurance</h3>
+                    </a>
+                    <p class="card-description">
+                      Protect yourself from dangerous technical damage.
+                    </p>
+                    <br>
+                    <a href="#pablo" class="btn btn-primary">
+                      <i class="material-icons">search</i> Find Now
+                    </a>
+                  </div>
+                </div>
               </div>
 
             </div>
@@ -173,20 +224,86 @@
         </div>
       </div>
     </div>
+    <div class="row signup features-1" style="margin:0;">
+      <div class="container centered">
+        <h2 style="font-weight:500;">Are you a top professional?</h2>
+        <p>We want to hear from you. Get in touch and help your business take off.</p>
+        <br>
+        <a class="btn btn-lg btn-info">
+          <i class="fa fa-rocket fa-fw"></i>&nbsp;&nbsp;Get in touch
+        </a>
+      </div>
+    </div>
   </div>
 
-  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="filterModal">
+  <footer class="footer footer-black">
+    <div class="container">
+      <a class="footer-brand hidden-xs" href="#">TopAdvisors</a>
+      <ul class="pull-center">
+        <li>
+          <a href="#">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            How it works
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            for professionals
+          </a>
+        </li>
+        <li>
+          <a href="contact-us.html">
+            contact us
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            about
+          </a>
+        </li>
+      </ul>
+
+      <ul class="social-buttons pull-right hidden-xs">
+        <li>
+          <a href="https://twitter.com/TopAdvisors503" target="_blank" class="btn btn-just-icon btn-simple">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/TopAdvisors503" target="_blank" class="btn btn-just-icon btn-simple">
+            <i class="fa fa-facebook-square"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/topadvisors" target="_blank" class="btn btn-just-icon btn-simple">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </footer>
+
+  <div class="modal fade " tabindex="-1" role="dialog" id="filterModal">
     <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-
+      <div class="modal-content filter-modal">
         <div class="modal-body">
-          <a class="close" data-dismiss="modal" aria-label="Close"><i class="material-icons" style="color:#333;font-size:30px;position:fixed;right:30px;">close</i></a>
-          <div class="container filterContainer">
-
+          <div class="modal-header centered" style="padding:0;">
+            <a class="navbar-brand" href="index.html" style="border-right:none;float:none;color:#555;"><img src="/assets/img/logo2.png" style="height:16px;display:inline;margin-top:-5px;margin-right:5px;">TopAdvisors</a>
           </div>
-        </div>
-        <div class="modal-footer">
-
+          <a class="close btn btn-simple" data-dismiss="modal" aria-label="Close" style="position:absolute;right:15px;top:0;z-index:330432342;"><i class="material-icons" style="color:#333;font-size:30px;">close</i></a>
+          <div class="filter-question-container">
+            <div class="container">
+            </div>
+          </div>
+          <div class="filter-answer-container">
+            <div class="container">
+            </div>
+          </div>
         </div>
       </div>
     </div>
