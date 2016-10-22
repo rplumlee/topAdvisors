@@ -20,12 +20,12 @@
   to {
     -ms-transform: rotate(360deg); } }
 .sidebar {
-  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   width: 260px;
   display: block;
+  min-height: 100vh;
   z-index: 1;
   color: #fff;
   font-weight: 200;
@@ -595,6 +595,9 @@ body > .navbar-collapse[data-color="purple"]:after {
   .table > tbody > tr:hover .td-actions .btn {
     opacity: 1;
     filter: alpha(opacity=100); }
+
+.wrapper {
+  position: relative; }
 
 .footer {
   background-color: #FFFFFF;
