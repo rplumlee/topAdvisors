@@ -1,3 +1,60 @@
+
+@media(max-width:991px){
+  .blog-posts{
+
+
+      .section2{
+
+        .section2-text{
+          padding: 20px!important;
+          text-align:center;
+
+
+        }
+      }
+    }
+}
+.blog-posts{
+  .item{
+    p{
+      padding: 0 50px;
+    }
+  }
+  .card-testimonial{
+    margin:0;
+  }
+  .number{
+    height:180px;
+    position:absolute;
+    top:-65px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  .number-description{
+    padding-top: 100px;
+  }
+  .section2{
+    background-color: $blue-new-dark;
+    color:#fff;
+    min-height:550px;
+
+    .section2-text{
+      padding: 50px 50px 0 50px;
+      min-height:500px;
+    }
+    .section2-picture{
+      min-height:550px!important;
+    }
+  }
+  .section{
+    padding-bottom: 100px;
+  }
+}
+.noMarg{
+  margin:0!important;
+}
+
 .main{
     background: #FFFFFF;
     position: relative;
@@ -361,7 +418,7 @@
 
 .profile-page{
     .page-header{
-        height: 380px;
+        height: 320px!important;
         background-position: top center;
     }
     .profile{

@@ -1,19 +1,4 @@
-@media (max-width: 767px) {
-    .cb-slideshow{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0px;
-        left: 0px;
-        z-index: 0;
-        background-image: url(../img/slideshow1.jpg);
-        background-size: auto 100%;
-        background-position: center center;
-    }
-}
 
-
-@media (min-width: 768px) {
 
     .cb-slideshow,
     .cb-slideshow:after {
@@ -52,7 +37,7 @@
         z-index: 1000;
         position: absolute;
         left: 10%;
-        top: 50%;
+        top: 40%;
         transform:translateY(-50%);
         width: 80%;
         text-align: center;
@@ -66,7 +51,7 @@
     }
     .cb-slideshow li div h3 {
         font-family: 'Roboto', 'Arial Narrow', Arial, sans-serif;
-        font-size: 70px!important;
+        font-size: 60px!important;
         font-weight: 900;
         padding: 0;
 
@@ -329,6 +314,42 @@
         }
     }
 
+    @media (max-width: 767px) {
+      .cb-slideshow li div h3 {
+          font-size: 26px!important;
+      }
+      .subTitle{
+        font-size:15px;
+        padding-bottom:15px;
+      }
+      .searchBar{
+
+top:70%!important;
+          #start{
+            margin-top:10px!important;
+          }
+      }
+
+    }
+    @media (min-width:768px) and (max-width: 991px) {
+      .cb-slideshow li div h3 {
+          font-size: 40px!important;
+      }
+      .searchBar{
+
+          top:63%!important;
+
+      }
+    }
+@media (min-width: 992px) and (max-width: 1449px) {
+  .searchBar{
+
+      top:65%!important;
+
+  }
+  .cb-slideshow li div h3 {
+      font-size: 50px!important;
+  }
 }
 
 @media (min-width: 1450px) {

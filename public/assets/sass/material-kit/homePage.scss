@@ -1,5 +1,6 @@
 p{
   font-size: 15px;
+  font-family: 'Open Sans';
 }
 
 ::-moz-selection { /* Code for Firefox */
@@ -9,12 +10,13 @@ p{
 ::selection {
     background: $red-new;
 }
+body{
+  }
 .navbar{
     margin-bottom:0;
     border-radius:0;
-    padding: 0;
+    padding-top: 5px!important;
     box-shadow:0px 0px 0px!important;
-    border-bottom:1px solid #ddd;
 }
 .navbar-nav{
     margin:0 -15px 0 0;
@@ -23,10 +25,12 @@ p{
 .logo{
     font-family: 'Lalezar', cursive!important;
 }
+.navbar-transparent{
+  padding-top:0;
+}
 .navbar-brand{
     font-size:24px;
     font-weight:400;
-    border-right:1px solid #ddd;
     height:70px!important;
     line-height:70px!important;
     padding: 0 15px!important;
@@ -47,9 +51,15 @@ p{
 .homeIcon{
     display:inline-block;
 }
-.page-header{
-    height:60vh!important;
-    min-height:60vh!important;
+.landing-page{
+  .page-header{
+      height:100vh!important;
+      min-height:400px!important;
+  }
+  .grid .card{
+    height:300px;
+    overflow:hidden;
+  }
 }
 .white{
     color:white!important;
@@ -66,14 +76,15 @@ p{
   }
 }
 .searchBar{
-    position:relative;
+    position:absolute;
+    top:55%;
     width:100%;
     border-radius:0;
     font-size: 20px;
     font-weight:400;
+    transform: translateY(-50%);
 }
 .mainSearch{
-    @include radial-gradient2(#232323,#585858);
     padding: 30px 0!important;
     .container{
       padding-top:0!important;
@@ -86,7 +97,8 @@ p{
     height:57px!important;
 }
 .home-input:focus{
-    border:0 solid $red-new;
+    border-bottom:0 solid $red-new;
+    box-shadow:none;
 }
 .subTitle{
   color:#fff!important;
@@ -108,22 +120,17 @@ p{
     overflow:hidden!important;
     margin:15px 0;
 }
-.grid .card{
-  height:300px;
-  overflow:hidden;
-}
+
 @media (max-width: 767px) {
     .navbar{
+      padding:0;
+      background-color:#fff!important;
+      color:#222!important;
 
         .navbar-collapse{
             border-top:1px solid #ddd;
         }
-        .navbar-left{
-            padding-bottom:0;
-        }
-        .navbar-right{
-            padding-top:0;
-        }
+
         .navbar-brand{
           border-right:none;
           float:none;
@@ -132,9 +139,10 @@ p{
           text-align:center;
         }
     }
-    .page-header{
-        height:35vh!important;
-        min-height:35vh!important;
+    .searchBar{
+
+        top:75%;
+
     }
     .navbar-toggle{
       left: 15px!important;
@@ -145,10 +153,6 @@ p{
 
 }
 @media (max-width: 767px) and (min-width: 550px) {
-  .page-header{
-      height:50vh!important;
-      min-height:50vh!important;
-  }
 
 
 }

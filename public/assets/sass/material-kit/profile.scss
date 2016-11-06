@@ -1,0 +1,105 @@
+.profile-page{
+  .profile-content{
+    background-color: #e3e3e3;
+  }
+  .profile-card{
+    background:#fff;
+    padding:15px 30px;
+    border-bottom:1px solid #ddd;
+    margin-top:30px;
+    margin-bottom:30px;
+  }
+  .trophy-section{
+    border-top:1px solid #ccc;
+    padding: 0;
+    background:#fff;
+    margin: 30px -30px 0 -30px;
+    .trophy{
+      padding-left:15px;
+      padding-right:15px;
+      display:inline-block;
+      img{
+        height:100px;
+        width:auto;
+        padding:35px 20px 5px 20px;
+      }
+    }
+  }
+  .nameCard{
+    margin-top:-50px;
+  }
+  .resume{
+    table{
+      margin-top:30px;
+      margin-bottom:30px;
+      td:first-child{
+        width:50%!important;
+      }
+      td{
+        width:25%;
+      }
+      th:first-child{
+        font-weight:bold;
+      }
+    }
+  }
+  .job{
+    text-transform:uppercase;
+    font-weight:600;
+    font-size:1.2em;
+  }
+  .checkbox-label{
+    color: rgba(50,50,50,1)!important;
+  }
+  .lead{
+    padding-left:15px;
+    color: gold;
+    font-size:2em;
+  }
+  input{
+    border-radius:0;
+  }
+}
+
+@media(max-width: 767px){
+  .profile-page{
+    .page-header{
+      min-height:0!important;
+    }
+    .resume{
+      padding: 30px 0;
+    }
+    .container{
+      padding: 0;
+    }
+    .table-responsive{
+      border:none;
+    }
+  }
+  .row{
+    margin:0;
+  }
+
+  }
+  .profile-drop{
+    transition: all .5s ease;
+    position:fixed;
+    width:100%;
+    height:100px;
+    max-height:100px;
+    background:#fff;
+    top:-100px;
+    z-index:50;
+    @include shadow-big-navbar();
+    img{
+      max-height:90px;
+      margin:5px 0;
+      border:1px solid #ccc;
+    }
+    a{
+      margin-top: 28px
+    }
+}
+.canvasjs-chart-credit{
+  display:none;
+}

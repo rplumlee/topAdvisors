@@ -4,26 +4,24 @@
   #filterModal{
       text-align:center;
       .modal-lg{
-        height:100vh!important;
-        width:100%!important;
+
       }
       .filter-modal{
           padding:0;
-          height:100vh!important;
+
           .modal-header{
             background:#fff;
           }
           .modal-body{
                padding:0 0 100px 0;
-               height:100vh!important;
+               height:100%!important;
                min-width:100%!important;
                overflow-y: scroll;
-               background: #eee;
+               background: #e9e9e9;
            }
       }
       .modal-dialog{
-        margin:0!important;
-        margin-top:0!important;
+
       }
       .filter-question-container{
         min-height:200px;
@@ -78,41 +76,100 @@ body.modal-open {
   }
 }
 
-.toProfile{
-  position:absolute;
-  width:100%;
-  height:100%;
-}
-.results-card{
+
+
+
+
+
+
+
+
+.result{
   background:#fff;
-  padding: 15px 30px;
+  padding: 15px;
   border-radius:0;
   margin: 10px 0;
   text-align: left;
   color:#444;
   position:relative;
-  img{
-    padding:10px;
+  .result-rating{
+    margin: 0 ;
   }
-  .name{
+  .results-place{
+    padding-top:25%;
+  }
+  h5{
+    margin: 3px 0;
+  }
+
+  .result-name{
     margin-top:5px;
   }
+  .result-highlights{
+    height:100%;
+
+    div:last-child{
+      border-right:none;
+    }
+    .result-highlights-figure{
+      padding-top:30px;
+      font-size:1.5em;
+      font-weight:bold;
+    }
+  }
+  img{
+    max-height:120px;
+    margin: 0 auto;
+  }
+
+}
+.result:hover{
+  cursor: pointer;
+}
+.result-margin{
+  margin:0;
 }
 @media (max-width: 767px) {
-  .results-card{
+  .modal-lg{
+    margin-left:0;
+  }
+  .result{
+    text-align:center;
+    .results-place{
+      padding-top:0;
+
+    }
+  }
+  .results-inner{
     padding: 15px;
     margin: 10px 0;
-    img{
+    .result-image{
       padding:0;
     }
-    .name{
+    .result-name{
       margin-top:5px;
       margin-bottom:5px;
     }
-    .rating{
+    .result-rating{
+      text-align:center!important;
+      div{
+text-align:center!important;
+      }
+
       i{
         font-size: 1.4em;
+        max-width:50px;
       }
     }
+
+  }
+  .result-highlights{
+    padding-left:0;
+    padding-right:0;
+    margin-left:-15px;
+    margin-right:-15px;
+  }
+  .result-margin{
+    margin: 0 -15px;
   }
 }
