@@ -3,8 +3,8 @@ import './imports/ui/login';
 import './imports/ui/dashboard';
 // import './imports/ui/admin';
 import './imports/ui/admin/leads';
-// import './imports/ui/admin/pros';
-// import './imports/ui/admin/companies';
+import './imports/ui/admin/pros';
+import './imports/ui/admin/companies';
 import './imports/ui/admin/consumers';
 
 Router.route('/', {
@@ -72,6 +72,26 @@ Router.route('/admin/consumers', {
 //     this.render('adminMain', { data: { base: 'pros', suburl: this.params.suburl } });
 //   }
 // });
+
+Router.route('/admin/companies', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('adminCompanies');
+  }
+});
+
+Router.route('/admin/pros', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('adminPros');
+  }
+});
 
 // Router.route('/admin/companies/:suburl', {
 //   onRun: function () {
