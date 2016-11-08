@@ -105,6 +105,26 @@ Router.route('/admin/companies', {
   }
 });
 
+Router.route('/admin/companies/new', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('adminCompanyInner', { data: { id: null } });
+  }
+});
+
+Router.route('/admin/companies/:id', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('adminCompanyInner', { data: { id: this.params.id } });
+  }
+});
+
 Router.route('/admin/pros', {
   onRun: function () {
     window.scrollTo(0, 0);
