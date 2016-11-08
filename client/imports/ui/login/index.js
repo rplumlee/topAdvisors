@@ -63,7 +63,7 @@ Template.myLogin.onRendered(function () {
         var user = Meteor.user();
         if (user) {
           if (user.profile.type === 'pro') {
-            Router.go('/dashboard');
+            Router.go('/pro/leads');
           } else {
             Router.go('/admin/leads');
           }
@@ -73,7 +73,6 @@ Template.myLogin.onRendered(function () {
   }
 
   $(document).ready(function () {
-
     loadMaterialKit();
   });
 

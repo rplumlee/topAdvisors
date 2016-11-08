@@ -43,6 +43,12 @@ Router.route('/pro/leads', {
   }
 });
 
+Router.route('/pro/profile', {
+  action: function () {
+    Router.go('/pro/profile/update');
+  }
+});
+
 Router.route('/pro/profile/update', {
   onRun: function () {
     window.scrollTo(0, 0);
@@ -109,12 +115,22 @@ Router.route('/admin/pros', {
   }
 });
 
-// Router.route('/admin/companies/:suburl', {
-//   onRun: function () {
-//     window.scrollTo(0, 0);
-//     this.next();
-//   },
-//   action: function () {
-//     this.render('adminMain', { data: { base: 'companies', suburl: this.params.suburl } });
-//   }
-// });
+Router.route('/admin/pros/new', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('adminProInner', { data: { id: null } });
+  }
+});
+
+Router.route('/admin/pros/:id', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('adminProInner', { data: { id: this.params.id } });
+  }
+});
