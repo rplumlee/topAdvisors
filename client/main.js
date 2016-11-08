@@ -1,7 +1,7 @@
 import './imports/ui/home';
 import './imports/ui/login';
-import './imports/ui/dashboard';
-// import './imports/ui/admin';
+import './imports/ui/pro/leads';
+import './imports/ui/pro/profile';
 import './imports/ui/admin/leads';
 import './imports/ui/admin/pros';
 import './imports/ui/admin/companies';
@@ -27,13 +27,29 @@ Router.route('/login', {
   }
 });
 
-Router.route('/dashboard', {
+Router.route('/pro', {
+  action: function () {
+    Router.go('/pro/leads');
+  }
+});
+
+Router.route('/pro/leads', {
   onRun: function () {
     window.scrollTo(0, 0);
     this.next();
   },
   action: function () {
-    this.render('myDashboard');
+    this.render('proLeadsDashboard');
+  }
+});
+
+Router.route('/pro/profile/update', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('proProfileUpdate');
   }
 });
 

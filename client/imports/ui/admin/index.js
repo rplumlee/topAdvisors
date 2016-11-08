@@ -49,30 +49,6 @@ Template.adminMain.events({
       Router.go('login');
     });
   },
-  'click #leads'(event, instance) {
-    instance.state.set('template', 'adminLeads');
-    history.pushState({}, "Admin Dashboard", "/admin/leads");
-  },
-  'click #pros'(event, instance) {
-    instance.state.set('template', 'adminPros');
-    history.pushState({}, "Admin Dashboard", "/admin/pros");
-  },
-  'click #addPro'(event, instance) {
-    instance.state.set('template', 'adminProInner');
-    history.pushState({}, "Admin Dashboard", "/admin/pros/add");
-  },
-  'click #companies'(event, instance) {
-    instance.state.set('template', 'adminCompanies');
-    history.pushState({}, "Admin Dashboard", "/admin/companies");
-  },
-  'click #addCompany'(event, instance) {
-    instance.state.set('template', 'adminCompanyInner');
-    history.pushState({}, "Admin Dashboard", "/admin/companies/add");
-  },
-  'click #consumers'(event, instance) {
-    instance.state.set('template', 'adminConsumers');
-    history.pushState({}, "Admin Dashboard", "/admin/consumers");
-  },
   'click #create_company'(event, instance) {
     var params = {
       name: $('#company_name')[0].value,
