@@ -81,10 +81,11 @@ Template.myLogin.onRendered(function () {
 
 
 Template.myLogin.events({
-  'click .btn'() {
+  'submit .form'(e) {
     // Prevent default browser form submit
-    var email = $('[type=email]').val();
-    var password = $('[type=password]').val();
+    e.preventDefault();
+    var email = e.target.email.value;
+    var password = e.target.password.value;
     Meteor.loginWithPassword(email, password, (err) => {
       if (err) {
         alert(err.reason);
