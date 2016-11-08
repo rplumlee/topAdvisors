@@ -69,6 +69,12 @@ Template.adminCompanyInner.helpers({
     return !_.isEmpty(Template.instance().companies.get('pros'));
   }
 });
+Template.adminCompanyInner.events({
+  'click .pros-link'(event) {
+    event.preventDefault();
+    Router.go(`/admin/pros/${event.target.id}`);
+  }
+});
 
 Template.adminCompanyInner.onCreated(function () {
   this.companies = new ReactiveDict();
