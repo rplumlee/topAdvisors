@@ -1,60 +1,116 @@
 <template name="adminConsumers">
-  <div class="main-panel">
-    <div class="content">
+  <div class="wrapper">
+    <nav class="navbar navbar-fixed-top">
       <div class="container-fluid">
-        <!--                nav tabs               -->
-        <div id="nav-tabs">
-          <!-- Tabs with icons on Card -->
-          <div class="card">
-            <div class="content">
-              <div class="tab-content">
-                <div>
-                  <div class="content">
-                    <div class="row" style="margin:0 -10px;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">TopAdvisors</a>
+        </div>
 
-                      <div class="col-md-10">
-                        <br><br><br>
-                        <div class="table-responsive table-striped">
-                          <table class="table table-shopping">
-                            <thead>
-                              <tr>
-                                <th>Consumer name</th>
-                                <th class="th-description">Email</th>
-                                <th class="th-description">Phone Number</th>
-                                <th class="th-description">Automated Email</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {{#if Template.subscriptionsReady}}
-                              {{#each consumers}}
-                              <tr>
-                                <td class="td-name">
-                                  {{ profile.firstName }} {{ profile.lastName }}
-                                </td>
-                                <td>
-                                  {{ profile.email }}
-                                </td>
-                                <td>
-                                  {{ profile.phone }}
-                                </td>
-                                <td>
-                                  <i class="material-icons text-success">check</i>
-                                </td>
-                              </tr>
-                              {{/each}}
-                              {{/if}}
-                            </tbody>
-                          </table>
+        <div class="collapse navbar-collapse" id="navigation-example">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#">
+                <i class="material-icons">account_circle</i> Sign Out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="sidebar" data-color="blue" data-image="/assets/img/sidebar-4.jpg">
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li>
+            <a href="/admin/leads">
+              <i class="material-icons">view_compact</i>
+              <p>Leads</p>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/pros">
+              <i class="material-icons">people</i>
+              <p>Manage Pros</p>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/companies">
+              <i class="material-icons">store</i>
+              <p>Manage Companies</p>
+            </a>
+          </li>
+          <li class="active">
+            <a href="/admin/consumers">
+              <i class="material-icons">accessibility</i>
+              <p>Consumers</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-panel">
+      <div class="content">
+        <div class="container-fluid">
+          <!--                nav tabs               -->
+          <div id="nav-tabs">
+            <!-- Tabs with icons on Card -->
+            <div class="card">
+              <div class="content">
+                <div class="tab-content">
+                  <div>
+                    <div class="content">
+                      <div class="row" style="margin:0 -10px;">
+
+                        <div class="col-md-12">
+                          <br><br><br>
+                          <div class="table-responsive table-striped">
+                            <table class="table table-shopping">
+                              <thead>
+                                <tr>
+                                  <th>Pro name</th>
+                                  <th class="th-description">Email</th>
+                                  <th class="th-description">Phone Number</th>
+                                  <th class="th-description">Automated Email</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {{#if Template.subscriptionsReady}}
+                                {{#each consumers}}
+                                <tr>
+                                  <td class="td-name">
+                                    {{ profile.firstName }} {{ profile.lastName }}
+                                  </td>
+                                  <td>
+                                    {{ profile.email }}
+                                  </td>
+                                  <td>
+                                    {{ profile.phone }}
+                                  </td>
+                                  <td>
+                                    <i class="material-icons text-success">check</i>
+                                  </td>
+                                </tr>
+                                {{/each}}
+                                {{/if}}
+                              </tbody>
+                            </table>
+                          </div>
                         </div>
-
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- End Tabs with icons on Card -->
           </div>
-          <!-- End Tabs with icons on Card -->
         </div>
       </div>
     </div>
