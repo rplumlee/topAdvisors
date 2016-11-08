@@ -1,5 +1,7 @@
 .sidebar{
 	position:fixed!important;
+	background-image: url(/assets/img/sidebar-4.jpg);
+	padding-top:100px;
 }
 .wrapper{
 	height:100%!important;
@@ -90,7 +92,4 @@ body{
 *{
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
-}
-.sidebar{
-	padding-top:100px;
 }
