@@ -1,0 +1,94 @@
+<template name="proProfileUpdate">
+  <div class="wrapper">
+    <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">TopAdvisors</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navigation-example">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#">
+                <i class="material-icons">account_circle</i> Sign Out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="sidebar" data-color="red" data-image="assets/img/sidebar-4.jpg">
+
+      <div class="sidebar-wrapper">
+        <div class="user">
+          <img src="/assets/img/faces/marc.jpg" class="img-circle img-responsive">
+          <h5>John Smith, CPA</h5>
+          <h6>Mortgage Lender at Portland Mortgage, LLC</h6>
+        </div>
+        <ul class="nav">
+          <li>
+            <a href="/pro/leads">
+              <i class="material-icons">dashboard</i>
+              <p>Leads Dashboard</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="material-icons">person_outline</i>
+              <p>View Profile</p>
+            </a>
+          </li>
+          <li class="active">
+            <a href="/pro/profile/update">
+              <i class="material-icons">update</i>
+              <p>Update Profile</p>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-panel smoke-bg">
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row" style="margin:0;">
+
+            <div id="nav-tabs">
+              <!-- Tabs with icons on Card -->
+              <div class="card card-nav-tabs">
+                <div class="header header-rose">
+                  <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                      <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="active">
+                          <a href="#" onclick="return false">
+                            <i class="material-icons">people</i>
+                            Profile Updates
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="content centered" style="height:400px;padding-top:100px;">
+                  <h5>Please email your profile change requests and/or questions to <b>reid@topadvisors.co</b>, and we will update it as soon as we can.</h5>
+                  <h5><br><br>Thank you!</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Tabs with icons on Card -->
+    </div>
+  </div>
+</template>
