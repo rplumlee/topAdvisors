@@ -1,11 +1,11 @@
 import './imports/ui/home';
 import './imports/ui/login';
 import './imports/ui/dashboard';
-import './imports/ui/admin';
+// import './imports/ui/admin';
 import './imports/ui/admin/leads';
-import './imports/ui/admin/pros';
-import './imports/ui/admin/companies';
-import './imports/ui/admin/consumers';
+// import './imports/ui/admin/pros';
+// import './imports/ui/admin/companies';
+// import './imports/ui/admin/consumers';
 
 Router.route('/', {
   onRun: function () {
@@ -43,32 +43,32 @@ Router.route('/admin', {
   }
 });
 
-Router.route('/admin/:path', {
+Router.route('/admin/leads', {
   onRun: function () {
     window.scrollTo(0, 0);
     this.next();
   },
   action: function () {
-    this.render('adminMain', { data: { path: this.params.path } });
+    this.render('adminLeads');
   }
 });
 
-Router.route('/admin/pros/:suburl', {
-  onRun: function () {
-    window.scrollTo(0, 0);
-    this.next();
-  },
-  action: function () {
-    this.render('adminMain', { data: { base: 'pros', suburl: this.params.suburl } });
-  }
-});
+// Router.route('/admin/pros/:suburl', {
+//   onRun: function () {
+//     window.scrollTo(0, 0);
+//     this.next();
+//   },
+//   action: function () {
+//     this.render('adminMain', { data: { base: 'pros', suburl: this.params.suburl } });
+//   }
+// });
 
-Router.route('/admin/companies/:suburl', {
-  onRun: function () {
-    window.scrollTo(0, 0);
-    this.next();
-  },
-  action: function () {
-    this.render('adminMain', { data: { base: 'companies', suburl: this.params.suburl } });
-  }
-});
+// Router.route('/admin/companies/:suburl', {
+//   onRun: function () {
+//     window.scrollTo(0, 0);
+//     this.next();
+//   },
+//   action: function () {
+//     this.render('adminMain', { data: { base: 'companies', suburl: this.params.suburl } });
+//   }
+// });
