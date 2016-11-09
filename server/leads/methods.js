@@ -1,3 +1,4 @@
+import lib from '/server/lib';
 /**
  * Define the exported methods for the leads module
  * @param {object} context - server application context
