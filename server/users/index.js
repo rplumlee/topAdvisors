@@ -2,6 +2,7 @@ import configs from './configs';
 import methods from './methods';
 import startup from './startup';
 import publications from './publications';
+import routes from './routes';
 
 /**
  * Initializes the accounts module
@@ -21,4 +22,5 @@ export default function (context) {
   methods(context);
   startup(context);
   publications(context);
+  routes(context);
 }

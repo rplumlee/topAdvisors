@@ -7,6 +7,7 @@ import './imports/ui/admin/leads';
 import './imports/ui/admin/pros';
 import './imports/ui/admin/companies';
 import './imports/ui/admin/consumers';
+import './imports/ui/profile';
 
 Router.route('/', {
   onRun: function () {
@@ -196,5 +197,15 @@ Router.route('/about', {
   },
   action: function () {
     this.render('staticAbout');
+  }
+});
+
+Router.route('/profile', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('proProfile');
   }
 });

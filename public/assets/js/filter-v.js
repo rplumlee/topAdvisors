@@ -297,14 +297,12 @@ $( document ).ready(function() {
 
 			filterAnswerContainer.html('<h2 style="font-weight:300;">Finding the top professionals in your area..</h2><h1><i class="fa fa-spin text-info fa-circle-o-notch"></i></h1>')
 
-			setTimeout(function(){
+			$.get( "/getPros", function (data) {
 				filterAnswerContainer.html('');
-				i=0;
-				while(i < 10){
+				data.forEach(function (pro) {
 					filterAnswerContainer.append(
-
 						'<div class="row result">'+
-						'<a href="./profile.html"></a>' +
+						'<a href="/profile?id='+pro.profile.slug+'">' +
 						'<div class="result-inner">'+
 						'<div class="row result-margin">'+
 						'<div class="col-sm-9 clearfix">'+
@@ -327,22 +325,19 @@ $( document ).ready(function() {
 						'<div class="col-sm-3 result-highlights">'+
 						'<h5 class="text-center results-place"><i class="material-icons hidden-sm hidden-md hidden-lg" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">pin_drop</i><i class="text-info fa-2x material-icons hidden-xs">person_pin_circle</i><br class="hidden-xs">Portland, OR</h5>'+
 						'</div>'+
-
 						'</div>'+
-						'</div>' +
-
+						'</div>'+
+						'</a>'+
 						'</div>'
+					);
+				})
+			});
 
-						);
-					i++;
-				}
+			$(".result").click(function() {
+				window.location = $(this).find("a").attr("href");
+				return false;
+			});
 
-				$(".result").click(function() {
-					window.location = $(this).find("a").attr("href");
-					return false;
-				});
-
-			}, 1500);
 		});
 
 
