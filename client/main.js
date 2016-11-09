@@ -1,3 +1,4 @@
+import './imports/ui/static';
 import './imports/ui/home';
 import './imports/ui/login';
 import './imports/ui/pro/leads';
@@ -152,5 +153,48 @@ Router.route('/admin/pros/:id', {
   },
   action: function () {
     this.render('adminProInner', { data: { id: this.params.id } });
+  }
+});
+
+//
+// Static Pages
+//
+Router.route('/for_pros', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('staticProNew');
+  }
+});
+
+Router.route('/how_it_works', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('staticHowItWorks');
+  }
+});
+
+Router.route('/contact-us', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('staticContactUs');
+  }
+});
+
+Router.route('/about', {
+  onRun: function () {
+    window.scrollTo(0, 0);
+    this.next();
+  },
+  action: function () {
+    this.render('staticAbout');
   }
 });
