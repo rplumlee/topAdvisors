@@ -20,6 +20,7 @@ var lib = {
   },
 
   authorizeAdmin: function (user) {
+    user = user || Meteor.user();
     if (user.profile.type === 'pro') {
       this.throwError('Forbidden', 403);
     }
