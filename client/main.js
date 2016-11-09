@@ -14,7 +14,7 @@ Router.route('/', {
     this.next();
   },
   action: function () {
-    this.render('myHome');
+    Router.go('/home');
   }
 });
 

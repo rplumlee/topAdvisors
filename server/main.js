@@ -20,3 +20,8 @@ Meteor.startup(() => {
   leads(context);
   // activities(context);
 });
+
+WebApp.connectHandlers.use("/home", function(req, res, next) {
+  res.writeHead(200);
+  res.end(Assets.getText('index.html'));
+});

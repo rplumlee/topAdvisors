@@ -2846,7 +2846,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
       &.tag-primary .tagsinput-add{
           color: $primary-color;
       }
-  
+
       &.tag-success .tag{
            background-color: $success-color;
       }
