@@ -1,0 +1,99 @@
+<template name="staticContactUs">
+  <style>
+    .navbar{
+      background: #fff!important;
+      color:#333!important;
+      height:70px;
+      padding-top:0!important;
+    }
+
+    .header{
+      box-shadow:none!important;
+    }
+  </style>
+  <body class="landing-page">
+    {{> staticNavbar}}
+
+    <div class="contactus-2">
+      <div id="contactUs2Map" class="map" style="height:830px;"></div>
+
+      <div class="card card-contact card-raised">
+        <form role="form" id="contact-form" method="post">
+          <div class="header header-primary header-raised  text-center">
+            <h4 class="card-title">Contact Us</h4>
+          </div>
+          <div class="content">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="info info-horizontal">
+                  <div class="icon icon-primary">
+                    <i class="material-icons">phone</i>
+                  </div>
+                  <div class="description">
+                    <h5 class="info-title">Give us a ring</h5>
+                    <p>Customer Service<br>
+                      +1 (503) 245 - 8181<br>
+                      Mon - Fri, 8:00-5:00
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info info-horizontal">
+                  <div class="icon icon-primary">
+                    <i class="material-icons">pin_drop</i>
+                  </div>
+                  <div class="description">
+                    <h5 class="info-title">Find us at the office</h5>
+                    <p>3450 SW 87th Ave<br>
+                      Portland, OR 97225
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group label-floating form-rose">
+                  <label class="control-label">Full Name</label>
+                  <input type="text" name="name" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group label-floating form-primary">
+                  <label class="control-label">Email address</label>
+                  <input type="email" name="email" class="form-control"/>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group label-floating form-primary">
+              <label class="control-label">Your message</label>
+              <textarea name="message" class="form-control" id="message" rows="6"></textarea>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="optionsCheckboxes">
+                    I'm not a robot
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <button type="submit" class="btn btn-primary pull-right">Send Message</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    {{> staticFooter}}
+
+  </body>
+</template>
