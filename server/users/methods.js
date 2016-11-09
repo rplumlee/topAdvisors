@@ -45,7 +45,8 @@ export default function ({ Meteor, Accounts, Collections, check }) {
       }
       return {
         company: Collections.Companies.findOne(params._id) || {},
-        pros: Collections.Users.find({ company: params._id }).fetch() || []
+        pros: Collections.Users.find({ company: params._id }).fetch() || [],
+        leads: Collections.Leads.find({ company: params._id }).fetch() || []
       };
     }
   });

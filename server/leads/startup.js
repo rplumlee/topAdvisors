@@ -8,6 +8,7 @@ export default function ({ Collections, Logger }) {
   //
   if (Collections.Leads.find().count() < 5) {
     for (var i = 0; i < 10; i++) {
+      var currentAgent = agents[Math.floor(Math.random() * agents.length)];
       Collections.Leads.insert({
         profile: {
           firstName: faker.name.firstName(),
@@ -15,7 +16,8 @@ export default function ({ Collections, Logger }) {
           email: faker.internet.email(),
           phone: faker.phone.phoneNumberFormat()
         },
-        agent: agents[Math.floor(Math.random() * agents.length)]._id,
+        agent: currentAgent._id,
+        company: currentAgent.company,
         status: faker.random.arrayElement([ 'fresh', 'open', 'dead', 'closed' ]),
         message: faker.lorem.sentence(),
         purpose: faker.random.arrayElement([ 'Mortgage', 'Business Loan' ]),

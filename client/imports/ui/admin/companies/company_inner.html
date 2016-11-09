@@ -88,19 +88,19 @@
                     {{#if companyExists}}
                     <br>
                     <div class="col-xs-3">
-                      <h2>15</h2>
+                      <h2>{{totalLeads}}</h2>
                       <h5>Total Leads</h5>
                     </div>
                     <div class="col-xs-3">
-                      <h2>3</h2>
+                      <h2>{{closedLeads}}</h2>
                       <h5>Closed Leads</h5>
                     </div>
                     <div class="col-xs-3">
-                      <h2>467</h2>
+                      <h2>N/A</h2>
                       <h5>Total Page Views</h5>
                     </div>
                     <div class="col-xs-3">
-                      <h2>July 7,2016</h2>
+                      <h2>{{getCreatedDate}}</h2>
                       <h5>Signed Up</h5>
                     </div>
                     {{/if}}
@@ -223,13 +223,13 @@
                                   <a href="#" class="pros-link" id="{{_id}}">{{profile.firstName}} {{profile.lastName}}</a>
                                 </td>
                                 <td>
-                                  Loans
+                                  N/A
                                 </td>
                                 <td>
                                   {{profile.phone}}
                                 </td>
                                 <td>
-                                  4
+                                  {{leadsClosedByPro this}}
                                 </td>
                               </tr>
                               {{/each}}
