@@ -37,7 +37,16 @@ export default function ({ Meteor, Accounts, Collections, check }) {
       var id = Collections.Companies.insert(params);
 
       return { success: true, company: id };
+    },
+    'companies.get': function (params) {
+      check(params, Object);
+      if (!Meteor.user()) {
+        return {};
+      }
+      return {
+        company: Collections.Companies.findOne(params._id) || {},
+        pros: Collections.Users.find({ company: params._id }).fetch() || []
+      };
     }
-
   });
 }

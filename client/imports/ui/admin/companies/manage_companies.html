@@ -63,7 +63,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-xs-12 text-center">
-              <a class="btn btn-lg btn-primary" href="admin_add_company.html">
+              <a class="btn btn-lg btn-primary add-company">
                 <i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Add New Company
               </a><br><br><br>
             </div>
@@ -105,7 +105,7 @@
                                 {{#each companies}}
                                 <tr>
                                   <td class="td-name">
-                                    <a href="#" id="{{_id}}" class="editCompany">{{ name }}</a>
+                                    <a id="{{_id}}" class="edit-company" href="#">{{ name }}</a>
                                   </td>
                                   <td>{{ address.city }}</td>
                                   <td>{{ agents.count }}</td>

@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import _ from 'underscore';
 import Collections from '/lib/collections';
 import './manage_companies.html';
 import './company_inner.html';
@@ -24,6 +25,14 @@ Template.adminCompanies.events({
     Meteor.logout(() => {
       Router.go('login');
     });
+  },
+  'click .add-company'(event) {
+    event.preventDefault();
+    Router.go('/admin/companies/new');
+  },
+  'click .edit-company'(event) {
+    event.preventDefault();
+    Router.go(`/admin/companies/${event.target.id}`);
   }
 });
 
@@ -48,7 +57,22 @@ Template.adminCompanies.onRendered(function () {
 
 Template.adminCompanyInner.helpers({
   company: () => {
-    return Template.instance().companies.get('company')
+    return Template.instance().companies.get('company') || {};
+  },
+  companyExists: () => {
+    return !_.isEmpty(Template.instance().companies.get('company'));
+  },
+  pros: () => {
+    return Template.instance().companies.get('pros') || [];
+  },
+  prosExist: () => {
+    return !_.isEmpty(Template.instance().companies.get('pros'));
+  }
+});
+Template.adminCompanyInner.events({
+  'click .pros-link'(event) {
+    event.preventDefault();
+    Router.go(`/admin/pros/${event.target.id}`);
   }
 });
 
@@ -58,8 +82,6 @@ Template.adminCompanyInner.onCreated(function () {
     company: {}
   });
 
-  Meteor.subscribe('companies.list');
-  Meteor.subscribe('pros.list');
 });
 
 
@@ -70,9 +92,17 @@ Template.adminCompanyInner.onRendered(function bodyOnRendered() {
 
   document.title = 'Admin Dashboard';
 
-  if (Template.currentData().suburl !== 'add') {
-    this.companies.set('company', Collections.Companies.findOne({ _id: Template.currentData().suburl }));
+  if (Template.currentData().id !== 'new'){
+
+    Meteor.call('companies.get', {
+      _id: Template.currentData().id
+    }, (error, result) => {
+      console.log(error, result);
+      this.companies.set('company', result.company);
+      this.companies.set('pros', result.pros);
+    });
   }
+
 
   var input = document.getElementById('company_address');
   var options = {
