@@ -1,16 +1,16 @@
 /**
- * Define the exported methods for the accounts module
- * @param {object} context - server application context
- */
-export default function ({ Meteor, Accounts, Collections, check, lib }) {
+* Define the exported methods for the accounts module
+* @param {object} context - server application context
+*/
+export default function ({ Meteor, Accounts, Collections, check, lib, Flat }) {
 
   Meteor.methods({
 
     /**
-     * Create a new user
-     * @public
-     * @params {object} params - user info
-     */
+    * Create a new user
+    * @public
+    * @params {object} params - user info
+    */
     'users.create': function (params) {
       check(params, Object);
 
@@ -23,10 +23,10 @@ export default function ({ Meteor, Accounts, Collections, check, lib }) {
     },
 
     /**
-     * Create a new company
-     * @public
-     * @params {object} params - company info
-     */
+    * Create a new company
+    * @public
+    * @params {object} params - company info
+    */
     'companies.create': function (params) {
       check(params, {
         name: String,
@@ -47,6 +47,22 @@ export default function ({ Meteor, Accounts, Collections, check, lib }) {
 
       return { success: true, company: id };
     },
+
+    'companies.edit': function (params) {
+      check(params, Object);
+
+      // Ensure logged in user is an admin
+      lib.authorizeAdmin();
+
+      // Create user
+      var id = Collections.Companies.update(
+        { _id: params._id },
+        { $set: Flat.flatten(params) }
+      );
+
+      return { success: true, company: id };
+    },
+
     'companies.get': function (params) {
       check(params, Object);
       if (!Meteor.user()) {
