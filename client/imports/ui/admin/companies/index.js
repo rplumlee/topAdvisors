@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import moment from 'moment';
 import _ from 'underscore';
 import Collections from '/lib/collections';
 import './manage_companies.html';
@@ -65,8 +66,26 @@ Template.adminCompanyInner.helpers({
   pros: () => {
     return Template.instance().companies.get('pros') || [];
   },
+  totalLeads: () => {
+    return (Template.instance().companies.get('leads') || []).length;
+  },
+  closedLeads: () => {
+    return ([].concat(_.find((Template.instance().companies.get('leads') || []), {
+      status: 'closed'
+    }))).length;
+  },
   prosExist: () => {
     return !_.isEmpty(Template.instance().companies.get('pros'));
+  },
+  leadsClosedByPro: (pro) => {
+    var leads = Template.instance().companies.get('leads');
+    return ([].concat(_.find(leads, {
+      agent: pro._id, status: 'closed'
+    }))).length;
+  },
+  getCreatedDate: () => {
+    var createdDate = Template.instance().companies.get('company').createdOn;
+    return moment(createdDate).format('ll');
   }
 });
 Template.adminCompanyInner.events({
@@ -92,14 +111,15 @@ Template.adminCompanyInner.onRendered(function bodyOnRendered() {
 
   document.title = 'Admin Dashboard';
 
-  if (Template.currentData().id !== 'new'){
+  if (Template.currentData().id !== 'new') {
 
     Meteor.call('companies.get', {
       _id: Template.currentData().id
     }, (error, result) => {
-      console.log(error, result);
+
       this.companies.set('company', result.company);
       this.companies.set('pros', result.pros);
+      this.companies.set('leads', result.leads);
     });
   }
 
