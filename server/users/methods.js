@@ -28,7 +28,16 @@ export default function ({ Meteor, Accounts, Collections, check, lib }) {
      * @params {object} params - company info
      */
     'companies.create': function (params) {
-      check(params, Object);
+      check(params, {
+        name: String,
+        address: {
+          street1: String,
+          city: String,
+          state: String,
+          zip: String
+        },
+        bio: String
+      });
 
       // Ensure logged in user is an admin
       lib.authorizeAdmin();
