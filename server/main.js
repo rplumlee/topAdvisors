@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+import Flat from 'flat';
 import Collections from '/lib/collections';
+import lib from '/server/lib';
 
 import logger from './logger';
 import users from './users';
@@ -11,10 +13,12 @@ var context = {
   Meteor,
   Collections,
   Accounts,
-  check
+  check,
+  Flat
 };
 
 Meteor.startup(() => {
+  lib.init(context);
   logger(context);
   users(context);
   leads(context);

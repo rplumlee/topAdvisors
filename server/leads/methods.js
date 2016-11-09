@@ -1,9 +1,8 @@
-import lib from '/server/lib';
 /**
  * Define the exported methods for the leads module
  * @param {object} context - server application context
  */
-export default function ({ Meteor, Collections, check }) {
+export default function ({ Meteor, Collections, check, lib }) {
 
   Meteor.methods({
 

@@ -39,8 +39,7 @@ export default function ({ Meteor, Logger, Collections }) {
         address: {
           street1: address.street1,
           city: address.city,
-          state: address.state,
-          fullAddress: address.street1 + ', ' + address.city + ', ' + address.state
+          state: address.state
         },
         bio: faker.lorem.paragraph()
       });

@@ -99,9 +99,12 @@ Template.adminMain.onCreated(function () {
 });
 
 Template.adminMain.onRendered(function () {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
+
 
   this.autorun((c) => {
     if (this.subscriptionsReady()) {

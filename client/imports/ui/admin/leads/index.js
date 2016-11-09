@@ -59,9 +59,11 @@ Template.adminLeads.onCreated(function () {
 });
 
 Template.adminLeads.onRendered(function () {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
 
   this.autorun((c) => {
     if (this.subscriptionsReady()) {

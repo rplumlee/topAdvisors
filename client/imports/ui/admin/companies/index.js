@@ -6,6 +6,21 @@ import Collections from '/lib/collections';
 import './manage_companies.html';
 import './company_inner.html';
 
+var _parseAddress = function () {
+  var base = {};
+  autocomplete.getPlace().address_components.forEach(function (each) {
+    base[each.types[0]] = each.long_name;
+  });
+  return {
+    street1: base.street_number + ', ' + base.route,
+    street2: base.neighborhood,
+    city: base.locality,
+    state: base.administrative_area_level_1,
+    zip: base.postal_code,
+    fullAddress: autocomplete.getPlace().formatted_address
+  }
+};
+
 Template.adminCompanies.helpers({
   copyrightDate: function () {
     return new Date().getFullYear();
@@ -38,9 +53,11 @@ Template.adminCompanies.events({
 });
 
 Template.adminCompanies.onRendered(function () {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
 
   document.title = 'Admin Dashboard';
   Meteor.subscribe('companies.list');
@@ -92,6 +109,40 @@ Template.adminCompanyInner.events({
   'click .pros-link'(event) {
     event.preventDefault();
     Router.go(`/admin/pros/${event.target.id}`);
+  },
+  'submit .add-company-form'(event) {
+    event.preventDefault();
+    var companyDetails = {
+      name: event.target.companyName.value,
+      bio: event.target.companyBio.value,
+      address: _parseAddress()
+    };
+    Meteor.call('companies.create', companyDetails, function (error, result) {
+      if (!error) {
+        Router.go(`/admin/companies/${result.company}`);
+        document.location.reload(true);
+      }
+    });
+  },
+  'submit .edit-company-form'(event) {
+    event.preventDefault();
+    var companyDetails = {
+      _id: Template.instance().companies.get('company')._id,
+      name: event.target.companyName.value,
+      bio: event.target.companyBio.value
+    };
+    try {
+      companyDetails.address = _parseAddress();
+    } catch (err) {
+      companyDetails.address = {
+        fullAddress: event.target.companyFullAddress.value
+      };
+    }
+    Meteor.call('companies.edit', companyDetails, function (error, result) {
+      if (!error) {
+        document.location.reload(true);
+      }
+    });
   }
 });
 
@@ -105,9 +156,11 @@ Template.adminCompanyInner.onCreated(function () {
 
 
 Template.adminCompanyInner.onRendered(function bodyOnRendered() {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
 
   document.title = 'Admin Dashboard';
 
