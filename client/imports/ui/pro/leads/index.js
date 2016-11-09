@@ -56,9 +56,12 @@ Template.proLeadsDashboard.onCreated(function () {
 });
 
 Template.proLeadsDashboard.onRendered(function bodyOnRendered() {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
+
 
   document.title = 'Leads Dashboard';
   Meteor.subscribe('leads.list');

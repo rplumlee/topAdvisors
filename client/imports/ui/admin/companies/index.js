@@ -38,9 +38,11 @@ Template.adminCompanies.events({
 });
 
 Template.adminCompanies.onRendered(function () {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
 
   document.title = 'Admin Dashboard';
   Meteor.subscribe('companies.list');
@@ -105,9 +107,11 @@ Template.adminCompanyInner.onCreated(function () {
 
 
 Template.adminCompanyInner.onRendered(function bodyOnRendered() {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
 
   document.title = 'Admin Dashboard';
 

@@ -36,9 +36,12 @@ Template.adminPros.events({
 });
 
 Template.adminPros.onRendered(function () {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
+
 
   document.title = 'Admin Dashboard';
   Meteor.subscribe('pros.list');
@@ -67,9 +70,12 @@ Template.adminProInner.onCreated(function () {
 
 
 Template.adminProInner.onRendered(function () {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
+
 
   document.title = 'Admin Dashboard';
 

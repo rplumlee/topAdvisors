@@ -23,9 +23,12 @@ Template.adminConsumers.events({
 });
 
 Template.adminConsumers.onRendered(function bodyOnRendered() {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  }
+  this.autorun(() => {
+    if (!Meteor.userId()) {
+      Router.go('login');
+    }
+  });
+
 
   document.title = 'Admin Dashboard';
   Meteor.subscribe('leads.listConsumers');
