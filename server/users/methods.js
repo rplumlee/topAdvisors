@@ -2,7 +2,7 @@
  * Define the exported methods for the accounts module
  * @param {object} context - server application context
  */
-export default function ({ Meteor, Accounts, Collections, check }) {
+export default function ({ Meteor, Accounts, Collections, check, lib }) {
 
   Meteor.methods({
 
@@ -31,7 +31,7 @@ export default function ({ Meteor, Accounts, Collections, check }) {
       check(params, Object);
 
       // Ensure logged in user is an admin
-      // lib.authorize([ roles.admin ]);
+      lib.authorizeAdmin();
 
       // Create user
       var id = Collections.Companies.insert(params);

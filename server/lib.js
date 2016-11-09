@@ -19,12 +19,11 @@ var lib = {
     }
   },
 
-  validateUserRights: function (hierarchy, userOrg) {
-    if (!_.contains(hierarchy, userOrg || deps.Meteor.user().org)) {
-      lib.throwError('Unauthorized', 401);
+  authorizeAdmin: function (user) {
+    if (user.profile.type === 'pro') {
+      this.throwError('Forbidden', 403);
     }
   },
-
   getDoc: function (Collection, condition, type) {
     var doc = Collection.findOne(condition);
     if (!doc) {
@@ -36,6 +35,7 @@ var lib = {
 
 lib.init = function (context) {
   deps = context;
+  context.lib = lib;
 };
 
 export default lib;
