@@ -1,4 +1,62 @@
 <template name="adminProInner">
+  <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">TopAdvisors</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navigation-example">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#" id="logout">
+              <i class="material-icons">account_circle</i> Sign Out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-4.jpg">
+
+    <div class="sidebar-wrapper">
+
+      <ul class="nav">
+        <li>
+          <a href="/admin/leads">
+            <i class="material-icons">view_compact</i>
+            <p>Leads</p>
+          </a>
+        </li>
+        <li class="active">
+          <a href="/admin/pros">
+            <i class="material-icons">people</i>
+            <p>Manage Pros</p>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/companies">
+            <i class="material-icons">store</i>
+            <p>Manage Companies</p>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/consumers">
+            <i class="material-icons">accessibility</i>
+            <p>Consumers</p>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
   <div class="main-panel">
     <div class="content">
       <div class="container-fluid">
