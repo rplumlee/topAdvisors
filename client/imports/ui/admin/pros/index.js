@@ -27,9 +27,11 @@ Template.adminPros.helpers({
     return Collections.Users.find({ 'profile.type': 'pro' })
   },
   leadsClosedByPro: (pro) => {
-    return ([].concat(_.find(pro.getLeads(), {
-      agent: pro._id, status: 'closed'
-    }))).length;
+    var leads = Collections.Leads.find({
+      agent: pro._id,
+      status: 'closed'
+    }) || [];
+    return leads.count();
   }
 });
 
@@ -58,8 +60,6 @@ Template.adminPros.onRendered(function () {
 
 
   document.title = 'Admin Dashboard';
-  Meteor.subscribe('pros.list');
-  Meteor.subscribe('leads.list');
 
   //
   // paper-dashboard.js
@@ -72,6 +72,10 @@ Template.adminPros.onRendered(function () {
   }
 });
 
+Template.adminPros.onCreated(function () {
+  Meteor.subscribe('pros.list');
+  Meteor.subscribe('leads.list');
+});
 
 Template.adminProInner.onCreated(function () {
   this.pros = new ReactiveDict();
@@ -129,22 +133,24 @@ Template.adminProInner.helpers({
   },
   getProLeads: (type) => {
     var pro = Template.instance().pros.get('pro');
-    var leads = Collections.Leads.find({
+    var findQuery = {
       agent: pro._id
-    }).fetch() || [];
+    };
     if (type) {
-      leads = _.find(leads, { status: type }) || [];
+      findQuery.status = type;
     }
+    var leads = Collections.Leads.find(findQuery).fetch() || [];
     return leads;
   },
   getProLeadsCount: (type) => {
     var pro = Template.instance().pros.get('pro');
-    var leads = Collections.Leads.find({
+    var findQuery = {
       agent: pro._id
-    }).fetch() || [];
+    };
     if (type) {
-      leads = _.find(leads, { status: type }) || [];
+      findQuery.status = type;
     }
+    var leads = Collections.Leads.find(findQuery).fetch() || [];
     return leads.length;
   },
   print: (something) => {
