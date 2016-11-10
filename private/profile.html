@@ -91,7 +91,7 @@
 
         <div class="text-center profile-card nameCard" style="border-top:1px solid #ddd;">
           <h3 class="title text-center"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br><br></h3>
-          <h5 class="job">Mortgage Professional at {{ company.name }}</h5>
+          <h5 class="job">{{ pro.profile.jobTitle }} at {{ company.name }}</h5>
           <p class="description">
             When John A. Frisch, CPA/PFS, CFP®, AIF®, PPC founded Alliant Wealth Advisors in 1995, his mission
             was to help families cut through the complexities of managing their personal wealth. While most esential
@@ -146,8 +146,8 @@
                 <div class="card card-background" style="box-shadow:none;background-image: url('/assets/img/sampleOffice.jpg')">
                   <a href="#pablo"></a>
                   <div class="content">
-                    <label class="label label-info">Mortgage Professional</label>
-                    <h2 class="card-title">EastLake Mortgage, LLC</h2>
+                    <label class="label label-info">{{ pro.profile.jobTitle }}</label>
+                    <h2 class="card-title">{{ company.name }}</h2>
                   </div>
                 </div>
               </div>

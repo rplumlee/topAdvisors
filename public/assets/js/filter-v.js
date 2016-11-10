@@ -286,7 +286,7 @@ $( document ).ready(function() {
 			'</div>'+
 			'</div>'+
 			'</div>'
-			);
+		);
 
 
 		$('#giveResults').click(function(){
@@ -302,15 +302,16 @@ $( document ).ready(function() {
 				data.forEach(function (pro) {
 					filterAnswerContainer.append(
 						'<div class="row result">'+
-						'<a href="/profile?id='+pro.profile.slug+'">' +
 						'<div class="result-inner">'+
 						'<div class="row result-margin">'+
 						'<div class="col-sm-9 clearfix">'+
 						'<div class="col-sm-3 col-xs-6 col-xs-offset-3 col-sm-offset-0">'+
-						'	<img src="assets/img/faces/marc.jpg" class="img-circle img-responsive result-image">'+
+						'<a href="/profile/'+pro.profile.slug+'">' +
+						'<img src="/assets/img/faces/marc.jpg" class="img-circle img-responsive result-image">'+
+						'</a>'+
 						'</div>'+
 						'<div class="col-sm-9 col-xs-12 col-md-8">'+
-						'<h3 class="result-name">Jacob Palmer, <span class="designation">CPA</span></h3>'+
+						'<h3 class="result-name"><a href="/profile/'+pro.profile.slug+'">'+pro.profile.firstName+' '+pro.profile.lastName+', <span class="designation">'+pro.profile.jobTitle+'</span></a></h3>'+
 						'<div class="result-rating">'+
 						'<div>'+
 						'<i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star_half</i>'+
@@ -327,7 +328,6 @@ $( document ).ready(function() {
 						'</div>'+
 						'</div>'+
 						'</div>'+
-						'</a>'+
 						'</div>'
 					);
 				})
