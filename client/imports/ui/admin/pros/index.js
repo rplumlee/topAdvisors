@@ -27,9 +27,11 @@ Template.adminPros.helpers({
     return Collections.Users.find({ 'profile.type': 'pro' })
   },
   leadsClosedByPro: (pro) => {
-    return ([].concat(_.find(pro.getLeads(), {
-      agent: pro._id, status: 'closed'
-    }))).length;
+    var leads = Collections.Leads.find({
+      agent: pro._id,
+      status: 'closed'
+    }) || [];
+    return leads.count();
   }
 });
 
@@ -58,8 +60,6 @@ Template.adminPros.onRendered(function () {
 
 
   document.title = 'Admin Dashboard';
-  Meteor.subscribe('pros.list');
-  Meteor.subscribe('leads.list');
 
   //
   // paper-dashboard.js
@@ -72,6 +72,10 @@ Template.adminPros.onRendered(function () {
   }
 });
 
+Template.adminPros.onCreated(function () {
+  Meteor.subscribe('pros.list');
+  Meteor.subscribe('leads.list');
+});
 
 Template.adminProInner.onCreated(function () {
   this.pros = new ReactiveDict();
