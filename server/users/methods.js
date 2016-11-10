@@ -61,18 +61,6 @@ export default function ({ Meteor, Accounts, Collections, check, lib, Flat }) {
       );
 
       return { success: true, company: id };
-    },
-
-    'companies.get': function (params) {
-      check(params, Object);
-      if (!Meteor.user()) {
-        return {};
-      }
-      return {
-        company: Collections.Companies.findOne(params._id) || {},
-        pros: Collections.Users.find({ company: params._id }).fetch() || [],
-        leads: Collections.Leads.find({ company: params._id }).fetch() || []
-      };
     }
   });
 }

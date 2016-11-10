@@ -60,9 +60,6 @@ Template.adminCompanies.onRendered(function () {
   });
 
   document.title = 'Admin Dashboard';
-  Meteor.subscribe('companies.list');
-  Meteor.subscribe('pros.list');
-
   //
   // paper-dashboard.js
   //
@@ -82,24 +79,29 @@ Template.adminCompanyInner.helpers({
     return !_.isEmpty(Template.instance().companies.get('company'));
   },
   pros: () => {
-    return Template.instance().companies.get('pros') || [];
+    var company = Template.instance().companies.get('company')._id;
+    return Collections.Users.find({ company, 'profile.type': 'pro' }).fetch() || [];
   },
   totalLeads: () => {
-    return (Template.instance().companies.get('leads') || []).length;
+    var company = Template.instance().companies.get('company')._id;
+    return Collections.Leads.find({ company }).fetch().length;
   },
   closedLeads: () => {
-    return ([].concat(_.find((Template.instance().companies.get('leads') || []), {
+    var company = Template.instance().companies.get('company')._id;
+    return Collections.Leads.find({
+      company,
       status: 'closed'
-    }))).length;
+    }).fetch().length;
   },
   prosExist: () => {
-    return !_.isEmpty(Template.instance().companies.get('pros'));
+    var company = Template.instance().companies.get('company')._id;
+    return !_.isEmpty(Collections.Users.find({ company }).fetch());
   },
   leadsClosedByPro: (pro) => {
-    var leads = Template.instance().companies.get('leads');
-    return ([].concat(_.find(leads, {
-      agent: pro._id, status: 'closed'
-    }))).length;
+    return Collections.Leads.find({
+      agent: pro._id,
+      status: 'closed'
+    }).fetch().length;
   },
   getCreatedDate: () => {
     var createdDate = Template.instance().companies.get('company').createdOn;
@@ -153,6 +155,24 @@ Template.adminCompanyInner.onCreated(function () {
     company: {}
   });
 
+  if (!this.data.id) {
+    this.companies.set('company', {});
+  } else {
+
+    Meteor.subscribe('companies.list', {
+      onReady: ()=> {
+        var company = Collections.Companies.findOne({
+          _id: this.data.id
+        });
+        if (!company) {
+          Router.go('/admin/companies');
+        }
+        this.companies.set('company', company || {});
+      }
+    });
+    Meteor.subscribe('pros.list');
+    Meteor.subscribe('leads.list');
+  }
 });
 
 
@@ -164,19 +184,6 @@ Template.adminCompanyInner.onRendered(function bodyOnRendered() {
   });
 
   document.title = 'Admin Dashboard';
-
-  if (Template.currentData().id !== 'new') {
-
-    Meteor.call('companies.get', {
-      _id: Template.currentData().id
-    }, (error, result) => {
-
-      this.companies.set('company', result.company);
-      this.companies.set('pros', result.pros);
-      this.companies.set('leads', result.leads);
-    });
-  }
-
 
   var input = document.getElementById('company_address');
   var options = {
