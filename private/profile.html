@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/logo.png">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>Profile Page</title>
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lalezar" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+  <!-- CSS Files -->
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/assets/css/material-kit-home.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+</head>
+<style>
+  .donut-pie-tooltip-bubble {
+    background-color: #ffffff;
+    color: #06346e;
+    font-size: 11px;
+    padding: 6px 12px 6px 12px;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 1px 1px 1px 1px rgba(25, 25, 25, 0.15);
+    text-align: left;
+    max-width: 240px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+</style>
+<body class="profile-page">
+  <nav class="navbar navbar-absolute navbar-transparent">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index"><img src="/assets/img/logo2.png" class="hidden-xs" style="height:23px;display:inline;margin-top:-4px;margin-right:5px;"><img src="/assets/img/logo3.png" class="hidden-sm hidden-md hidden-lg" style="height:26px;display:inline;margin-top:-5px;margin-right:5px;">TopAdvisors</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navigation-example">
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden-xs hidden-sm">
+            <a href="/for_pros" class="btn btn-info">
+              Become a TopAdvisors professional
+            </a>
+          </li>
+
+          <li>
+            <a href="/how_it_works">
+              <i class="material-icons">lightbulb_outline</i> How it works
+            </a>
+          </li>
+
+          <li>
+            <a href="/login">
+              <i class="material-icons">account_circle</i> Sign In
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header header-filter" data-parallax="active" style="background-image: url('assets/img/examples/city.jpg');"></div>
+
+  <div class="main">
+    <div class="profile-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-xs-offset-3">
+            <div class="profile">
+              <div class="avatar">
+                <img src="/assets/img/faces/christian.jpg" alt="Circle Image" class="img-circle img-responsive ">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="text-center profile-card nameCard" style="border-top:1px solid #ddd;">
+          <h3 class="title text-center"><br>Jacob C. Palmer<br><br></h3>
+          <h5 class="job">Mortgage Professional at EastLake Mortgage, LLC</h5>
+          <p class="description">
+            When John A. Frisch, CPA/PFS, CFP®, AIF®, PPC founded Alliant Wealth Advisors in 1995, his mission
+            was to help families cut through the complexities of managing their personal wealth. While most esential
+            financial principles are timeless common sense, it can be a challenge to apply them in a market tangled
+            by hidden fees.  Don’t hesitate to reach out, consultationsare always free and I will serve you in accordance
+            with my fiduciary duty.
+          </p><br>
+          <h6><i class="material-icons text-success" style="vertical-align:middle;margin-top:-4px;margin-right:5px;">check</i> Free Consultation</h6>
+          <br>
+          <a class="btn btn-lg btn-primary" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i>&nbsp;&nbsp;&nbsp;Contact Jacob</a>
+          <div class="trophy-section">
+            <div class="centered trophies">
+              <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional has been highly reviewed by their customers.">
+                <img src="/assets/img/trophies/customer_fav.png"><br>
+                <h6>Customer Favorite</h6>
+              </div>
+              <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional consistently produces helpful content for consumers.">
+                <img src="/assets/img/trophies/content.png"><br>
+                <h6>Content Producer</h6>
+              </div>
+              <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional's credentials and background have been verified by the TopAdvisors staff.">
+                <img src="/assets/img/trophies/verified.png"><br>
+                <h6>Verified Pro</h6>
+              </div>
+              <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional has been licensed for more than 10 years.">
+                <img src="/assets/img/trophies/veteran.png"><br>
+                <h6>Veteran</h6>
+              </div>
+              <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional acheives the highest level of customer retention, customer satisfaction, and production.">
+                <img src="/assets/img/trophies/top_performer.png"><br>
+                <h6>Top Performer</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row services">
+          <div class="col-md-8">
+            <div class="profile-card" data-toggle="modal" data-target="#workModal" style="cursor:pointer;">
+              <h3 class="title centered">Works At</h4><br>
+                <div class="card card-background" style="box-shadow:none;background-image: url('assets/img/sampleOffice.jpg')">
+                  <a href="#pablo"></a>
+                  <div class="content">
+                    <label class="label label-info">Mortgage Professional</label>
+                    <h2 class="card-title">EastLake Mortgage, LLC</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="profile-card">
+                <h3 class="title centered">Financial Services Offered</h3><br>
+                <div id="chartContainer" style="height: 240px; width: 100%;"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row" style="margin:0;">
+            <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 profile-card resume">
+              <h3 class="title centered">Resume</h4><br>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>License</th>
+                        <th>Number</th>
+                        <th>Date Acquired</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>National Mortgage Lender</td>
+                        <td>1354315</td>
+                        <td>2016</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Designation</th>
+                        <th>Number</th>
+                        <th>Date Acquired</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>CPA</td>
+                        <td>1354315</td>
+                        <td>2016</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>School</th>
+                        <th>Degree</th>
+                        <th>Date Acquired</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>University of Oregon</td>
+                        <td>Bachelor's of Finance</td>
+                        <td>2008</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Previous Employer</th>
+                        <th>Dates Worked</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>State Farm</td>
+                        <td>2013-2015</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>AllState</td>
+                        <td>2008-2013</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Radio Shack</td>
+                        <td>2004-2008</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row" style="margin:0;">
+              <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 profile-card">
+                <h3 class="title centered">Reviews</h3><br>.
+                <div class="text-center">
+                  <button href="#" class="btn btn-info" data-toggle="modal" data-target="#reviewModal"><i class="material-icons">create</i>&nbsp;&nbsp;&nbsp; Write Review</button><br>
+                </div>
+                <div class="media-area">
+                  <div class="media">
+
+                    <div class="media-body">
+                      <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
+                      <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
+
+                      <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
+                      <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+
+                      <div class="media-footer">
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="media-area">
+                  <div class="media">
+
+                    <div class="media-body">
+                      <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
+                      <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
+
+                      <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
+                      <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+
+                      <div class="media-footer">
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="media-area">
+                  <div class="media">
+
+                    <div class="media-body">
+                      <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
+                      <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
+
+                      <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
+                      <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+
+                      <div class="media-footer">
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <footer class="footer footer-black">
+        <div class="container">
+          <a class="footer-brand hidden-xs" href="#">TopAdvisors</a>
+          <ul class="pull-center">
+            <li>
+              <a href="/">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="/how_it_works">
+                How it works
+              </a>
+            </li>
+            <li>
+              <a href="/for_pros">
+                for professionals
+              </a>
+            </li>
+            <li>
+              <a href="/contact-us">
+                contact us
+              </a>
+            </li>
+            <li>
+              <a href="/about">
+                about
+              </a>
+            </li>
+          </ul>
+
+          <ul class="social-buttons pull-right hidden-xs">
+            <li>
+              <a href="https://twitter.com/TopAdvisors503" target="_blank" class="btn btn-just-icon btn-simple">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/TopAdvisors503" target="_blank" class="btn btn-just-icon btn-simple">
+                <i class="fa fa-facebook-square"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/company/topadvisors" target="_blank" class="btn btn-just-icon btn-simple">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </footer>
+
+
+      <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-lg modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Contact Jacob</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6" style="padding-left:0;">
+                  <div class="col-sm-12">
+                    <input type="text" class=" form-control" placeholder="First Name">
+                  </div>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Last Name">
+                  </div>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Phone Number">
+                  </div>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Email">
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <h6 style="margin-top:0;">Preferred Contact Method</h6>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="optionsCheckboxes">
+                      Phone
+                    </label>
+                  </div><div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="optionsCheckboxes">
+                    Email
+                  </label>
+                </div>
+                <h6>Short Message (Optional)</h6>
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" id="giveResults"><i class="material-icons">mail</i> Send</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Review Jacob</h4>
+          </div>
+          <div class="modal-body">
+            <div class="col-sm-12">
+              <input type="text" class=" form-control" placeholder="First Name">
+              <textarea class="form-control" rows="8" placeholder="Write your review here. Please refrain from including any specific details about financial performance (such as portfolio returns), because it violates FINRA regulations."></textarea>
+              <br>
+              <h5 style="font-weight:bold;">Rating</h5>
+              <div class="row lead">
+                <div id="stars" class="starrr"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" id="giveResults"><i class="material-icons">edit</i> Submit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="workModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="padding-left:30px;">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">EastLake Mortgage, LLC</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <img src="/assets/img/sampleOffice.jpg" class="img-resonsive">
+              </div>
+              <div class="col-sm-12">
+                <br>
+                <p style="padding: 0 30px;">Eastlake Mortgage is a family-owned mortgage company founded in 1905, and located in EastLake, Seattle. We pride ourselves on serving our customers on both a personal and financial level - always putting you first and taking the time to educate our clients on their options and helping them make informed decisions.</p>
+              </div>
+            </div>
+            <div class="row">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="profile-drop">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 col-xs-3">
+            <img src="/assets/img/faces/christian.jpg" alt="Circle Image" class="img-circle">
+          </div>
+          <div class="col-md-8 col-xs-6 text-center">
+            <h4 style="display:inline;"><br>Jacob Palmer<br></h4>
+            <h6 class="" style="display:inline;">Mortgage Professional</h6>
+          </div>
+          <div class="col-md-2 col-xs-3">
+            <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i><span class="hidden-xs">&nbsp;&nbsp;&nbsp;Contact Jacob</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <!--   Core JS Files   -->
+  <script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+  <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/assets/js/material.min.js"></script>
+
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="/assets/js/nouislider.min.js" type="text/javascript"></script>
+
+  <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+  <script src="/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+  <!--  Plugin for Select Form control, full documentation here: https://github.com/FezVrasta/dropdown.js -->
+  <script src="/assets/js/jquery.dropdown.js" type="text/javascript"></script>
+
+  <!--  Plugin for Tags, full documentation here: http://xoxco.com/projects/code/tagsinput/  -->
+  <script src="/assets/js/jquery.tagsinput.js"></script>
+
+  <!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script src="/assets/js/jasny-bootstrap.min.js"></script>
+  <script src="/assets/js/stars.js"></script>
+  <!-- Plugin For Google Maps -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+  <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+  <script src="/assets/js/material-v-kit.js" type="text/javascript"></script>
+
+  <script src="/assets/js/canvasjs.min.js" type="text/javascript"></script>
+
+
+  <script type="text/javascript">
+
+    (function ($) {
+      $(document).ready(function() {
+
+        // fade in .navbar
+        $(function () {
+          $(window).scroll(function () {
+            // set distance user needs to scroll before we start fadeIn
+            if ($(this).scrollTop() > 570) {
+              $('.profile-drop').css('top', '0px');
+            } else {
+              $('.profile-drop').css('top', '-100px');
+            }
+          });
+        });
+
+      });
+    }(jQuery));
+
+    window.onload = function () {
+      var chart = new CanvasJS.Chart("chartContainer",
+      {
+        title: {
+          text: ""
+        },
+        animationEnabled: true,
+        legend: {
+          verticalAlign: "center",
+          horizontalAlign: "right"
+        },
+        data: [
+        {
+          indexLabelFontSize: 18,
+          indexLabelFontFamily: "Helvetica",
+          indexLabelFontColor: "#444444",
+          indexLabelLineColor: "#999999",
+          indexLabelPlacement: "inside",
+          type: "pie",
+          showInLegend: true,
+          toolTipContent: "<strong>{legendText} - #percent%</strong>",
+          dataPoints: [
+          {  y: 20, legendText:"Mortgages", color: "#FF6A6A" },
+          {  y: 25, legendText:"Small Business Loans", color: "#7095AE" },
+          {  y: 55, legendText:"Personal Loans",exploded: true, },
+
+          ]
+        }
+        ]
+      });
+      chart.render();
+    }
+
+  </script>
+  </html>

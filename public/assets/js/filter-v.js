@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
   var input = document.getElementById('home_address');
   var options = {
-    types: [],
+    types: ['(cities)'],
     componentRestrictions: {country: 'us'}
   };
 

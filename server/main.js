@@ -29,3 +29,8 @@ WebApp.connectHandlers.use('/home', function (req, res) {
   res.writeHead(200);
   res.end(Assets.getText('index.html'));
 });
+
+WebApp.connectHandlers.use('/profile', function (req, res) {
+  res.writeHead(200);
+  res.end(Assets.getText('profile.html'));
+});
