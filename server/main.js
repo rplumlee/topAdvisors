@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import Flat from 'flat';
+import Swig from 'swig';
 import Collections from '/lib/collections';
 import lib from '/server/lib';
 
@@ -32,5 +33,8 @@ WebApp.connectHandlers.use('/home', function (req, res) {
 
 WebApp.connectHandlers.use('/profile', function (req, res) {
   res.writeHead(200);
-  res.end(Assets.getText('profile.html'));
+  var pro_slug = req.url.substr(1);
+  var currentPro = Meteor.users.findOne({ 'profile.slug': pro_slug }, { fields: { services: false } });
+  var currentCompany = Collections.Companies.findOne({ _id: currentPro.company });
+  res.end(Swig.render(Assets.getText('profile.html'), { locals: { pro: currentPro, company: currentCompany }}));
 });

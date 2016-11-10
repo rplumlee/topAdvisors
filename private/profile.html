@@ -73,7 +73,7 @@
     </div>
   </nav>
 
-  <div class="page-header header-filter" data-parallax="active" style="background-image: url('assets/img/examples/city.jpg');"></div>
+  <div class="page-header header-filter" data-parallax="active" style="background-image: url('/assets/img/examples/city.jpg');"></div>
 
   <div class="main">
     <div class="profile-content">
@@ -90,8 +90,8 @@
 
 
         <div class="text-center profile-card nameCard" style="border-top:1px solid #ddd;">
-          <h3 class="title text-center"><br>Jacob C. Palmer<br><br></h3>
-          <h5 class="job">Mortgage Professional at EastLake Mortgage, LLC</h5>
+          <h3 class="title text-center"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br><br></h3>
+          <h5 class="job">Mortgage Professional at {{ company.name }}</h5>
           <p class="description">
             When John A. Frisch, CPA/PFS, CFP®, AIF®, PPC founded Alliant Wealth Advisors in 1995, his mission
             was to help families cut through the complexities of managing their personal wealth. While most esential
@@ -101,29 +101,39 @@
           </p><br>
           <h6><i class="material-icons text-success" style="vertical-align:middle;margin-top:-4px;margin-right:5px;">check</i> Free Consultation</h6>
           <br>
-          <a class="btn btn-lg btn-primary" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i>&nbsp;&nbsp;&nbsp;Contact Jacob</a>
+          <a class="btn btn-lg btn-primary" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i>&nbsp;&nbsp;&nbsp;Contact {{ pro.profile.firstName }}</a>
           <div class="trophy-section">
             <div class="centered trophies">
+              {% if pro.trophies.customerFavorite %}
               <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional has been highly reviewed by their customers.">
                 <img src="/assets/img/trophies/customer_fav.png"><br>
                 <h6>Customer Favorite</h6>
               </div>
+              {% endif %}
+              {% if pro.trophies.contentContributor %}
               <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional consistently produces helpful content for consumers.">
                 <img src="/assets/img/trophies/content.png"><br>
                 <h6>Content Producer</h6>
               </div>
+              {% endif %}
+              {% if pro.trophies.verified %}
               <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional's credentials and background have been verified by the TopAdvisors staff.">
                 <img src="/assets/img/trophies/verified.png"><br>
                 <h6>Verified Pro</h6>
               </div>
+              {% endif %}
+              {% if pro.trophies.veteran %}
               <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional has been licensed for more than 10 years.">
                 <img src="/assets/img/trophies/veteran.png"><br>
                 <h6>Veteran</h6>
               </div>
+              {% endif %}
+              {% if pro.trophies.topPerformer %}
               <div class="trophy" data-toggle="tooltip" data-placement="top" title="This professional acheives the highest level of customer retention, customer satisfaction, and production.">
                 <img src="/assets/img/trophies/top_performer.png"><br>
                 <h6>Top Performer</h6>
               </div>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -133,7 +143,7 @@
           <div class="col-md-8">
             <div class="profile-card" data-toggle="modal" data-target="#workModal" style="cursor:pointer;">
               <h3 class="title centered">Works At</h4><br>
-                <div class="card card-background" style="box-shadow:none;background-image: url('assets/img/sampleOffice.jpg')">
+                <div class="card card-background" style="box-shadow:none;background-image: url('/assets/img/sampleOffice.jpg')">
                   <a href="#pablo"></a>
                   <div class="content">
                     <label class="label label-info">Mortgage Professional</label>
@@ -367,7 +377,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Contact Jacob</h4>
+              <h4 class="modal-title" id="myModalLabel">Contact {{ pro.profile.firstName }}</h4>
             </div>
             <div class="modal-body">
               <div class="row">
@@ -419,7 +429,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Review Jacob</h4>
+            <h4 class="modal-title" id="myModalLabel">Review {{ pro.profile.firstName }}</h4>
           </div>
           <div class="modal-body">
             <div class="col-sm-12">
@@ -473,11 +483,11 @@
             <img src="/assets/img/faces/christian.jpg" alt="Circle Image" class="img-circle">
           </div>
           <div class="col-md-8 col-xs-6 text-center">
-            <h4 style="display:inline;"><br>Jacob Palmer<br></h4>
+            <h4 style="display:inline;"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br></h4>
             <h6 class="" style="display:inline;">Mortgage Professional</h6>
           </div>
           <div class="col-md-2 col-xs-3">
-            <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i><span class="hidden-xs">&nbsp;&nbsp;&nbsp;Contact Jacob</span></a>
+            <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i><span class="hidden-xs">&nbsp;&nbsp;&nbsp;Contact {{ pro.profile.firstName }}</span></a>
           </div>
         </div>
       </div>
@@ -513,58 +523,5 @@
   <script src="/assets/js/canvasjs.min.js" type="text/javascript"></script>
 
 
-  <script type="text/javascript">
-
-    (function ($) {
-      $(document).ready(function() {
-
-        // fade in .navbar
-        $(function () {
-          $(window).scroll(function () {
-            // set distance user needs to scroll before we start fadeIn
-            if ($(this).scrollTop() > 570) {
-              $('.profile-drop').css('top', '0px');
-            } else {
-              $('.profile-drop').css('top', '-100px');
-            }
-          });
-        });
-
-      });
-    }(jQuery));
-
-    window.onload = function () {
-      var chart = new CanvasJS.Chart("chartContainer",
-      {
-        title: {
-          text: ""
-        },
-        animationEnabled: true,
-        legend: {
-          verticalAlign: "center",
-          horizontalAlign: "right"
-        },
-        data: [
-        {
-          indexLabelFontSize: 18,
-          indexLabelFontFamily: "Helvetica",
-          indexLabelFontColor: "#444444",
-          indexLabelLineColor: "#999999",
-          indexLabelPlacement: "inside",
-          type: "pie",
-          showInLegend: true,
-          toolTipContent: "<strong>{legendText} - #percent%</strong>",
-          dataPoints: [
-          {  y: 20, legendText:"Mortgages", color: "#FF6A6A" },
-          {  y: 25, legendText:"Small Business Loans", color: "#7095AE" },
-          {  y: 55, legendText:"Personal Loans",exploded: true, },
-
-          ]
-        }
-        ]
-      });
-      chart.render();
-    }
-
-  </script>
-  </html>
+  <script src="/assets/js/pro.profile.js" type="text/javascript"></script>
+</html>
