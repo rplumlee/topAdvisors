@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import { check, Match } from 'meteor/check';
 import Flat from 'flat';
 import Swig from 'swig';
 import Collections from '/lib/collections';
@@ -15,6 +15,7 @@ var context = {
   Collections,
   Accounts,
   check,
+  Match,
   Flat
 };
 

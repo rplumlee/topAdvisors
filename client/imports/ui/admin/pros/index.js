@@ -27,11 +27,10 @@ Template.adminPros.helpers({
     return Collections.Users.find({ 'profile.type': 'pro' })
   },
   leadsClosedByPro: (pro) => {
-    var leads = Collections.Leads.find({
+    return Collections.Leads.find({
       agent: pro._id,
       status: 'closed'
-    }) || [];
-    return leads.count();
+    }).count();
   }
 });
 
@@ -84,16 +83,23 @@ Template.adminProInner.onCreated(function () {
   });
 
   Meteor.subscribe('companies.list');
-  Meteor.subscribe('pros.list', {
-    onReady: ()=> {
-      var pro = Collections.Users.findOne({
-        _id: this.data.id,
-        'profile.type': 'pro'
-      });
-      this.pros.set('pro', pro);
-    }
-  });
-  Meteor.subscribe('leads.list');
+  if (!this.data.id) {
+    this.pros.set('pro', {});
+  } else {
+    Meteor.subscribe('pros.list', {
+      onReady: ()=> {
+        var pro = Collections.Users.findOne({
+          _id: this.data.id,
+          'profile.type': 'pro'
+        });
+        if (!pro) {
+          Router.go('/admin/pros');
+        }
+        this.pros.set('pro', pro);
+      }
+    });
+    Meteor.subscribe('leads.list');
+  }
 });
 
 
