@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navigation-example">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="#">
+              <a href="#" id="logout">
                 <i class="material-icons">account_circle</i> Sign Out
               </a>
             </li>
@@ -65,7 +65,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-xs-12 text-center">
-              <a class="btn btn-lg btn-primary" href="admin_add_pro.html">
+              <a class="btn btn-lg btn-primary addPro" href="#">
                 <i class="material-icons">person_add</i>&nbsp;&nbsp;&nbsp;Add New Pro
               </a><br><br><br>
             </div>
@@ -111,13 +111,13 @@
                                     <a id="{{_id}}" class="editPro" href="#">{{ profile.firstName }} {{ profile.lastName }}</a>
                                   </td>
                                   <td>
-                                    Loans
+                                    N/A
                                   </td>
                                   <td>
                                     {{ profile.phone }}
                                   </td>
                                   <td>
-                                    4
+                                    {{ leadsClosedByPro this }}
                                   </td>
                                 </tr>
                                 {{/each}}

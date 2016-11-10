@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navigation-example">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="#">
+              <a href="#" id="logout">
                 <i class="material-icons">account_circle</i> Sign Out
               </a>
             </li>
@@ -108,7 +108,7 @@
                                     <a id="{{_id}}" class="edit-company" href="#">{{ name }}</a>
                                   </td>
                                   <td>{{ address.city }}</td>
-                                  <td>{{ agents.count }}</td>
+                                  <td>{{ getAgents.length }}</td>
                                 </tr>
                                 {{/each}}
                                 {{/if}}

@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import moment from 'moment';
 import _ from 'underscore';
 import Collections from '/lib/collections';
 import './manage_pros.html';
@@ -24,6 +25,11 @@ Template.adminPros.helpers({
   },
   pros: () => {
     return Collections.Users.find({ 'profile.type': 'pro' })
+  },
+  leadsClosedByPro: (pro) => {
+    return ([].concat(_.find(pro.getLeads(), {
+      agent: pro._id, status: 'closed'
+    }))).length;
   }
 });
 
@@ -32,6 +38,14 @@ Template.adminPros.events({
     Meteor.logout(() => {
       Router.go('login');
     });
+  },
+  'click .editPro'(event) {
+    event.preventDefault();
+    Router.go(`/admin/pros/${event.target.id}`);
+  },
+  'click .addPro'(event) {
+    event.preventDefault();
+    Router.go('/admin/pros/new');
   }
 });
 
@@ -45,6 +59,7 @@ Template.adminPros.onRendered(function () {
 
   document.title = 'Admin Dashboard';
   Meteor.subscribe('pros.list');
+  Meteor.subscribe('leads.list');
 
   //
   // paper-dashboard.js
@@ -65,7 +80,16 @@ Template.adminProInner.onCreated(function () {
   });
 
   Meteor.subscribe('companies.list');
-  Meteor.subscribe('pros.list');
+  Meteor.subscribe('pros.list', {
+    onReady: ()=> {
+      var pro = Collections.Users.findOne({
+        _id: this.data.id,
+        'profile.type': 'pro'
+      });
+      this.pros.set('pro', pro);
+    }
+  });
+  Meteor.subscribe('leads.list');
 });
 
 
@@ -76,12 +100,7 @@ Template.adminProInner.onRendered(function () {
     }
   });
 
-
   document.title = 'Admin Dashboard';
-
-  if (Template.currentData().suburl !== 'add') {
-    this.pros.set('pro', Collections.Users.findOne({ _id: Template.currentData().suburl }));
-  }
 
   //
   // paper-dashboard.js
@@ -96,7 +115,40 @@ Template.adminProInner.onRendered(function () {
 
 Template.adminProInner.helpers({
   pros: () => {
-    return Template.instance().pros.get('pro')
+    return Template.instance().pros.get('pro');
+  },
+  prosExist: () => {
+    return !_.isEmpty(Template.instance().pros.get('pro'));
+  },
+  getProEmail: (pro) => {
+    return pro.emails ? pro.emails[0].address : null;
+  },
+  getCreatedDate: (date) => {
+    var createdDate = date || Template.instance().pros.get('pro').createdOn;
+    return moment(createdDate).format('ll');
+  },
+  getProLeads: (type) => {
+    var pro = Template.instance().pros.get('pro');
+    var leads = Collections.Leads.find({
+      agent: pro._id
+    }).fetch() || [];
+    if (type) {
+      leads = _.find(leads, { status: type }) || [];
+    }
+    return leads;
+  },
+  getProLeadsCount: (type) => {
+    var pro = Template.instance().pros.get('pro');
+    var leads = Collections.Leads.find({
+      agent: pro._id
+    }).fetch() || [];
+    if (type) {
+      leads = _.find(leads, { status: type }) || [];
+    }
+    return leads.length;
+  },
+  print: (something) => {
+    console.log(something);
   },
   personalSpecialities: [
     "Home Loans",
