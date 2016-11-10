@@ -37,6 +37,14 @@ Template.adminPros.events({
     Meteor.logout(() => {
       Router.go('login');
     });
+  },
+  'click .editPro'(event) {
+    event.preventDefault();
+    Router.go(`/admin/pros/${event.target.id}`);
+  },
+  'click .addPro'(event) {
+    event.preventDefault();
+    Router.go('/admin/pros/new');
   }
 });
 
@@ -72,6 +80,7 @@ Template.adminProInner.onCreated(function () {
 
   Meteor.subscribe('companies.list');
   Meteor.subscribe('pros.list');
+  Meteor.subscribe('leads.list');
 });
 
 
@@ -85,8 +94,12 @@ Template.adminProInner.onRendered(function () {
 
   document.title = 'Admin Dashboard';
 
-  if (Template.currentData().suburl !== 'add') {
-    this.pros.set('pro', Collections.Users.findOne({ _id: Template.currentData().suburl }));
+  if (Template.currentData().id !== 'new') {
+    var pro = Collections.Users.findOne({
+      _id: Template.currentData().id,
+      'profile.type': 'pro'
+    });
+    this.pros.set('pro', pro);
   }
 
   //
