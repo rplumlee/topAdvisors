@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import moment from 'moment';
 import _ from 'underscore';
 import Collections from '/lib/collections';
 import './manage_pros.html';
@@ -121,6 +122,30 @@ Template.adminProInner.helpers({
   },
   getProEmail: (pro) => {
     return pro.emails ? pro.emails[0].address : null;
+  },
+  getCreatedDate: (date) => {
+    var createdDate = date || Template.instance().pros.get('pro').createdOn;
+    return moment(createdDate).format('ll');
+  },
+  getProLeads: (type) => {
+    var pro = Template.instance().pros.get('pro');
+    var leads = Collections.Leads.find({
+      agent: pro._id
+    }).fetch() || [];
+    if (type) {
+      leads = _.find(leads, { status: type }) || [];
+    }
+    return leads;
+  },
+  getProLeadsCount: (type) => {
+    var pro = Template.instance().pros.get('pro');
+    var leads = Collections.Leads.find({
+      agent: pro._id
+    }).fetch() || [];
+    if (type) {
+      leads = _.find(leads, { status: type }) || [];
+    }
+    return leads.length;
   },
   print: (something) => {
     console.log(something);
