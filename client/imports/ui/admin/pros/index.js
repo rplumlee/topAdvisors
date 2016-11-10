@@ -24,6 +24,11 @@ Template.adminPros.helpers({
   },
   pros: () => {
     return Collections.Users.find({ 'profile.type': 'pro' })
+  },
+  leadsClosedByPro: (pro) => {
+    return ([].concat(_.find(pro.getLeads(), {
+      agent: pro._id, status: 'closed'
+    }))).length;
   }
 });
 
@@ -45,6 +50,7 @@ Template.adminPros.onRendered(function () {
 
   document.title = 'Admin Dashboard';
   Meteor.subscribe('pros.list');
+  Meteor.subscribe('leads.list');
 
   //
   // paper-dashboard.js
