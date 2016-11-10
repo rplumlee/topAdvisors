@@ -2,7 +2,7 @@
 * Define the exported methods for the accounts module
 * @param {object} context - server application context
 */
-export default function ({ Meteor, Accounts, Collections, check, lib, Flat }) {
+export default function ({ Meteor, Accounts, Collections, check, Match, lib, Flat }) {
 
   Meteor.methods({
 
@@ -32,6 +32,8 @@ export default function ({ Meteor, Accounts, Collections, check, lib, Flat }) {
         name: String,
         address: {
           street1: String,
+          street2: Match.Maybe(String),
+          fullAddress: Match.Maybe(String),
           city: String,
           state: String,
           zip: String
