@@ -23,7 +23,7 @@
       </div>
     </div>
   </nav>
-  <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-4.jpg">
+  <div class="sidebar" data-color="blue" data-image="/assets/img/sidebar-4.jpg">
 
     <div class="sidebar-wrapper">
 
@@ -59,6 +59,7 @@
 
   <div class="main-panel">
     <div class="content">
+      {{#if Template.subscriptionsReady}}
       <div class="container-fluid">
         <!--                nav tabs               -->
         <div id="nav-tabs">
@@ -109,7 +110,7 @@
                   <div class="col-sm-3">
                     <div class="form-group label-floating">
                       <label class="control-label"><i class="material-icons">mail</i>&nbsp;&nbsp;&nbsp;Email Address</label>
-                      <input id="pro_email" type="email" class="form-control proForm">
+                      <input id="pro_email" type="email" class="form-control proForm" value="{{ getProEmail pros }}">
                     </div>
                   </div>
                 </div>
@@ -160,9 +161,9 @@
                       <div class="form-group label-floating">
                         <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Company</label>
                         <select class="select form-control">
-                        {{#each companies}}
+                          {{#each companies}}
                           <option value="{{this.name}}">{{this.name}}</option>
-                        {{/each}}
+                          {{/each}}
                         </select>
                       </div>
                     </div>
@@ -182,7 +183,7 @@
                       <select class="select form-control personalSpecialty" placeholder="Choose Specialties (can choose multiple)">
                         <option disabled selected class="disabled"> Personal Specialties (can choose multiple)</option>
                         {{#each personalSpecialities}}
-                          <option value="{{this}}">{{this}}</option>
+                        <option value="{{this}}">{{this}}</option>
                         {{/each}}
                       </select>
                       {{#each pros.profile.personalSpecialty}}
@@ -195,7 +196,7 @@
                       <select class="select form-control businessSpecialty" placeholder="Choose Specialties (can choose multiple)">
                         <option disabled selected class="disabled"> Business Specialties (can choose multiple)</option>
                         {{#each businessSpecialities}}
-                          <option value="{{this}}">{{this}}</option>
+                        <option value="{{this}}">{{this}}</option>
                         {{/each}}
                       </select>
                       {{#each pros.profile.businessSpecialty}}
@@ -259,7 +260,7 @@
                         {{this.collegeName}}
                       </div>
                       <div class="col-sm-3">
-                        {{this.degreeName}}
+                        {{this.degreeEarned}}
                       </div>
                       <div class="col-sm-2">
                         {{this.yearGraduated}}
@@ -413,7 +414,7 @@
                         <div class="col-xs-3">
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
-                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.verified}}true{{/if}}">
                               <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
@@ -427,7 +428,7 @@
                         <div class="col-xs-3">
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
-                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.veteran}}true{{/if}}">
                               <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
@@ -436,12 +437,12 @@
 
                       <div class="row">
                         <div class="col-xs-3">
-                           Content Contributer
+                          Content Contributer
                         </div>
                         <div class="col-xs-3">
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
-                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.contentContributor}}true{{/if}}">
                               <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
@@ -455,7 +456,7 @@
                         <div class="col-xs-3">
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
-                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.topPerformer}}true{{/if}}">
                               <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
@@ -469,7 +470,7 @@
                         <div class="col-xs-3">
                           <div class="checkbox" style="display:block;vertical-align:middle;">
                             <label>
-                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;">
+                              <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.customerFavorite}}true{{/if}}">
                               <span class="checkbox-material"><span class="check"></span></span>
                             </label>
                           </div>
@@ -480,6 +481,277 @@
                 </div>
 
                 <!-- nav tabs -->
+                <div id="nav-tabs">
+                  <!-- Tabs with icons on Card -->
+                  <div class="card card-nav-tabs">
+                    <div class="header header-success">
+                      <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="active">
+                              <a href="#fresh" data-toggle="tab">
+                                <i class="material-icons">add_a_photo</i>
+                                Pictures
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="content">
+                      <div class="tab-content">
+                        <div class="row">
+                          <div class="col-xs-6 text-center">
+                            <h2>Profile Picture</h2>
+                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                              <div class="fileinput-new thumbnail img-raised">
+                                {{ #if prosExist }}
+                                <img src="/assets/img/faces/christian.jpg" alt="...">
+                                {{ else }}
+                                <img src="/assets/img/image_placeholder.jpg" alt="...">
+                                {{ /if }}
+                              </div>
+                              <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                              <div>
+                                <span class="btn btn-raised btn-round btn-default btn-file">
+                                  <span class="fileinput-new">Select image</span>
+                                  <span class="fileinput-exists">Change</span>
+                                  <input type="file" name="..." />
+                                </span>
+                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 text-center">
+                            <h2>Cover Photo</h2>
+                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                              <div class="fileinput-new thumbnail img-raised">
+                                {{ #if prosExist }}
+                                <img src="/assets/img/examples/city.jpg" alt="...">
+                                {{ else }}
+                                <img src="/assets/img/image_placeholder.jpg" alt="...">
+                                {{ /if }}
+                              </div>
+                              <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                              <div>
+                                <span class="btn btn-raised btn-round btn-default btn-file">
+                                  <span class="fileinput-new">Select image</span>
+                                  <span class="fileinput-exists">Change</span>
+                                  <input type="file" name="..." />
+                                </span>
+                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="nav-tabs">
+                  <!-- Tabs with icons on Card -->
+                  <div class="card card-nav-tabs">
+                    <div class="header header-danger">
+                      <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="active">
+                              <a href="#fresh" data-toggle="tab">
+                                <i class="material-icons">trending_up</i>
+                                Performance
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="content">
+                      <div class="tab-content">
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group label-floating">
+                              <label class="control-label">Client Retention Rate</label>
+                              <input type="email" class="form-control" value="{{ pros.profile.performance.clientRetentionRate }}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group label-floating">
+                              <label class="control-label">Annual Production</label>
+                              <input type="email" class="form-control" value="{{ pros.profile.performance.annualProduction }}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6"><br>
+                            <h4 class="text-left">I focus on: <small>(Pick one)</small></h4><br>
+                            <div class="row">
+                              <div class="col-xs-6">
+                                Taking care of my client's needs quickly
+                              </div>
+                              <div class="col-xs-6">
+                                <div class="checkbox" style="display:block;vertical-align:middle;">
+                                  <label>
+                                    <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.profile.focus.quickly}}true{{/if}}">
+                                    <span class="checkbox-material"><span class="check"></span></span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-6">
+                                Getting the high returns for my client
+                              </div>
+                              <div class="col-xs-6">
+                                <div class="checkbox" style="display:block;vertical-align:middle;">
+                                  <label>
+                                    <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.profile.focus.highReturns}}true{{/if}}">
+                                    <span class="checkbox-material"><span class="check"></span></span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-6">
+                                Taking the time to educate my client to make an informed decision
+                              </div>
+                              <div class="col-xs-6">
+                                <div class="checkbox" style="display:block;vertical-align:middle;">
+                                  <label>
+                                    <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.profile.focus.education}}true{{/if}}">
+                                    <span class="checkbox-material"><span class="check"></span></span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <h2>Financial Planning<br><br></h2>
+                          </div>
+                          <div class="col-sm-3">
+                            <span class="label label-primary">Business</span>
+                            <div class="form-group label-floating">
+                              <label class="control-label">% Business</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <span class="label label-primary">Personal</span>
+                            <div class="form-group label-floating">
+                              <label class="control-label">% Personal</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group label-floating">
+                              <label class="control-label">Avg # Employees</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group label-floating">
+                              <label class="control-label">Avg Amount of Assets per</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group label-floating">
+                              <label class="control-label">Avg Amount of Assets per</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <br><br><br>
+                            <h2>Insurance<br><br></h2>
+                          </div>
+                          <div class="col-sm-3">
+                            <span class="label label-primary">Business</span>
+                            <div class="form-group label-floating">
+                              <label class="control-label">% Business</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <span class="label label-primary">Personal</span>
+                            <div class="form-group label-floating">
+                              <label class="control-label">% Personal</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group label-floating">
+                              <label class="control-label">Avg Policy Size</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group label-floating">
+                              <label class="control-label">Avg Policy Size</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <br><br><br>
+                            <h2>Loans<br><br></h2>
+                          </div>
+                          <div class="col-sm-3">
+                            <span class="label label-primary">Business</span>
+                            <div class="form-group label-floating">
+                              <label class="control-label">% Business</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <span class="label label-primary">Personal</span>
+                            <div class="form-group label-floating">
+                              <label class="control-label">% Personal</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group label-floating">
+                              <label class="control-label">Avg Policy Size</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group label-floating">
+                              <label class="control-label">Avg Policy Size</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="text-center">
                   <a id="create_company" class="btn btn-lg btn-info">
                     <i class="material-icons">save</i>&nbsp;&nbsp;&nbsp;Save
@@ -491,6 +763,7 @@
         </div>
         <!-- End Tabs with icons on Card -->
       </div>
+      {{/if}}
     </div>
   </div>
 

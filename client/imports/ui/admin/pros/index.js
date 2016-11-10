@@ -79,7 +79,15 @@ Template.adminProInner.onCreated(function () {
   });
 
   Meteor.subscribe('companies.list');
-  Meteor.subscribe('pros.list');
+  Meteor.subscribe('pros.list', {
+    onReady: ()=> {
+      var pro = Collections.Users.findOne({
+        _id: this.data.id,
+        'profile.type': 'pro'
+      });
+      this.pros.set('pro', pro);
+    }
+  });
   Meteor.subscribe('leads.list');
 });
 
@@ -91,16 +99,7 @@ Template.adminProInner.onRendered(function () {
     }
   });
 
-
   document.title = 'Admin Dashboard';
-
-  if (Template.currentData().id !== 'new') {
-    var pro = Collections.Users.findOne({
-      _id: Template.currentData().id,
-      'profile.type': 'pro'
-    });
-    this.pros.set('pro', pro);
-  }
 
   //
   // paper-dashboard.js
@@ -115,7 +114,16 @@ Template.adminProInner.onRendered(function () {
 
 Template.adminProInner.helpers({
   pros: () => {
-    return Template.instance().pros.get('pro')
+    return Template.instance().pros.get('pro');
+  },
+  prosExist: () => {
+    return !_.isEmpty(Template.instance().pros.get('pro'));
+  },
+  getProEmail: (pro) => {
+    return pro.emails ? pro.emails[0].address : null;
+  },
+  print: (something) => {
+    console.log(something);
   },
   personalSpecialities: [
     "Home Loans",
