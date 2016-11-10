@@ -61,6 +61,7 @@ Template.adminCompanies.onRendered(function () {
 
   document.title = 'Admin Dashboard';
   Meteor.subscribe('companies.list');
+  Meteor.subscribe('pros.list');
 
   //
   // paper-dashboard.js
