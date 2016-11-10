@@ -133,22 +133,24 @@ Template.adminProInner.helpers({
   },
   getProLeads: (type) => {
     var pro = Template.instance().pros.get('pro');
-    var leads = Collections.Leads.find({
+    var findQuery = {
       agent: pro._id
-    }).fetch() || [];
+    };
     if (type) {
-      leads = _.find(leads, { status: type }) || [];
+      findQuery.status = type;
     }
+    var leads = Collections.Leads.find(findQuery).fetch() || [];
     return leads;
   },
   getProLeadsCount: (type) => {
     var pro = Template.instance().pros.get('pro');
-    var leads = Collections.Leads.find({
+    var findQuery = {
       agent: pro._id
-    }).fetch() || [];
+    };
     if (type) {
-      leads = _.find(leads, { status: type }) || [];
+      findQuery.status = type;
     }
+    var leads = Collections.Leads.find(findQuery).fetch() || [];
     return leads.length;
   },
   print: (something) => {

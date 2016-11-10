@@ -171,7 +171,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                {{#each getProLeads fresh}}
+                                {{#each getProLeads "fresh"}}
                                 <tr>
                                   <td class="td-name">
                                     <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
@@ -210,7 +210,7 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {{#each getProLeads open}}
+                                  {{#each getProLeads "open"}}
                                   <tr>
                                     <td class="td-name">
                                       <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
@@ -223,7 +223,7 @@
                                       {{getCreatedDate createdOn}}
                                     </td>
                                     <td>
-                                      <div class="label label-success">open</div>
+                                      <div class="label label-info">open</div>
                                     </td>
                                   </tr>
                                   {{/each}}
@@ -250,7 +250,7 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {{#each getProLeads dead}}
+                                  {{#each getProLeads "dead"}}
                                   <tr>
                                     <td class="td-name">
                                       <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
@@ -263,7 +263,7 @@
                                       {{getCreatedDate createdOn}}
                                     </td>
                                     <td>
-                                      <div class="label label-success">dead</div>
+                                      <div class="label label-danger">dead</div>
                                     </td>
                                   </tr>
                                   {{/each}}
@@ -291,7 +291,7 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {{#each getProLeads dead}}
+                                  {{#each getProLeads "closed"}}
                                   <tr>
                                     <td class="td-name">
                                       <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
@@ -304,7 +304,7 @@
                                       {{getCreatedDate createdOn}}
                                     </td>
                                     <td>
-                                      <div class="label label-success">closed</div>
+                                      <div class="label label-warning">closed</div>
                                     </td>
                                     <td>
                                       <div class="checkbox" style="display:block;vertical-align:middle;">
