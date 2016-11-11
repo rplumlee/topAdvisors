@@ -41,11 +41,6 @@ Template.adminLeads.helpers({
 });
 
 Template.adminLeads.events({
-  'click #logout'(event) {
-    Meteor.logout(() => {
-      Router.go('login');
-    });
-  },
   'click .leadModal'(event, instance) {
     instance.state.set('leadId', event.currentTarget.dataset.id);
   }

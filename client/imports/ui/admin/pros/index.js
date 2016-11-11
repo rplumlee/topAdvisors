@@ -35,11 +35,6 @@ Template.adminPros.helpers({
 });
 
 Template.adminPros.events({
-  'click #logout'(event) {
-    Meteor.logout(() => {
-      Router.go('login');
-    });
-  },
   'click .editPro'(event) {
     event.preventDefault();
     Router.go(`/admin/pros/${event.target.id}`);

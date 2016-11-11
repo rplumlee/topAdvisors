@@ -37,11 +37,6 @@ Template.adminCompanies.helpers({
 });
 
 Template.adminCompanies.events({
-  'click #logout'(event) {
-    Meteor.logout(() => {
-      Router.go('login');
-    });
-  },
   'click .add-company'(event) {
     event.preventDefault();
     Router.go('/admin/companies/new');

@@ -1,8 +1,10 @@
 import './imports/ui/static';
 import './imports/ui/home';
 import './imports/ui/login';
+import './imports/ui/pro';
 import './imports/ui/pro/leads';
 import './imports/ui/pro/profile';
+import './imports/ui/admin';
 import './imports/ui/admin/leads';
 import './imports/ui/admin/pros';
 import './imports/ui/admin/companies';
