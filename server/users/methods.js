@@ -34,9 +34,9 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
           lastName: String,
           jobTitle: String,
           about: String,
-          industry: Match.Maybe([String]),
-          personalSpecialty: Match.Maybe([String]),
-          businessSpecialty: Match.Maybe([String]),
+          industry: Match.Maybe([ String ]),
+          personalSpecialty: Match.Maybe([ String ]),
+          businessSpecialty: Match.Maybe([ String ]),
           performance: Match.Maybe({
             clientRetentionRate: Match.Maybe(String),
             annualProduction: Match.Maybe(String)
