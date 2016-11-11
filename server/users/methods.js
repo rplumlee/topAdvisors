@@ -12,6 +12,10 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
     * @params {object} params - user info
     */
     'users.create': function (params) {
+
+      // Ensure logged in user is an admin
+      lib.authorizeAdmin();
+
       check(params, Object);
       var inflatedData = Flat.unflatten(params);
 
@@ -60,6 +64,10 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
     * @params {object} params - company info
     */
     'companies.create': function (params) {
+
+      // Ensure logged in user is an admin
+      lib.authorizeAdmin();
+
       check(params, {
         name: String,
         address: {
