@@ -13,9 +13,41 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
     */
     'users.create': function (params) {
       check(params, Object);
+      var inflatedData = Flat.unflatten(params);
+
+      check(inflatedData, {
+        email: String,
+        password: String,
+        educations: Match.Maybe(Array),
+        licenses: Match.Maybe(Array),
+        designations: Match.Maybe(Array),
+        workHistories: Match.Maybe(Array),
+        trophies: Match.Maybe({
+          verified: Match.Maybe(Boolean),
+          veteran: Match.Maybe(Boolean),
+          contentContributor: Match.Maybe(Boolean),
+          topPerformer: Match.Maybe(Boolean),
+          customerFavorite: Match.Maybe(Boolean)
+        }),
+        profile: {
+          firstName: String,
+          lastName: String,
+          jobTitle: String,
+          about: String,
+          industry: Match.Maybe([String]),
+          personalSpecialty: Match.Maybe([String]),
+          businessSpecialty: Match.Maybe([String]),
+          performance: Match.Maybe({
+            clientRetentionRate: Match.Maybe(String),
+            annualProduction: Match.Maybe(String)
+          }),
+          focus: Match.Maybe(Object),
+          phone: Match.Maybe(String)
+        }
+      });
 
       // Create user
-      var id = Accounts.createUser(params);
+      var id = Accounts.createUser(inflatedData);
 
       // Accounts.sendEnrollmentEmail(id);
 

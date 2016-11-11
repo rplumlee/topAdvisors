@@ -296,5 +296,26 @@ Template.adminProInner.events({
   },
   'click .removeWorkHistory'(event, instance) {
     _handleRemoval(instance, 'workHistories', event.currentTarget.id);
+  },
+  'submit .add-pro-form' (event, instance) {
+    event.preventDefault();
+    var data = instance.pros.get('new');
+    _.each(event.target, function(t) {
+      if (t.name) {
+        if (t.type === 'checkbox') {
+          data[t.name] = t.checked;
+        } else if (!_.isEmpty(t.value)) {
+          data[t.name] = t.value;
+        }
+      }
+    });
+    Meteor.call('users.create', data, function (err, result) {
+      if (!err) {
+        Router.go(`/admin/pros/${result.user}`);
+        document.location.reload(true);
+      } else {
+        console.log(err);
+      }
+    })
   }
 });
