@@ -18,7 +18,7 @@ export default function ({ Meteor, Uploader }) {
         res.setHeader('Content-type', 'application/json');
         res.writeHead(200);
         res.end(JSON.stringify(response));
-      })
-    })
+      });
+    });
   });
 }

@@ -137,7 +137,7 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
 
     'companies.updateImage': function (params) {
       check(params, Object);
-      var id = Collections.Companies.update(
+      Collections.Companies.update(
         { _id: params.id },
         { $set: { image: params.image } }
       );
