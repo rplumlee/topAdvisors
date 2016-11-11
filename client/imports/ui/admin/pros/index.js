@@ -97,6 +97,7 @@ Template.adminProInner.onCreated(function () {
           Router.go('/admin/pros');
         }
         this.pros.set('pro', pro);
+        this.pros.set('new', { _id: pro._id });
       }
     });
     Meteor.subscribe('leads.list');
@@ -300,6 +301,7 @@ Template.adminProInner.events({
   'submit .add-pro-form' (event, instance) {
     event.preventDefault();
     var data = instance.pros.get('new');
+
     _.each(event.target, function(t) {
       if (t.name) {
         if (t.type === 'checkbox') {
@@ -309,6 +311,7 @@ Template.adminProInner.events({
         }
       }
     });
+
     Meteor.call('users.create', data, function (err, result) {
       if (!err) {
         Router.go(`/admin/pros/${result.user}`);

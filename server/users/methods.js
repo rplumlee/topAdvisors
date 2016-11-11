@@ -58,6 +58,32 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       return { success: true, user: id };
     },
 
+    'users.edit': function (params) {
+      check(params, Object);
+
+      // Ensure logged in user is an admin
+      lib.authorizeAdmin();
+
+      if (params.email) {
+        // Convert email to the format desired by db
+        params.emails = [{
+          address: params.email,
+          verified: false
+        }]
+      }
+
+      if (params.password) {
+        Accounts.setPassword(params._id, params.password);
+      }
+
+      // Create user
+      Collections.Users.update(
+        { _id: params._id },
+        { $set: params }
+      );
+
+      return { success: true };
+    },
     /**
     * Create a new company
     * @public
@@ -96,13 +122,13 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       // Ensure logged in user is an admin
       lib.authorizeAdmin();
 
-      // Create user
-      var id = Collections.Companies.update(
+      // Edit user
+      Collections.Companies.update(
         { _id: params._id },
-        { $set: Flat.flatten(params) }
+        { $set: Flat.flatten(params, { safe: true }) }
       );
 
-      return { success: true, company: id };
+      return { success: true };
     }
   });
 }
