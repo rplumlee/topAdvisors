@@ -45,7 +45,11 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
             clientRetentionRate: Match.Maybe(String),
             annualProduction: Match.Maybe(String)
           }),
-          focus: Match.Maybe(Object),
+          focus: Match.Maybe({
+            quickly: Match.Maybe(Boolean),
+            highReturns: Match.Maybe(Boolean),
+            education: Match.Maybe(Boolean),
+          }),
           phone: Match.Maybe(String)
         }
       });
