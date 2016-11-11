@@ -133,6 +133,16 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       );
 
       return { success: true };
+    },
+
+    'companies.updateImage': function (params) {
+      check(params, Object);
+      var id = Collections.Companies.update(
+        { _id: params.id },
+        { $set: { image: params.image } }
+      );
+
+      return { success: true };
     }
   });
 }

@@ -141,6 +141,22 @@ Template.adminCompanyInner.events({
         document.location.reload(true);
       }
     });
+  },
+  'focus .fileinput input'(event) {
+    var companyId = Template.instance().companies.get('company')._id;
+    if ($('.fileinput img')[1]) {
+      $.ajax({
+        type: "POST",
+        url: "/upload",
+        data: $('.fileinput img')[1].src,
+        success: function (response) {
+          Meteor.call('companies.updateImage', {
+            id: companyId,
+            image: response.secure_url
+          });
+        }
+      });
+    }
   }
 });
 

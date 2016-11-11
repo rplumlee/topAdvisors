@@ -6,6 +6,7 @@ import Collections from '/lib/collections';
 import lib from '/server/lib';
 
 import logger from './logger';
+import uploader from './uploader';
 import users from './users';
 import leads from './leads';
 // import activities from './activities';
@@ -22,6 +23,7 @@ var context = {
 Meteor.startup(() => {
   lib.init(context);
   logger(context);
+  uploader(context);
   users(context);
   leads(context);
   // activities(context);
