@@ -320,5 +320,55 @@ Template.adminProInner.events({
         console.log(err);
       }
     })
-  }
+  },
+  'submit .edit-pro-form' (event, instance) {
+    event.preventDefault();
+    var data = instance.pros.get('new');
+
+    _.each(event.target, function(t) {
+      if (t.name) {
+        if (t.type === 'checkbox') {
+          data[t.name] = t.checked;
+        } else if (!_.isEmpty(t.value)) {
+          data[t.name] = t.value;
+        }
+      }
+    });
+
+    Meteor.call('users.edit', data, function (err, result) {
+      if (!err) {
+        document.location.reload(true);
+      } else {
+        console.log(err);
+      }
+    });
+  },
+
+  'click .deactivate-pro'(event, instance) {
+    var data = {
+      _id: instance.pros.get('new')._id,
+      active: false
+    };
+    Meteor.call('users.edit', data, function (err, result) {
+      if (!err) {
+        document.location.reload(true);
+      } else {
+        console.log(err);
+      }
+    });
+  },
+
+  'click .activate-pro'(event, instance) {
+    var data = {
+      _id: instance.pros.get('new')._id,
+      active: true
+    };
+    Meteor.call('users.edit', data, function (err, result) {
+      if (!err) {
+        document.location.reload(true);
+      } else {
+        console.log(err);
+      }
+    });
+  },
 });
