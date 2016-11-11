@@ -70,10 +70,10 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
 
       if (params.email) {
         // Convert email to the format desired by db
-        params.emails = [{
+        params.emails = [ {
           address: params.email,
           verified: false
-        }]
+        } ];
       }
 
       if (params.password) {
