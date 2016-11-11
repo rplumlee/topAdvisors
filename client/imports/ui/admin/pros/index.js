@@ -7,10 +7,10 @@ import './manage_pros.html';
 import './pro_inner.html';
 
 var _handleRemoval = function (instance, dataSet, currentId) {
-  var data = instance.pros.get('pro');
+  var data = instance.pros.get('new');
   var pos = _.findIndex(data[dataSet], (o) => { return o.id == currentId; });
   data[dataSet].splice(pos, 1);
-  instance.pros.set('pro', data);
+  instance.pros.set('new', data);
 };
 
 var _resetFields = function (fieldsArray) {
@@ -79,7 +79,8 @@ Template.adminPros.onCreated(function () {
 Template.adminProInner.onCreated(function () {
   this.pros = new ReactiveDict();
   this.pros.setDefault({
-    pro: {}
+    pro: {},
+    new: {}
   });
 
   Meteor.subscribe('companies.list');
@@ -125,6 +126,9 @@ Template.adminProInner.onRendered(function () {
 
 Template.adminProInner.helpers({
   pros: () => {
+    if (_.isEmpty(Template.instance().pros.get('pro'))) {
+      return Template.instance().pros.get('new');
+    }
     return Template.instance().pros.get('pro');
   },
   prosExist: () => {
@@ -204,43 +208,38 @@ Template.adminProInner.helpers({
 });
 
 Template.adminProInner.events({
-  'change .proForm'(event, instance) {
-    var data = instance.pros.get('pro');
-    data[event.currentTarget.id] = event.currentTarget.value;
-    instance.pros.set('pro', data);
-  },
   'change .businessSpecialty'(event, instance) {
-    var data = instance.pros.get('pro');
+    var data = instance.pros.get('new');
     data.profile = data.profile || {};
     data.profile.businessSpecialty = data.profile.businessSpecialty || [];
     if (data.profile.businessSpecialty.indexOf(event.currentTarget.value) === -1) {
       data.profile.businessSpecialty.push(event.currentTarget.value);
     }
-    instance.pros.set('pro', data);
+    instance.pros.set('new', data);
   },
   'change .personalSpecialty'(event, instance) {
-    var data = instance.pros.get('pro');
+    var data = instance.pros.get('new');
     data.profile = data.profile || {};
     data.profile.personalSpecialty = data.profile.personalSpecialty || [];
     if (data.profile.personalSpecialty.indexOf(event.currentTarget.value) === -1) {
       data.profile.personalSpecialty.push(event.currentTarget.value);
     }
-    instance.pros.set('pro', data);
+    instance.pros.set('new', data);
   },
   'click .businessSpecialtyRemove'(event, instance) {
-    var data = instance.pros.get('pro');
+    var data = instance.pros.get('new');
     var pos = data.profile.businessSpecialty.indexOf(event.currentTarget.id);
     data.profile.businessSpecialty.splice(pos, 1);
-    instance.pros.set('pro', data);
+    instance.pros.set('new', data);
   },
   'click .personalSpecialtyRemove'(event, instance) {
-    var data = instance.pros.get('pro');
+    var data = instance.pros.get('new');
     var pos = data.profile.personalSpecialty.indexOf(event.currentTarget.id);
     data.profile.personalSpecialty.splice(pos, 1);
-    instance.pros.set('pro', data);
+    instance.pros.set('new', data);
   },
   'click .addCollege'(event, instance) {
-    var data = instance.pros.get('pro');
+    var data = instance.pros.get('new');
     data.educations = data.educations || [];
     data.educations.push({
       id: Date.now(),
@@ -249,10 +248,10 @@ Template.adminProInner.events({
       yearGraduated: $('#college_year')[0].value
     });
     _resetFields(['#college_name', '#college_degree', '#college_year']);
-    instance.pros.set('pro', data);
+    instance.pros.set('new', data);
   },
   'click .addLicense'(event, instance) {
-    var data = instance.pros.get('pro');
+    var data = instance.pros.get('new');
     data.licenses = data.licenses || [];
     data.licenses.push({
       id: Date.now(),
@@ -261,10 +260,10 @@ Template.adminProInner.events({
       dateEarned: $('#license_date')[0].value
     });
     _resetFields(['#license_name', '#license_number', '#license_date']);
-    instance.pros.set('pro', data);
+    instance.pros.set('new', data);
   },
   'click .addDesignation'(event, instance) {
-    var data = instance.pros.get('pro');
+    var data = instance.pros.get('new');
     data.designations = data.designations || [];
     data.designations.push({
       id: Date.now(),
@@ -273,10 +272,10 @@ Template.adminProInner.events({
       dateEarned: $('#designation_date')[0].value
     });
     _resetFields(['#designation_name', '#designation_number', '#designation_date']);
-    instance.pros.set('pro', data);
+    instance.pros.set('new', data);
   },
   'click .addWorkHistory'(event, instance) {
-    var data = instance.pros.get('pro');
+    var data = instance.pros.get('new');
     data.workHistories = data.workHistories || [];
     data.workHistories.push({
       id: Date.now(),
@@ -284,7 +283,7 @@ Template.adminProInner.events({
       yearRange: $('#workHistory_year')[0].value
     });
     _resetFields(['#workHistory_company', '#workHistory_year']);
-    instance.pros.set('pro', data);
+    instance.pros.set('new', data);
   },
   'click .removeCollege'(event, instance) {
     _handleRemoval(instance, 'educations', event.currentTarget.id);
