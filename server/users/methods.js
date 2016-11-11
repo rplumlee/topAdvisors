@@ -12,22 +12,92 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
     * @params {object} params - user info
     */
     'users.create': function (params) {
+
+      // Ensure logged in user is an admin
+      lib.authorizeAdmin();
+
       check(params, Object);
+      var inflatedData = Flat.unflatten(params);
+
+      check(inflatedData, {
+        email: String,
+        password: String,
+        educations: Match.Maybe(Array),
+        licenses: Match.Maybe(Array),
+        designations: Match.Maybe(Array),
+        workHistories: Match.Maybe(Array),
+        trophies: Match.Maybe({
+          verified: Match.Maybe(Boolean),
+          veteran: Match.Maybe(Boolean),
+          contentContributor: Match.Maybe(Boolean),
+          topPerformer: Match.Maybe(Boolean),
+          customerFavorite: Match.Maybe(Boolean)
+        }),
+        profile: {
+          firstName: String,
+          lastName: String,
+          jobTitle: String,
+          about: String,
+          industry: Match.Maybe([ String ]),
+          personalSpecialty: Match.Maybe([ String ]),
+          businessSpecialty: Match.Maybe([ String ]),
+          performance: Match.Maybe({
+            clientRetentionRate: Match.Maybe(String),
+            annualProduction: Match.Maybe(String)
+          }),
+          focus: Match.Maybe({
+            quickly: Match.Maybe(Boolean),
+            highReturns: Match.Maybe(Boolean),
+            education: Match.Maybe(Boolean),
+          }),
+          phone: Match.Maybe(String)
+        }
+      });
 
       // Create user
-      var id = Accounts.createUser(params);
+      var id = Accounts.createUser(inflatedData);
 
       // Accounts.sendEnrollmentEmail(id);
 
       return { success: true, user: id };
     },
 
+    'users.edit': function (params) {
+      check(params, Object);
+
+      // Ensure logged in user is an admin
+      lib.authorizeAdmin();
+
+      if (params.email) {
+        // Convert email to the format desired by db
+        params.emails = [ {
+          address: params.email,
+          verified: false
+        } ];
+      }
+
+      if (params.password) {
+        Accounts.setPassword(params._id, params.password);
+      }
+
+      // Create user
+      Collections.Users.update(
+        { _id: params._id },
+        { $set: params }
+      );
+
+      return { success: true };
+    },
     /**
     * Create a new company
     * @public
     * @params {object} params - company info
     */
     'companies.create': function (params) {
+
+      // Ensure logged in user is an admin
+      lib.authorizeAdmin();
+
       check(params, {
         name: String,
         address: {
@@ -56,13 +126,13 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       // Ensure logged in user is an admin
       lib.authorizeAdmin();
 
-      // Create user
-      var id = Collections.Companies.update(
+      // Edit user
+      Collections.Companies.update(
         { _id: params._id },
-        { $set: Flat.flatten(params) }
+        { $set: Flat.flatten(params, { safe: true }) }
       );
 
-      return { success: true, company: id };
+      return { success: true };
     }
   });
 }

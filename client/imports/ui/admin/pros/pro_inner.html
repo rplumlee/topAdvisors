@@ -1,32 +1,7 @@
 <template name="adminProInner">
-  <nav class="navbar navbar-fixed-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html">TopAdvisors</a>
-      </div>
-
-      <div class="collapse navbar-collapse" id="navigation-example">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="#" id="logout">
-              <i class="material-icons">account_circle</i> Sign Out
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  {{> adminNavbar }}
   <div class="sidebar" data-color="blue" data-image="/assets/img/sidebar-4.jpg">
-
     <div class="sidebar-wrapper">
-
       <ul class="nav">
         <li>
           <a href="/admin/leads">
@@ -86,396 +61,248 @@
                 <div class="row">
                   <div class="col-xs-12">
                     <h3>{{pros.profile.firstName}} {{pros.profile.lastName}}'s Account is {{#if pros.active}}active{{else}}deactivated{{/if}}
-                      <a class="btn btn-sm btn-{{#if pros.active}}danger{{else}}success{{/if}}" href="#"> {{#if pros.active}}Deactivate{{else}}Activate{{/if}}</a></h3>
+                      <a class="btn btn-sm btn-{{#if pros.active}}danger de{{else}}success {{/if}}activate-pro" href="#"> {{#if pros.active}}Deactivate{{else}}Activate{{/if}}</a></h3>
+                    </div>
                   </div>
-                </div>
-                <div class="row text-center">
-                  <br><br>
-                  <div class="col-xs-3">
-                    <h2>{{ getProLeadsCount }}</h2>
-                    <h5>Total Leads</h5>
-                  </div>
-                  <div class="col-xs-3">
-                    <h2>{{ getProLeadsCount "closed"}}</h2>
-                    <h5>Closed Leads</h5>
-                  </div>
-                  <div class="col-xs-3">
-                    <h2>N/A</h2>
-                    <h5>Total Page Views</h5>
-                  </div>
-                  <div class="col-xs-3">
-                    <h2>{{ getCreatedDate }}</h2>
-                    <h5>Signed Up</h5>
+                  <div class="row text-center">
+                    <br><br>
+                    <div class="col-xs-3">
+                      <h2>{{ getProLeadsCount }}</h2>
+                      <h5>Total Leads</h5>
+                    </div>
+                    <div class="col-xs-3">
+                      <h2>{{ getProLeadsCount "closed"}}</h2>
+                      <h5>Closed Leads</h5>
+                    </div>
+                    <div class="col-xs-3">
+                      <h2>N/A</h2>
+                      <h5>Total Page Views</h5>
+                    </div>
+                    <div class="col-xs-3">
+                      <h2>{{ getCreatedDate }}</h2>
+                      <h5>Signed Up</h5>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          {{/if}}
-          <!--                nav tabs	             -->
-          <div id="nav-tabs">
-            {{#if prosExist}}
-            <!-- Tabs with icons on Card -->
-            <div class="card card-nav-tabs">
-              <div class="header header-warning">
-                <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
-                <div class="nav-tabs-navigation">
-                  <div class="nav-tabs-wrapper">
-                    <ul class="nav nav-tabs" data-tabs="tabs">
-                      <li class="active">
-                        <a href="#fresh" data-toggle="tab">
-                          <i class="material-icons">people</i>
-                          fresh leads
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#open" data-toggle="tab">
-                          <i class="material-icons">chat</i>
-                          open leads
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#dead" data-toggle="tab">
-                          <i class="material-icons">thumb_down</i>
-                          dead leads
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#closed" data-toggle="tab">
-                          <i class="material-icons">thumb_up</i>
-                          closed leads
-                        </a>
+            {{/if}}
+            <!--                nav tabs	             -->
+            <div id="nav-tabs">
+              {{#if prosExist}}
+              <!-- Tabs with icons on Card -->
+              <div class="card card-nav-tabs">
+                <div class="header header-warning">
+                  <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                  <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                      <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="active">
+                          <a href="#fresh" data-toggle="tab">
+                            <i class="material-icons">people</i>
+                            fresh leads
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#open" data-toggle="tab">
+                            <i class="material-icons">chat</i>
+                            open leads
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#dead" data-toggle="tab">
+                            <i class="material-icons">thumb_down</i>
+                            dead leads
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#closed" data-toggle="tab">
+                            <i class="material-icons">thumb_up</i>
+                            closed leads
+                          </a>
 
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="content">
-
-                <div class="tab-content text-center">
-                  <h2>{{pros.profile.firstName}}'s Leads</h2>
-                  <br>
-                  <div class="tab-pane active" id="fresh">
-                    <div class="content">
-                      <div class="row" style="margin:0 -10px;">
-                        <div class="col-md-8">
-                          <div class="table-responsive table-striped">
-                            <table class="table table-shopping">
-                              <thead>
-                                <tr>
-                                  <th>Pro name</th>
-                                  <th class="th-description">lead name</th>
-                                  <th class="th-description">date</th>
-                                  <th class="th-description">status</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {{#each getProLeads "fresh"}}
-                                <tr>
-                                  <td class="td-name">
-                                    <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
-                                    <br /><small>{{purpose}}</small>
-                                  </td>
-                                  <td>
-                                    {{profile.firstName}} {{profile.lastName}}
-                                  </td>
-                                  <td>
-                                    {{getCreatedDate createdOn}}
-                                  </td>
-                                  <td>
-                                    <div class="label label-success">fresh</div>
-                                  </td>
-                                </tr>
-                                {{/each}}
-                              </tbody>
-                            </table>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>        </div>
-                    <div class="tab-pane" id="open">
-                      <div class="content">
-                        <div class="row" style="margin:0 -10px;">
-                          <div class="col-md-8">
-                            <div class="table-responsive table-striped">
-                              <table class="table table-shopping">
-                                <thead>
-                                  <tr>
-                                    <th>Pro name</th>
-                                    <th class="th-description">lead name</th>
-                                    <th class="th-description">date</th>
-                                    <th class="th-description">status</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {{#each getProLeads "open"}}
-                                  <tr>
-                                    <td class="td-name">
-                                      <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
-                                      <br /><small>{{purpose}}</small>
-                                    </td>
-                                    <td>
-                                      {{profile.firstName}} {{profile.lastName}}
-                                    </td>
-                                    <td>
-                                      {{getCreatedDate createdOn}}
-                                    </td>
-                                    <td>
-                                      <div class="label label-info">open</div>
-                                    </td>
-                                  </tr>
-                                  {{/each}}
-                                </tbody>
-                              </table>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane" id="dead">
-                      <div class="content">
-                        <div class="row" style="margin:0 -10px;">
-                          <div class="col-md-8">
-                            <div class="table-responsive table-striped">
-                              <table class="table table-shopping">
-                                <thead>
-                                  <tr>
-                                    <th>Pro name</th>
-                                    <th class="th-description">lead name</th>
-                                    <th class="th-description">date</th>
-                                    <th class="th-description">status</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {{#each getProLeads "dead"}}
-                                  <tr>
-                                    <td class="td-name">
-                                      <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
-                                      <br /><small>{{purpose}}</small>
-                                    </td>
-                                    <td>
-                                      {{profile.firstName}} {{profile.lastName}}
-                                    </td>
-                                    <td>
-                                      {{getCreatedDate createdOn}}
-                                    </td>
-                                    <td>
-                                      <div class="label label-danger">dead</div>
-                                    </td>
-                                  </tr>
-                                  {{/each}}
-                                </tbody>
-                              </table>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane" id="closed">
-                      <div class="content">
-                        <div class="row" style="margin:0 -10px;">
-                          <div class="col-md-8">
-                            <div class="table-responsive table-striped">
-                              <table class="table table-shopping">
-                                <thead>
-                                  <tr>
-                                    <th>Pro name</th>
-                                    <th class="th-description">lead name</th>
-                                    <th class="th-description">date</th>
-                                    <th class="th-description">status</th>
-                                    <th class="th-description">paid?</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {{#each getProLeads "closed"}}
-                                  <tr>
-                                    <td class="td-name">
-                                      <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
-                                      <br /><small>{{purpose}}</small>
-                                    </td>
-                                    <td>
-                                      {{profile.firstName}} {{profile.lastName}}
-                                    </td>
-                                    <td>
-                                      {{getCreatedDate createdOn}}
-                                    </td>
-                                    <td>
-                                      <div class="label label-warning">closed</div>
-                                    </td>
-                                    <td>
-                                      <div class="checkbox" style="display:block;vertical-align:middle;">
-                                        <label>
-                                          <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if paid}}true{{/if}}">
-                                          <span class="checkbox-material"><span class="check"></span></span>
-                                        </label>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  {{/each}}
-                                </tbody>
-                              </table>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>  </div>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
-                {{/if}}
+                <div class="content">
 
-                <div id="nav-tabs">
-                  <!-- Tabs with icons on Card -->
-                  <div class="card card-nav-tabs">
-                    <div class="header header-info">
-                      <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
-                      <div class="nav-tabs-navigation">
-                        <div class="nav-tabs-wrapper">
-                          <ul class="nav nav-tabs" data-tabs="tabs">
-                            <li class="active">
-                              <a href="#fresh" data-toggle="tab">
-                                <i class="material-icons">person_outline</i>
-                                Personal Info
-                              </a>
-                            </li>
-                          </ul>
+                  <div class="tab-content text-center">
+                    <h2>{{pros.profile.firstName}}'s Leads</h2>
+                    <br>
+                    <div class="tab-pane active" id="fresh">
+                      <div class="content">
+                        <div class="row" style="margin:0 -10px;">
+                          <div class="col-md-8">
+                            <div class="table-responsive table-striped">
+                              <table class="table table-shopping">
+                                <thead>
+                                  <tr>
+                                    <th>Pro name</th>
+                                    <th class="th-description">lead name</th>
+                                    <th class="th-description">date</th>
+                                    <th class="th-description">status</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {{#each getProLeads "fresh"}}
+                                  <tr>
+                                    <td class="td-name">
+                                      <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
+                                      <br /><small>{{purpose}}</small>
+                                    </td>
+                                    <td>
+                                      {{profile.firstName}} {{profile.lastName}}
+                                    </td>
+                                    <td>
+                                      {{getCreatedDate createdOn}}
+                                    </td>
+                                    <td>
+                                      <div class="label label-success">fresh</div>
+                                    </td>
+                                  </tr>
+                                  {{/each}}
+                                </tbody>
+                              </table>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>        </div>
+                      <div class="tab-pane" id="open">
+                        <div class="content">
+                          <div class="row" style="margin:0 -10px;">
+                            <div class="col-md-8">
+                              <div class="table-responsive table-striped">
+                                <table class="table table-shopping">
+                                  <thead>
+                                    <tr>
+                                      <th>Pro name</th>
+                                      <th class="th-description">lead name</th>
+                                      <th class="th-description">date</th>
+                                      <th class="th-description">status</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {{#each getProLeads "open"}}
+                                    <tr>
+                                      <td class="td-name">
+                                        <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
+                                        <br /><small>{{purpose}}</small>
+                                      </td>
+                                      <td>
+                                        {{profile.firstName}} {{profile.lastName}}
+                                      </td>
+                                      <td>
+                                        {{getCreatedDate createdOn}}
+                                      </td>
+                                      <td>
+                                        <div class="label label-info">open</div>
+                                      </td>
+                                    </tr>
+                                    {{/each}}
+                                  </tbody>
+                                </table>
+                              </div>
+
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="content">
-                      <div class="tab-content">
-                        <div class="row">
-                          <div class="col-sm-3">
-                            <div class="form-group label-floating">
-                              <label class="control-label"><i class="material-icons">person</i>&nbsp;&nbsp;&nbsp;First Name</label>
-                              <input id="pro_fistname" type="text" class="form-control proForm" value="{{ pros.profile.firstName }}">
-                            </div>
-                          </div>
-                          <div class="col-sm-3">
-                            <div class="form-group label-floating">
-                              <label class="control-label">Last Name</label>
-                              <input id="pro_lastname" type="text" class="form-control proForm" value="{{ pros.profile.lastName }}">
-                            </div>
-                          </div>
-                        </div>
+                      <div class="tab-pane" id="dead">
+                        <div class="content">
+                          <div class="row" style="margin:0 -10px;">
+                            <div class="col-md-8">
+                              <div class="table-responsive table-striped">
+                                <table class="table table-shopping">
+                                  <thead>
+                                    <tr>
+                                      <th>Pro name</th>
+                                      <th class="th-description">lead name</th>
+                                      <th class="th-description">date</th>
+                                      <th class="th-description">status</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {{#each getProLeads "dead"}}
+                                    <tr>
+                                      <td class="td-name">
+                                        <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
+                                        <br /><small>{{purpose}}</small>
+                                      </td>
+                                      <td>
+                                        {{profile.firstName}} {{profile.lastName}}
+                                      </td>
+                                      <td>
+                                        {{getCreatedDate createdOn}}
+                                      </td>
+                                      <td>
+                                        <div class="label label-danger">dead</div>
+                                      </td>
+                                    </tr>
+                                    {{/each}}
+                                  </tbody>
+                                </table>
+                              </div>
 
-                        <div class="row">
-                          <div class="col-sm-3">
-                            <div class="form-group label-floating">
-                              <label class="control-label"><i class="material-icons">phone</i>&nbsp;&nbsp;&nbsp;Phone Number</label>
-                              <input id="pro_phone" type="text" class="form-control proForm" value="{{pros.profile.phone}}">
                             </div>
                           </div>
                         </div>
+                      </div>
+                      <div class="tab-pane" id="closed">
+                        <div class="content">
+                          <div class="row" style="margin:0 -10px;">
+                            <div class="col-md-8">
+                              <div class="table-responsive table-striped">
+                                <table class="table table-shopping">
+                                  <thead>
+                                    <tr>
+                                      <th>Pro name</th>
+                                      <th class="th-description">lead name</th>
+                                      <th class="th-description">date</th>
+                                      <th class="th-description">status</th>
+                                      <th class="th-description">paid?</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {{#each getProLeads "closed"}}
+                                    <tr>
+                                      <td class="td-name">
+                                        <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
+                                        <br /><small>{{purpose}}</small>
+                                      </td>
+                                      <td>
+                                        {{profile.firstName}} {{profile.lastName}}
+                                      </td>
+                                      <td>
+                                        {{getCreatedDate createdOn}}
+                                      </td>
+                                      <td>
+                                        <div class="label label-warning">closed</div>
+                                      </td>
+                                      <td>
+                                        <div class="checkbox" style="display:block;vertical-align:middle;">
+                                          <label>
+                                            <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if paid}}true{{/if}}">
+                                            <span class="checkbox-material"><span class="check"></span></span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    {{/each}}
+                                  </tbody>
+                                </table>
+                              </div>
 
-                        <div class="row">
-                          <div class="col-sm-3">
-                            <div class="form-group label-floating">
-                              <label class="control-label"><i class="material-icons">mail</i>&nbsp;&nbsp;&nbsp;Email Address</label>
-                              <input id="pro_email" type="email" class="form-control proForm" value="{{ getProEmail pros }}">
                             </div>
                           </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-sm-3">
-                            <div class="form-group label-floating">
-                              <label class="control-label"><i class="material-icons">lock</i>&nbsp;&nbsp;&nbsp;Password</label>
-                              <input id="pro_password" type="password" class="form-control proForm">
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group label-floating">
-                              <label class="control-label"><i class="material-icons">create</i> About Me</label>
-                              <textarea id="pro_about" class="form-control proForm" rows="5">{{ pros.profile.about }}</textarea>
-                            </div>
-                          </div>
-                        </div>
+                        </div>  </div>
                       </div>
                     </div>
                   </div>
-
-                  <div id="nav-tabs">
-                    <!-- Tabs with icons on Card -->
-                    <div class="card card-nav-tabs">
-                      <div class="header header-info">
-                        <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
-                        <div class="nav-tabs-navigation">
-                          <div class="nav-tabs-wrapper">
-                            <ul class="nav nav-tabs" data-tabs="tabs">
-                              <li class="active">
-                                <a href="#fresh" data-toggle="tab">
-                                  <i class="material-icons">store</i>
-                                  Work Info
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="content">
-                        <div class="tab-content">
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <div class="form-group label-floating">
-                                <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Company</label>
-                                <select class="select form-control">
-                                  {{#each companies}}
-                                  <option value="{{this.name}}">{{this.name}}</option>
-                                  {{/each}}
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <div class="form-group label-floating">
-                                <label class="control-label"><i class="material-icons">person_outline</i>&nbsp;&nbsp;&nbsp;Job Title</label>
-                                <input type="text" class="form-control proForm" value="{{ pros.profile.jobTitle }}">
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <select class="select form-control personalSpecialty" placeholder="Choose Specialties (can choose multiple)">
-                                <option disabled selected class="disabled"> Personal Specialties (can choose multiple)</option>
-                                {{#each personalSpecialities}}
-                                <option value="{{this}}">{{this}}</option>
-                                {{/each}}
-                              </select>
-                              {{#each pros.profile.personalSpecialty}}
-                              <div class="specialty">
-                                {{this}}<a  class="personalSpecialtyRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
-                              </div>
-                              {{/each}}
-                            </div>
-                            <div class="col-sm-3">
-                              <select class="select form-control businessSpecialty" placeholder="Choose Specialties (can choose multiple)">
-                                <option disabled selected class="disabled"> Business Specialties (can choose multiple)</option>
-                                {{#each businessSpecialities}}
-                                <option value="{{this}}">{{this}}</option>
-                                {{/each}}
-                              </select>
-                              {{#each pros.profile.businessSpecialty}}
-                              <div class="specialty">
-                                {{this}}<a class="businessSpecialtyRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
-                              </div>
-                              {{/each}}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
+                  {{/if}}
+                  <form class="{{#if prosExist}}edit{{else}}add{{/if}}-pro-form">
                     <div id="nav-tabs">
                       <!-- Tabs with icons on Card -->
                       <div class="card card-nav-tabs">
@@ -486,8 +313,8 @@
                               <ul class="nav nav-tabs" data-tabs="tabs">
                                 <li class="active">
                                   <a href="#fresh" data-toggle="tab">
-                                    <i class="material-icons">list</i>
-                                    Resume
+                                    <i class="material-icons">person_outline</i>
+                                    Personal Info
                                   </a>
                                 </li>
                               </ul>
@@ -499,158 +326,56 @@
                             <div class="row">
                               <div class="col-sm-3">
                                 <div class="form-group label-floating">
-                                  <label class="control-label"><i class="material-icons">account_balance</i>&nbsp;&nbsp;&nbsp;College Name</label>
-                                  <input id="college_name" type="text" class="form-control">
+                                  <label class="control-label"><i class="material-icons">person</i>&nbsp;&nbsp;&nbsp;First Name</label>
+                                  <input name="profile.firstName" type="text" class="form-control proForm" value="{{ pros.profile.firstName }}">
                                 </div>
                               </div>
                               <div class="col-sm-3">
                                 <div class="form-group label-floating">
-                                  <label class="control-label">Degree Earned</label>
-                                  <input id="college_degree" type="text" class="form-control">
+                                  <label class="control-label">Last Name</label>
+                                  <input name="profile.lastName" type="text" class="form-control proForm" value="{{ pros.profile.lastName }}">
                                 </div>
                               </div>
-                              <div class="col-sm-2">
-                                <div class="form-group label-floating">
-                                  <label class="control-label">Year Graduated</label>
-                                  <input id="college_year" type="text" class="form-control">
-                                </div>
-                              </div>
-                              <div class="col-xs-1">
-                                <a class="btn btn-info btn-sm admin-add addCollege" href="#"><i class="material-icons">add</i></a>
-                              </div>
                             </div>
-
-                            {{#each pros.educations}}
-                            <div class="row degree">
-                              <div class="col-sm-3">
-                                {{this.collegeName}}
-                              </div>
-                              <div class="col-sm-3">
-                                {{this.degreeEarned}}
-                              </div>
-                              <div class="col-sm-2">
-                                {{this.yearGraduated}}
-                              </div>
-                              <div class="col-xs-1">
-                                <a id="{{this.id}}" href="#" class="text-danger removeCollege"><i class="material-icons">close</i></a>
-                              </div>
-                            </div>
-                            {{/each}}
 
                             <div class="row">
                               <div class="col-sm-3">
                                 <div class="form-group label-floating">
-                                  <label class="control-label"><i class="material-icons">list</i>&nbsp;&nbsp;&nbsp;License</label>
-                                  <input id="license_name" type="text" class="form-control">
+                                  <label class="control-label"><i class="material-icons">phone</i>&nbsp;&nbsp;&nbsp;Phone Number</label>
+                                  <input name="profile.phone" type="text" class="form-control proForm" value="{{pros.profile.phone}}">
                                 </div>
-                              </div>
-                              <div class="col-sm-3">
-                                <div class="form-group label-floating">
-                                  <label class="control-label">License Number</label>
-                                  <input id="license_number" type="text" class="form-control">
-                                </div>
-                              </div>
-                              <div class="col-sm-2">
-                                <div class="form-group label-floating">
-                                  <label class="control-label">Date Earned</label>
-                                  <input id="license_date" type="text" class="form-control">
-                                </div>
-                              </div>
-                              <div class="col-xs-1">
-                                <a class="btn btn-info btn-sm admin-add addLicense" href="#"><i class="material-icons">add</i></a>
                               </div>
                             </div>
-                            {{#each pros.licenses}}
-                            <div class="row license">
-                              <div class="col-sm-3">
-                                {{this.license}}
-                              </div>
-                              <div class="col-sm-3">
-                                {{this.licenseNumber}}
-                              </div>
-                              <div class="col-sm-2">
-                                {{this.dateEarned}}
-                              </div>
-                              <div class="col-xs-1">
-                                <a id="{{this.id}}" href="#" class="text-danger removeLicense"><i class="material-icons">close</i></a>
-                              </div>
-                            </div>
-                            {{/each}}
 
                             <div class="row">
                               <div class="col-sm-3">
                                 <div class="form-group label-floating">
-                                  <label class="control-label"><i class="material-icons">person_add</i>&nbsp;&nbsp;&nbsp;Designation</label>
-                                  <input id="designation_name" type="text" class="form-control proForm">
+                                  <label class="control-label"><i class="material-icons">mail</i>&nbsp;&nbsp;&nbsp;Email Address</label>
+                                  <input type="email" name="email" class="form-control proForm" value="{{ getProEmail pros }}">
                                 </div>
-                              </div>
-                              <div class="col-sm-3">
-                                <div class="form-group label-floating">
-                                  <label class="control-label">Designation Number</label>
-                                  <input id="designation_number" type="text" class="form-control proForm">
-                                </div>
-                              </div>
-                              <div class="col-sm-2">
-                                <div class="form-group label-floating">
-                                  <label class="control-label">Date Earned</label>
-                                  <input id="designation_date" type="text" class="form-control proForm">
-                                </div>
-                              </div>
-                              <div class="col-xs-1">
-                                <a class="btn btn-info btn-sm admin-add addDesignation" href="#"><i class="material-icons">add</i></a>
                               </div>
                             </div>
-                            {{#each pros.designations}}
-                            <div class="row designation">
-                              <div class="col-sm-3">
-                                {{this.designation}}
-                              </div>
-                              <div class="col-sm-3">
-                                {{this.designationNumber}}
-                              </div>
-                              <div class="col-sm-2">
-                                {{this.dateEarned}}
-                              </div>
-                              <div class="col-xs-1">
-                                <a id="{{this.id}}" href="#" class="text-danger removeDesignation"><i class="material-icons">close</i></a>
-                              </div>
-                            </div>
-                            {{/each}}
 
                             <div class="row">
                               <div class="col-sm-3">
                                 <div class="form-group label-floating">
-                                  <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Previous Company</label>
-                                  <input id="workHistory_company" type="text" class="form-control">
+                                  <label class="control-label"><i class="material-icons">lock</i>&nbsp;&nbsp;&nbsp;Password</label>
+                                  <input name="password" type="password" class="form-control proForm">
                                 </div>
                               </div>
-                              <div class="col-sm-3">
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-6">
                                 <div class="form-group label-floating">
-                                  <label class="control-label">Dates Worked</label>
-                                  <input id="workHistory_year" type="text" class="form-control">
+                                  <label class="control-label"><i class="material-icons">create</i> About Me</label>
+                                  <textarea name="profile.about" class="form-control proForm" rows="5">{{ pros.profile.about }}</textarea>
                                 </div>
                               </div>
-                              <div class="col-xs-1">
-                                <a class="btn btn-info btn-sm admin-add addWorkHistory" href="#"><i class="material-icons">add</i></a>
-                              </div>
                             </div>
-                            {{#each pros.workHistories}}
-                            <div class="row workHistory">
-                              <div class="col-sm-3">
-                                {{this.companyName}}
-                              </div>
-                              <div class="col-sm-3">
-                                {{this.yearRange}}
-                              </div>
-                              <div class="col-xs-1">
-                                <a id="{{this.id}}" href="#" class="text-danger removeWorkHistory"><i class="material-icons">close</i></a>
-                              </div>
-                            </div>
-                            {{/each}}
                           </div>
                         </div>
                       </div>
-
 
                       <div id="nav-tabs">
                         <!-- Tabs with icons on Card -->
@@ -662,157 +387,65 @@
                                 <ul class="nav nav-tabs" data-tabs="tabs">
                                   <li class="active">
                                     <a href="#fresh" data-toggle="tab">
-                                      <i class="material-icons">folder_special</i>
-                                      Trophies
+                                      <i class="material-icons">store</i>
+                                      Work Info
                                     </a>
                                   </li>
                                 </ul>
                               </div>
                             </div>
                           </div>
-
                           <div class="content">
                             <div class="tab-content">
                               <div class="row">
-                                <div class="col-xs-3">
-                                  Verified
-                                </div>
-                                <div class="col-xs-3">
-                                  <div class="checkbox" style="display:block;vertical-align:middle;">
-                                    <label>
-                                      <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.verified}}true{{/if}}">
-                                      <span class="checkbox-material"><span class="check"></span></span>
-                                    </label>
+                                <div class="col-sm-3">
+                                  <div class="form-group label-floating">
+                                    <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Company</label>
+                                    <select class="select form-control">
+                                      {{#each companies}}
+                                      <option value="{{this.name}}">{{this.name}}</option>
+                                      {{/each}}
+                                    </select>
                                   </div>
                                 </div>
                               </div>
 
                               <div class="row">
-                                <div class="col-xs-3">
-                                  Veteran
-                                </div>
-                                <div class="col-xs-3">
-                                  <div class="checkbox" style="display:block;vertical-align:middle;">
-                                    <label>
-                                      <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.veteran}}true{{/if}}">
-                                      <span class="checkbox-material"><span class="check"></span></span>
-                                    </label>
+                                <div class="col-sm-3">
+                                  <div class="form-group label-floating">
+                                    <label class="control-label"><i class="material-icons">person_outline</i>&nbsp;&nbsp;&nbsp;Job Title</label>
+                                    <input type="text" name="profile.jobTitle" class="form-control proForm" value="{{ pros.profile.jobTitle }}">
                                   </div>
                                 </div>
                               </div>
 
                               <div class="row">
-                                <div class="col-xs-3">
-                                  Content Contributer
-                                </div>
-                                <div class="col-xs-3">
-                                  <div class="checkbox" style="display:block;vertical-align:middle;">
-                                    <label>
-                                      <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.contentContributor}}true{{/if}}">
-                                      <span class="checkbox-material"><span class="check"></span></span>
-                                    </label>
+                                <div class="col-sm-3">
+                                  <select class="select form-control personalSpecialty" placeholder="Choose Specialties (can choose multiple)">
+                                    <option disabled selected class="disabled"> Personal Specialties (can choose multiple)</option>
+                                    {{#each personalSpecialities}}
+                                    <option value="{{this}}">{{this}}</option>
+                                    {{/each}}
+                                  </select>
+                                  {{#each pros.profile.personalSpecialty}}
+                                  <div class="specialty">
+                                    {{this}}<a  class="personalSpecialtyRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
                                   </div>
+                                  {{/each}}
                                 </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-xs-3">
-                                  Top Performer
-                                </div>
-                                <div class="col-xs-3">
-                                  <div class="checkbox" style="display:block;vertical-align:middle;">
-                                    <label>
-                                      <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.topPerformer}}true{{/if}}">
-                                      <span class="checkbox-material"><span class="check"></span></span>
-                                    </label>
+                                <div class="col-sm-3">
+                                  <select class="select form-control businessSpecialty" placeholder="Choose Specialties (can choose multiple)">
+                                    <option disabled selected class="disabled"> Business Specialties (can choose multiple)</option>
+                                    {{#each businessSpecialities}}
+                                    <option value="{{this}}">{{this}}</option>
+                                    {{/each}}
+                                  </select>
+                                  {{#each pros.profile.businessSpecialty}}
+                                  <div class="specialty">
+                                    {{this}}<a class="businessSpecialtyRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
                                   </div>
+                                  {{/each}}
                                 </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-xs-3">
-                                  Customer Favorite
-                                </div>
-                                <div class="col-xs-3">
-                                  <div class="checkbox" style="display:block;vertical-align:middle;">
-                                    <label>
-                                      <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.trophies.customerFavorite}}true{{/if}}">
-                                      <span class="checkbox-material"><span class="check"></span></span>
-                                    </label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- nav tabs -->
-                        <div id="nav-tabs">
-                          <!-- Tabs with icons on Card -->
-                          <div class="card card-nav-tabs">
-                            <div class="header header-success">
-                              <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
-                              <div class="nav-tabs-navigation">
-                                <div class="nav-tabs-wrapper">
-                                  <ul class="nav nav-tabs" data-tabs="tabs">
-                                    <li class="active">
-                                      <a href="#fresh" data-toggle="tab">
-                                        <i class="material-icons">add_a_photo</i>
-                                        Pictures
-                                      </a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="content">
-                              <div class="tab-content">
-                                <div class="row">
-                                  <div class="col-xs-6 text-center">
-                                    <h2>Profile Picture</h2>
-                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                      <div class="fileinput-new thumbnail img-raised">
-                                        {{ #if prosExist }}
-                                        <img src="/assets/img/faces/christian.jpg" alt="...">
-                                        {{ else }}
-                                        <img src="/assets/img/image_placeholder.jpg" alt="...">
-                                        {{ /if }}
-                                      </div>
-                                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                                      <div>
-                                        <span class="btn btn-raised btn-round btn-default btn-file">
-                                          <span class="fileinput-new">Select image</span>
-                                          <span class="fileinput-exists">Change</span>
-                                          <input type="file" name="..." />
-                                        </span>
-                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-xs-6 text-center">
-                                    <h2>Cover Photo</h2>
-                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                      <div class="fileinput-new thumbnail img-raised">
-                                        {{ #if prosExist }}
-                                        <img src="/assets/img/examples/city.jpg" alt="...">
-                                        {{ else }}
-                                        <img src="/assets/img/image_placeholder.jpg" alt="...">
-                                        {{ /if }}
-                                      </div>
-                                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                                      <div>
-                                        <span class="btn btn-raised btn-round btn-default btn-file">
-                                          <span class="fileinput-new">Select image</span>
-                                          <span class="fileinput-exists">Change</span>
-                                          <input type="file" name="..." />
-                                        </span>
-                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
                               </div>
                             </div>
                           </div>
@@ -821,221 +454,564 @@
                         <div id="nav-tabs">
                           <!-- Tabs with icons on Card -->
                           <div class="card card-nav-tabs">
-                            <div class="header header-danger">
+                            <div class="header header-info">
                               <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
                               <div class="nav-tabs-navigation">
                                 <div class="nav-tabs-wrapper">
                                   <ul class="nav nav-tabs" data-tabs="tabs">
                                     <li class="active">
                                       <a href="#fresh" data-toggle="tab">
-                                        <i class="material-icons">trending_up</i>
-                                        Performance
+                                        <i class="material-icons">list</i>
+                                        Resume
                                       </a>
                                     </li>
                                   </ul>
                                 </div>
                               </div>
                             </div>
-
                             <div class="content">
                               <div class="tab-content">
                                 <div class="row">
                                   <div class="col-sm-3">
                                     <div class="form-group label-floating">
-                                      <label class="control-label">Client Retention Rate</label>
-                                      <input type="email" class="form-control" value="{{ pros.profile.performance.clientRetentionRate }}">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <div class="form-group label-floating">
-                                      <label class="control-label">Annual Production</label>
-                                      <input type="email" class="form-control" value="{{ pros.profile.performance.annualProduction }}">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-6"><br>
-                                    <h4 class="text-left">I focus on: <small>(Pick one)</small></h4><br>
-                                    <div class="row">
-                                      <div class="col-xs-6">
-                                        Taking care of my client's needs quickly
-                                      </div>
-                                      <div class="col-xs-6">
-                                        <div class="checkbox" style="display:block;vertical-align:middle;">
-                                          <label>
-                                            <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.profile.focus.quickly}}true{{/if}}">
-                                            <span class="checkbox-material"><span class="check"></span></span>
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-xs-6">
-                                        Getting the high returns for my client
-                                      </div>
-                                      <div class="col-xs-6">
-                                        <div class="checkbox" style="display:block;vertical-align:middle;">
-                                          <label>
-                                            <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.profile.focus.highReturns}}true{{/if}}">
-                                            <span class="checkbox-material"><span class="check"></span></span>
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-xs-6">
-                                        Taking the time to educate my client to make an informed decision
-                                      </div>
-                                      <div class="col-xs-6">
-                                        <div class="checkbox" style="display:block;vertical-align:middle;">
-                                          <label>
-                                            <input type="checkbox" name="optionsCheckboxes" style="display:inline-block;" checked="{{#if pros.profile.focus.education}}true{{/if}}">
-                                            <span class="checkbox-material"><span class="check"></span></span>
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-xs-12">
-                                    <h2>Financial Planning<br><br></h2>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <span class="label label-primary">Business</span>
-                                    <div class="form-group label-floating">
-                                      <label class="control-label">% Business</label>
-                                      <input type="email" class="form-control">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <span class="label label-primary">Personal</span>
-                                    <div class="form-group label-floating">
-                                      <label class="control-label">% Personal</label>
-                                      <input type="email" class="form-control">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <div class="form-group label-floating">
-                                      <label class="control-label">Avg # Employees</label>
-                                      <input type="email" class="form-control">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <div class="form-group label-floating">
-                                      <label class="control-label">Avg Amount of Assets per</label>
-                                      <input type="email" class="form-control">
+                                      <label class="control-label"><i class="material-icons">account_balance</i>&nbsp;&nbsp;&nbsp;College Name</label>
+                                      <input id="college_name" type="text" class="form-control">
                                     </div>
                                   </div>
                                   <div class="col-sm-3">
                                     <div class="form-group label-floating">
-                                      <label class="control-label">Avg Amount of Assets per</label>
-                                      <input type="email" class="form-control">
+                                      <label class="control-label">Degree Earned</label>
+                                      <input id="college_degree" type="text" class="form-control">
                                     </div>
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <div class="form-group label-floating">
+                                      <label class="control-label">Year Graduated</label>
+                                      <input id="college_year" type="text" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-1">
+                                    <a class="btn btn-info btn-sm admin-add addCollege" href="#"><i class="material-icons">add</i></a>
                                   </div>
                                 </div>
 
-
-
-                                <div class="row">
-                                  <div class="col-xs-12">
-                                    <br><br><br>
-                                    <h2>Insurance<br><br></h2>
+                                {{#each pros.educations}}
+                                <div class="row degree">
+                                  <div class="col-sm-3">
+                                    {{this.collegeName}}
                                   </div>
                                   <div class="col-sm-3">
-                                    <span class="label label-primary">Business</span>
-                                    <div class="form-group label-floating">
-                                      <label class="control-label">% Business</label>
-                                      <input type="email" class="form-control">
-                                    </div>
+                                    {{this.degreeName}}
                                   </div>
-                                  <div class="col-sm-3">
-                                    <span class="label label-primary">Personal</span>
-                                    <div class="form-group label-floating">
-                                      <label class="control-label">% Personal</label>
-                                      <input type="email" class="form-control">
-                                    </div>
+                                  <div class="col-sm-2">
+                                    {{this.yearGraduated}}
+                                  </div>
+                                  <div class="col-xs-1">
+                                    <a id="{{this.id}}" href="#" class="text-danger removeCollege"><i class="material-icons">close</i></a>
                                   </div>
                                 </div>
-                                <div class="row">
-                                  <div class="col-sm-3">
-                                    <div class="form-group label-floating">
-                                      <label class="control-label">Avg Policy Size</label>
-                                      <input type="email" class="form-control">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group label-floating">
-                                      <label class="control-label">Avg Policy Size</label>
-                                      <input type="email" class="form-control">
-                                    </div>
-                                  </div>
-                                </div>
-
+                                {{/each}}
 
                                 <div class="row">
-                                  <div class="col-xs-12">
-                                    <br><br><br>
-                                    <h2>Loans<br><br></h2>
-                                  </div>
                                   <div class="col-sm-3">
-                                    <span class="label label-primary">Business</span>
                                     <div class="form-group label-floating">
-                                      <label class="control-label">% Business</label>
-                                      <input type="email" class="form-control">
+                                      <label class="control-label"><i class="material-icons">list</i>&nbsp;&nbsp;&nbsp;License</label>
+                                      <input id="license_name" type="text" class="form-control">
                                     </div>
                                   </div>
                                   <div class="col-sm-3">
-                                    <span class="label label-primary">Personal</span>
                                     <div class="form-group label-floating">
-                                      <label class="control-label">% Personal</label>
-                                      <input type="email" class="form-control">
+                                      <label class="control-label">License Number</label>
+                                      <input id="license_number" type="text" class="form-control">
                                     </div>
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <div class="form-group label-floating">
+                                      <label class="control-label">Date Earned</label>
+                                      <input id="license_date" type="text" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-1">
+                                    <a class="btn btn-info btn-sm admin-add addLicense" href="#"><i class="material-icons">add</i></a>
                                   </div>
                                 </div>
+                                {{#each pros.licenses}}
+                                <div class="row license">
+                                  <div class="col-sm-3">
+                                    {{this.license}}
+                                  </div>
+                                  <div class="col-sm-3">
+                                    {{this.licenseNumber}}
+                                  </div>
+                                  <div class="col-sm-2">
+                                    {{this.dateEarned}}
+                                  </div>
+                                  <div class="col-xs-1">
+                                    <a id="{{this.id}}" href="#" class="text-danger removeLicense"><i class="material-icons">close</i></a>
+                                  </div>
+                                </div>
+                                {{/each}}
+
                                 <div class="row">
                                   <div class="col-sm-3">
                                     <div class="form-group label-floating">
-                                      <label class="control-label">Avg Policy Size</label>
-                                      <input type="email" class="form-control">
+                                      <label class="control-label"><i class="material-icons">person_add</i>&nbsp;&nbsp;&nbsp;Designation</label>
+                                      <input id="designation_name" type="text" class="form-control proForm">
                                     </div>
                                   </div>
                                   <div class="col-sm-3">
                                     <div class="form-group label-floating">
-                                      <label class="control-label">Avg Policy Size</label>
-                                      <input type="email" class="form-control">
+                                      <label class="control-label">Designation Number</label>
+                                      <input id="designation_number" type="text" class="form-control proForm">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <div class="form-group label-floating">
+                                      <label class="control-label">Date Earned</label>
+                                      <input id="designation_date" type="text" class="form-control proForm">
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-1">
+                                    <a class="btn btn-info btn-sm admin-add addDesignation" href="#"><i class="material-icons">add</i></a>
+                                  </div>
+                                </div>
+                                {{#each pros.designations}}
+                                <div class="row designation">
+                                  <div class="col-sm-3">
+                                    {{this.designation}}
+                                  </div>
+                                  <div class="col-sm-3">
+                                    {{this.designationNumber}}
+                                  </div>
+                                  <div class="col-sm-2">
+                                    {{this.dateEarned}}
+                                  </div>
+                                  <div class="col-xs-1">
+                                    <a id="{{this.id}}" href="#" class="text-danger removeDesignation"><i class="material-icons">close</i></a>
+                                  </div>
+                                </div>
+                                {{/each}}
+
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <div class="form-group label-floating">
+                                      <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Previous Company</label>
+                                      <input id="workHistory_company" type="text" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="form-group label-floating">
+                                      <label class="control-label">Dates Worked</label>
+                                      <input id="workHistory_year" type="text" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-1">
+                                    <a class="btn btn-info btn-sm admin-add addWorkHistory" href="#"><i class="material-icons">add</i></a>
+                                  </div>
+                                </div>
+                                {{#each pros.workHistories}}
+                                <div class="row workHistory">
+                                  <div class="col-sm-3">
+                                    {{this.companyName}}
+                                  </div>
+                                  <div class="col-sm-3">
+                                    {{this.yearRange}}
+                                  </div>
+                                  <div class="col-xs-1">
+                                    <a id="{{this.id}}" href="#" class="text-danger removeWorkHistory"><i class="material-icons">close</i></a>
+                                  </div>
+                                </div>
+                                {{/each}}
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div id="nav-tabs">
+                            <!-- Tabs with icons on Card -->
+                            <div class="card card-nav-tabs">
+                              <div class="header header-info">
+                                <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                <div class="nav-tabs-navigation">
+                                  <div class="nav-tabs-wrapper">
+                                    <ul class="nav nav-tabs" data-tabs="tabs">
+                                      <li class="active">
+                                        <a href="#fresh" data-toggle="tab">
+                                          <i class="material-icons">folder_special</i>
+                                          Trophies
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="content">
+                                <div class="tab-content">
+                                  <div class="row">
+                                    <div class="col-xs-3">
+                                      Verified
+                                    </div>
+                                    <div class="col-xs-3">
+                                      <div class="checkbox" style="display:block;vertical-align:middle;">
+                                        <label>
+                                          <input type="checkbox" name="trophies.verified" style="display:inline-block;" checked="{{#if pros.trophies.verified}}true{{/if}}">
+                                          <span class="checkbox-material"><span class="check"></span></span>
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-xs-3">
+                                      Veteran
+                                    </div>
+                                    <div class="col-xs-3">
+                                      <div class="checkbox" style="display:block;vertical-align:middle;">
+                                        <label>
+                                          <input type="checkbox" name="trophies.veteran" style="display:inline-block;" checked="{{#if pros.trophies.veteran}}true{{/if}}">
+                                          <span class="checkbox-material"><span class="check"></span></span>
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-xs-3">
+                                      Content Contributer
+                                    </div>
+                                    <div class="col-xs-3">
+                                      <div class="checkbox" style="display:block;vertical-align:middle;">
+                                        <label>
+                                          <input type="checkbox" name="trophies.contentContributor" style="display:inline-block;" checked="{{#if pros.trophies.contentContributor}}true{{/if}}">
+                                          <span class="checkbox-material"><span class="check"></span></span>
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-xs-3">
+                                      Top Performer
+                                    </div>
+                                    <div class="col-xs-3">
+                                      <div class="checkbox" style="display:block;vertical-align:middle;">
+                                        <label>
+                                          <input type="checkbox" name="trophies.topPerformer" style="display:inline-block;" checked="{{#if pros.trophies.topPerformer}}true{{/if}}">
+                                          <span class="checkbox-material"><span class="check"></span></span>
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-xs-3">
+                                      Customer Favorite
+                                    </div>
+                                    <div class="col-xs-3">
+                                      <div class="checkbox" style="display:block;vertical-align:middle;">
+                                        <label>
+                                          <input type="checkbox" name="trophies.customerFavorite" style="display:inline-block;" checked="{{#if pros.trophies.customerFavorite}}true{{/if}}">
+                                          <span class="checkbox-material"><span class="check"></span></span>
+                                        </label>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
 
-                        <div class="text-center">
-                          <a id="create_company" class="btn btn-lg btn-info">
-                            <i class="material-icons">save</i>&nbsp;&nbsp;&nbsp;Save
-                          </a>
+                            <!-- nav tabs -->
+                            <div id="nav-tabs">
+                              <!-- Tabs with icons on Card -->
+                              <div class="card card-nav-tabs">
+                                <div class="header header-success">
+                                  <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                  <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper">
+                                      <ul class="nav nav-tabs" data-tabs="tabs">
+                                        <li class="active">
+                                          <a href="#fresh" data-toggle="tab">
+                                            <i class="material-icons">add_a_photo</i>
+                                            Pictures
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="content">
+                                  <div class="tab-content">
+                                    <div class="row">
+                                      <div class="col-xs-6 text-center">
+                                        <h2>Profile Picture</h2>
+                                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                          <div class="fileinput-new thumbnail img-raised">
+                                            {{ #if prosExist }}
+                                            <img src="/assets/img/faces/christian.jpg" alt="...">
+                                            {{ else }}
+                                            <img src="/assets/img/image_placeholder.jpg" alt="...">
+                                            {{ /if }}
+                                          </div>
+                                          <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                          <div>
+                                            <span class="btn btn-raised btn-round btn-default btn-file">
+                                              <span class="fileinput-new">Select image</span>
+                                              <span class="fileinput-exists">Change</span>
+                                              <input type="file"/>
+                                            </span>
+                                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-xs-6 text-center">
+                                        <h2>Cover Photo</h2>
+                                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                          <div class="fileinput-new thumbnail img-raised">
+                                            {{ #if prosExist }}
+                                            <img src="/assets/img/examples/city.jpg" alt="...">
+                                            {{ else }}
+                                            <img src="/assets/img/image_placeholder.jpg" alt="...">
+                                            {{ /if }}
+                                          </div>
+                                          <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                          <div>
+                                            <span class="btn btn-raised btn-round btn-default btn-file">
+                                              <span class="fileinput-new">Select image</span>
+                                              <span class="fileinput-exists">Change</span>
+                                              <input type="file"/>
+                                            </span>
+                                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div id="nav-tabs">
+                              <!-- Tabs with icons on Card -->
+                              <div class="card card-nav-tabs">
+                                <div class="header header-danger">
+                                  <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                  <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper">
+                                      <ul class="nav nav-tabs" data-tabs="tabs">
+                                        <li class="active">
+                                          <a href="#fresh" data-toggle="tab">
+                                            <i class="material-icons">trending_up</i>
+                                            Performance
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="content">
+                                  <div class="tab-content">
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Client Retention Rate</label>
+                                          <input type="number" step="0.01" name="profile.performance.clientRetentionRate" class="form-control" value="{{ pros.profile.performance.clientRetentionRate }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Annual Production</label>
+                                          <input type="number" step="0.01" name="profile.performance.annualProduction" class="form-control" value="{{ pros.profile.performance.annualProduction }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-6"><br>
+                                        <h4 class="text-left">I focus on: <small>(Pick one)</small></h4><br>
+                                        <div class="row">
+                                          <div class="col-xs-6">
+                                            Taking care of my client's needs quickly
+                                          </div>
+                                          <div class="col-xs-6">
+                                            <div class="checkbox" style="display:block;vertical-align:middle;">
+                                              <label>
+                                                <input type="checkbox" name="profile.focus.quickly" style="display:inline-block;" checked="{{#if pros.profile.focus.quickly}}true{{/if}}">
+                                                <span class="checkbox-material"><span class="check"></span></span>
+                                              </label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-xs-6">
+                                            Getting the high returns for my client
+                                          </div>
+                                          <div class="col-xs-6">
+                                            <div class="checkbox" style="display:block;vertical-align:middle;">
+                                              <label>
+                                                <input type="checkbox" name="profile.focus.highReturns" style="display:inline-block;" checked="{{#if pros.profile.focus.highReturns}}true{{/if}}">
+                                                <span class="checkbox-material"><span class="check"></span></span>
+                                              </label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-xs-6">
+                                            Taking the time to educate my client to make an informed decision
+                                          </div>
+                                          <div class="col-xs-6">
+                                            <div class="checkbox" style="display:block;vertical-align:middle;">
+                                              <label>
+                                                <input type="checkbox" name="profile.focus.education" style="display:inline-block;" checked="{{#if pros.profile.focus.education}}true{{/if}}">
+                                                <span class="checkbox-material"><span class="check"></span></span>
+                                              </label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-xs-12">
+                                        <h2>Financial Planning<br><br></h2>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <span class="label label-primary">Business</span>
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">% Business</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <span class="label label-primary">Personal</span>
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">% Personal</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Avg # Employees</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Avg Amount of Assets per</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Avg Amount of Assets per</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                      <div class="col-xs-12">
+                                        <br><br><br>
+                                        <h2>Insurance<br><br></h2>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <span class="label label-primary">Business</span>
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">% Business</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <span class="label label-primary">Personal</span>
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">% Personal</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Avg Policy Size</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Avg Policy Size</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                      <div class="col-xs-12">
+                                        <br><br><br>
+                                        <h2>Loans<br><br></h2>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <span class="label label-primary">Business</span>
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">% Business</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <span class="label label-primary">Personal</span>
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">% Personal</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Avg Policy Size</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Avg Policy Size</label>
+                                          <input type="email" class="form-control">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="text-center">
+                              <button type="submit" class="btn btn-lg btn-info {{#if prosExist}}edit{{else}}add{{/if}}-pro-btn">
+                                <i class="material-icons">save</i>&nbsp;&nbsp;&nbsp;Save
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </form>
                 </div>
+                <!-- End Tabs with icons on Card -->
               </div>
-              <!-- End Tabs with icons on Card -->
             </div>
+            {{/if}}
           </div>
-          {{/if}}
         </div>
-      </div>
 
-      <!--  Notifications Plugin    -->
-      <script src="/assets/js/bootstrap-notify.js"></script>
-      <script src="/assets/js/lbd.js" type="text/javascript"></script>
-    </template>
+        <!--  Notifications Plugin    -->
+        <script src="/assets/js/bootstrap-notify.js"></script>
+        <script src="/assets/js/lbd.js" type="text/javascript"></script>
+      </template>
