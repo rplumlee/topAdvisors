@@ -60,6 +60,8 @@ Template.adminCompanies.onRendered(function () {
   //
   window_width = $(window).width();
 
+  Meteor.subscribe('companies.list');
+
   // Init navigation toggle for small screens
   if (window_width <= 991) {
     lbd.initRightMenu();
@@ -103,6 +105,7 @@ Template.adminCompanyInner.helpers({
     return moment(createdDate).format('ll');
   }
 });
+
 Template.adminCompanyInner.events({
   'click .pros-link'(event) {
     event.preventDefault();

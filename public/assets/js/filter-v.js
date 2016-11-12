@@ -306,7 +306,7 @@ $( document ).ready(function() {
 						'<div class="row result-margin">'+
 						'<div class="col-sm-9 clearfix">'+
 						'<div class="col-sm-3 col-xs-6 col-xs-offset-3 col-sm-offset-0">'+
-						'<a href="/profile/'+pro.profile.slug+'">' +
+						'<a style="color: #337ab7" href="/profile/'+pro.profile.slug+'">' +
 						'<img src="/assets/img/faces/marc.jpg" class="img-circle img-responsive result-image">'+
 						'</a>'+
 						'</div>'+
