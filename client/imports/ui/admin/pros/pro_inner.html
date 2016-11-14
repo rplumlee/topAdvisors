@@ -149,7 +149,7 @@
                                   {{#each getProLeads "fresh"}}
                                   <tr>
                                     <td class="td-name">
-                                      <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
+                                      <a id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
                                       <br /><small>{{purpose}}</small>
                                     </td>
                                     <td>
@@ -188,7 +188,7 @@
                                     {{#each getProLeads "open"}}
                                     <tr>
                                       <td class="td-name">
-                                        <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
+                                        <a id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
                                         <br /><small>{{purpose}}</small>
                                       </td>
                                       <td>
@@ -228,7 +228,7 @@
                                     {{#each getProLeads "dead"}}
                                     <tr>
                                       <td class="td-name">
-                                        <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
+                                        <a id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
                                         <br /><small>{{purpose}}</small>
                                       </td>
                                       <td>
@@ -269,7 +269,7 @@
                                     {{#each getProLeads "closed"}}
                                     <tr>
                                       <td class="td-name">
-                                        <a href="#jacket" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
+                                        <a id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{pros.profile.firstName}} {{pros.profile.lastName}}</a>
                                         <br /><small>{{purpose}}</small>
                                       </td>
                                       <td>
@@ -1010,6 +1010,54 @@
             {{/if}}
           </div>
         </div>
+
+          <div class="modal fade" id="lead1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                  </button>
+                  <h4 class="modal-title">{{ currentLead.profile.firstName }} {{ currentLead.profile.lastName }}</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <h6>Request Concerning</h6>
+                      <p>{{ currentLead.purpose }}</p>
+                    </div>
+                    <div class="col-xs-6">
+                      <h6>Reach-out Date</h6>
+                      <p>{{ parseDate currentLead.createdOn }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <h6>Message</h6>
+                      <p>Hi, I am a 59 year old mother of three who is looking to retire and I want to know how to save enough money to pay for 8 kids in college while living the lifestyle I want.</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <h6>Phone Number</h6>
+                      <p>503.292.9602</p>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer" style="text-align:center;">
+                    <br><br>
+                    <button class="btn btn-warning fresh-lead-btn" data-dismiss="modal">Attempted Contact</button><br class="visible-xs"><br class="visible-xs">
+                    <button class="btn btn-info open-lead-btn" data-dismiss="modal">Made Contact</button><br class="visible-xs"><br class="visible-xs">
+                    <button class="btn btn-danger dead-lead-btn" data-dismiss="modal">Dead Lead</button><br class="visible-xs"><br class="visible-xs">
+                    <button class="btn btn-success closed-lead-btn" data-dismiss="modal">Closed Client</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
 
         <!--  Notifications Plugin    -->
         <script src="/assets/js/bootstrap-notify.js"></script>

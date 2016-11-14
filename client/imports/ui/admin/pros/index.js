@@ -75,7 +75,8 @@ Template.adminProInner.onCreated(function () {
   this.pros = new ReactiveDict();
   this.pros.setDefault({
     pro: {},
-    new: {}
+    new: {},
+    leadId: null
   });
 
   Meteor.subscribe('companies.list');
@@ -161,6 +162,18 @@ Template.adminProInner.helpers({
   },
   print: (something) => {
     console.log(something);
+  },
+  parseDate: function (date) {
+    if (date) {
+      return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+    }
+  },
+  currentLead: function () {
+    if (Template.instance().pros.get('leadId')) {
+      return Collections.Leads.findOne({ _id: Template.instance().pros.get('leadId') });
+    } else {
+      return Collections.Leads.find().fetch()[0];
+    }
   },
   personalSpecialities: [
     "Home Loans",
@@ -397,5 +410,52 @@ Template.adminProInner.events({
         }
       });
     }
+  },
+  'click .leadModal'(event, instance) {
+    instance.pros.set('leadId', event.target.id);
+  },
+  'click .fresh-lead-btn' (event, instance) {
+    var leadId = instance.pros.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'fresh'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  'click .open-lead-btn' (event, instance) {
+    var leadId = instance.pros.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'open'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  'click .dead-lead-btn' (event, instance) {
+    var leadId = instance.pros.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'dead'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  'click .closed-lead-btn' (event, instance) {
+    var leadId = instance.pros.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'closed'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
   }
 });
