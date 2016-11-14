@@ -389,14 +389,14 @@
           <div class="row">
             <div class="col-xs-12">
               <h6>Message</h6>
-              <p>Hi, I am a 59 year old mother of three who is looking to retire and I want to know how to save enough money to pay for 8 kids in college while living the lifestyle I want.</p>
+              <p>{{ or currentLead.profile.message "N/A" }}</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col-xs-12">
               <h6>Phone Number</h6>
-              <p>503.292.9602</p>
+              <p>{{ or currentLead.profile.phone "N/A" }}</p>
             </div>
           </div>
           <div class="modal-footer" style="text-align:center;">

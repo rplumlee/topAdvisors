@@ -21,6 +21,9 @@ Template.proLeadsDashboard.helpers({
       return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
     }
   },
+  or: function (a, b) {
+    return  a || b;
+  },
   statusLabel: function (status) {
     return (status == 'open');
   },

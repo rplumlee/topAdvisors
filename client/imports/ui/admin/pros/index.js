@@ -131,6 +131,9 @@ Template.adminProInner.helpers({
   prosExist: () => {
     return !_.isEmpty(Template.instance().pros.get('pro'));
   },
+  or: function (a, b) {
+    return  a || b;
+  },
   getProEmail: (pro) => {
     return pro.emails ? pro.emails[0].address : null;
   },
