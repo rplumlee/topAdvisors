@@ -73,7 +73,7 @@
     </div>
   </nav>
 
-  <div class="page-header header-filter" data-parallax="active" style="background-image: url('/assets/img/examples/city.jpg');"></div>
+  <div class="page-header header-filter" data-parallax="active" style="background-image: url('{{ pro.profile.coverImage || '/assets/img/examples/city.jpg' }}');"></div>
 
   <div class="main">
     <div class="profile-content">
@@ -139,7 +139,7 @@
           <div class="col-md-8">
             <div class="profile-card" data-toggle="modal" data-target="#workModal" style="cursor:pointer;">
               <h3 class="title centered">Works At</h4><br>
-                <div class="card card-background" style="box-shadow:none;background-image: url('{{company.image}}')">
+                <div class="card card-background" style="box-shadow:none;background-image: url('{{ company.image || '/assets/img/sampleOffice.jpg' }}')">
                   <a href="#pablo"></a>
                   <div class="content">
                     <label class="label label-info">{{ pro.profile.jobTitle }}</label>
@@ -458,7 +458,7 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-sm-12">
-                <img src="/assets/img/sampleOffice.jpg" class="img-resonsive">
+                <img src="{{ company.image || '/assets/img/sampleOffice.jpg' }}" class="img-resonsive">
               </div>
               <div class="col-sm-12">
                 <br>
@@ -478,11 +478,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-2 col-xs-3">
-            <img src="{{ pro.profile.image }}" alt="Circle Image" class="img-circle">
+            <img src="{{ pro.profile.image || '/assets/img/samplePro.png' }}" alt="Circle Image" class="img-circle">
           </div>
           <div class="col-md-8 col-xs-6 text-center">
             <h4 style="display:inline;"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br></h4>
-            <h6 class="" style="display:inline;">Mortgage Professional</h6>
+            <h6 class="" style="display:inline;">{{ pro.profile.jobTitle }}</h6>
           </div>
           <div class="col-md-2 col-xs-3">
             <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i><span class="hidden-xs">&nbsp;&nbsp;&nbsp;Contact {{ pro.profile.firstName }}</span></a>
