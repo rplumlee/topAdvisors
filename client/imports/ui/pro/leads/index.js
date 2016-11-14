@@ -48,6 +48,17 @@ Template.proLeadsDashboard.onCreated(function () {
   this.state.setDefault({
     leadId: null
   });
+  Meteor.subscribe('companies.list');
+
+  Meteor.subscribe('pros.list', {
+    onReady: ()=> {
+      var pro = Meteor.user();
+      if (pro.profile.type !== 'pro') {
+        Router.go('/admin');
+      }
+    }
+  });
+  Meteor.subscribe('leads.list');
 });
 
 Template.proLeadsDashboard.onRendered(function bodyOnRendered() {
@@ -59,7 +70,6 @@ Template.proLeadsDashboard.onRendered(function bodyOnRendered() {
 
 
   document.title = 'Leads Dashboard';
-  Meteor.subscribe('leads.list');
   Meteor.subscribe('activities.list');
 
   //
