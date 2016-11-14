@@ -9,7 +9,8 @@ import logger from './logger';
 import uploader from './uploader';
 import users from './users';
 import leads from './leads';
-// import activities from './activities';
+import activities from './activities';
+import reviews from './reviews';
 
 var context = {
   Meteor,
@@ -26,7 +27,8 @@ Meteor.startup(() => {
   uploader(context);
   users(context);
   leads(context);
-  // activities(context);
+  activities(context);
+  reviews(context);
 });
 
 WebApp.connectHandlers.use('/home', function (req, res) {
