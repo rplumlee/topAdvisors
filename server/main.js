@@ -34,10 +34,14 @@ WebApp.connectHandlers.use('/home', function (req, res) {
   res.end(Assets.getText('index.html'));
 });
 
-WebApp.connectHandlers.use('/profile', function (req, res) {
-  res.writeHead(200);
+WebApp.connectHandlers.use('/profile', function (req, res, next) {
   var pro_slug = req.url.substr(1);
   var currentPro = Meteor.users.findOne({ 'profile.slug': pro_slug }, { fields: { services: false } });
-  var currentCompany = Collections.Companies.findOne({ _id: currentPro.company });
-  res.end(Swig.render(Assets.getText('profile.html'), { locals: { pro: currentPro, company: currentCompany }}));
+  if (!currentPro) {
+    next();
+  } else {
+    var currentCompany = Collections.Companies.findOne({ _id: currentPro.company });
+    res.writeHead(200);
+    res.end(Swig.render(Assets.getText('profile.html'), { locals: { pro: currentPro, company: currentCompany }}));
+  }
 });
