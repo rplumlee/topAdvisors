@@ -26,11 +26,26 @@ export default function ({ Meteor, Collections, check, lib, Flat }) {
     'leads.edit': function (params) {
       check(params, Object);
 
-      // Edit user
-      var updated = Collections.Leads.update(
-        { _id: params._id, agent: this.userId },
-        { $set: Flat.flatten(params, { safe: true }) }
-      );
+      if (!Meteor.userId()) {
+        throw new Meteor.Error('403', 'Forbidden');
+      }
+
+      var updated;
+
+      if (Meteor.user().profile.type === 'pro') {
+        // Edit user
+        updated = Collections.Leads.update(
+          { _id: params._id, agent: this.userId },
+          { $set: Flat.flatten(params, { safe: true }) }
+        );
+      } else {
+        // Edit user
+        updated = Collections.Leads.update(
+          { _id: params._id },
+          { $set: Flat.flatten(params, { safe: true }) }
+        );
+      }
+
 
       return { success: Boolean(updated) };
     }
