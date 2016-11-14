@@ -39,9 +39,9 @@ WebApp.connectHandlers.use('/profile', function (req, res, next) {
   var currentPro = Meteor.users.findOne({ 'profile.slug': pro_slug }, { fields: { services: false } });
   if (!currentPro) {
     return next();
-  } else {
-    var currentCompany = Collections.Companies.findOne({ _id: currentPro.company });
-    res.writeHead(200);
-    res.end(Swig.render(Assets.getText('profile.html'), { locals: { pro: currentPro, company: currentCompany }}));
   }
+
+  var currentCompany = Collections.Companies.findOne({ _id: currentPro.company });
+  res.writeHead(200);
+  res.end(Swig.render(Assets.getText('profile.html'), { locals: { pro: currentPro, company: currentCompany }}));
 });
