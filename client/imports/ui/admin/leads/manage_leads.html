@@ -365,23 +365,23 @@
           <div class="row">
             <div class="col-xs-12">
               <h6>Message</h6>
-              <p>Hi, I am a 59 year old mother of three who is looking to retire and I want to know how to save enough money to pay for 8 kids in college while living the lifestyle I want.</p>
+              <p>{{ or currentLead.profile.message "N/A" }}</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col-xs-12">
               <h6>Phone Number</h6>
-              <p>503.292.9602</p>
+              <p>{{ or currentLead.profile.phone "N/A" }}</p>
             </div>
           </div>
 
           <div class="modal-footer" style="text-align:center;">
             <br><br>
-            <a class="btn btn-warning" data-dismiss="modal">Attempted Contact</a><br class="visible-xs"><br class="visible-xs">
-            <a class="btn btn-info" data-dismiss="modal">Made Contact</a><br class="visible-xs"><br class="visible-xs">
-            <a class="btn btn-danger" data-dismiss="modal">Dead Lead</a><br class="visible-xs"><br class="visible-xs">
-            <a class="btn btn-success" data-dismiss="modal">Closed Client</a>
+            <button class="btn btn-warning fresh-lead-btn" data-dismiss="modal">Attempted Contact</button><br class="visible-xs"><br class="visible-xs">
+            <button class="btn btn-info open-lead-btn" data-dismiss="modal">Made Contact</button><br class="visible-xs"><br class="visible-xs">
+            <button class="btn btn-danger dead-lead-btn" data-dismiss="modal">Dead Lead</button><br class="visible-xs"><br class="visible-xs">
+            <button class="btn btn-success closed-lead-btn" data-dismiss="modal">Closed Client</button>
           </div>
 
         </div>

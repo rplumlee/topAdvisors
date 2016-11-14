@@ -7,6 +7,9 @@ Template.adminLeads.helpers({
   copyrightDate: function () {
     return new Date().getFullYear();
   },
+  or: function (a, b) {
+    return  a || b;
+  },
   leads: function (selector) {
     return Collections.Leads.find({ status: selector.hash.status });
   },
@@ -43,6 +46,50 @@ Template.adminLeads.helpers({
 Template.adminLeads.events({
   'click .leadModal'(event, instance) {
     instance.state.set('leadId', event.currentTarget.dataset.id);
+  },
+  'click .fresh-lead-btn' (event, instance) {
+    var leadId = instance.state.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'fresh'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  'click .open-lead-btn' (event, instance) {
+    var leadId = instance.state.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'open'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  'click .dead-lead-btn' (event, instance) {
+    var leadId = instance.state.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'dead'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  'click .closed-lead-btn' (event, instance) {
+    var leadId = instance.state.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'closed'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
   }
 });
 
@@ -65,7 +112,7 @@ Template.adminLeads.onRendered(function () {
       var user = Meteor.user();
       if (user) {
         if (user.profile.type === 'pro') {
-          Router.go('/dashboard');
+          Router.go('/pro');
         } else {
           Router.go('/admin/leads');
         }

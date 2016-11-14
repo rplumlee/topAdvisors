@@ -7,7 +7,10 @@ Template.proLeadsDashboard.helpers({
   leads: function (selector) {
     return Collections.Leads.find({ status: selector.hash.status });
   },
-  leadCount: function () {
+  leadCount: function (status) {
+    if (status) {
+      return Collections.Leads.find({ status }).count();
+    }
     return Collections.Leads.find({}).count();
   },
   views: function () {
@@ -17,6 +20,9 @@ Template.proLeadsDashboard.helpers({
     if (date) {
       return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
     }
+  },
+  or: function (a, b) {
+    return  a || b;
   },
   statusLabel: function (status) {
     return (status == 'open');
@@ -34,12 +40,59 @@ Template.proLeadsDashboard.helpers({
   agentUser: function (user) {
     var profile = Collections.Users.findOne({ _id: user }).profile;
     return `${profile.firstName} ${profile.lastName}`;
+  },
+  getCompany: function () {
+    return Collections.Companies.findOne();
   }
 });
 
 Template.proLeadsDashboard.events({
   'click .leadModal'(event, instance) {
     instance.state.set('leadId', event.currentTarget.dataset.id);
+  },
+  'click .fresh-lead-btn' (event, instance) {
+    var leadId = instance.state.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'fresh'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  'click .open-lead-btn' (event, instance) {
+    var leadId = instance.state.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'open'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  'click .dead-lead-btn' (event, instance) {
+    var leadId = instance.state.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'dead'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  'click .closed-lead-btn' (event, instance) {
+    var leadId = instance.state.get('leadId');
+    Meteor.call('leads.edit', {
+      _id: leadId,
+      status: 'closed'
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
   }
 });
 
@@ -48,6 +101,8 @@ Template.proLeadsDashboard.onCreated(function () {
   this.state.setDefault({
     leadId: null
   });
+  Meteor.subscribe('companies.list');
+  Meteor.subscribe('leads.list');
 });
 
 Template.proLeadsDashboard.onRendered(function bodyOnRendered() {
@@ -59,7 +114,6 @@ Template.proLeadsDashboard.onRendered(function bodyOnRendered() {
 
 
   document.title = 'Leads Dashboard';
-  Meteor.subscribe('leads.list');
   Meteor.subscribe('activities.list');
 
   //
