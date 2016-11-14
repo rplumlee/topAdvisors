@@ -82,7 +82,7 @@
           <div class="col-xs-6 col-xs-offset-3">
             <div class="profile">
               <div class="avatar">
-                <img src="/assets/img/faces/christian.jpg" alt="Circle Image" class="img-circle img-responsive ">
+                <img src="{{ pro.profile.image || '/assets/img/samplePro.png' }}" alt="Circle Image" class="img-circle img-responsive ">
               </div>
             </div>
           </div>
@@ -480,7 +480,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-2 col-xs-3">
-            <img src="/assets/img/faces/christian.jpg" alt="Circle Image" class="img-circle">
+            <img src="{{ pro.profile.image }}" alt="Circle Image" class="img-circle">
           </div>
           <div class="col-md-8 col-xs-6 text-center">
             <h4 style="display:inline;"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br></h4>

@@ -153,8 +153,8 @@ Template.adminCompanyInner.events({
         url: "/upload",
         data: $('.fileinput img')[1].src,
         success: function (response) {
-          Meteor.call('companies.updateImage', {
-            id: companyId,
+          Meteor.call('companies.edit', {
+            _id: companyId,
             image: response.secure_url
           });
         }

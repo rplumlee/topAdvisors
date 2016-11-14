@@ -366,4 +366,36 @@ Template.adminProInner.events({
       }
     });
   },
+  'focus #proImage input'(event, instance) {
+    var proId = instance.pros.get('pro')._id;
+    if ($('#proImage img')[1]) {
+      $.ajax({
+        type: "POST",
+        url: "/upload",
+        data: $('#proImage img')[1].src,
+        success: function (response) {
+          Meteor.call('users.edit', {
+            _id: proId,
+            'profile.image': response.secure_url
+          });
+        }
+      });
+    }
+  },
+  'focus #coverImage input'(event, instance) {
+    var proId = instance.pros.get('pro')._id;
+    if ($('#coverImage img')[1]) {
+      $.ajax({
+        type: "POST",
+        url: "/upload",
+        data: $('#coverImage img')[1].src,
+        success: function (response) {
+          Meteor.call('users.edit', {
+            _id: proId,
+            'profile.coverImage': response.secure_url
+          });
+        }
+      });
+    }
+  }
 });
