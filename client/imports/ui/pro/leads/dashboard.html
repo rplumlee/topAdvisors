@@ -33,9 +33,9 @@
       <div class="sidebar-wrapper">
 
         <div class="user">
-          <img src="/assets/img/faces/marc.jpg" class="img-circle img-responsive">
-          <h5>John Smith, CPA</h5>
-          <h6>Mortgage Lender at Portland Mortgage, LLC</h6>
+          <img src="{{#if user.profile.image}}{{user.profile.image}}{{else}}/assets/img/samplePro.png{{/if}}" class="img-circle img-responsive">
+          <h5>{{user.profile.firstName}} {{user.profile.lastName}}</h5>
+          <h6>{{user.profile.jobTitle}} at {{getCompany.name}}</h6>
         </div>
 
         <ul class="nav">
@@ -105,7 +105,7 @@
                     <div class="col-xs-7">
                       <div class="numbers">
                         <p>Profile Views</p>
-                        <h2>45</h2>
+                        <h2>N/A</h2>
                       </div>
                     </div>
                   </div>
@@ -130,7 +130,7 @@
                     <div class="col-xs-7">
                       <div class="numbers">
                         <p>Closed Clients</p>
-                        <h2>5</h2>
+                        <h2>{{ leadCount "closed" }}</h2>
                       </div>
                     </div>
                   </div>

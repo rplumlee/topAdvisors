@@ -7,7 +7,10 @@ Template.proLeadsDashboard.helpers({
   leads: function (selector) {
     return Collections.Leads.find({ status: selector.hash.status });
   },
-  leadCount: function () {
+  leadCount: function (status) {
+    if (status) {
+      return Collections.Leads.find({ status }).count();
+    }
     return Collections.Leads.find({}).count();
   },
   views: function () {
@@ -34,6 +37,9 @@ Template.proLeadsDashboard.helpers({
   agentUser: function (user) {
     var profile = Collections.Users.findOne({ _id: user }).profile;
     return `${profile.firstName} ${profile.lastName}`;
+  },
+  getCompany: function () {
+    return Collections.Companies.findOne();
   }
 });
 
@@ -49,15 +55,6 @@ Template.proLeadsDashboard.onCreated(function () {
     leadId: null
   });
   Meteor.subscribe('companies.list');
-
-  Meteor.subscribe('pros.list', {
-    onReady: ()=> {
-      var pro = Meteor.user();
-      if (pro.profile.type !== 'pro') {
-        Router.go('/admin');
-      }
-    }
-  });
   Meteor.subscribe('leads.list');
 });
 
