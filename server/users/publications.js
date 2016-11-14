@@ -13,6 +13,11 @@ export default function ({ Meteor, Collections }) {
       return this.stop();
     }
 
+    var user = Meteor.users.findOne({ _id: this.userId });
+
+    if (user.profile.type === 'pro') {
+      return Collections.Companies.find({ _id: user.company });
+    }
     return Collections.Companies.find();
   });
 
@@ -24,7 +29,11 @@ export default function ({ Meteor, Collections }) {
     if (!this.userId) {
       return this.stop();
     }
+    var user = Meteor.users.findOne({ _id: this.userId });
 
+    if (user.profile.type === 'pro') {
+      return Collections.Companies.find({ _id: this.userId });
+    }
     return Collections.Users.find({ 'profile.type': 'pro' });
   });
 
