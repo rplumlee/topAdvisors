@@ -159,8 +159,11 @@
           </div>
 
           <div class="row" style="margin:0;">
+            {% if pro.designations.length > 0 || pro.licenses.length > 0 || pro.educations.length > 0 || pro.workHistories.length > 0 %}
             <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 profile-card resume">
               <h3 class="title centered">Resume</h4><br>
+
+                {% if pro.licenses.length > 0 %}
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
@@ -171,14 +174,19 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for l in pro.licenses %}
                       <tr>
-                        <td>National Mortgage Lender</td>
-                        <td>1354315</td>
-                        <td>2016</td>
+                        <td>{{ l.license }}</td>
+                        <td>{{ l.licenseNumber }}</td>
+                        <td>{{ l.dateEarned }}</td>
                       </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                 </div>
+                {% endif %}
+
+                {% if pro.designations.length > 0 %}
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
@@ -186,7 +194,6 @@
                         <th>Designation</th>
                         <th>Number</th>
                         <th>Date Acquired</th>
-
                       </tr>
                     </thead>
                     <tbody>
@@ -200,6 +207,9 @@
                     </tbody>
                   </table>
                 </div>
+                {% endif %}
+
+                {% if pro.educations.length > 0 %}
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
@@ -207,19 +217,22 @@
                         <th>School</th>
                         <th>Degree</th>
                         <th>Date Acquired</th>
-
                       </tr>
                     </thead>
                     <tbody>
+                      {% for e in pro.educations %}
                       <tr>
-                        <td>University of Oregon</td>
-                        <td>Bachelor's of Finance</td>
-                        <td>2008</td>
+                        <td>{{ e.degreeName }}</td>
+                        <td>{{ e.collegeName }}</td>
+                        <td>{{ e.yearGraduated }}</td>
                       </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                 </div>
+                {% endif %}
 
+                {% if pro.workHistories.length > 0 %}
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
@@ -230,27 +243,20 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for w in pro.workHistories %}
                       <tr>
-                        <td>State Farm</td>
-                        <td>2013-2015</td>
+                        <td>{{ w.companyName }}</td>
+                        <td>{{ w.yearRange }}</td>
                         <td></td>
                       </tr>
-                      <tr>
-                        <td>AllState</td>
-                        <td>2008-2013</td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>Radio Shack</td>
-                        <td>2004-2008</td>
-                        <td></td>
-                      </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                 </div>
+                {% endif %}
               </div>
             </div>
-
+            {% endif %}
 
             <div class="row" style="margin:0;">
               <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 profile-card">
