@@ -1,5 +1,5 @@
 
-export default function ({ Collections }) {
+export default function ({ /* Collections */ }) {
 
   WebApp.connectHandlers.use('/writeReview', function (req, res) {
     res.setHeader('Content-type', 'application/json');

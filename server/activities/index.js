@@ -1,4 +1,4 @@
-import startup from './startup';
+// import startup from './startup';
 
 /**
  * Initializes the activities module
