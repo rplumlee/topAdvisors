@@ -93,11 +93,7 @@
           <h3 class="title text-center"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br><br></h3>
           <h5 class="job">{{ pro.profile.jobTitle }} at {{ company.name }}</h5>
           <p class="description">
-            When John A. Frisch, CPA/PFS, CFP®, AIF®, PPC founded Alliant Wealth Advisors in 1995, his mission
-            was to help families cut through the complexities of managing their personal wealth. While most esential
-            financial principles are timeless common sense, it can be a challenge to apply them in a market tangled
-            by hidden fees.  Don’t hesitate to reach out, consultationsare always free and I will serve you in accordance
-            with my fiduciary duty.
+            {{about}}
           </p><br>
           <h6><i class="material-icons text-success" style="vertical-align:middle;margin-top:-4px;margin-right:5px;">check</i> Free Consultation</h6>
           <br>
@@ -143,7 +139,7 @@
           <div class="col-md-8">
             <div class="profile-card" data-toggle="modal" data-target="#workModal" style="cursor:pointer;">
               <h3 class="title centered">Works At</h4><br>
-                <div class="card card-background" style="box-shadow:none;background-image: url('/assets/img/sampleOffice.jpg')">
+                <div class="card card-background" style="box-shadow:none;background-image: url('{{company.image}}')">
                   <a href="#pablo"></a>
                   <div class="content">
                     <label class="label label-info">{{ pro.profile.jobTitle }}</label>
@@ -194,11 +190,13 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for d in pro.designations %}
                       <tr>
-                        <td>CPA</td>
-                        <td>1354315</td>
-                        <td>2016</td>
+                        <td>{{ d.designation }}</td>
+                        <td>{{ d.designationNumber }}</td>
+                        <td>{{ d.dateEarned }}</td>
                       </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                 </div>
