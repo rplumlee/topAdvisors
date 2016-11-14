@@ -65,7 +65,7 @@ Template.adminLeads.onRendered(function () {
       var user = Meteor.user();
       if (user) {
         if (user.profile.type === 'pro') {
-          Router.go('/dashboard');
+          Router.go('/pro');
         } else {
           Router.go('/admin/leads');
         }
