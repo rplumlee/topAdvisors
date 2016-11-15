@@ -32,9 +32,9 @@ export default function ({ Meteor, Collections }) {
     var user = Meteor.users.findOne({ _id: this.userId });
 
     if (user.profile.type === 'pro') {
-      return Collections.Companies.find({ _id: this.userId });
+      return Collections.Users.find({ _id: this.userId }, { fields: { services: 0 } });
     }
-    return Collections.Users.find({ 'profile.type': 'pro' });
+    return Collections.Users.find({ 'profile.type': 'pro' }, { fields: { services: 0 } });
   });
 
 }

@@ -117,6 +117,11 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       // Create user
       var id = Collections.Companies.insert(params);
 
+      // Create the activity document for the new user
+      Collections.Activities.insert({
+        agent: id
+      });
+
       return { success: true, company: id };
     },
 

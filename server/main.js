@@ -46,4 +46,15 @@ WebApp.connectHandlers.use('/profile', function (req, res, next) {
   var currentCompany = Collections.Companies.findOne({ _id: currentPro.company });
   res.writeHead(200);
   res.end(Swig.render(Assets.getText('profile.html'), { locals: { pro: currentPro, company: currentCompany }}));
+  Collections.Activities.update({
+    agent: currentPro._id
+  }, {
+    $inc: {
+      count: 1
+    }
+  }, function (err) {
+    if (err) {
+      console.log(err);
+    }
+  })
 });
