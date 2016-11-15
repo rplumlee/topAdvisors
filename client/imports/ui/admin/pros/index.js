@@ -24,7 +24,7 @@ Template.adminPros.helpers({
     return Meteor.user()
   },
   pros: () => {
-    return Collections.Users.find({ 'profile.type': 'pro' })
+    return Collections.Users.find({ 'profile.type': 'pro' });
   },
   leadsClosedByPro: (pro) => {
     return Collections.Leads.find({
@@ -93,6 +93,7 @@ Template.adminProInner.onCreated(function () {
         if (!pro) {
           Router.go('/admin/pros');
         }
+        Meteor.subscribe('activities.get', pro._id);
         this.pros.set('pro', pro);
       }
     });
@@ -130,6 +131,10 @@ Template.adminProInner.helpers({
   },
   or: function (a, b) {
     return  a || b;
+  },
+  profileViews: () => {
+    var activity = Collections.Activities.findOne({ agent: Template.instance().pros.get('pro')._id });
+    return activity ? activity.count : 0;
   },
   getProEmail: (pro) => {
     return pro.emails ? pro.emails[0].address : null;
