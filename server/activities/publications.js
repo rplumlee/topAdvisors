@@ -14,11 +14,9 @@ export default function ({ Meteor, Collections }) {
     }
     var user = Meteor.users.findOne({ _id: this.userId });
 
-    var leads;
     if (user.profile.type === 'pro') {
       return Collections.Activities.find({ agent: this.userId });
-    } else {
-      return Collections.Activities.find({ agent: userId });
     }
+    return Collections.Activities.find({ agent: userId });
   });
 }

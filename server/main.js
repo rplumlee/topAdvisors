@@ -54,7 +54,7 @@ WebApp.connectHandlers.use('/profile', function (req, res, next) {
     }
   }, function (err) {
     if (err) {
-      console.log(err);
+      context.Logger.error(err);
     }
-  })
+  });
 });
