@@ -42,7 +42,7 @@
         contentType: 'application/json',
         data: JSON.stringify(jsonData)
       });
-      $('#contactModal').hide();
+      $('#contact-modal-close').click();
       window.sessionStorage.setItem('lead', JSON.stringify(jsonData));
     });
   });
