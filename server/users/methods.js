@@ -83,7 +83,7 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       // Create user
       Collections.Users.update(
         { _id: params._id },
-        { $set: params }
+        { $set: Flat.flatten(params, { safe: true }) }
       );
 
       return { success: true };

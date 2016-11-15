@@ -73,7 +73,7 @@
     </div>
   </nav>
 
-  <div class="page-header header-filter" data-parallax="active" style="background-image: url('/assets/img/examples/city.jpg');"></div>
+  <div class="page-header header-filter" data-parallax="active" style="background-image: url('{{ pro.profile.coverImage || '/assets/img/examples/city.jpg' }}');"></div>
 
   <div class="main">
     <div class="profile-content">
@@ -93,11 +93,7 @@
           <h3 class="title text-center"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br><br></h3>
           <h5 class="job">{{ pro.profile.jobTitle }} at {{ company.name }}</h5>
           <p class="description">
-            When John A. Frisch, CPA/PFS, CFP®, AIF®, PPC founded Alliant Wealth Advisors in 1995, his mission
-            was to help families cut through the complexities of managing their personal wealth. While most esential
-            financial principles are timeless common sense, it can be a challenge to apply them in a market tangled
-            by hidden fees.  Don’t hesitate to reach out, consultationsare always free and I will serve you in accordance
-            with my fiduciary duty.
+            {{about}}
           </p><br>
           <h6><i class="material-icons text-success" style="vertical-align:middle;margin-top:-4px;margin-right:5px;">check</i> Free Consultation</h6>
           <br>
@@ -143,7 +139,7 @@
           <div class="col-md-8">
             <div class="profile-card" data-toggle="modal" data-target="#workModal" style="cursor:pointer;">
               <h3 class="title centered">Works At</h4><br>
-                <div class="card card-background" style="box-shadow:none;background-image: url('/assets/img/sampleOffice.jpg')">
+                <div class="card card-background" style="box-shadow:none;background-image: url('{{ company.image || '/assets/img/sampleOffice.jpg' }}')">
                   <a href="#pablo"></a>
                   <div class="content">
                     <label class="label label-info">{{ pro.profile.jobTitle }}</label>
@@ -163,259 +159,162 @@
           </div>
 
           <div class="row" style="margin:0;">
+            {% if pro.designations.length > 0 || pro.licenses.length > 0 || pro.educations.length > 0 || pro.workHistories.length > 0 %}
             <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 profile-card resume">
-              <h3 class="title centered">Resume</h4><br>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>License</th>
-                        <th>Number</th>
-                        <th>Date Acquired</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>National Mortgage Lender</td>
-                        <td>1354315</td>
-                        <td>2016</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Designation</th>
-                        <th>Number</th>
-                        <th>Date Acquired</th>
+              <h3 class="title centered">Resume</h3><br>
 
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>CPA</td>
-                        <td>1354315</td>
-                        <td>2016</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>School</th>
-                        <th>Degree</th>
-                        <th>Date Acquired</th>
-
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>University of Oregon</td>
-                        <td>Bachelor's of Finance</td>
-                        <td>2008</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Previous Employer</th>
-                        <th>Dates Worked</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>State Farm</td>
-                        <td>2013-2015</td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>AllState</td>
-                        <td>2008-2013</td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>Radio Shack</td>
-                        <td>2004-2008</td>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              {% if pro.licenses.length > 0 %}
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>License</th>
+                      <th>Number</th>
+                      <th>Date Acquired</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for l in pro.licenses %}
+                    <tr>
+                      <td>{{ l.license }}</td>
+                      <td>{{ l.licenseNumber }}</td>
+                      <td>{{ l.dateEarned }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
               </div>
-            </div>
+              {% endif %}
 
-
-            <div class="row" style="margin:0;">
-              <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 profile-card">
-                <h3 class="title centered">Reviews</h3><br>.
-                <div class="text-center">
-                  <button href="#" class="btn btn-info" data-toggle="modal" data-target="#reviewModal"><i class="material-icons">create</i>&nbsp;&nbsp;&nbsp; Write Review</button><br>
-                </div>
-                <div class="media-area">
-                  <div class="media">
-
-                    <div class="media-body">
-                      <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
-                      <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
-
-                      <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
-                      <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
-
-                      <div class="media-footer">
-                        <br><br>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="media-area">
-                  <div class="media">
-
-                    <div class="media-body">
-                      <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
-                      <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
-
-                      <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
-                      <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
-
-                      <div class="media-footer">
-                        <br><br>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="media-area">
-                  <div class="media">
-
-                    <div class="media-body">
-                      <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
-                      <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
-
-                      <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
-                      <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
-
-                      <div class="media-footer">
-                        <br><br>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              {% if pro.designations.length > 0 %}
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Designation</th>
+                      <th>Number</th>
+                      <th>Date Acquired</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for d in pro.designations %}
+                    <tr>
+                      <td>{{ d.designation }}</td>
+                      <td>{{ d.designationNumber }}</td>
+                      <td>{{ d.dateEarned }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
               </div>
+              {% endif %}
+
+              {% if pro.educations.length > 0 %}
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>School</th>
+                      <th>Degree</th>
+                      <th>Date Acquired</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for e in pro.educations %}
+                    <tr>
+                      <td>{{ e.degreeName }}</td>
+                      <td>{{ e.collegeName }}</td>
+                      <td>{{ e.yearGraduated }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              {% endif %}
+
+              {% if pro.workHistories.length > 0 %}
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Previous Employer</th>
+                      <th>Dates Worked</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for w in pro.workHistories %}
+                    <tr>
+                      <td>{{ w.companyName }}</td>
+                      <td>{{ w.yearRange }}</td>
+                      <td></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              {% endif %}
             </div>
+            {% endif %}
           </div>
-        </div>
-      </div>
 
+          <div class="row" style="margin:0;">
+            <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 profile-card">
+              <h3 class="title centered">Reviews</h3><br>.
+              <div class="text-center">
+                <button href="#" class="btn btn-info" data-toggle="modal" data-target="#reviewModal"><i class="material-icons">create</i>&nbsp;&nbsp;&nbsp; Write Review</button><br>
+              </div>
+              <div class="media-area">
+                <div class="media">
 
+                  <div class="media-body">
+                    <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
+                    <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
 
+                    <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
+                    <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
 
-      <footer class="footer footer-black">
-        <div class="container">
-          <a class="footer-brand hidden-xs" href="#">TopAdvisors</a>
-          <ul class="pull-center">
-            <li>
-              <a href="/">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/how_it_works">
-                How it works
-              </a>
-            </li>
-            <li>
-              <a href="/for_pros">
-                for professionals
-              </a>
-            </li>
-            <li>
-              <a href="/contact-us">
-                contact us
-              </a>
-            </li>
-            <li>
-              <a href="/about">
-                about
-              </a>
-            </li>
-          </ul>
-
-          <ul class="social-buttons pull-right hidden-xs">
-            <li>
-              <a href="https://twitter.com/TopAdvisors503" target="_blank" class="btn btn-just-icon btn-simple">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.facebook.com/TopAdvisors503" target="_blank" class="btn btn-just-icon btn-simple">
-                <i class="fa fa-facebook-square"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/company/topadvisors" target="_blank" class="btn btn-just-icon btn-simple">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-          </ul>
-
-        </div>
-      </footer>
-
-
-      <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-lg modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Contact {{ pro.profile.firstName }}</h4>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-md-6" style="padding-left:0;">
-                  <div class="col-sm-12">
-                    <input type="text" class=" form-control" placeholder="First Name">
+                    <div class="media-footer">
+                      <br><br>
+                    </div>
                   </div>
-                  <div class="col-sm-12">
-                    <input type="text" class="form-control" placeholder="Last Name">
-                  </div>
-                  <div class="col-sm-12">
-                    <input type="text" class="form-control" placeholder="Phone Number">
-                  </div>
-                  <div class="col-sm-12">
-                    <input type="text" class="form-control" placeholder="Email">
-                  </div>
-
                 </div>
-                <div class="col-md-6">
-                  <h6 style="margin-top:0;">Preferred Contact Method</h6>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="optionsCheckboxes">
-                      Phone
-                    </label>
-                  </div><div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="optionsCheckboxes">
-                    Email
-                  </label>
+              </div>
+
+              <div class="media-area">
+                <div class="media">
+
+                  <div class="media-body">
+                    <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
+                    <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
+
+                    <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
+                    <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+
+                    <div class="media-footer">
+                      <br><br>
+                    </div>
+                  </div>
                 </div>
-                <h6>Short Message (Optional)</h6>
-                <textarea class="form-control" rows="3"></textarea>
+              </div>
+
+              <div class="media-area">
+                <div class="media">
+
+                  <div class="media-body">
+                    <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
+                    <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
+
+                    <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
+                    <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+
+                    <div class="media-footer">
+                      <br><br>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <a class="btn btn-primary" id="giveResults"><i class="material-icons">mail</i> Send</a>
           </div>
         </div>
       </div>
@@ -424,104 +323,209 @@
 
 
 
-    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <footer class="footer footer-black">
+      <div class="container">
+        <a class="footer-brand hidden-xs" href="#">TopAdvisors</a>
+        <ul class="pull-center">
+          <li>
+            <a href="/">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/how_it_works">
+              How it works
+            </a>
+          </li>
+          <li>
+            <a href="/for_pros">
+              for professionals
+            </a>
+          </li>
+          <li>
+            <a href="/contact-us">
+              contact us
+            </a>
+          </li>
+          <li>
+            <a href="/about">
+              about
+            </a>
+          </li>
+        </ul>
+
+        <ul class="social-buttons pull-right hidden-xs">
+          <li>
+            <a href="https://twitter.com/TopAdvisors503" target="_blank" class="btn btn-just-icon btn-simple">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/TopAdvisors503" target="_blank" class="btn btn-just-icon btn-simple">
+              <i class="fa fa-facebook-square"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/topadvisors" target="_blank" class="btn btn-just-icon btn-simple">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </footer>
+
+
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Review {{ pro.profile.firstName }}</h4>
+            <h4 class="modal-title" id="myModalLabel">Contact {{ pro.profile.firstName }}</h4>
           </div>
           <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6" style="padding-left:0;">
+                <div class="col-sm-12">
+                  <input type="text" class=" form-control" placeholder="First Name">
+                </div>
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" placeholder="Last Name">
+                </div>
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" placeholder="Phone Number">
+                </div>
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" placeholder="Email">
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <h6 style="margin-top:0;">Preferred Contact Method</h6>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="optionsCheckboxes">
+                    Phone
+                  </label>
+                </div><div class="checkbox">
+                <label>
+                  <input type="checkbox" name="optionsCheckboxes">
+                  Email
+                </label>
+              </div>
+              <h6>Short Message (Optional)</h6>
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" id="giveResults"><i class="material-icons">mail</i> Send</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-lg modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Review {{ pro.profile.firstName }}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="col-sm-12">
+            <input type="text" class=" form-control" placeholder="First Name">
+            <textarea class="form-control" rows="8" placeholder="Write your review here. Please refrain from including any specific details about financial performance (such as portfolio returns), because it violates FINRA regulations."></textarea>
+            <br>
+            <h5 style="font-weight:bold;">Rating</h5>
+            <div class="row lead">
+              <div id="stars" class="starrr"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" id="giveResults"><i class="material-icons">edit</i> Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="workModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-lg modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="padding-left:30px;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{ company.name }}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
             <div class="col-sm-12">
-              <input type="text" class=" form-control" placeholder="First Name">
-              <textarea class="form-control" rows="8" placeholder="Write your review here. Please refrain from including any specific details about financial performance (such as portfolio returns), because it violates FINRA regulations."></textarea>
+              <img src="{{ company.image || '/assets/img/sampleOffice.jpg' }}" class="img-resonsive">
+            </div>
+            <div class="col-sm-12">
               <br>
-              <h5 style="font-weight:bold;">Rating</h5>
-              <div class="row lead">
-                <div id="stars" class="starrr"></div>
-              </div>
+              <p style="padding: 0 30px;">Eastlake Mortgage is a family-owned mortgage company founded in 1905, and located in EastLake, Seattle. We pride ourselves on serving our customers on both a personal and financial level - always putting you first and taking the time to educate our clients on their options and helping them make informed decisions.</p>
             </div>
           </div>
-          <div class="modal-footer">
-            <a class="btn btn-primary" id="giveResults"><i class="material-icons">edit</i> Submit</a>
+          <div class="row">
+
           </div>
         </div>
       </div>
     </div>
+  </div>
 
 
-    <div class="modal fade" id="workModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-lg modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header" style="padding-left:30px;">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">{{ company.name }}</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-sm-12">
-                <img src="/assets/img/sampleOffice.jpg" class="img-resonsive">
-              </div>
-              <div class="col-sm-12">
-                <br>
-                <p style="padding: 0 30px;">Eastlake Mortgage is a family-owned mortgage company founded in 1905, and located in EastLake, Seattle. We pride ourselves on serving our customers on both a personal and financial level - always putting you first and taking the time to educate our clients on their options and helping them make informed decisions.</p>
-              </div>
-            </div>
-            <div class="row">
-
-            </div>
-          </div>
+  <div class="profile-drop">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 col-xs-3">
+          <img src="{{ pro.profile.image || '/assets/img/samplePro.png' }}" alt="Circle Image" class="img-circle">
+        </div>
+        <div class="col-md-8 col-xs-6 text-center">
+          <h4 style="display:inline;"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br></h4>
+          <h6 class="" style="display:inline;">{{ pro.profile.jobTitle }}</h6>
+        </div>
+        <div class="col-md-2 col-xs-3">
+          <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i><span class="hidden-xs">&nbsp;&nbsp;&nbsp;Contact {{ pro.profile.firstName }}</span></a>
         </div>
       </div>
     </div>
+  </div>
+
+</body>
+<!--   Core JS Files   -->
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/js/material.min.js"></script>
+
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="/assets/js/nouislider.min.js" type="text/javascript"></script>
+
+<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+<script src="/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+<!--  Plugin for Select Form control, full documentation here: https://github.com/FezVrasta/dropdown.js -->
+<script src="/assets/js/jquery.dropdown.js" type="text/javascript"></script>
+
+<!--  Plugin for Tags, full documentation here: http://xoxco.com/projects/code/tagsinput/  -->
+<script src="/assets/js/jquery.tagsinput.js"></script>
+
+<!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="/assets/js/jasny-bootstrap.min.js"></script>
+<script src="/assets/js/stars.js"></script>
+<!-- Plugin For Google Maps -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+<script src="/assets/js/material-v-kit.js" type="text/javascript"></script>
+
+<script src="/assets/js/canvasjs.min.js" type="text/javascript"></script>
 
 
-    <div class="profile-drop">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-2 col-xs-3">
-            <img src="{{ pro.profile.image }}" alt="Circle Image" class="img-circle">
-          </div>
-          <div class="col-md-8 col-xs-6 text-center">
-            <h4 style="display:inline;"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br></h4>
-            <h6 class="" style="display:inline;">Mortgage Professional</h6>
-          </div>
-          <div class="col-md-2 col-xs-3">
-            <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i><span class="hidden-xs">&nbsp;&nbsp;&nbsp;Contact {{ pro.profile.firstName }}</span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </body>
-  <!--   Core JS Files   -->
-  <script src="/assets/js/jquery.min.js" type="text/javascript"></script>
-  <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="/assets/js/material.min.js"></script>
-
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="/assets/js/nouislider.min.js" type="text/javascript"></script>
-
-  <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-  <script src="/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
-
-  <!--  Plugin for Select Form control, full documentation here: https://github.com/FezVrasta/dropdown.js -->
-  <script src="/assets/js/jquery.dropdown.js" type="text/javascript"></script>
-
-  <!--  Plugin for Tags, full documentation here: http://xoxco.com/projects/code/tagsinput/  -->
-  <script src="/assets/js/jquery.tagsinput.js"></script>
-
-  <!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="/assets/js/jasny-bootstrap.min.js"></script>
-  <script src="/assets/js/stars.js"></script>
-  <!-- Plugin For Google Maps -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
-  <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-  <script src="/assets/js/material-v-kit.js" type="text/javascript"></script>
-
-  <script src="/assets/js/canvasjs.min.js" type="text/javascript"></script>
-
-
-  <script src="/assets/js/pro.profile.js" type="text/javascript"></script>
+<script src="/assets/js/pro.profile.js" type="text/javascript"></script>
 </html>
