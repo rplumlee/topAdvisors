@@ -45,6 +45,31 @@
       $('#contact-modal-close').click();
       window.sessionStorage.setItem('lead', JSON.stringify(jsonData));
     });
+
+    $('.new-review-form').submit(function(e){
+      e.preventDefault();
+
+      var fields = [
+        'firstName',
+        'description',
+        'agent'
+      ];
+
+      var jsonData = {};
+      fields.forEach(function (field) {
+        jsonData[field] = e.target[field].value;
+      });
+      jsonData.rating = $('.fa-star').length || 0;
+      $.ajax({
+        url: '/writeReview',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(jsonData)
+      });
+      $('#review-modal-close').click();
+      document.location.reload(true);
+    });
+
   });
 }(jQuery));
 

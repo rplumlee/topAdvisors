@@ -264,15 +264,23 @@
               <div class="text-center">
                 <button href="#" class="btn btn-info" data-toggle="modal" data-target="#reviewModal"><i class="material-icons">create</i>&nbsp;&nbsp;&nbsp; Write Review</button><br>
               </div>
+              {% for review in reviews %}
               <div class="media-area">
                 <div class="media">
 
                   <div class="media-body">
-                    <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
-                    <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
+                    <h4 class="media-heading">{{ review.firstName }}<small>&middot; {{ review.createdOn.toLocaleDateString() }}</small></h4>
+                    <h6 class="text-muted">
+                      {% for score in [1,2,3,4,5] %}
+                      {% if review.rating >= score %}
+                      <i class="material-icons">star</i>
+                      {% else %}
+                      <i class="material-icons">star_border</i>
+                      {% endif %}
+                      {% endfor %}
+                    </h6>
 
-                    <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
-                    <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+                    <p>{{ review.description }}</p>
 
                     <div class="media-footer">
                       <br><br>
@@ -280,40 +288,7 @@
                   </div>
                 </div>
               </div>
-
-              <div class="media-area">
-                <div class="media">
-
-                  <div class="media-body">
-                    <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
-                    <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
-
-                    <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
-                    <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
-
-                    <div class="media-footer">
-                      <br><br>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="media-area">
-                <div class="media">
-
-                  <div class="media-body">
-                    <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
-                    <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
-
-                    <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
-                    <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
-
-                    <div class="media-footer">
-                      <br><br>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -399,7 +374,6 @@
                   <div class="col-sm-12">
                     <input name="profile.email" id="profile.email" type="text" class="form-control" placeholder="Email">
                   </div>
-
                 </div>
                 <div class="col-md-6">
                   <h6 style="margin-top:0;">Preferred Contact Method</h6>
@@ -436,24 +410,27 @@
     <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Review {{ pro.profile.firstName }}</h4>
-          </div>
-          <div class="modal-body">
-            <div class="col-sm-12">
-              <input type="text" class=" form-control" placeholder="First Name">
-              <textarea class="form-control" rows="8" placeholder="Write your review here. Please refrain from including any specific details about financial performance (such as portfolio returns), because it violates FINRA regulations."></textarea>
-              <br>
-              <h5 style="font-weight:bold;">Rating</h5>
-              <div class="row lead">
-                <div id="stars" class="starrr"></div>
+          <form class="new-review-form">
+            <div class="modal-header">
+              <button type="button" class="close" id="review-modal-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Review {{ pro.profile.firstName }}</h4>
+            </div>
+            <div class="modal-body">
+              <div class="col-sm-12">
+                <input type="text" name="firstName" class=" form-control" placeholder="First Name">
+                <textarea class="form-control" name="description" rows="8" placeholder="Write your review here. Please refrain from including any specific details about financial performance (such as portfolio returns), because it violates FINRA regulations."></textarea>
+                <br>
+                <h5 style="font-weight:bold;">Rating</h5>
+                <div class="row lead">
+                  <div id="stars" class="starrr"></div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <a class="btn btn-primary" id="giveResults"><i class="material-icons">edit</i> Submit</a>
-          </div>
+            <div class="modal-footer">
+              <input name="agent" value="{{pro._id}}" type="hidden">
+              <button class="btn btn-primary" id="giveResults"><i class="material-icons">edit</i> Submit</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

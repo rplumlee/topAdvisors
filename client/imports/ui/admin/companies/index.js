@@ -21,11 +21,25 @@ var _parseAddress = function () {
   }
 };
 
+Template.adminCompanies.onCreated(function () {
+  this.state = new ReactiveDict();
+  this.state.setDefault({});
+  Meteor.subscribe('companies.list');
+});
+
 Template.adminCompanies.helpers({
   copyrightDate: function () {
     return new Date().getFullYear();
   },
   companies: function (selector) {
+    var searchText = Template.instance().state.get('searchText');
+    if (searchText) {
+      searchText = new RegExp(searchText, 'ig');
+
+      return Collections.Companies.find({
+        name: searchText
+      });
+    }
     return Collections.Companies.find({ });
   },
   parseDate: function (date) {
@@ -44,6 +58,10 @@ Template.adminCompanies.events({
   'click .edit-company'(event) {
     event.preventDefault();
     Router.go(`/admin/companies/${event.target.id}`);
+  },
+  'keyup #search-text'(event) {
+    event.preventDefault();
+    Template.instance().state.set('searchText', event.target.value);
   }
 });
 
@@ -59,8 +77,6 @@ Template.adminCompanies.onRendered(function () {
   // paper-dashboard.js
   //
   window_width = $(window).width();
-
-  Meteor.subscribe('companies.list');
 
   // Init navigation toggle for small screens
   if (window_width <= 991) {
