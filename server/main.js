@@ -51,8 +51,9 @@ WebApp.connectHandlers.use('/profile', function (req, res, next) {
   }
 
   var currentCompany = Collections.Companies.findOne({ _id: currentPro.company });
+  var proReviews = Collections.Reviews.find({ agent: currentPro._id }, { sort: { createdOn: -1 } }).fetch();
   res.writeHead(200);
-  res.end(Swig.render(Assets.getText('profile.html'), { locals: { pro: currentPro, company: currentCompany }}));
+  res.end(Swig.render(Assets.getText('profile.html'), { locals: { pro: currentPro, company: currentCompany, reviews: proReviews }}));
   Collections.Activities.update({
     agent: currentPro._id
   }, {
