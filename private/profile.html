@@ -264,15 +264,47 @@
               <div class="text-center">
                 <button href="#" class="btn btn-info" data-toggle="modal" data-target="#reviewModal"><i class="material-icons">create</i>&nbsp;&nbsp;&nbsp; Write Review</button><br>
               </div>
+              {% for review in reviews %}
               <div class="media-area">
                 <div class="media">
 
                   <div class="media-body">
-                    <h4 class="media-heading">Tina <small>&middot; 7/1/2016</small></h4>
-                    <h6 class="text-muted"><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i></h6>
+                    <h4 class="media-heading">{{ review.firstName }}<small>&middot; {{ review.createdOn.toLocaleDateString() }}</small></h4>
+                    <h6 class="text-muted">
 
-                    <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
-                    <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+                      {% if review.star>1 %}
+                      <i class="material-icons">star</i>
+                      {% else %}
+                      <i class="material-icons">star_border</i>
+                      {% endif %}
+
+                      {% if review.star>1 %}
+                      <i class="material-icons">star</i>
+                      {% else %}
+                      <i class="material-icons">star_border</i>
+                      {% endif %}
+
+                      {% if review.star>1 %}
+                      <i class="material-icons">star</i>
+                      {% else %}
+                      <i class="material-icons">star_border</i>
+                      {% endif %}
+
+                      {% if review.star>1 %}
+                      <i class="material-icons">star</i>
+                      {% else %}
+                      <i class="material-icons">star_border</i>
+                      {% endif %}
+
+                      {% if review.star>1 %}
+                      <i class="material-icons">star</i>
+                      {% else %}
+                      <i class="material-icons">star_border</i>
+                      {% endif %}
+
+                    </h6>
+
+                    <p>{{ review.description }}</p>
 
                     <div class="media-footer">
                       <br><br>
