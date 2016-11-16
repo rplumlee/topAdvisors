@@ -158,6 +158,23 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       });
 
       return { success: true };
+    },
+    'contact.us': function (params) {
+      check(params, Object);
+
+      var emailHtml = Swig.render(Assets.getText('templates/contact-us.html'), {
+        locals: {
+          query: params
+        }
+      });
+      Email.send({
+        to: Meteor.settings['CONTACT_EMAIL'],
+        from: params.name + ' <' + params.email + '>',
+        subject: params.name + ' submitted a message',
+        html: emailHtml
+      });
+
+      return { success: true };
     }
   });
 }
