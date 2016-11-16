@@ -21,17 +21,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 </head>
 <style>
-  .donut-pie-tooltip-bubble {
-    background-color: #ffffff;
-    color: #06346e;
-    font-size: 11px;
-    padding: 6px 12px 6px 12px;
-    border-radius: 2px 2px 2px 2px;
-    box-shadow: 1px 1px 1px 1px rgba(25, 25, 25, 0.15);
-    text-align: left;
-    max-width: 240px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
+.donut-pie-tooltip-bubble {
+  background-color: #ffffff;
+  color: #06346e;
+  font-size: 11px;
+  padding: 6px 12px 6px 12px;
+  border-radius: 2px 2px 2px 2px;
+  box-shadow: 1px 1px 1px 1px rgba(25, 25, 25, 0.15);
+  text-align: left;
+  max-width: 240px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 </style>
 <body class="profile-page">
@@ -379,153 +379,158 @@
     <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
+          <form class="contact-pro-form">
+            <div class="modal-header">
+              <button type="button" class="close" id="contact-modal-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Contact {{ pro.profile.firstName }}</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6" style="padding-left:0;">
+                  <div class="col-sm-12">
+                    <input name="profile.firstName"  id="profile.firstName" type="text" class="form-control" placeholder="First Name">
+                  </div>
+                  <div class="col-sm-12">
+                    <input name="profile.lastName" id="profile.lastName" type="text" class="form-control" placeholder="Last Name">
+                  </div>
+                  <div class="col-sm-12">
+                    <input name="profile.phone" id="profile.phone" type="text" class="form-control" placeholder="Phone Number">
+                  </div>
+                  <div class="col-sm-12">
+                    <input name="profile.email" id="profile.email" type="text" class="form-control" placeholder="Email">
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <h6 style="margin-top:0;">Preferred Contact Method</h6>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="contact-phone">
+                      Phone
+                    </label>
+                  </div><div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="contact-email">
+                      Email
+                    </label>
+                  </div>
+                  <h6>Short Message (Optional)</h6>
+                  <textarea  name="message" id="message" class="form-control" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input name="agent" value="{{pro._id}}" type="hidden">
+              <input name="company" value="{{pro.company}}" type="hidden">
+              <input name="purpose" id="purpose" type="hidden">
+              <button type="submit" class="btn btn-primary" id="giveResults"><i class="material-icons">mail</i> Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Contact {{ pro.profile.firstName }}</h4>
+            <h4 class="modal-title" id="myModalLabel">Review {{ pro.profile.firstName }}</h4>
+          </div>
+          <div class="modal-body">
+            <div class="col-sm-12">
+              <input type="text" class=" form-control" placeholder="First Name">
+              <textarea class="form-control" rows="8" placeholder="Write your review here. Please refrain from including any specific details about financial performance (such as portfolio returns), because it violates FINRA regulations."></textarea>
+              <br>
+              <h5 style="font-weight:bold;">Rating</h5>
+              <div class="row lead">
+                <div id="stars" class="starrr"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" id="giveResults"><i class="material-icons">edit</i> Submit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="workModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="padding-left:30px;">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">{{ company.name }}</h4>
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-md-6" style="padding-left:0;">
-                <div class="col-sm-12">
-                  <input type="text" class=" form-control" placeholder="First Name">
-                </div>
-                <div class="col-sm-12">
-                  <input type="text" class="form-control" placeholder="Last Name">
-                </div>
-                <div class="col-sm-12">
-                  <input type="text" class="form-control" placeholder="Phone Number">
-                </div>
-                <div class="col-sm-12">
-                  <input type="text" class="form-control" placeholder="Email">
-                </div>
-
+              <div class="col-sm-12">
+                <img src="{{ company.image || '/assets/img/sampleOffice.jpg' }}" class="img-resonsive">
               </div>
-              <div class="col-md-6">
-                <h6 style="margin-top:0;">Preferred Contact Method</h6>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="optionsCheckboxes">
-                    Phone
-                  </label>
-                </div><div class="checkbox">
-                <label>
-                  <input type="checkbox" name="optionsCheckboxes">
-                  Email
-                </label>
+              <div class="col-sm-12">
+                <br>
+                <p style="padding: 0 30px;">Eastlake Mortgage is a family-owned mortgage company founded in 1905, and located in EastLake, Seattle. We pride ourselves on serving our customers on both a personal and financial level - always putting you first and taking the time to educate our clients on their options and helping them make informed decisions.</p>
               </div>
-              <h6>Short Message (Optional)</h6>
-              <textarea class="form-control" rows="3"></textarea>
             </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-primary" id="giveResults"><i class="material-icons">mail</i> Send</a>
-        </div>
-      </div>
-    </div>
-  </div>
+            <div class="row">
 
-
-
-
-  <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-lg modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Review {{ pro.profile.firstName }}</h4>
-        </div>
-        <div class="modal-body">
-          <div class="col-sm-12">
-            <input type="text" class=" form-control" placeholder="First Name">
-            <textarea class="form-control" rows="8" placeholder="Write your review here. Please refrain from including any specific details about financial performance (such as portfolio returns), because it violates FINRA regulations."></textarea>
-            <br>
-            <h5 style="font-weight:bold;">Rating</h5>
-            <div class="row lead">
-              <div id="stars" class="starrr"></div>
             </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-primary" id="giveResults"><i class="material-icons">edit</i> Submit</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="modal fade" id="workModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-lg modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header" style="padding-left:30px;">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">{{ company.name }}</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-12">
-              <img src="{{ company.image || '/assets/img/sampleOffice.jpg' }}" class="img-resonsive">
-            </div>
-            <div class="col-sm-12">
-              <br>
-              <p style="padding: 0 30px;">Eastlake Mortgage is a family-owned mortgage company founded in 1905, and located in EastLake, Seattle. We pride ourselves on serving our customers on both a personal and financial level - always putting you first and taking the time to educate our clients on their options and helping them make informed decisions.</p>
-            </div>
-          </div>
-          <div class="row">
-
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
-  <div class="profile-drop">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2 col-xs-3">
-          <img src="{{ pro.profile.image || '/assets/img/samplePro.png' }}" alt="Circle Image" class="img-circle">
-        </div>
-        <div class="col-md-8 col-xs-6 text-center">
-          <h4 style="display:inline;"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br></h4>
-          <h6 class="" style="display:inline;">{{ pro.profile.jobTitle }}</h6>
-        </div>
-        <div class="col-md-2 col-xs-3">
-          <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i><span class="hidden-xs">&nbsp;&nbsp;&nbsp;Contact {{ pro.profile.firstName }}</span></a>
+    <div class="profile-drop">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 col-xs-3">
+            <img src="{{ pro.profile.image || '/assets/img/samplePro.png' }}" alt="Circle Image" class="img-circle">
+          </div>
+          <div class="col-md-8 col-xs-6 text-center">
+            <h4 style="display:inline;"><br>{{ pro.profile.firstName }} {{ pro.profile.lastName }}<br></h4>
+            <h6 class="" style="display:inline;">{{ pro.profile.jobTitle }}</h6>
+          </div>
+          <div class="col-md-2 col-xs-3">
+            <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal"><i class="material-icons">mail</i><span class="hidden-xs">&nbsp;&nbsp;&nbsp;Contact {{ pro.profile.firstName }}</span></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-</body>
-<!--   Core JS Files   -->
-<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
-<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/assets/js/material.min.js"></script>
+  </body>
+  <!--   Core JS Files   -->
+  <script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+  <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/assets/js/material.min.js"></script>
 
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="/assets/js/nouislider.min.js" type="text/javascript"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="/assets/js/nouislider.min.js" type="text/javascript"></script>
 
-<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-<script src="/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+  <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+  <script src="/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
-<!--  Plugin for Select Form control, full documentation here: https://github.com/FezVrasta/dropdown.js -->
-<script src="/assets/js/jquery.dropdown.js" type="text/javascript"></script>
+  <!--  Plugin for Select Form control, full documentation here: https://github.com/FezVrasta/dropdown.js -->
+  <script src="/assets/js/jquery.dropdown.js" type="text/javascript"></script>
 
-<!--  Plugin for Tags, full documentation here: http://xoxco.com/projects/code/tagsinput/  -->
-<script src="/assets/js/jquery.tagsinput.js"></script>
+  <!--  Plugin for Tags, full documentation here: http://xoxco.com/projects/code/tagsinput/  -->
+  <script src="/assets/js/jquery.tagsinput.js"></script>
 
-<!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-<script src="/assets/js/jasny-bootstrap.min.js"></script>
-<script src="/assets/js/stars.js"></script>
-<!-- Plugin For Google Maps -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script src="/assets/js/jasny-bootstrap.min.js"></script>
+  <script src="/assets/js/stars.js"></script>
+  <!-- Plugin For Google Maps -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
-<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-<script src="/assets/js/material-v-kit.js" type="text/javascript"></script>
+  <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+  <script src="/assets/js/material-v-kit.js" type="text/javascript"></script>
 
-<script src="/assets/js/canvasjs.min.js" type="text/javascript"></script>
+  <script src="/assets/js/canvasjs.min.js" type="text/javascript"></script>
 
 
-<script src="/assets/js/pro.profile.js" type="text/javascript"></script>
-</html>
+  <script src="/assets/js/pro.profile.js" type="text/javascript"></script>
+  </html>

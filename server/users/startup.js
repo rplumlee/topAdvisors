@@ -44,7 +44,7 @@ export default function ({ Meteor, Logger, Collections }) {
         bio: faker.lorem.paragraph()
       });
 
-      Accounts.createUser({
+      var id = Accounts.createUser({
         profile: {
           firstName: faker.name.firstName(),
           lastName: faker.name.lastName(),
@@ -61,6 +61,8 @@ export default function ({ Meteor, Logger, Collections }) {
         password: 'password',
         trophies: {}
       });
+
+      Collections.Activities.insert({ agent: id });
     }
     Logger.info('Created Companies');
   }

@@ -13,8 +13,9 @@ Template.proLeadsDashboard.helpers({
     }
     return Collections.Leads.find({}).count();
   },
-  views: function () {
-    return Collections.Activities.find({ type: 'viewProfile' });
+  profileViews: function () {
+    var activity = Collections.Activities.findOne({ agent: Meteor.userId() });
+    return activity ? activity.count : 0;
   },
   parseDate: function (date) {
     if (date) {
@@ -114,7 +115,7 @@ Template.proLeadsDashboard.onRendered(function bodyOnRendered() {
 
 
   document.title = 'Leads Dashboard';
-  Meteor.subscribe('activities.list');
+  Meteor.subscribe('activities.get');
 
   //
   // paper-dashboard.js

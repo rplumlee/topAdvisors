@@ -1,4 +1,4 @@
-// import startup from './startup';
+import publications from './publications';
 
 /**
  * Initializes the activities module
@@ -14,5 +14,5 @@ export default function (context) {
   // Initialze the components passing in the
   // server application context
   //
-  // startup(context);
+  publications(context);
 }

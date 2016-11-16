@@ -14,6 +14,37 @@
       });
     });
 
+    $('.contact-pro-form').submit(function(e){
+      e.preventDefault();
+
+      var fields = [
+        'profile.firstName',
+        'profile.lastName',
+        'profile.phone',
+        'profile.email',
+        'message',
+        'agent',
+        'company',
+        'purpose'
+      ];
+      var jsonData = {};
+      fields.forEach(function (field) {
+        jsonData[field] = e.target[field].value;
+      });
+      if (e.target['contact-phone'].checked) {
+        jsonData.preferredContact = 'phone';
+      } else if (e.target['contact-email'].checked) {
+        jsonData.preferredContact = 'email';
+      }
+      $.ajax({
+        url: '/createLead',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(jsonData)
+      });
+      $('#contact-modal-close').click();
+      window.sessionStorage.setItem('lead', JSON.stringify(jsonData));
+    });
   });
 }(jQuery));
 
@@ -48,5 +79,12 @@ window.onload = function () {
     ]
   });
   chart.render();
-}
 
+  var data = window.sessionStorage.getItem('lead');
+  data = data ? JSON.parse(data) : {};
+  for (props in data) {
+    if (document.getElementById(props)) {
+      document.getElementById(props).value = data[props];
+    }
+  }
+}
