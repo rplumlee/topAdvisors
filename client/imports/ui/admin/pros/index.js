@@ -24,6 +24,15 @@ Template.adminPros.helpers({
     return Meteor.user()
   },
   pros: () => {
+    var searchText = Template.instance().state.get('searchText');
+    if (searchText) {
+      searchText = new RegExp(searchText, 'ig');
+
+      return Collections.Users.find({
+        'profile.type': 'pro',
+        $or: [ { 'profile.firstName': searchText },{ 'profile.lastName': searchText}]
+      });
+    }
     return Collections.Users.find({ 'profile.type': 'pro' });
   },
   leadsClosedByPro: (pro) => {
@@ -42,6 +51,10 @@ Template.adminPros.events({
   'click .addPro'(event) {
     event.preventDefault();
     Router.go('/admin/pros/new');
+  },
+  'keyup #search-text'(event) {
+    event.preventDefault();
+    Template.instance().state.set('searchText', event.target.value);
   }
 });
 
@@ -67,6 +80,8 @@ Template.adminPros.onRendered(function () {
 });
 
 Template.adminPros.onCreated(function () {
+  this.state = new ReactiveDict();
+  this.state.setDefault({});
   Meteor.subscribe('pros.list');
   Meteor.subscribe('leads.list');
 });
