@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check, Match } from 'meteor/check';
+import { Email } from 'meteor/email';
 import Flat from 'flat';
 import Swig from 'swig';
 import Collections from '/lib/collections';
@@ -18,7 +19,9 @@ var context = {
   Accounts,
   check,
   Match,
-  Flat
+  Flat,
+  Email,
+  Swig
 };
 
 Meteor.startup(() => {
@@ -30,6 +33,10 @@ Meteor.startup(() => {
   activities(context);
   reviews(context);
 });
+
+if (Meteor.isDevelopment) {
+  process.env.MAIL_URL = Meteor.settings.MAIL_URL;
+}
 
 WebApp.connectHandlers.use('/home', function (req, res) {
   res.writeHead(200);

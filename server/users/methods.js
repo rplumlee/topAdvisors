@@ -2,7 +2,7 @@
 * Define the exported methods for the accounts module
 * @param {object} context - server application context
 */
-export default function ({ Meteor, Accounts, Collections, check, Match, lib, Flat }) {
+export default function ({ Meteor, Accounts, Collections, check, Match, lib, Flat, Email, Swig }) {
 
   Meteor.methods({
 
@@ -136,6 +136,24 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
         { _id: params._id },
         { $set: Flat.flatten(params, { safe: true }) }
       );
+
+      return { success: true };
+    },
+    'pros.request': function (params) {
+      check(params, Object);
+
+      var emailHtml = Swig.render(Assets.getText('templates/new-pro.html'), {
+        locals: {
+          admin: Meteor.settings['NEW_PRO_ADMIN_NAME'],
+          pro: params
+        }
+      });
+      Email.send({
+        to: Meteor.settings['NEW_PRO_ADMIN_EMAIL'],
+        from: Meteor.settings['CONTACT_NAME'] + ' <' + Meteor.settings['CONTACT_EMAIL'] + '>',
+        subject: 'A pro wants to sign up',
+        html: emailHtml
+      });
 
       return { success: true };
     }
