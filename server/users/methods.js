@@ -57,6 +57,8 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       // Create user
       var id = Accounts.createUser(inflatedData);
 
+      Accounts.sendEnrollmentEmail(id, inflatedData.email);
+
       // Accounts.sendEnrollmentEmail(id);
 
       return { success: true, user: id };

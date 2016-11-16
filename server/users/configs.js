@@ -27,4 +27,12 @@ export default function ({ Accounts }) {
     return user;
   });
 
+  Accounts.emailTemplates.siteName = process.env.ROOT_URL.replace(/\/$/, '');
+  Accounts.emailTemplates.from = Meteor.settings['CONTACT_NAME'] + ' <' + Meteor.settings['CONTACT_EMAIL'] + '>';
+  Accounts.emailTemplates.enrollAccount.subject = function (user) {
+    return 'Welcome to Top Advisors, ' + user.profile.firstName;
+  };
+  Accounts.emailTemplates.enrollAccount.text = function () {
+    return 'Your account has been created at TopAdvisors.\nPlease contact admin for credentials.';
+  };
 }
