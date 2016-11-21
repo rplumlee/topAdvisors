@@ -1,0 +1,86 @@
+.profile-page .profile-content {
+  background-color: #e3e3e3; }
+.profile-page .profile-card {
+  background: #fff;
+  padding: 15px 30px;
+  border-bottom: 1px solid #ddd;
+  margin-top: 30px;
+  margin-bottom: 30px; }
+.profile-page .trophy-section {
+  border-top: 1px solid #ccc;
+  padding: 0;
+  background: #fff;
+  margin: 30px -30px 0 -30px; }
+  .profile-page .trophy-section .trophy {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: inline-block; }
+    .profile-page .trophy-section .trophy img {
+      height: 100px;
+      width: auto;
+      padding: 35px 20px 5px 20px; }
+.profile-page .nameCard {
+  margin-top: -50px; }
+.profile-page .resume table {
+  margin-top: 30px;
+  margin-bottom: 30px; }
+  .profile-page .resume table td:first-child {
+    width: 50% !important; }
+  .profile-page .resume table td {
+    width: 25%; }
+  .profile-page .resume table th:first-child {
+    font-weight: bold; }
+.profile-page .job {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.2em; }
+.profile-page .checkbox-label {
+  color: #323232 !important; }
+.profile-page .lead {
+  padding-left: 15px;
+  color: gold;
+  font-size: 2em; }
+.profile-page input {
+  border-radius: 0; }
+
+@media (max-width: 767px) {
+  .profile-page .page-header {
+    min-height: 0 !important; }
+  .profile-page .resume {
+    padding: 30px 0; }
+  .profile-page .container {
+    padding: 0; }
+  .profile-page .table-responsive {
+    border: none; }
+
+  .row {
+    margin: 0; } }
+.profile-drop {
+  transition: all .5s ease;
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  max-height: 100px;
+  background: #fff;
+  top: -100px;
+  z-index: 50;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05); }
+  .profile-drop h4 {
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 14px; }
+  .profile-drop h6 {
+    font-size: 11px;
+    line-height: 12px !important;
+    display: block !important; }
+  .profile-drop img {
+    max-height: 50px;
+    margin: 5px 0;
+    border: 1px solid #ccc; }
+  .profile-drop a {
+    margin-top: 8px; }
+
+.canvasjs-chart-credit {
+  display: none; }
+
+/*# sourceMappingURL=profile.css.map */
