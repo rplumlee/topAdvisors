@@ -9,19 +9,20 @@
       var query = {
         name: e.target.name.value,
         email: e.target.email.value,
-        message: e.target.message.value,
+        message: e.target.message.value
       };
 
-      // query.message.replace(/\r\n|\n/g,'<br/>');
-
-      Meteor.call('contact.us', query, function (err, res) {
-        if (!err) {
-          e.target.name.value = '';
-          e.target.email.value = '';
-          e.target.message.value = '';
-          e.target.human.checked = false;
-        }
+      $.ajax({
+        url: '/contactUs',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(query)
       });
+
+      e.target.name.value = '';
+      e.target.email.value = '';
+      e.target.message.value = '';
+      e.target.human.checked = false;
     });
   });
 }(jQuery));

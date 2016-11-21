@@ -87,4 +87,32 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
       Logger.error(err);
     }
   });
+
+  WebApp.connectHandlers.use('/contactUs', function (req, res) {
+    try {
+      var data = '';
+      req.on('data', function (chunk) {
+        data += chunk;
+      });
+
+      var emailHtml = Swig.render(Assets.getText('templates/contact-us.html'), {
+        locals: {
+          query: JSON.parse(data)
+        }
+      });
+
+      Email.send({
+        to: Meteor.settings['CONTACT_EMAIL'],
+        from: params.name + ' <' + params.email + '>',
+        subject: params.name + ' submitted a message',
+        html: emailHtml
+      });
+
+      res.setHeader('Content-type', 'application/json');
+      res.writeHead(200);
+      res.end('{ "success": true }');
+    } catch (err) {
+      Logger.error(err);
+    }
+  });
 }
