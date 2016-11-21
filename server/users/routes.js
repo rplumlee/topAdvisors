@@ -1,5 +1,5 @@
 
-export default function ({ Meteor, Uploader, Collections, Logger, Flat }) {
+export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, Swig }) {
 
   WebApp.connectHandlers.use('/getPros', function (req, res) {
     res.setHeader('Content-type', 'application/json');
@@ -37,7 +37,7 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat }) {
         Collections.Reviews.insert(JSON.parse(data));
         res.setHeader('Content-type', 'application/json');
         res.writeHead(200);
-        res.end();
+        res.end('{ "success": true }');
       }));
     } catch (err) {
       Logger.error(err);
@@ -57,5 +57,34 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat }) {
         res.end(JSON.stringify(response));
       });
     });
+  });
+
+  WebApp.connectHandlers.use('/proRequest', function (req, res) {
+    try {
+      var data = '';
+      req.on('data', function (chunk) {
+        data += chunk;
+      });
+
+      var emailHtml = Swig.render(Assets.getText('templates/new-pro.html'), {
+        locals: {
+          admin: Meteor.settings['NEW_PRO_ADMIN_NAME'],
+          pro: JSON.parse(data)
+        }
+      });
+
+      Email.send({
+        to: Meteor.settings['NEW_PRO_ADMIN_EMAIL'],
+        from: Meteor.settings['CONTACT_NAME'] + ' <' + Meteor.settings['CONTACT_EMAIL'] + '>',
+        subject: 'A pro wants to sign up',
+        html: emailHtml
+      });
+
+      res.setHeader('Content-type', 'application/json');
+      res.writeHead(200);
+      res.end('{ "success": true }');
+    } catch (err) {
+      Logger.error(err);
+    }
   });
 }

@@ -6,16 +6,19 @@
         name: e.target.name.value,
         email: e.target.email.value,
         phone: e.target.phone.value,
-        jobTitle: e.target.jobTitle.value,
         employer: e.target.employer.value
       };
-      Meteor.call('pros.request', newProData, function (err, res) {
-        if (!err) {
-          $('.new-pro-request-form').find('input[type=text]').val('');
-          $('.new-pro-request-form').find('input[type=email]').val('');
-          $('.new-pro-request-form').find('input[type=tel]').val('');
-        }
+
+      $.ajax({
+        url: '/proRequest',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(newProData)
       });
+
+      $('.new-pro-request-form').find('input[type=text]').val('');
+      $('.new-pro-request-form').find('input[type=email]').val('');
+      $('.new-pro-request-form').find('input[type=tel]').val('');
     });
   });
 }(jQuery));
