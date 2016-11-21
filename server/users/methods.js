@@ -2,7 +2,7 @@
 * Define the exported methods for the accounts module
 * @param {object} context - server application context
 */
-export default function ({ Meteor, Accounts, Collections, check, Match, lib, Flat, Email, Swig }) {
+export default function ({ Meteor, Accounts, Collections, check, Match, lib, Flat }) {
 
   Meteor.methods({
 

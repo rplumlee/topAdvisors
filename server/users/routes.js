@@ -95,9 +95,10 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
         data += chunk;
       });
 
+      var params = JSON.parse(data);
       var emailHtml = Swig.render(Assets.getText('templates/contact-us.html'), {
         locals: {
-          query: JSON.parse(data)
+          query: params
         }
       });
 
