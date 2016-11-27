@@ -1,4 +1,3 @@
-import './imports/ui/home';
 import './imports/ui/login';
 import './imports/ui/pro';
 import './imports/ui/pro/leads';
