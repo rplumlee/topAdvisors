@@ -169,10 +169,14 @@ Template.adminCompanyInner.events({
         url: "/upload",
         data: $('.fileinput img')[1].src,
         success: function (response) {
-          Meteor.call('companies.edit', {
-            _id: companyId,
-            image: response.secure_url
-          });
+          if (companyId) {
+            Meteor.call('companies.edit', {
+              _id: companyId,
+              image: response.secure_url
+            });
+          } else {
+            $('#companyTempImage')[0].value = response.secure_url;
+          }
         }
       });
     }
