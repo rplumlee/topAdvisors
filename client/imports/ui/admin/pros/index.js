@@ -340,6 +340,14 @@ Template.adminProInner.events({
       }
     });
 
+    if ($('#proTempImage')[0].value) {
+      data['profile.image'] = $('#proTempImage')[0].value;
+    }
+
+    if ($('#coverTempImage')[0].value) {
+      data['profile.coverImage'] = $('#coverTempImage')[0].value;
+    }
+
     Meteor.call('users.create', data, function (err, result) {
       if (!err) {
         Router.go(`/admin/pros/${result.user}`);
@@ -407,10 +415,14 @@ Template.adminProInner.events({
         url: "/upload",
         data: $('#proImage img')[1].src,
         success: function (response) {
-          Meteor.call('users.edit', {
-            _id: proId,
-            'profile.image': response.secure_url
-          });
+          if (proId) {
+            Meteor.call('users.edit', {
+              _id: proId,
+              'profile.image': response.secure_url
+            });
+          } else {
+            $('#proTempImage')[0].value = response.secure_url
+          }
         }
       });
     }
@@ -423,10 +435,14 @@ Template.adminProInner.events({
         url: "/upload",
         data: $('#coverImage img')[1].src,
         success: function (response) {
-          Meteor.call('users.edit', {
-            _id: proId,
-            'profile.coverImage': response.secure_url
-          });
+          if (proId) {
+            Meteor.call('users.edit', {
+              _id: proId,
+              'profile.coverImage': response.secure_url
+            });
+          } else {
+            $('#coverTempImage')[0].value = response.secure_url
+          }
         }
       });
     }

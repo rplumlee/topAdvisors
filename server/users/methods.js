@@ -50,7 +50,9 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
             highReturns: Match.Maybe(Boolean),
             education: Match.Maybe(Boolean),
           }),
-          phone: Match.Maybe(String)
+          phone: Match.Maybe(String),
+          image: Match.Maybe(String),
+          coverImage: Match.Maybe(String)
         }
       });
 

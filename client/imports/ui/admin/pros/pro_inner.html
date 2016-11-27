@@ -747,6 +747,7 @@
                                       <div class="col-xs-6 text-center">
                                         <h2>Profile Picture</h2>
                                         <div id="proImage" class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                          <input type="hidden" id="proTempImage" />
                                           <div class="fileinput-new thumbnail img-raised">
                                             {{ #if pros.profile.image }}
                                             <img src="{{pros.profile.image}}" alt="...">
@@ -768,6 +769,7 @@
                                       <div class="col-xs-6 text-center">
                                         <h2>Cover Photo</h2>
                                         <div id="coverImage" class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                          <input type="hidden" id="coverTempImage" />
                                           <div class="fileinput-new thumbnail img-raised">
                                             {{ #if pros.profile.coverImage }}
                                             <img src="{{pros.profile.coverImage}}" alt="...">
