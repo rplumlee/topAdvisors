@@ -377,7 +377,7 @@ $( document ).ready(function() {
             '<h6 class="contact" style="font-weight:500;">'+
             'Mortgage Associates of Portland'+
             '</h6>'+
-            '<h6 style="margin-top:5px;"><i class="material-icons hidden-xs" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">verified_user</i>7 Years Experience'+
+            '<h6 style="margin-top:5px;"><i class="material-icons hidden-xs" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">verified_user</i>'+pro.professionalExperience+' Experience'+
             '</div>'+
             '</div>'+
             '<div class="col-sm-3 result-highlights">'+

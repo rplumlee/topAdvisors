@@ -4,7 +4,23 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
   WebApp.connectHandlers.use('/getPros', function (req, res) {
     res.setHeader('Content-type', 'application/json');
     res.writeHead(200);
-    res.end(JSON.stringify(Meteor.users.find({ 'profile.type': 'pro' }, { fields: { services: false } }).fetch()));
+    res.end(JSON.stringify(Meteor.users.find({
+      'profile.type': 'pro'
+    }, {
+      fields: { services: false },
+      transform (user) {
+        user.professionalExperience = 'No';
+        if (user.licenses && user.licenses.length > 0) {
+          user.professionalExperience = (new Date()).getFullYear() - _.min(_.map(user.licenses, function (each) { return parseInt(each.dateEarned) }));
+          if (user.professionalExperience > 1) {
+            user.professionalExperience += ' Years';
+          } else {
+            user.professionalExperience += ' Year';
+          }
+        }
+        return user;
+      }
+    }).fetch()));
   });
 
   WebApp.connectHandlers.use('/createLead', function (req, res) {
