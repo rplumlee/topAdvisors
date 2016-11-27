@@ -12,10 +12,10 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
     res.writeHead(200);
     res.end(JSON.stringify(Meteor.users.find(query, {
       fields: { services: false },
-      transform (user) {
+      transform(user) {
         user.professionalExperience = 'No';
         if (user.licenses && user.licenses.length > 0) {
-          user.professionalExperience = (new Date()).getFullYear() - _.min(_.map(user.licenses, function (each) { return parseInt(each.dateEarned) }));
+          user.professionalExperience = (new Date()).getFullYear() - _.min(_.map(user.licenses, function (each) { return parseInt(each.dateEarned, 10); }));
           if (user.professionalExperience > 1) {
             user.professionalExperience += ' Years';
           } else {
