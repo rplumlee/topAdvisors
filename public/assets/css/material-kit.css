@@ -3308,7 +3308,7 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
       &.tag-primary .tagsinput-add{
           color: $primary-color;
       }
-  
+
       &.tag-success .tag{
            background-color: $success-color;
       }
@@ -5816,7 +5816,7 @@ p {
   padding: 10px; }
 
 .logo {
-  font-family: "Lalezar", cursive !important; }
+  font-family: "Montserrat", cursive !important; }
 
 .navbar-transparent {
   padding-top: 0; }

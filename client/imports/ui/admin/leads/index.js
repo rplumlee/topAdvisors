@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import Collections from '/lib/collections';
+import Common from '../../common';
 import './manage_leads.html';
 
 Template.adminLeads.helpers({
@@ -124,13 +125,4 @@ Template.adminLeads.onRendered(function () {
   Meteor.subscribe('pros.list');
   Meteor.subscribe('leads.list');
 
-  //
-  // paper-dashboard.js
-  //
-  window_width = $(window).width();
-
-  // Init navigation toggle for small screens
-  if (window_width <= 991) {
-    lbd.initRightMenu();
-  }
 });

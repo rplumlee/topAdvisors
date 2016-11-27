@@ -3,6 +3,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import moment from 'moment';
 import _ from 'underscore';
 import Collections from '/lib/collections';
+import Common from '../../common';
 import './manage_companies.html';
 import './company_inner.html';
 
@@ -226,13 +227,4 @@ Template.adminCompanyInner.onRendered(function bodyOnRendered() {
   };
 
   autocomplete = new google.maps.places.Autocomplete(input, options);
-  //
-  // paper-dashboard.js
-  //
-  window_width = $(window).width();
-
-  // Init navigation toggle for small screens
-  if (window_width <= 991) {
-    lbd.initRightMenu();
-  }
 });

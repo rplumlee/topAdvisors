@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import Collections from '/lib/collections';
+import Common from '../../common';
 import './dashboard.html';
 
 Template.proLeadsDashboard.helpers({

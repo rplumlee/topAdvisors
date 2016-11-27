@@ -21,7 +21,7 @@ lbd = {
     }
   },
   initRightMenu: function(){
-     if(!navbar_initialized){
+     if (!navbar_initialized) {
       $navbar = $('nav').find('.navbar-collapse').first().clone(true);
 
       $sidebar = $('.sidebar');
@@ -100,41 +100,6 @@ lbd = {
 
   }
 }
-
-$(document).ready(function(){
-  window_width = $(window).width();
-
-  // Init navigation toggle for small screens
-  if(window_width <= 991){
-    lbd.initRightMenu();
-  }
-
-  //  Activate the tooltips
-  $('[rel="tooltip"]').tooltip();
-
-  //      Activate the switches with icons
-  if($('.switch').length != 0){
-    $('.switch')['bootstrapSwitch']();
-  }
-  //      Activate regular switches
-  if($("[data-toggle='switch']").length != 0){
-     $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
-  }
-
-  $('.form-control').on("focus", function(){
-    $(this).parent('.input-group').addClass("input-group-focus");
-  }).on("blur", function(){
-    $(this).parent(".input-group").removeClass("input-group-focus");
-  });
-
-});
-
-// activate collapse right menu when the windows is resized
-$(window).resize(function(){
-  if($(window).width() <= 991){
-    lbd.initRightMenu();
-  }
-});
 
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for

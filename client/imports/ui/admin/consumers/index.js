@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import Collections from '/lib/collections';
+import Common from '../../common';
 import './manage_consumers.html';
 
 Template.adminConsumers.helpers({
@@ -33,13 +34,4 @@ Template.adminConsumers.onRendered(function bodyOnRendered() {
   document.title = 'Admin Dashboard';
   Meteor.subscribe('leads.listConsumers');
 
-  //
-  // paper-dashboard.js
-  //
-  window_width = $(window).width();
-
-  // Init navigation toggle for small screens
-  if (window_width <= 991) {
-    lbd.initRightMenu();
-  }
 });
