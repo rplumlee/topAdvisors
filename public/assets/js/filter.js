@@ -95,6 +95,7 @@ $( document ).ready(function() {
     question: 'What type of business loan do you need?',
     options: ['Basic Commercial Loan', 'Term Commercial Loan', 'Unsecured Commercial Loan', 'Commercial Acquisition Loan', 'I\'m not sure'],
     next: ['loansBusn2', 'loansBusn2', 'loansBusn2', 'loansBusn2', 'loansBusn2'],
+    keyword: 'purpose',
     class: 'vertical',
     icons: ['account_balance', 'store', 'visibility_off', 'flight_takeoff', 'help']
   };
@@ -111,6 +112,7 @@ $( document ).ready(function() {
     question: 'Which kind of personal financial services do you need?',
     options: ['Financial Advising', 'Wealth Management', 'Education Funding', 'Estate Plannning', 'I\'m not sure'],
     next: ['financePers2', 'financePers2', 'financePers3', 'financePers4'],
+    keyword: 'purpose',
     class: 'vertical',
     icons: ['trending_up', 'attach_money', 'school', 'domain', 'help']
   };
@@ -139,6 +141,7 @@ $( document ).ready(function() {
     question: 'What type of business financial services do you need?',
     options: ['Tax Planning', 'Employee Benefit Planning', 'Employee Retirement Planning', 'Business Valuation', 'Business Succession Planning', 'Investment Planning', 'I\'m not sure'],
     next: ['financeBusn2', 'financeBusn2', 'financeBusn2', 'financeBusn2',  'financeBusn2', 'financeBusn2', 'financeBusn2', 'financeBusn2', 'financeBusn2'],
+    keyword: 'purpose',
     class: 'vertical',
     icons: ['create_new_folder', 'face', 'trending_up', 'store', 'shuffle', 'pie_chart', 'help']
   };
@@ -178,6 +181,7 @@ $( document ).ready(function() {
     question: 'What type of business insurance do you need?',
     options: ['General Liability Insurance', 'Product Liability Insurance', 'Life & Health Insurance', 'Commercial Auto Insurance', 'Worker\'s Comp Insurance', 'Director\'s and Officer\'s Insurance', 'Data Breach Insurance', 'I\'m not sure'],
     next: ['insuranceBusn2', 'insuranceBusn3', 'insuranceBusn2', 'insuranceBusn3',  'insuranceBusn2', 'insuranceBusn2', 'insuranceBusn2', 'insuranceBusn2', 'insuranceBusn3'],
+    keyword: 'purpose',
     class: 'vertical',
     icons: ['domain', 'loyalty', 'favorite', 'directions_car', 'people', 'face', 'laptop', 'help']
   };
@@ -213,8 +217,7 @@ $( document ).ready(function() {
 
 
 
-  function nextQuestion(question){
-
+  function nextQuestion(question) {
     arr.push(a);
 
     var filterQuestion = $('.filter-question');
