@@ -2,11 +2,15 @@
 export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, Swig }) {
 
   WebApp.connectHandlers.use('/getPros', function (req, res) {
+    var purpose = req.query.purpose;
+    var query = { 'profile.type': 'pro' };
+    if (purpose) {
+      query['$or'] = [ {'profile.personalSpecialty': purpose }, {'profile.businessSpecialty': purpose } ];
+    }
+
     res.setHeader('Content-type', 'application/json');
     res.writeHead(200);
-    res.end(JSON.stringify(Meteor.users.find({
-      'profile.type': 'pro'
-    }, {
+    res.end(JSON.stringify(Meteor.users.find(query, {
       fields: { services: false },
       transform (user) {
         user.professionalExperience = 'No';

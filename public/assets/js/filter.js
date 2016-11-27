@@ -357,9 +357,9 @@ $( document ).ready(function() {
 
       filterAnswerContainer.html('<h2 style="font-weight:300;">Finding the top professionals in your area..</h2><h1><i class="fa fa-spin text-info fa-circle-o-notch"></i></h1>')
 
-      $.get( "/getPros", function (data) {
+      $.get( "/getPros?purpose="+data.purpose, function (prosData) {
         filterAnswerContainer.html('');
-        data.forEach(function (pro) {
+        prosData.forEach(function (pro) {
           var image = pro.profile.image || '/assets/img/samplePro.png';
           filterAnswerContainer.append(
             '<div class="row result">'+
