@@ -93,3 +93,10 @@ body{
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 }
+.centerify {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%,-50%);
+}

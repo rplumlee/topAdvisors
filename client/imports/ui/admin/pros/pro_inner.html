@@ -749,6 +749,7 @@
                                         <h2>Profile Picture</h2>
                                         <div id="proImage" class="fileinput fileinput-new text-center" data-provides="fileinput">
                                           <input type="hidden" id="proTempImage" />
+                                          <div style="display: none" class="centerify" id="proImageLoader"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i></div>
                                           <div class="fileinput-new thumbnail img-raised">
                                             {{ #if pros.profile.image }}
                                             <img src="{{pros.profile.image}}" alt="...">
@@ -771,6 +772,7 @@
                                         <h2>Cover Photo</h2>
                                         <div id="coverImage" class="fileinput fileinput-new text-center" data-provides="fileinput">
                                           <input type="hidden" id="coverTempImage" />
+                                          <div style="display: none" class="centerify" id="coverImageLoader"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i></div>
                                           <div class="fileinput-new thumbnail img-raised">
                                             {{ #if pros.profile.coverImage }}
                                             <img src="{{pros.profile.coverImage}}" alt="...">

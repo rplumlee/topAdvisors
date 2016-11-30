@@ -410,11 +410,15 @@ Template.adminProInner.events({
   'focus #proImage input'(event, instance) {
     var proId = instance.pros.get('pro')._id;
     if ($('#proImage img')[1]) {
+      $('#proImageLoader').show();
+      $('#proImage img').css({ opacity: 0.2 });
       $.ajax({
         type: "POST",
         url: "/upload",
         data: $('#proImage img')[1].src,
         success: function (response) {
+          $('#proImageLoader').hide();
+          $('#proImage img').css({ opacity: 1 });
           if (proId) {
             Meteor.call('users.edit', {
               _id: proId,
@@ -430,11 +434,15 @@ Template.adminProInner.events({
   'focus #coverImage input'(event, instance) {
     var proId = instance.pros.get('pro')._id;
     if ($('#coverImage img')[1]) {
+      $('#coverImageLoader').show();
+      $('#coverImage img').css({ opacity: 0.2 });
       $.ajax({
         type: "POST",
         url: "/upload",
         data: $('#coverImage img')[1].src,
         success: function (response) {
+          $('#coverImageLoader').hide();
+          $('#coverImage img').css({ opacity: 1 });
           if (proId) {
             Meteor.call('users.edit', {
               _id: proId,

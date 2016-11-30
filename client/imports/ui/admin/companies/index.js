@@ -165,11 +165,15 @@ Template.adminCompanyInner.events({
   'focus .fileinput input'(event) {
     var companyId = Template.instance().companies.get('company')._id;
     if ($('.fileinput img')[1]) {
+      $('#companyImageLoader').show();
+      $('.fileinput img').css({ opacity: 0.2 });
       $.ajax({
         type: "POST",
         url: "/upload",
         data: $('.fileinput img')[1].src,
         success: function (response) {
+          $('#companyImageLoader').hide();
+          $('.fileinput img').css({ opacity: 1 });
           if (companyId) {
             Meteor.call('companies.edit', {
               _id: companyId,
