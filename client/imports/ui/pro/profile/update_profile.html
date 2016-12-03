@@ -7,7 +7,7 @@
 
         <div class="user">
           <img src="{{#if user.profile.image}}{{user.profile.image}}{{else}}/assets/img/samplePro.png{{/if}}" class="img-circle img-responsive">
-          <h5>{{user.profile.firstName}} {{user.profile.lastName}}</h5>
+          <h5>{{user.profile.firstName}} {{user.profile.lastName}}{{getCPA}}</h5>
           <h6>{{user.profile.jobTitle}} at {{getCompany.name}}</h6>
         </div>
 
