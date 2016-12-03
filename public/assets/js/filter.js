@@ -359,38 +359,42 @@ $( document ).ready(function() {
 
       $.get( "/getPros?purpose="+data.purpose, function (prosData) {
         filterAnswerContainer.html('');
-        prosData.forEach(function (pro) {
-          var image = pro.profile.image || '/assets/img/samplePro.png';
-          filterAnswerContainer.append(
-            '<div class="row result">'+
-            '<a href="/profile/'+pro.profile.slug+'"></a>' +
-            '<div class="result-inner">'+
-            '<div class="row result-margin">'+
-            '<div class="col-sm-9 clearfix">'+
-            '<div class="col-sm-3 col-xs-6 col-xs-offset-3 col-sm-offset-0">'+
-            ' <img src="'+ image +'" class="img-circle img-responsive result-image">'+
-            '</div>'+
-            '<div class="col-sm-9 col-xs-12 col-md-8">'+
-            '<h3 class="result-name"><a href="/profile/'+pro.profile.slug+'">'+pro.profile.firstName+' '+pro.profile.lastName+', <span class="designation">'+pro.profile.jobTitle+'</span></a></h3>'+
-            '<div class="result-rating">'+
-            '<div>'+
-            '<i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star_half</i>'+
-            '</div>'+
-            '</div>'+
-            '<h6 class="contact" style="font-weight:500;">'+
-            'Mortgage Associates of Portland'+
-            '</h6>'+
-            '<h6 style="margin-top:5px;"><i class="material-icons hidden-xs" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">verified_user</i>'+pro.professionalExperience+' Experience'+
-            '</div>'+
-            '</div>'+
-            '<div class="col-sm-3 result-highlights">'+
-            '<h5 class="text-center results-place"><i class="material-icons hidden-sm hidden-md hidden-lg" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">pin_drop</i><i class="text-info fa-2x material-icons hidden-xs">person_pin_circle</i><br class="hidden-xs">Portland, OR</h5>'+
-            '</div>'+
-            '</div>'+
-            '</div>' +
-            '</div>'
+        if (prosData.length > 0) {
+          prosData.forEach(function (pro) {
+            var image = pro.profile.image || '/assets/img/samplePro.png';
+            filterAnswerContainer.append(
+              '<div class="row result">'+
+              '<a href="/profile/'+pro.profile.slug+'"></a>' +
+              '<div class="result-inner">'+
+              '<div class="row result-margin">'+
+              '<div class="col-sm-9 clearfix">'+
+              '<div class="col-sm-3 col-xs-6 col-xs-offset-3 col-sm-offset-0">'+
+              ' <img src="'+ image +'" class="img-circle img-responsive result-image">'+
+              '</div>'+
+              '<div class="col-sm-9 col-xs-12 col-md-8">'+
+              '<h3 class="result-name"><a href="/profile/'+pro.profile.slug+'">'+pro.profile.firstName+' '+pro.profile.lastName+', <span class="designation">'+pro.profile.jobTitle+'</span></a></h3>'+
+              '<div class="result-rating">'+
+              '<div>'+
+              '<i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star_half</i>'+
+              '</div>'+
+              '</div>'+
+              '<h6 class="contact" style="font-weight:500;">'+
+              'Mortgage Associates of Portland'+
+              '</h6>'+
+              '<h6 style="margin-top:5px;"><i class="material-icons hidden-xs" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">verified_user</i>'+pro.professionalExperience+' Experience'+
+              '</div>'+
+              '</div>'+
+              '<div class="col-sm-3 result-highlights">'+
+              '<h5 class="text-center results-place"><i class="material-icons hidden-sm hidden-md hidden-lg" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">pin_drop</i><i class="text-info fa-2x material-icons hidden-xs">person_pin_circle</i><br class="hidden-xs">Portland, OR</h5>'+
+              '</div>'+
+              '</div>'+
+              '</div>' +
+              '</div>'
             );
-        })
+          })
+        } else {
+          filterAnswerContainer.append('<div class="row result"><h2 class="text-center">No Search Results</h2></div>');
+        }
       });
 
       $(".result").click(function() {
