@@ -72,13 +72,13 @@ $( document ).ready(function() {
   };
 
 
-
-
   //Loans personal
   var loansPers1 = {
     question: 'What do you need a loan for?',
     options: ['Home', 'Auto', 'Other'],
+    values: ['Home Loans', 'Auto Loans', 'Other'],
     next: ['loansPers2', 'loansPers2', 'loansPers2'],
+    keyword: 'purpose',
     class: 'vertical',
     icons: ['home', 'directions_car', 'help']
   };
@@ -94,6 +94,7 @@ $( document ).ready(function() {
   var loansBusn1 = {
     question: 'What type of business loan do you need?',
     options: ['Basic Commercial Loan', 'Term Commercial Loan', 'Unsecured Commercial Loan', 'Commercial Acquisition Loan', 'I\'m not sure'],
+    values: ['Basic Commercial Loans', 'Term Commercial Loans', 'Unsecured Commercial Loans', 'Commercial Acquisition Loans', 'I\'m not sure'],
     next: ['loansBusn2', 'loansBusn2', 'loansBusn2', 'loansBusn2', 'loansBusn2'],
     keyword: 'purpose',
     class: 'vertical',
@@ -110,7 +111,8 @@ $( document ).ready(function() {
   //Finance Personal
   var financePers1 = {
     question: 'Which kind of personal financial services do you need?',
-    options: ['Financial Advising', 'Wealth Management', 'Education Funding', 'Estate Plannning', 'I\'m not sure'],
+    options: ['Financial Advising', 'Wealth Management', 'Education Funding', 'Estate Planning', 'I\'m not sure'],
+    values: ['Financial Advising', 'Wealth Management', 'Education Funding', 'Estate Planning', 'I\'m not sure'],
     next: ['financePers2', 'financePers2', 'financePers3', 'financePers4'],
     keyword: 'purpose',
     class: 'vertical',
@@ -140,6 +142,7 @@ $( document ).ready(function() {
   var financeBusn1 = {
     question: 'What type of business financial services do you need?',
     options: ['Tax Planning', 'Employee Benefit Planning', 'Employee Retirement Planning', 'Business Valuation', 'Business Succession Planning', 'Investment Planning', 'I\'m not sure'],
+    values: ['Tax Planning', 'Employee Benefit Planning', 'Retirement Planning', 'Business Valuation', 'Business Succession Planning', 'Investment Planning', 'I\'m not sure'],
     next: ['financeBusn2', 'financeBusn2', 'financeBusn2', 'financeBusn2',  'financeBusn2', 'financeBusn2', 'financeBusn2', 'financeBusn2', 'financeBusn2'],
     keyword: 'purpose',
     class: 'vertical',
@@ -157,7 +160,9 @@ $( document ).ready(function() {
   var insurancePers1 = {
     question: 'What type of insurance do you need?',
     options: ['Home', 'Auto', 'Life', 'Health', 'Long-Term Care', 'Disability', 'Property + Casualty', 'I\'m not sure'],
+    values: ['Home Insurance', 'Auto Insurance', 'Life Insurance', 'Health Insurance', 'Long-Term Care Insurance', 'Disability Insurance', 'P&C Insurance', 'I\'m not sure'],
     next: ['insurancePers2', 'insurancePers2', 'insurancePers3', 'insurancePers2',  'insurancePers2', 'insurancePers2', 'insurancePers2', 'insurancePers2'],
+    keyword: 'purpose',
     class: 'vertical',
     icons: ['home', 'directions_car', 'face', 'favorite', 'touch_app', 'accessible', 'store', 'help']
   };
@@ -180,7 +185,7 @@ $( document ).ready(function() {
   var insuranceBusn1 = {
     question: 'What type of business insurance do you need?',
     options: ['General Liability Insurance', 'Product Liability Insurance', 'Life & Health Insurance', 'Commercial Auto Insurance', 'Worker\'s Comp Insurance', 'Director\'s and Officer\'s Insurance', 'Data Breach Insurance', 'I\'m not sure'],
-    next: ['insuranceBusn2', 'insuranceBusn3', 'insuranceBusn2', 'insuranceBusn3',  'insuranceBusn2', 'insuranceBusn2', 'insuranceBusn2', 'insuranceBusn2', 'insuranceBusn3'],
+    values: ['General Liability Insurance', 'Product Liability Insurance', 'Life & Health Insurance', 'Commercial Auto Insurance', 'Workers Compensation Insurance', 'Directors and Officers Insurance', 'Data Breach Insurance', 'I\'m not sure'],    next: ['insuranceBusn2', 'insuranceBusn3', 'insuranceBusn2', 'insuranceBusn3',  'insuranceBusn2', 'insuranceBusn2', 'insuranceBusn2', 'insuranceBusn2', 'insuranceBusn3'],
     keyword: 'purpose',
     class: 'vertical',
     icons: ['domain', 'loyalty', 'favorite', 'directions_car', 'people', 'face', 'laptop', 'help']
@@ -217,9 +222,8 @@ $( document ).ready(function() {
 
 
 
-  function nextQuestion(question) {
+  function nextQuestion (question) {
     arr.push(a);
-
     var filterQuestion = $('.filter-question');
 
     filterQuestionContainer.html('<div class="filter-question" id="'+a+'"><h2 class="filter-top">' + question.question + '</h2><br></div>');
@@ -230,7 +234,7 @@ $( document ).ready(function() {
     if (question.icons){
       filterAnswerContainer.append('<div class="row"><div class="col-xs-12">');
       while (i < length) {
-        var methodParams = question.keyword ? question.options[i] : '';
+        var methodParams = question.keyword ? question.values[i] : '';
         filterAnswerContainer.append(
           '<a class="filter-option-icon" href="#" onclick="saveField(\''+methodParams+'\')" id="' + question.next[i] + '"><i class="material-icons">'+question.icons[i]+'</i>'+
           question.options[i]+
@@ -241,7 +245,7 @@ $( document ).ready(function() {
       filterAnswerContainer.append('</div></div>');
     } else {
       while (i < length) {
-        var methodParams = question.keyword ? question.options[i] : '';
+        var methodParams = question.keyword ? question.values[i] : '';
         filterAnswerContainer.append(
           '<div class="row">' +
           '<div class="col-lg-6 col-md-8 col-md-offset-2 col-sm-12 col-lg-offset-3" style="padding:0;">'+
@@ -295,11 +299,19 @@ $( document ).ready(function() {
         }
       }
     });
-
-
   }
 
-  var personalInfo = function(){
+  $('.seemore').click(function (event) {
+    window.sessionStorage.setItem('lead', JSON.stringify({ purpose: event.target.dataset.id }));
+    $('#filterModal').modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+    personalInfo();
+  });
+
+
+  var personalInfo = function () {
     $('#filterModal').scrollTop(0);
     var filterQuestion = $('.filter-question');
     filterQuestionContainer.html('<div class="filter-question"><h3 >Some information to be passed on to ONLY professionals of your choosing. We respect your Privacy. </h3><br></div>');
