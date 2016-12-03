@@ -19,7 +19,7 @@ Template.proProfileUpdate.onCreated(function () {
 });
 
 Template.proProfileUpdate.events({
-  "submit .form"(event, template) {
+  "submit .form"(event) {
     // Prevent default browser form submit
     event.preventDefault();
 
@@ -28,14 +28,14 @@ Template.proProfileUpdate.events({
     var retypePassword = event.target.retypePassword.value;
 
     if(newPassword !== retypePassword) {
-      alert("Passwords don't match");
+      swal("Error", "Both passwords dont match!", "error")
     }
     else {
       Accounts.changePassword(currentPassword, newPassword, (err)=> {
         if (err) {
-          alert(err.reason);
+          swal("Error!", "Error changing password!", "error")
         } else {
-          alert("Sucessfully changed the password");
+          swal("Good job!", "Password changed successfully!", "success")
           event.target.currentPassword.value = "";
           event.target.newPassword.value = "";
           event.target.retypePassword.value = "";
