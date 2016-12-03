@@ -309,16 +309,16 @@ $( document ).ready(function() {
       '<div class="col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 filterPersonal" style="padding:0;">' +
       '<div class="row">'+
       '<div class="col-sm-12">'+
-      '<input type="text" name="profile.firstName" class=" form-control input-lg" placeholder="First Name">'+
+      '<input type="text" name="profile.firstName" class=" form-control input-lg" required placeholder="First Name">'+
       '</div>'+
       '<div class="col-sm-12">'+
-      '<input type="text" name="profile.lastName"  class="form-control input-lg" placeholder="Last Name">'+
+      '<input type="text" name="profile.lastName"  class="form-control input-lg" required placeholder="Last Name">'+
       '</div>'+
       '<div class="col-sm-12">'+
-      '<input type="tel" name="profile.phone" class="form-control input-lg" placeholder="Phone Number">'+
+      '<input type="tel" name="profile.phone" class="form-control input-lg" required placeholder="Phone Number">'+
       '</div>'+
       '<div class="col-sm-12">'+
-      '<input type="email" name="profile.email" class="form-control input-lg" placeholder="Email">'+
+      '<input type="email" name="profile.email" class="form-control input-lg" required placeholder="Email">'+
       '</div>'+
       '<div class="col-sm-12">'+
       '<button type="submit" class="btn btn-lg btn-primary" id="giveResults"><i class="material-icons">search</i> Match Now</button>'+
