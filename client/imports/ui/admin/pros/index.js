@@ -241,8 +241,8 @@ Template.adminProInner.events({
     var data = instance.pros.get('pro');
     data.profile = data.profile || {};
     data.profile.businessSpecialty = data.profile.businessSpecialty || [];
-    if (data.profile.businessSpecialty.indexOf(event.currentTarget.value) === -1) {
-      data.profile.businessSpecialty.push(event.currentTarget.value);
+    if (_.findIndex(data.profile.businessSpecialty, { name: event.currentTarget.value }) == -1) {
+      data.profile.businessSpecialty.push({ name: event.currentTarget.value, percent: 0 });
     }
     instance.pros.set('pro', data);
   },
@@ -250,20 +250,20 @@ Template.adminProInner.events({
     var data = instance.pros.get('pro');
     data.profile = data.profile || {};
     data.profile.personalSpecialty = data.profile.personalSpecialty || [];
-    if (data.profile.personalSpecialty.indexOf(event.currentTarget.value) === -1) {
-      data.profile.personalSpecialty.push(event.currentTarget.value);
+    if (_.findIndex(data.profile.personalSpecialty, { name: event.currentTarget.value }) == -1) {
+      data.profile.personalSpecialty.push({ name: event.currentTarget.value, percent: 0 });
     }
     instance.pros.set('pro', data);
   },
   'click .businessSpecialtyRemove'(event, instance) {
     var data = instance.pros.get('pro');
-    var pos = data.profile.businessSpecialty.indexOf(event.currentTarget.id);
+    var pos = _.findIndex(data.profile.businessSpecialty, { name: event.currentTarget.id });
     data.profile.businessSpecialty.splice(pos, 1);
     instance.pros.set('pro', data);
   },
   'click .personalSpecialtyRemove'(event, instance) {
     var data = instance.pros.get('pro');
-    var pos = data.profile.personalSpecialty.indexOf(event.currentTarget.id);
+    var pos = _.findIndex(data.profile.personalSpecialty, { name: event.currentTarget.id });
     data.profile.personalSpecialty.splice(pos, 1);
     instance.pros.set('pro', data);
   },

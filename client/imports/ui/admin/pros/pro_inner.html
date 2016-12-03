@@ -398,7 +398,7 @@
                           <div class="content">
                             <div class="tab-content">
                               <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                   <div class="form-group label-floating">
                                     <label class="control-label"><i class="material-icons">store</i>&nbsp;&nbsp;&nbsp;Company</label>
                                     <select class="select form-control">
@@ -412,7 +412,7 @@
                               </div>
 
                               <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                   <div class="form-group label-floating">
                                     <label class="control-label"><i class="material-icons">person_outline</i>&nbsp;&nbsp;&nbsp;Job Title</label>
                                     <input type="text" name="profile.jobTitle" class="form-control proForm" value="{{ pros.profile.jobTitle }}">
@@ -421,7 +421,7 @@
                               </div>
 
                               <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                   <select class="select form-control personalSpecialty" placeholder="Choose Specialties (can choose multiple)">
                                     <option disabled selected class="disabled"> Personal Specialties (can choose multiple)</option>
                                     {{#each personalSpecialities}}
@@ -429,12 +429,20 @@
                                     {{/each}}
                                   </select>
                                   {{#each pros.profile.personalSpecialty}}
-                                  <div class="specialty">
-                                    {{this}}<a  class="personalSpecialtyRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
+                                  <div class="row specialty">
+                                    <div class="col-sm-7">
+                                      {{this.name}}
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <input class="form-control" type="text" size="2" value="{{this.percent}}">
+                                    </div>
+                                    <div class="col-sm-1">
+                                      <a class="personalSpecialtyRemove text-danger" id="{{this.name}}" href="#"><i class="material-icons">close</i></a>
+                                    </div>
                                   </div>
                                   {{/each}}
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                   <select class="select form-control businessSpecialty" placeholder="Choose Specialties (can choose multiple)">
                                     <option disabled selected class="disabled"> Business Specialties (can choose multiple)</option>
                                     {{#each businessSpecialities}}
@@ -442,8 +450,16 @@
                                     {{/each}}
                                   </select>
                                   {{#each pros.profile.businessSpecialty}}
-                                  <div class="specialty">
-                                    {{this}}<a class="businessSpecialtyRemove text-danger" id="{{this}}" href="#"><i class="material-icons">close</i></a>
+                                  <div class="row specialty">
+                                    <div class="col-sm-7">
+                                      {{this.name}}
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <input class="form-control" type="text" size="2" value="{{this.percent}}">
+                                    </div>
+                                    <div class="col-sm-1">
+                                      <a class="businessSpecialtyRemove text-danger" id="{{this.name}}" href="#"><i class="material-icons">close</i></a>
+                                    </div>
                                   </div>
                                   {{/each}}
                                 </div>

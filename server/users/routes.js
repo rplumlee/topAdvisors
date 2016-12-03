@@ -5,7 +5,7 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
     var purpose = req.query.purpose;
     var query = { 'profile.type': 'pro' };
     if (purpose) {
-      query['$or'] = [ {'profile.personalSpecialty': purpose }, {'profile.businessSpecialty': purpose } ];
+      query['$or'] = [ {'profile.personalSpecialty': { $elemMatch: { name: purpose } } }, {'profile.businessSpecialty': { $elemMatch: { name: purpose } } } ];
     }
 
     res.setHeader('Content-type', 'application/json');
