@@ -255,6 +255,18 @@ Template.adminProInner.events({
     }
     instance.pros.set('pro', data);
   },
+  'change .personalPercent'(event, instance) {
+    var data = instance.pros.get('pro');
+    var specialty = _.find(data.profile.personalSpecialty, { name: event.currentTarget.dataset.id });
+    specialty.percent = event.currentTarget.value;
+    instance.pros.set('pro', data);
+  },
+  'change .businessPercent'(event, instance) {
+    var data = instance.pros.get('pro');
+    var specialty = _.find(data.profile.businessSpecialty, { name: event.currentTarget.dataset.id });
+    specialty.percent = event.currentTarget.value;
+    instance.pros.set('pro', data);
+  },
   'click .businessSpecialtyRemove'(event, instance) {
     var data = instance.pros.get('pro');
     var pos = _.findIndex(data.profile.businessSpecialty, { name: event.currentTarget.id });
