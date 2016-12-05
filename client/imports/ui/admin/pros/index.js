@@ -233,6 +233,9 @@ Template.adminProInner.helpers({
   ],
   companies: () => {
     return Collections.Companies.find();
+  },
+  currentCompany: (companyId) => {
+    return Template.instance().pros.get('pro').company === companyId;
   }
 });
 
