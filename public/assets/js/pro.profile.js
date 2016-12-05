@@ -74,8 +74,7 @@
 }(jQuery));
 
 window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer",
-  {
+  var chart = new CanvasJS.Chart("chartContainer", {
     title: {
       text: ""
     },
@@ -85,22 +84,17 @@ window.onload = function () {
       horizontalAlign: "right"
     },
     data: [
-    {
-      indexLabelFontSize: 18,
-      indexLabelFontFamily: "Helvetica",
-      indexLabelFontColor: "#444444",
-      indexLabelLineColor: "#999999",
-      indexLabelPlacement: "inside",
-      type: "pie",
-      showInLegend: true,
-      toolTipContent: "<strong>{legendText} - #percent%</strong>",
-      dataPoints: [
-      {  y: 20, legendText:"Mortgages", color: "#FF6A6A" },
-      {  y: 25, legendText:"Small Business Loans", color: "#7095AE" },
-      {  y: 55, legendText:"Personal Loans",exploded: true, },
-
-      ]
-    }
+      {
+        indexLabelFontSize: 18,
+        indexLabelFontFamily: "Helvetica",
+        indexLabelFontColor: "#444444",
+        indexLabelLineColor: "#999999",
+        indexLabelPlacement: "inside",
+        type: "pie",
+        showInLegend: true,
+        toolTipContent: "<strong>{legendText} - #percent%</strong>",
+        dataPoints: window.specialties
+      }
     ]
   });
   chart.render();

@@ -271,9 +271,9 @@
                     <h6 class="text-muted">
                       {% for score in [1,2,3,4,5] %}
                       {% if review.rating >= score %}
-                      <i class="material-icons text-warning">star</i>
+                      <i class="material-icons">star</i>
                       {% else %}
-                      <i class="material-icons text-warning">star_border</i>
+                      <i class="material-icons">star_border</i>
                       {% endif %}
                       {% endfor %}
                     </h6>
@@ -292,9 +292,6 @@
         </div>
       </div>
     </div>
-
-
-
 
     <footer class="footer footer-black">
       <div class="container">
@@ -505,7 +502,10 @@
   <script src="/assets/js/material-v-kit.js" type="text/javascript"></script>
 
   <script src="/assets/js/canvasjs.min.js" type="text/javascript"></script>
-
-
   <script src="/assets/js/pro.profile.js" type="text/javascript"></script>
-  </html>
+
+  <script type="text/javascript">
+    window.specialties = {% autoescape false %}{{ specialties }}{% endautoescape %};
+  </script>
+
+</html>
