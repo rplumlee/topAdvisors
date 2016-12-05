@@ -374,6 +374,20 @@ $( document ).ready(function() {
         if (prosData.length > 0) {
           prosData.forEach(function (pro) {
             var image = pro.profile.image || '/assets/img/samplePro.png';
+            var reviews = '';
+            var stars = parseInt(pro.review);
+            var halfStars = pro.review - stars;
+            var leftStars = 5 - stars - (halfStars*2);
+            for (var i=0; i<stars; i++) {
+              reviews += '<i class="material-icons text-warning">star</i>';
+            }
+            for (var i=0; i<halfStars; i++) {
+              reviews += '<i class="material-icons text-warning">star_half</i>';
+            }
+            for (var i=0; i<leftStars; i++) {
+              reviews += '<i class="material-icons text-warning">star_border</i>';
+            }
+
             filterAnswerContainer.append(
               '<div class="row result">'+
               '<a href="/profile/'+pro.profile.slug+'"></a>' +
@@ -387,7 +401,7 @@ $( document ).ready(function() {
               '<h3 class="result-name"><a href="/profile/'+pro.profile.slug+'">'+pro.profile.firstName+' '+pro.profile.lastName+', <span class="designation">'+pro.profile.jobTitle+'</span></a></h3>'+
               '<div class="result-rating">'+
               '<div>'+
-              '<i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star_half</i>'+
+              reviews +
               '</div>'+
               '</div>'+
               '<h6 class="contact" style="font-weight:500;">'+
@@ -397,7 +411,7 @@ $( document ).ready(function() {
               '</div>'+
               '</div>'+
               '<div class="col-sm-3 result-highlights">'+
-              '<h5 class="text-center results-place"><i class="material-icons hidden-sm hidden-md hidden-lg" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">pin_drop</i><i class="text-info fa-2x material-icons hidden-xs">person_pin_circle</i><br class="hidden-xs">Portland, OR</h5>'+
+              '<h5 class="text-center results-place"><i class="material-icons hidden-sm hidden-md hidden-lg" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">pin_drop</i><i class="text-info fa-2x material-icons hidden-xs">person_pin_circle</i><br class="hidden-xs">'+pro.address.city+', '+pro.address.state+'</h5>'+
               '</div>'+
               '</div>'+
               '</div>' +

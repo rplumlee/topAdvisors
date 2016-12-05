@@ -271,9 +271,9 @@
                     <h6 class="text-muted">
                       {% for score in [1,2,3,4,5] %}
                       {% if review.rating >= score %}
-                      <i class="material-icons">star</i>
+                      <i class="material-icons text-warning">star</i>
                       {% else %}
-                      <i class="material-icons">star_border</i>
+                      <i class="material-icons text-warning">star_border</i>
                       {% endif %}
                       {% endfor %}
                     </h6>

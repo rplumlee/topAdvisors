@@ -10,14 +10,13 @@ import './company_inner.html';
 var _parseAddress = function () {
   var base = {};
   autocomplete.getPlace().address_components.forEach(function (each) {
-    base[each.types[0]] = each.long_name;
+    base[each.types[0]] = { long: each.long_name, short: each.short_name };
   });
+
   return {
-    street1: base.street_number + ', ' + base.route,
-    street2: base.neighborhood,
-    city: base.locality,
-    state: base.administrative_area_level_1,
-    zip: base.postal_code,
+    city: base.locality.long,
+    state: base.administrative_area_level_1.short,
+    zip: base.postal_code.long,
     fullAddress: autocomplete.getPlace().formatted_address
   }
 };

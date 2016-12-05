@@ -10,9 +10,20 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
 
     res.setHeader('Content-type', 'application/json');
     res.writeHead(200);
+    if (req.query.city) {
+      var companies = Collections.Companies.find({ 'address.city': req.query.city }).fetch();
+      query['company'] = { $in: _.pluck(companies, '_id') };
+    }
+
     res.end(JSON.stringify(Meteor.users.find(query, {
       fields: { services: false },
-      transform(user) {
+      transform (user) {
+        var reviews = Collections.Reviews.find({ agent: user._id }).fetch();
+        var review = _.reduce(reviews, function (total, review) { return total + review.rating; }, 0)/reviews.length;
+        user.review = Math.round(review * 2) / 2;
+
+        user.address = Collections.Companies.findOne({ _id: user.company }).address;
+
         user.professionalExperience = 'No';
         if (user.licenses && user.licenses.length > 0) {
           user.professionalExperience = (new Date()).getFullYear() - _.min(_.map(user.licenses, function (each) { return parseInt(each.dateEarned, 10); }));
