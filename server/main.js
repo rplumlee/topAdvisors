@@ -75,11 +75,11 @@ WebApp.connectHandlers.use('/profile', function (req, res, next) {
   var proSpecialties = [];
   currentPro.profile.personalSpecialty.forEach(function (each) {
     if (!each.name) { return; }
-    proSpecialties.push('{ y: '+each.percent+', legendText: \"'+each.name+'\" }');
+    proSpecialties.push('{ y: ' + each.percent + ', legendText: \"' + each.name + '\" }');
   });
   currentPro.profile.businessSpecialty.forEach(function (each) {
     if (!each.name) { return; }
-    proSpecialties.push('{ y: '+each.percent+', legendText: \"'+each.name+'\" }');
+    proSpecialties.push('{ y: ' + each.percent + ', legendText: \"' + each.name + '\" }');
   });
 
   var proReviews = Collections.Reviews.find({ agent: currentPro._id }, { sort: { createdOn: -1 } }).fetch();

@@ -17,10 +17,10 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
 
     res.end(JSON.stringify(Meteor.users.find(query, {
       fields: { services: false },
-      transform (user) {
+      transform(user) {
         var reviews = Collections.Reviews.find({ agent: user._id }).fetch();
-        var review = _.reduce(reviews, function (total, review) { return total + review.rating; }, 0)/reviews.length;
-        user.review = Math.round(review * 2) / 2;
+        var proReview = _.reduce(reviews, function (total, review) { return total + review.rating; }, 0) / reviews.length;
+        user.review = Math.round(proReview * 2) / 2;
 
         user.address = Collections.Companies.findOne({ _id: user.company }).address;
 
