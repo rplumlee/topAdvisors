@@ -10,20 +10,28 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
 
     res.setHeader('Content-type', 'application/json');
     res.writeHead(200);
-    if (req.query.city) {
-      var companies = Collections.Companies.find({ 'address.city': req.query.city }).fetch();
+    if (req.query.city && req.query.state) {
+      var companies = Collections.Companies.find({ 'address.city': req.query.city, 'address.state': req.query.state }).fetch();
       query['company'] = { $in: _.pluck(companies, '_id') };
     }
 
     res.end(JSON.stringify(Meteor.users.find(query, {
       fields: { services: false },
       transform(user) {
+
+        // Get review for stars
         var reviews = Collections.Reviews.find({ agent: user._id }).fetch();
         var proReview = _.reduce(reviews, function (total, review) { return total + review.rating; }, 0) / reviews.length;
         user.review = Math.round(proReview * 2) / 2;
 
+        // Get address from company
         user.address = Collections.Companies.findOne({ _id: user.company }).address;
 
+        // Get designations
+        var des = _.map(user.designations, function (each) { return each.designation; });
+        user.designation = (des.length > 0 ? ', ' + des.join(', ') : '');
+
+        // Get professional experience
         user.professionalExperience = 'No';
         if (user.licenses && user.licenses.length > 0) {
           user.professionalExperience = (new Date()).getFullYear() - _.min(_.map(user.licenses, function (each) { return parseInt(each.dateEarned, 10); }));

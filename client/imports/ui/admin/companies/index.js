@@ -13,12 +13,17 @@ var _parseAddress = function () {
     base[each.types[0]] = { long: each.long_name, short: each.short_name };
   });
 
-  return {
+  var location = {
     city: base.locality.long,
     state: base.administrative_area_level_1.short,
-    zip: base.postal_code.long,
     fullAddress: autocomplete.getPlace().formatted_address
+  };
+
+  if (base.postal_code && base.postal_code.long) {
+    location.zip = base.postal_code.long;
   }
+
+  return location;
 };
 
 Template.adminCompanies.onCreated(function () {
@@ -151,6 +156,7 @@ Template.adminCompanyInner.events({
     try {
       companyDetails.address = _parseAddress();
     } catch (err) {
+      console.log(err);
       companyDetails.address = {
         fullAddress: event.target.companyFullAddress.value
       };

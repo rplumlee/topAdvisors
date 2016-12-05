@@ -220,6 +220,16 @@ $( document ).ready(function() {
     nextQuestion(filter1);
   });
 
+  var location = {};
+  google.maps.event.addListener(autocomplete, 'place_changed', function () {
+    var place = autocomplete.getPlace();
+    var base = {};
+    place.address_components.forEach(function (each) {
+      base[each.types[0]] = { long: each.long_name, short: each.short_name };
+    });
+    location.city = base.locality.long;
+    location.state = base.administrative_area_level_1.short;
+  });
 
 
   function nextQuestion (question) {
@@ -369,7 +379,7 @@ $( document ).ready(function() {
 
       filterAnswerContainer.html('<h2 style="font-weight:300;">Finding the top professionals in your area..</h2><h1><i class="fa fa-spin text-info fa-circle-o-notch"></i></h1>')
 
-      $.get( "/getPros?purpose="+data.purpose, function (prosData) {
+      $.get( "/getPros?purpose="+data.purpose+"&city="+location.city+"&state="+location.state, function (prosData) {
         filterAnswerContainer.html('');
         if (prosData.length > 0) {
           prosData.forEach(function (pro) {
@@ -398,14 +408,14 @@ $( document ).ready(function() {
               ' <img src="'+ image +'" class="img-circle img-responsive result-image">'+
               '</div>'+
               '<div class="col-sm-9 col-xs-12 col-md-8">'+
-              '<h3 class="result-name"><a href="/profile/'+pro.profile.slug+'">'+pro.profile.firstName+' '+pro.profile.lastName+', <span class="designation">'+pro.profile.jobTitle+'</span></a></h3>'+
+              '<h3 class="result-name"><a href="/profile/'+pro.profile.slug+'">'+pro.profile.firstName+' '+pro.profile.lastName+'<span class="designation">'+pro.designation+'</span></a></h3>'+
               '<div class="result-rating">'+
               '<div>'+
               reviews +
               '</div>'+
               '</div>'+
               '<h6 class="contact" style="font-weight:500;">'+
-              'Mortgage Associates of Portland'+
+              pro.profile.jobTitle+' of '+pro.address.city+
               '</h6>'+
               '<h6 style="margin-top:5px;"><i class="material-icons hidden-xs" style="vertical-align:middle;margin-top:-5px;margin-right:5px;">verified_user</i>'+pro.professionalExperience+' Experience'+
               '</div>'+
