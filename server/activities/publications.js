@@ -20,7 +20,7 @@ export default function ({ Meteor, Collections }) {
     return Collections.Activities.find({ agent: userId });
   });
 
-  Meteor.publish('activities.list', function (userId) {
+  Meteor.publish('activities.list', function () {
 
     //
     // If user is not logged in, stop the publication
