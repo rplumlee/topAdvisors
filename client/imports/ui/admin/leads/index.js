@@ -18,7 +18,10 @@ Template.adminLeads.helpers({
     return Collections.Leads.find({}).count();
   },
   views: function () {
-    return Collections.Activities.find({ type: 'viewProfile' });
+    return _.reduce(Collections.Activities.find({}, { count: true }).fetch(), function (total, each) { return total + each.count; }, 0);
+  },
+  closedLeadsCount: function () {
+    return Collections.Leads.find({ status: 'closed' }).count();
   },
   parseDate: function (date) {
     if (date) {
@@ -80,5 +83,6 @@ Template.adminLeads.onRendered(function () {
   document.title = 'Admin Dashboard';
   Meteor.subscribe('pros.list');
   Meteor.subscribe('leads.list');
+  Meteor.subscribe('activities.list');
 
 });

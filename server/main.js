@@ -84,16 +84,21 @@ WebApp.connectHandlers.use('/profile', function (req, res, next) {
 
   var proReviews = Collections.Reviews.find({ agent: currentPro._id }, { sort: { createdOn: -1 } }).fetch();
   res.writeHead(200);
+  if (Collections.Activities.findOne({ agent: currentPro._id })) {
+    Collections.Activities.update({
+      agent: currentPro._id
+    }, {
+      $inc: {
+        count: 1
+      }
+    }, function (err) {
+      if (err) {
+        context.Logger.error(err);
+      }
+    });
+  } else {
+    Collections.Activities.insert({ agent: currentPro._id, count: 1 });
+  }
+
   res.end(Swig.render(Assets.getText('profile.html'), { locals: { pro: currentPro, company: currentCompany, reviews: proReviews, specialties: '[' + proSpecialties.join(', ') + ']' }}));
-  Collections.Activities.update({
-    agent: currentPro._id
-  }, {
-    $inc: {
-      count: 1
-    }
-  }, function (err) {
-    if (err) {
-      context.Logger.error(err);
-    }
-  });
 });
