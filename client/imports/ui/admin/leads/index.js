@@ -50,6 +50,16 @@ Template.adminLeads.helpers({
 Template.adminLeads.events({
   'click .leadModal'(event, instance) {
     instance.state.set('leadId', event.currentTarget.dataset.id);
+  },
+  'change input[type="checkbox"]'(event) {
+    Meteor.call('leads.edit', {
+      _id: event.currentTarget.dataset.id,
+      paid: event.currentTarget.checked
+    }, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+    });
   }
 });
 
