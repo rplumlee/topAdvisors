@@ -212,7 +212,11 @@ $( document ).ready(function() {
 
 
 
-  $('#start').click(function(){
+  $('#start').click(function(e) {
+    e.preventDefault();
+    if (!document.getElementById('home_address').value || document.getElementById('home_address').value == '') {
+      return;
+    }
     $('#filterModal').modal({
       backdrop: 'static',
       keyboard: false
@@ -229,6 +233,7 @@ $( document ).ready(function() {
     });
     location.city = base.locality.long;
     location.state = base.administrative_area_level_1.short;
+    window.geoLocation = false;
   });
 
 
@@ -378,6 +383,10 @@ $( document ).ready(function() {
       filterQuestionContainer.parent().css('height', '60px');
 
       filterAnswerContainer.html('<h2 style="font-weight:300;">Finding the top professionals in your area..</h2><h1><i class="fa fa-spin text-info fa-circle-o-notch"></i></h1>')
+
+      if (window.geoLocation) {
+        location = window.geoLocation;
+      }
 
       $.get( "/getPros?purpose="+data.purpose+"&city="+location.city+"&state="+location.state, function (prosData) {
         filterAnswerContainer.html('');
