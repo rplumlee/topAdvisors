@@ -194,10 +194,10 @@
                               <table class="table table-shopping">
                                 <thead>
                                   <tr>
-                                    <th>Pro name</th>
-                                    <th class="th-description">lead name</th>
-                                    <th class="th-description">date</th>
-                                    <th class="th-description">status</th>
+                                    <th>Lead name</th>
+                                    <th class="th-description">Pro name</th>
+                                    <th class="th-description">Date</th>
+                                    <th class="th-description">Status</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -205,11 +205,11 @@
                                   {{#each leads status='fresh'}}
                                   <tr>
                                     <td class="td-name">
-                                      <a  data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ agentUser agent }} </a>
+                                      <a  data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ profile.firstName }} {{ profile.lastName }}</a>
                                       <br /><small>{{ purpose }}</small>
                                     </td>
                                     <td>
-                                      {{ profile.firstName }} {{ profile.lastName }}
+                                      {{ agentUser agent }}
                                     </td>
                                     <td>
                                       {{ parseDate createdOn }}
@@ -236,10 +236,10 @@
                               <table class="table table-shopping">
                                 <thead>
                                   <tr>
-                                    <th>Pro name</th>
-                                    <th class="th-description">lead name</th>
-                                    <th class="th-description">date</th>
-                                    <th class="th-description">status</th>
+                                    <th>Lead name</th>
+                                    <th class="th-description">Pro name</th>
+                                    <th class="th-description">Date</th>
+                                    <th class="th-description">Status</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -247,11 +247,11 @@
                                   {{#each leads status='open'}}
                                   <tr>
                                     <td class="td-name">
-                                      <a  data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ agentUser agent }} </a>
+                                      <a  data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ profile.firstName }} {{ profile.lastName }}</a>
                                       <br /><small>{{ purpose }}</small>
                                     </td>
                                     <td>
-                                      {{ profile.firstName }} {{ profile.lastName }}
+                                      {{ agentUser agent }}
                                     </td>
                                     <td>
                                       {{ parseDate createdOn }}
@@ -278,10 +278,10 @@
                               <table class="table table-shopping">
                                 <thead>
                                   <tr>
-                                    <th>Pro name</th>
-                                    <th class="th-description">lead name</th>
-                                    <th class="th-description">date</th>
-                                    <th class="th-description">status</th>
+                                    <th>Lead name</th>
+                                    <th class="th-description">Pro name</th>
+                                    <th class="th-description">Date</th>
+                                    <th class="th-description">Status</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -289,11 +289,11 @@
                                   {{#each leads status='dead'}}
                                   <tr>
                                     <td class="td-name">
-                                      <a  data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ agentUser agent }} </a>
+                                      <a  data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ profile.firstName }} {{ profile.lastName }}</a>
                                       <br /><small>{{ purpose }}</small>
                                     </td>
                                     <td>
-                                      {{ profile.firstName }} {{ profile.lastName }}
+                                      {{ agentUser agent }}
                                     </td>
                                     <td>
                                       {{ parseDate createdOn }}
@@ -320,10 +320,10 @@
                               <table class="table table-shopping">
                                 <thead>
                                   <tr>
-                                    <th>Pro name</th>
-                                    <th class="th-description">lead name</th>
-                                    <th class="th-description">date</th>
-                                    <th class="th-description">status</th>
+                                    <th>Lead name</th>
+                                    <th class="th-description">Pro name</th>
+                                    <th class="th-description">Date</th>
+                                    <th class="th-description">Status</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -331,11 +331,11 @@
                                   {{#each leads status='closed'}}
                                   <tr>
                                     <td class="td-name">
-                                      <a  data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ agentUser agent }} </a>
+                                      <a  data-id="{{ _id }}" class="leadModal" href="#" data-toggle="modal" data-target="#lead1">{{ profile.firstName }} {{ profile.lastName }}</a>
                                       <br /><small>{{ purpose }}</small>
                                     </td>
                                     <td>
-                                      {{ profile.firstName }} {{ profile.lastName }}
+                                      {{ agentUser agent }}
                                     </td>
                                     <td>
                                       {{ parseDate createdOn }}
@@ -394,11 +394,24 @@
           </div>
 
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
               <h6>Phone Number</h6>
               <p>{{ or currentLead.profile.phone "N/A" }}</p>
             </div>
+
+            <div class="col-xs-6">
+              <h6>Email</h6>
+              <p>{{ or currentLead.profile.email "N/A" }}</p>
+            </div>
           </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <h6>Communication Preferance</h6>
+              <p>{{ or currentLead.preferredContact "Email" }}</p>
+            </div>
+          </div>
+
           <div class="modal-footer" style="text-align:center;">
             <br><br>
             <button class="btn btn-warning fresh-lead-btn" data-dismiss="modal">Attempted Contact</button><br class="visible-xs"><br class="visible-xs">

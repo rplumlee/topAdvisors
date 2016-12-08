@@ -32,9 +32,9 @@
         jsonData[field] = e.target[field].value;
       });
       if (e.target['contact-phone'].checked) {
-        jsonData.preferredContact = 'phone';
+        jsonData.preferredContact = 'Phone';
       } else if (e.target['contact-email'].checked) {
-        jsonData.preferredContact = 'email';
+        jsonData.preferredContact = 'Email';
       }
       $.ajax({
         url: '/createLead',
