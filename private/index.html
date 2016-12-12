@@ -578,7 +578,7 @@
 
   var x = document.getElementById("home_address");
   function showPosition(position) {
-    $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=false', function (data) {
+    $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=false', function (data) {
       var base = {};
       data.results[0].address_components.forEach(function (each) {
         base[each.types[0]] = { long: each.long_name, short: each.short_name };
