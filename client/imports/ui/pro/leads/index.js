@@ -49,7 +49,6 @@ Template.proLeadsDashboard.helpers({
   getCPA: function () {
     var designations = Meteor.user().designations;
     var des = _.map(designations, function (each) { return each.designation });
-    console.log(des);
     return (des.length > 0 ? ', ' + des.join(', ') : '');
   }
 });

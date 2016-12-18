@@ -7,7 +7,7 @@ export default function ({ Collections, Logger }) {
   // On startup, create sample leads
   //
   if (Collections.Leads.find().count() < 5) {
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 50; i++) {
       var currentAgent = agents[Math.floor(Math.random() * agents.length)];
       Collections.Leads.insert({
         profile: {
@@ -20,7 +20,7 @@ export default function ({ Collections, Logger }) {
         company: currentAgent.company,
         status: faker.random.arrayElement([ 'fresh', 'open', 'dead', 'closed' ]),
         message: faker.lorem.sentence(),
-        purpose: faker.random.arrayElement([ 'Mortgage', 'Business Loan' ]),
+        purpose: _.sample(["Home Loans", "Auto Loans", "Personal Loans", "Financial Advising", "Wealth Management", "Education Funding", "Home Insurance", "Auto Insurance", "Life Insurance", "Health Insurance", "Long-Term Care Insurance", "Disability Insurance", "P&C Insurance"]),
         date: new Date()
       });
     }
