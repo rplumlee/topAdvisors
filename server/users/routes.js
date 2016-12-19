@@ -2,7 +2,7 @@ var applyTransform = function (Collections, user) {
   // Get review for stars
   var reviews = Collections.Reviews.find({ agent: user._id }).fetch();
   var proReview = _.reduce(reviews, function (total, review) { return total + review.rating; }, 0) / reviews.length;
-  user.review = (proReview) ? Math.round(proReview * 2) / 2: 0;
+  user.review = (proReview) ? Math.round(proReview * 2) / 2 : 0;
 
   // Get address from company
   user.address = Collections.Companies.findOne({ _id: user.company }).address;
@@ -21,7 +21,7 @@ var applyTransform = function (Collections, user) {
       user.professionalExperience += ' Year';
     }
   }
-}
+};
 
 export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, Swig }) {
 
@@ -43,7 +43,7 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
       fields: { services: false },
       sort: { 'profile.performance.clientRetentionRate': -1 },
       limit: 3,
-      transform (user) {
+      transform(user) {
         applyTransform(Collections, user);
         return user;
       }
@@ -53,7 +53,7 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
     var restResults = Meteor.users.find(baseQuery, {
       fields: { services: false },
       limit: 7,
-      transform (user) {
+      transform(user) {
         applyTransform(Collections, user);
         return user;
       }

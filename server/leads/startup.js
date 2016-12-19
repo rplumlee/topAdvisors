@@ -20,7 +20,7 @@ export default function ({ Collections, Logger }) {
         company: currentAgent.company,
         status: faker.random.arrayElement([ 'fresh', 'open', 'dead', 'closed' ]),
         message: faker.lorem.sentence(),
-        purpose: _.sample(["Home Loans", "Auto Loans", "Personal Loans", "Financial Advising", "Wealth Management", "Education Funding", "Home Insurance", "Auto Insurance", "Life Insurance", "Health Insurance", "Long-Term Care Insurance", "Disability Insurance", "P&C Insurance"]),
+        purpose: _.sample([ 'Home Loans', 'Auto Loans', 'Personal Loans', 'Financial Advising', 'Wealth Management', 'Education Funding', 'Home Insurance', 'Auto Insurance', 'Life Insurance', 'Health Insurance', 'Long-Term Care Insurance', 'Disability Insurance', 'P&C Insurance' ]),
         date: new Date()
       });
     }
