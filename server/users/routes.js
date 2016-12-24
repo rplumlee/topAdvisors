@@ -23,6 +23,24 @@ var applyTransform = function (Collections, user) {
   }
 };
 
+// Arrange the results
+var decorateResults = function (topResults, restResults) {
+  var results = [];
+  if (topResults.length == 3 && restResults.length >= 7) {
+    topResults = _.sample(topResults, 3);
+    restResults = _.sample(restResults, 7);
+    results.push(topResults[0]);
+    results.push(restResults[0]);
+    results.push(topResults[1]);
+    results.push(restResults[1]);
+    results.push(topResults[2]);
+    results = results.concat(restResults.slice(2));
+  } else {
+    results = results.concat(topResults).concat(restResults);
+  }
+  return results;
+}
+
 export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, Swig }) {
 
   WebApp.connectHandlers.use('/getPros', function (req, res) {
@@ -52,14 +70,14 @@ export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, S
     baseQuery['_id'] = { $nin: _.pluck(topResults, '_id') };
     var restResults = Meteor.users.find(baseQuery, {
       fields: { services: false },
-      limit: 7,
+      limit: 50,
       transform(user) {
         applyTransform(Collections, user);
         return user;
       }
     }).fetch();
 
-    res.end(JSON.stringify(topResults.concat(restResults)));
+    res.end(JSON.stringify(decorateResults(topResults, restResults)));
   });
 
   WebApp.connectHandlers.use('/createLead', function (req, res) {

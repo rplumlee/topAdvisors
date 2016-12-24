@@ -37,7 +37,6 @@ export default function ({ Meteor, Logger, Collections }) {
       var company = Collections.Companies.insert({
         name: faker.company.companyName(),
         address: {
-          street1: address.street1,
           city: address.city,
           state: address.state
         },
