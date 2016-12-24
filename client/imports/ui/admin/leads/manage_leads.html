@@ -160,6 +160,8 @@
                       <div class="row" style="margin:0 -10px;">
                         <div class="col-md-8">
                           <div class="table-responsive table-striped">
+                          {{#if Template.subscriptionsReady}}
+                            {{#if leadCount 'fresh'}}
                             <table class="table table-shopping">
                               <thead>
                                 <tr>
@@ -170,7 +172,6 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                {{#if Template.subscriptionsReady}}
                                 {{#each leads status='fresh'}}
                                 <tr>
                                   <td class="td-name">
@@ -188,9 +189,12 @@
                                   </td>
                                 </tr>
                                 {{/each}}
-                                {{/if}}
                               </tbody>
                             </table>
+                            {{ else }}
+                              <h5>No Fresh Leads</h5>
+                            {{/if}}
+                          {{/if}}
                           </div>
 
                         </div>
@@ -202,6 +206,8 @@
                       <div class="row" style="margin:0 -10px;">
                         <div class="col-md-8">
                           <div class="table-responsive table-striped">
+                          {{#if Template.subscriptionsReady}}
+                            {{#if leadCount 'open'}}
                             <table class="table table-shopping">
                               <thead>
                                 <tr>
@@ -212,7 +218,6 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                {{#if Template.subscriptionsReady}}
                                 {{#each leads status='open'}}
                                 <tr>
                                   <td class="td-name">
@@ -230,9 +235,12 @@
                                   </td>
                                 </tr>
                                 {{/each}}
-                                {{/if}}
                               </tbody>
                             </table>
+                            {{ else }}
+                              <h5>No Open Leads</h5>
+                            {{/if}}
+                          {{/if}}
                           </div>
 
                         </div>
@@ -244,6 +252,8 @@
                       <div class="row" style="margin:0 -10px;">
                         <div class="col-md-8">
                           <div class="table-responsive table-striped">
+                          {{#if Template.subscriptionsReady}}
+                            {{#if leadCount 'dead'}}
                             <table class="table table-shopping">
                               <thead>
                                 <tr>
@@ -254,7 +264,6 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                {{#if Template.subscriptionsReady}}
                                 {{#each leads status='dead'}}
                                 <tr>
                                   <td class="td-name">
@@ -272,9 +281,12 @@
                                   </td>
                                 </tr>
                                 {{/each}}
-                                {{/if}}
                               </tbody>
                             </table>
+                            {{ else }}
+                              <h5>No Dead Leads</h5>
+                            {{/if}}
+                          {{/if}}
                           </div>
 
                         </div>
@@ -286,6 +298,8 @@
                       <div class="row" style="margin:0 -10px;">
                         <div class="col-md-8">
                           <div class="table-responsive table-striped">
+                          {{#if Template.subscriptionsReady}}
+                            {{#if leadCount 'closed'}}
                             <table class="table table-shopping">
                               <thead>
                                 <tr>
@@ -297,7 +311,6 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                {{#if Template.subscriptionsReady}}
                                 {{#each leads status='closed'}}
                                 <tr>
                                   <td class="td-name">
@@ -323,9 +336,12 @@
                                   </td>
                                 </tr>
                                 {{/each}}
-                                {{/if}}
                               </tbody>
                             </table>
+                            {{ else }}
+                              <h5>No Closed Leads</h5>
+                            {{/if}}
+                          {{/if}}
                           </div>
 
                         </div>
