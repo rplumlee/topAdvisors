@@ -14,7 +14,10 @@ Template.adminLeads.helpers({
   leads: function (selector) {
     return Collections.Leads.find({ status: selector.hash.status });
   },
-  leadCount: function () {
+  leadCount: function (status) {
+    if (status) {
+      return Collections.Leads.find({ status }).count();
+    }
     return Collections.Leads.find({}).count();
   },
   views: function () {
