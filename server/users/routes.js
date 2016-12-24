@@ -24,11 +24,11 @@ var applyTransform = function (Collections, user) {
 };
 
 // Arrange the results
-var decorateResults = function (topResults, restResults) {
+var decorateResults = function (topResultSet, restResultSet) {
   var results = [];
-  if (topResults.length == 3 && restResults.length >= 7) {
-    topResults = _.sample(topResults, 3);
-    restResults = _.sample(restResults, 7);
+  if (topResultSet.length === 3 && restResultSet.length >= 7) {
+    var topResults = _.sample(topResultSet, 3);
+    var restResults = _.sample(restResultSet, 7);
     results.push(topResults[0]);
     results.push(restResults[0]);
     results.push(topResults[1]);
@@ -36,10 +36,10 @@ var decorateResults = function (topResults, restResults) {
     results.push(topResults[2]);
     results = results.concat(restResults.slice(2));
   } else {
-    results = results.concat(topResults).concat(restResults);
+    results = results.concat(topResultSet).concat(restResultSet);
   }
   return results;
-}
+};
 
 export default function ({ Meteor, Uploader, Collections, Logger, Flat, Email, Swig }) {
 
