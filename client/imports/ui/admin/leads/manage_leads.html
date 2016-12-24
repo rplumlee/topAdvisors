@@ -387,9 +387,21 @@
           </div>
 
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
               <h6>Phone Number</h6>
               <p>{{ or currentLead.profile.phone "N/A" }}</p>
+            </div>
+
+            <div class="col-xs-6">
+              <h6>Email</h6>
+              <p>{{ or currentLead.profile.email "N/A" }}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <h6>Communication Preferance</h6>
+              <p>{{ or currentLead.preferredContact "Email" }}</p>
             </div>
           </div>
 
