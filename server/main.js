@@ -44,6 +44,7 @@ WebApp.connectHandlers.use('/home', function (req, res) {
   var ip = req.connection.remoteAddress;
   context.Logger.info(req.connection.remoteAddress);
   context.Logger.info(req.ip);
+  context.Logger.info(req.headers);
 
   // Only for testing purpose in development
   if (Meteor.isDevelopment) {
