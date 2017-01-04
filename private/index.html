@@ -577,19 +577,8 @@
   });
 
   var x = document.getElementById("home_address");
-  function showPosition(position) {
-    $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=false', function (data) {
-      var base = {};
-      data.results[0].address_components.forEach(function (each) {
-        base[each.types[0]] = { long: each.long_name, short: each.short_name };
-      });
-      window.geoLocation = { city: base.locality.long, state: base.administrative_area_level_1.short };
-      x.value = base.locality.long + ', ' + base.administrative_area_level_1.short;
-    });
-  }
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  }
+  window.geoLocation = { city: '{{ location.city }}', state: '{{ location.state }}' };
+  x.value = '{{ location.full }}';
 </script>
 
 

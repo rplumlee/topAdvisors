@@ -12,6 +12,8 @@ import users from './users';
 import leads from './leads';
 import activities from './activities';
 import reviews from './reviews';
+import where from 'node-where';
+
 
 var context = {
   Meteor,
@@ -39,8 +41,21 @@ if (Meteor.isDevelopment) {
 }
 
 WebApp.connectHandlers.use('/home', function (req, res) {
+  var ip = req.connection.remoteAddress;
+
+  // Only for testing purpose in development
+  if (Meteor.isDevelopment) {
+    ip = '73.96.105.63';
+  }
+  var result = Meteor.wrapAsync(where.is)(ip);
+  var location = {};
+  if (result) {
+    location.city = result.get('city');
+    location.state = result.get('regionCode');
+    location.full = location.city + ', ' + location.state;
+  }
   res.writeHead(200);
-  res.end(Assets.getText('index.html'));
+  res.end(Swig.render(Assets.getText('index.html'), { locals: { location } }));
 });
 
 WebApp.connectHandlers.use('/how_it_works', function (req, res) {
