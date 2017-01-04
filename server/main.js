@@ -41,13 +41,11 @@ if (Meteor.isDevelopment) {
 }
 
 WebApp.connectHandlers.use('/home', function (req, res) {
-  var ip = req.connection.remoteAddress;
-  context.Logger.info(req.connection.remoteAddress);
-  context.Logger.info(req.ip);
-  context.Logger.info(req.headers);
+  var ip = req.headers['x-forwarded-for'];
+  context.Logger.info(ip);
 
   // Only for testing purpose in development
-  if (Meteor.isDevelopment) {
+  if (Meteor.isDevelopment || !ip) {
     ip = '73.96.105.63';
   }
   var result = Meteor.wrapAsync(where.is)(ip);
