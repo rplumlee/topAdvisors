@@ -14,6 +14,6 @@
 # Run
 `npm run local`
 
-Deployed [here](https://ta-stage.herokuapp.com)
+Deployed [here](https://topadvisors.herokuapp.com)
 
 Built by: [Codebrahma](https://github.com/Codebrahma/)
