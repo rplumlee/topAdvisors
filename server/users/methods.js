@@ -19,9 +19,12 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       check(params, Object);
       var inflatedData = Flat.unflatten(params);
 
+      console.log(inflatedData);
+
       check(inflatedData, {
         email: String,
         password: String,
+        company: String,
         educations: Match.Maybe(Array),
         licenses: Match.Maybe(Array),
         designations: Match.Maybe(Array),
@@ -59,7 +62,7 @@ export default function ({ Meteor, Accounts, Collections, check, Match, lib, Fla
       // Create user
       var id = Accounts.createUser(inflatedData);
 
-      Accounts.sendEnrollmentEmail(id, inflatedData.email);
+      //Accounts.sendEnrollmentEmail(id, inflatedData.email);
 
       // Accounts.sendEnrollmentEmail(id);
 

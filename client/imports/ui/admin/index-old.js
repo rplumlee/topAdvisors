@@ -21,6 +21,7 @@ var _parseAddress = function (addressParams, place) {
   place.address_components.forEach(function (each) {
     base[each.types[0]] = each.long_name;
   });
+  console.log(base.street_number);
   addressParams.street1 = base.street_number + ', ' + base.route;
   addressParams.street2 = base.neighborhood;
   addressParams.city = base.locality;

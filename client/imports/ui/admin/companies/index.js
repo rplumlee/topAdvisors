@@ -14,6 +14,7 @@ var _parseAddress = function () {
   });
 
   var location = {
+    street1: autocomplete.getPlace().formatted_address,
     city: base.locality.long,
     state: base.administrative_area_level_1.short,
     fullAddress: autocomplete.getPlace().formatted_address
@@ -134,12 +135,15 @@ Template.adminCompanyInner.events({
   },
   'submit .add-company-form'(event) {
     event.preventDefault();
+
     var companyDetails = {
       name: event.target.companyName.value,
       bio: event.target.companyBio.value,
       address: _parseAddress()
     };
+
     Meteor.call('companies.create', companyDetails, function (error, result) {
+      console.log(companyDetails);
       if (!error) {
         Router.go(`/admin/companies/${result.company}`);
         document.location.reload(true);
@@ -148,6 +152,7 @@ Template.adminCompanyInner.events({
   },
   'submit .edit-company-form'(event) {
     event.preventDefault();
+
     var companyDetails = {
       _id: Template.instance().companies.get('company')._id,
       name: event.target.companyName.value,

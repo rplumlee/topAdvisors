@@ -43,6 +43,8 @@ export default function ({ Meteor, Logger, Collections }) {
         bio: faker.lorem.paragraph()
       });
 
+      console.log(company.name);
+
       for (var j = 0; j < 15; j++) {
         var personal = _.sample([ 'Home Loans', 'Auto Loans', 'Personal Loans', 'Financial Advising', 'Wealth Management', 'Education Funding', 'Home Insurance', 'Auto Insurance', 'Life Insurance', 'Health Insurance', 'Long-Term Care Insurance', 'Disability Insurance', 'P&C Insurance' ], 5);
         var business = _.sample([ 'Basic Commercial Loans', 'Term Commercial Loans', 'Unsecured Commercial Loans', 'Commercial Acquisition Loans', 'General Liability Insurance', 'Product Liability Insurance', 'Professional Liability Insurance', 'Commercial Property Insurance',

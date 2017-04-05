@@ -345,6 +345,8 @@ Template.adminProInner.events({
     event.preventDefault();
     var data = instance.pros.get('pro');
 
+    console.log(instance);
+
     _.each(event.target, function(t) {
       if (t.name) {
         if (t.type === 'checkbox') {
@@ -362,6 +364,8 @@ Template.adminProInner.events({
     if ($('#coverTempImage')[0].value) {
       data['profile.coverImage'] = $('#coverTempImage')[0].value;
     }
+
+    console.log(data);
 
     Meteor.call('users.create', data, function (err, result) {
       if (!err) {
