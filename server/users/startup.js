@@ -26,7 +26,7 @@ export default function ({ Meteor, Logger, Collections }) {
   //
   // On startup, create sample companies
   //
-  if (Collections.Companies.find().count() < 5) {
+  if (Collections.Companies.find().count() < 0) {
     for (var i = 0; i < 5; i++) {
       var address = {
         street1: faker.address.streetAddress(),
@@ -45,7 +45,7 @@ export default function ({ Meteor, Logger, Collections }) {
 
       console.log(company.name);
 
-      for (var j = 0; j < 15; j++) {
+      for (var j = 0; j < 0; j++) {
         var personal = _.sample([ 'Home Loans', 'Auto Loans', 'Personal Loans', 'Financial Advising', 'Wealth Management', 'Education Funding', 'Home Insurance', 'Auto Insurance', 'Life Insurance', 'Health Insurance', 'Long-Term Care Insurance', 'Disability Insurance', 'P&C Insurance' ], 5);
         var business = _.sample([ 'Basic Commercial Loans', 'Term Commercial Loans', 'Unsecured Commercial Loans', 'Commercial Acquisition Loans', 'General Liability Insurance', 'Product Liability Insurance', 'Professional Liability Insurance', 'Commercial Property Insurance',
           'Life & Health Insurance', 'Commerical Auto Insurance', 'Workers Compensation Insurance', 'Directors and Officers Insurance', 'Data Breach Insurance', 'Tax Planning', 'Employee Benefit Planning', 'Retirement Planning', 'Business Valuation', 'Business Succession Planning',
