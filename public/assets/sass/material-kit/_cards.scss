@@ -499,7 +499,7 @@
 }
 
 .card-raised{
-    @include shadow-big();
+    @include shadow-6dp();
 }
 .card-background{
     background-position: center center;

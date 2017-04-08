@@ -1,52 +1,163 @@
 .profile-page{
   .profile-content{
-    background-color: #e3e3e3;
+    background-color: #f6f6f6;
+    padding-top:  0;}
+
+  .map-block {
+    padding-left:20px;
+    padding-right:0;
+
+    .mapDiv{
+      background: #ffffff;
+      padding:20px;
+      border-radius:3px;
+      margin-top: 20px;
+    }
+    .bio{
+      margin-top:40px;
+      padding-bottom:0;
+    }
+    #map {
+      min-height: 320px;
+      width: 100%;
+      border: none;
+      padding-left: 15px;
+    }
   }
+
   .profile-card{
-    background:#fff;
     padding:15px 30px;
-    border-bottom:1px solid #ddd;
     margin-top:30px;
     margin-bottom:30px;
+    display:inline-block;
+    max-width:60%;
+    h3{
+      margin-top:0;
+    }
+  }
+  .contact-pro{
+    text-align:center;
+    display:block;
+    h6{
+      text-align:center;
+      margin: 15px 0;
+      float:left;
+    }
+
+  }
+  .contact-btn{
+    background: $light-blue-600;
+    text-transform:none;
+    font-size:16px;
+    margin-top:30px;
+  }
+  .services{
+    margin-top:-100px;
+  }
+  .card{
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    box-shadow:none;
+  }
+  .summary{
+    border-radius:3px;
+    background:#fff;
+    text-align:center;
+    transition: box-shadow .5s ease;
+  }
+  .affix{
+    position:fixed!important;
+    width:33%;
+    top:110px;
   }
   .trophy-section{
-    border-top:1px solid #ccc;
     padding: 0;
-    background:#fff;
-    margin: 30px -30px 0 -30px;
+    margin-top:30px;
+    border-top:1px solid #f1f1f1;
+    padding-top:20px;
+
     .trophy{
       padding-left:15px;
       padding-right:15px;
       display:inline-block;
-      img{
-        height:100px;
-        width:auto;
-        padding:35px 20px 5px 20px;
+      text-align:center;
+      min-width: 113px;
+
+      transition: 500ms all ease;
+      &:hover{
+        span{
+          color: $light-blue-600;
+        }
+        span{
+          transform: rotateY(180deg) scale(1.4);
+        }
+      }
+      span{
+        font-size:26px;
+        display:block;
+      }
+      h6{
+        font-weight:300;
+        text-transform:none;
+        font-size:14px;
+        cursor: default;
+      }
+      span,h6{
+        transition: 1s all ease;
       }
     }
   }
+  .left-div{
+    margin-top:40px;
+    padding: 0;
+  }
+  .company-block{
+    padding: 20px;
+    border-radius:3px;
+    background:#ffffff;
+
+    .card-background{
+      border-radius:0;
+      &:after{
+        background: rgba(0,0,0,0);
+      }
+    }
+  }
+  canvas{
+
+  }
+  .chart-div{
+    padding:20px;
+
+ border-radius:3px;
+    margin-top:20px;
+  }
   .nameCard{
-    margin-top:-50px;
+    padding-top:0;
+    padding-bottom: 0;
   }
   .resume{
     table{
       margin-top:30px;
       margin-bottom:30px;
-      td:first-child{
-        width:50%!important;
-      }
       td{
         width:25%;
+        &:first-child{
+          width:50%;
+        }
+      }
+      th{
+        font-size:1.1em;
       }
       th:first-child{
-        font-weight:bold;
+        font-weight:500;
       }
     }
   }
   .job{
-    text-transform:uppercase;
-    font-weight:600;
-    font-size:1.2em;
+    font-weight:400;
+    text-transform:none;
   }
   .checkbox-label{
     color: rgba(50,50,50,1)!important;

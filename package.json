@@ -13,8 +13,11 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chart.js": "^2.5.0",
     "cloudinary": "^1.4.4",
     "flat": "^2.0.1",
+    "hover.css": "^2.2.0",
+    "material-icons": "^0.1.0",
     "moment": "^2.13.0",
     "node-where": "^1.0.0",
     "swig": "^1.4.2",

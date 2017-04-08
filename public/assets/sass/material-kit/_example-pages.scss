@@ -808,24 +808,30 @@
 
 .profile-page{
     .page-header{
-        height: 320px!important;
+        height: 400px!important;
         background-position: top center;
     }
+
     .profile{
-        text-align: center;
+      display:block;
+      padding: 0;
+      margin-top:-80px;
+
+
 
         img{
-            max-width: 160px;
-            width: 100%;
-            margin: 0 auto;
-            @include transform-translate-y(-50%);
+          border: 4px solid #fff;
+          max-width: 160px;
+          width: 100%;
+          margin: 0 auto;
+          box-shadow: inset 0 1.5px 3px 0 rgba(0,0,0,.15), 0 1.5px 3px 0 rgba(0,0,0,.15);
         }
         .name{
             margin-top: -80px;
         }
     }
     .description{
-        margin: $margin-base auto 0;
+        margin: $margin-base 0 0 0;
         max-width: 600px;
     }
     .profile-tabs{
